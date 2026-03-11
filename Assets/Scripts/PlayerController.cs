@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float m_DashDelay = 1f;
     private float dashCooldown = 0f;
     private Vector3 moveInput = new Vector3(0f,0f,0f);
+    private bool doDash = false;
     InputAction moveAction;
     InputAction dashAction;
 
@@ -25,6 +26,19 @@ public class PlayerController : MonoBehaviour
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         moveInput = move;
+
+        if (dashCooldown > 0f)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+        if (dashAction.IsPressed() && dashCooldown <= 0 && moveInput.magnitude > 0f)
+        {
+            doDash = true;
+            dashCooldown = m_DashDelay;
+        } else
+        {
+            doDash = false;
+        }
     }
 
     void FixedUpdate()
@@ -37,10 +51,9 @@ public class PlayerController : MonoBehaviour
         }
         // Debug.Log("Move: " + moveValue);
         // Debug.Log(dashTime);
-        if (dashAction.IsPressed() && dashCooldown <= 0 && moveInput.magnitude > 0f)
+        if (doDash)
         {
             m_Rigidbody.AddForce(moveInput * m_DashSpeed, ForceMode.Impulse);
-            dashCooldown = m_DashDelay;
         }
 
         if (m_Rigidbody.linearVelocity.magnitude > m_MaxSpeed) {
