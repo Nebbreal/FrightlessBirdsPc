@@ -45,12 +45,6 @@ public class PlayerController : MonoBehaviour
     {
         m_Rigidbody.AddForce(moveInput * m_WalkSpeed, ForceMode.Force);
 
-        if (dashCooldown > 0f)
-        {
-            dashCooldown -= Time.fixedDeltaTime;
-        }
-        // Debug.Log("Move: " + moveValue);
-        // Debug.Log(dashTime);
         if (doDash)
         {
             m_Rigidbody.AddForce(moveInput * m_DashSpeed, ForceMode.Impulse);
