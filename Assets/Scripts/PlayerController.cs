@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private InputAction _attackAction;
     private InputAction _groundAction;
     [Header("Initialization Settings")]
+    public string MoveActionName = "Move";
+    public string DashActionName = "Jump";
+    public string AttackActionName = "Attack";
+    public string GroundActionName = "Crouch";
     public Rigidbody Rb;
     public Collider Col;
 
@@ -27,9 +32,12 @@ public class PlayerController : MonoBehaviour
     private float _dashCooldown = 0f;
     private bool _doDash = false;
     public float DashDuration = 1f;
+    public float DashEarlyEndSpeed = 10f;
     private float _dashTime = 0f;
     private bool _isDashing = false;
-    private Collider[] _dashCollided;
+    public float DashHitRange = 2f;
+    public float DashKnockbackSpeed = 2f;
+    private List<Collider> _dashCollided = new List<Collider>();
     
     [Header("Attack Settings")]
     public float AttackRange = 1f;
@@ -53,10 +61,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _moveAction = InputSystem.actions.FindAction("Move");
-        _dashAction = InputSystem.actions.FindAction("Jump");
-        _attackAction = InputSystem.actions.FindAction("Attack");
-        _groundAction = InputSystem.actions.FindAction("Crouch");
+        _moveAction = InputSystem.actions.FindAction(MoveActionName);
+        _dashAction = InputSystem.actions.FindAction(DashActionName);
+        _attackAction = InputSystem.actions.FindAction(AttackActionName);
+        _groundAction = InputSystem.actions.FindAction(GroundActionName);
     }
 
     void Update()
@@ -70,6 +78,7 @@ public class PlayerController : MonoBehaviour
         Attack();
         CheckIsStunned();
         CheckIsGrounded();
+        CheckIsDashing();
         
         if (Rb.linearVelocity.magnitude > 0.1) {
             _lastMoveDirection = Rb.linearVelocity.normalized;
@@ -102,15 +111,14 @@ public class PlayerController : MonoBehaviour
         {
             _dashCooldown -= Time.deltaTime;
         }
-        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f)
+        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f && !_isDashing)
         {
             _doDash = true;
-            _dashCooldown = DashDelay;
-            _dashTime = DashDuration;
         } else
         {
             _doDash = false;
         }
+
     }
 
     void Attack()
@@ -126,6 +134,38 @@ public class PlayerController : MonoBehaviour
         } else
         {
             _doAttack = false;
+        }
+    }
+    void CheckIsDashing()
+    {
+        if (_isDashing)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, DashHitRange, Lm);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider == null || hitCollider == Col || _dashCollided.Contains(hitCollider))
+                {
+                    continue;
+                }
+                _dashCollided.Add(hitCollider);
+                hitCollider.SendMessage("Knockback", Rb.linearVelocity.normalized * DashKnockbackSpeed);
+            }
+
+            if (_dashTime > 0.0f)
+            {
+                _dashTime -= Time.deltaTime;
+            } else {
+                _isDashing = false;
+                _dashCooldown = DashDelay;
+                _dashTime = DashDuration;
+                _dashCollided.Clear();
+            }
+            if (Rb.linearVelocity.magnitude < DashEarlyEndSpeed) {
+                _isDashing = false;
+                _dashCooldown = DashDelay;
+                _dashTime = DashDuration;
+                _dashCollided.Clear();
+            }
         }
     }
     void CheckIsStunned()
@@ -176,6 +216,7 @@ public class PlayerController : MonoBehaviour
         if (_doDash)
         {
             Rb.AddForce(moveInput * DashSpeed, ForceMode.Impulse);
+            _isDashing = true;
         }
 
         if (_doAttack)
@@ -221,5 +262,10 @@ public class PlayerController : MonoBehaviour
     {
         _isStunned = true;
         _stunTimer = StunTime;
+    }
+
+    public void Knockback(Vector3 direction)
+    {
+        Rb.AddForce(direction, ForceMode.Impulse);
     }
 }

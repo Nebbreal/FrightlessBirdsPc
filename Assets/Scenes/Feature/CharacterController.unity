@@ -627,18 +627,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f99aaf6308f4341944772ea1104f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  m_Rigidbody: {fileID: 617745709}
-  m_Collider: {fileID: 617745710}
-  m_StunTime: 0.6
-  m_WalkSpeed: 20
-  m_MaxSpeed: 20
-  m_DashSpeed: 10
-  m_DashDelay: 1
-  m_AttackRange: 1.55
-  m_AttackDelay: 1
-  layerMask:
+  MoveActionName: Move
+  DashActionName: Jump
+  AttackActionName: Attack
+  GroundActionName: Crouch
+  Rb: {fileID: 617745709}
+  Col: {fileID: 617745710}
+  StunTime: 1
+  WalkSpeed: 20
+  MaxSpeed: 20
+  DashSpeed: 7
+  DashDelay: 1
+  DashDuration: 0.5
+  DashEarlyEndSpeed: 10
+  DashHitRange: 1.5
+  DashKnockbackSpeed: 10
+  AttackRange: 1.5
+  AttackDelay: 1
+  Lm:
     serializedVersion: 2
     m_Bits: 256
+  MaxGroundDuration: 1
+  GroundDelay: 1
+  GroundedMass: 10
+  UngroundedMass: 1
+  GroundedDamping: 3
+  UngroundedDamping: 1
 --- !u!54 &617745709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -857,18 +871,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f99aaf6308f4341944772ea1104f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  m_Rigidbody: {fileID: 1266981086}
-  m_Collider: {fileID: 1266981087}
-  m_StunTime: 0.6
-  m_WalkSpeed: 0
-  m_MaxSpeed: 20
-  m_DashSpeed: 0
-  m_DashDelay: 1
-  m_AttackRange: 0
-  m_AttackDelay: 1
-  layerMask:
+  MoveActionName: Move
+  DashActionName: Jump
+  AttackActionName: Attack
+  GroundActionName: Crouch
+  Rb: {fileID: 1266981086}
+  Col: {fileID: 1266981087}
+  StunTime: 1
+  WalkSpeed: 0
+  MaxSpeed: 60
+  DashSpeed: 0
+  DashDelay: 1
+  DashDuration: 1
+  DashEarlyEndSpeed: 10
+  DashHitRange: 2
+  DashKnockbackSpeed: 2
+  AttackRange: 0
+  AttackDelay: 1
+  Lm:
     serializedVersion: 2
     m_Bits: 256
+  MaxGroundDuration: 1
+  GroundDelay: 1
+  GroundedMass: 10
+  UngroundedMass: 1
+  GroundedDamping: 3
+  UngroundedDamping: 0.5
 --- !u!54 &1266981086
 Rigidbody:
   m_ObjectHideFlags: 0
