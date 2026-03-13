@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     public float AttackRange = 1f;
     public float AttackDelay = 1f;
+    public float AttackKnockbackSpeed = 2f;
     public LayerMask Lm;
     private float _attackCooldown = 0f;
     private bool _doAttack = false;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public float UngroundedMass = 1f;
     public float GroundedDamping = 3f;
     public float UngroundedDamping = 0.5f;
+    public float GroundedReturnKnockbackSpeed = 2f;
     private bool _isGrounded = false;
     private float _groundedTime = 0f;
     private float _groundCooldown = 0f;
@@ -148,7 +150,7 @@ public class PlayerController : MonoBehaviour
                     continue;
                 }
                 _dashCollided.Add(hitCollider);
-                hitCollider.SendMessage("Knockback", Rb.linearVelocity.normalized * DashKnockbackSpeed);
+                hitCollider.SendMessage("Knockback", new CollisionData(Rb.linearVelocity.normalized, DashKnockbackSpeed, Col));
             }
 
             if (_dashTime > 0.0f)
@@ -228,7 +230,7 @@ public class PlayerController : MonoBehaviour
                 {
                     continue;
                 }
-                hitCollider.SendMessage("Stun");
+                hitCollider.SendMessage("Stun", new CollisionData(_lastMoveDirection, AttackKnockbackSpeed, Col));
             }
         }
 
@@ -258,14 +260,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Stun()
+    public void Stun(CollisionData data)
     {
         _isStunned = true;
         _stunTimer = StunTime;
+        Knockback(new CollisionData(data.Direction, data.Speed, null));
     }
 
-    public void Knockback(Vector3 direction)
+    public void Knockback(CollisionData data)
     {
-        Rb.AddForce(direction, ForceMode.Impulse);
+        if (!_isGrounded)
+        {
+            Rb.AddForce(data.Direction, ForceMode.Impulse);
+        } else if (data.OriginCollider != null)
+        {
+            data.OriginCollider.SendMessage("Knockback", new CollisionData(-data.Direction, GroundedReturnKnockbackSpeed, Col));
+        }
     }
 }
