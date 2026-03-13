@@ -1,62 +1,67 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    InputAction moveAction;
-    InputAction dashAction;
-    InputAction attackAction;
-    InputAction groundAction;
+    private InputAction _moveAction;
+    private InputAction _dashAction;
+    private InputAction _attackAction;
+    private InputAction _groundAction;
     [Header("Initialization Settings")]
-    public Rigidbody m_Rigidbody;
-    public Collider m_Collider;
+    public Rigidbody Rb;
+    public Collider Col;
 
     [Header("Player Settings")]
-    public float m_StunTime = 1f;
-    private float stunTimer = 0f;
-    private bool isStunned = false;
+    public float StunTime = 1f;
+    private float _stunTimer = 0f;
+    private bool _isStunned = false;
     [Header("Walk Settings")]
-    public float m_WalkSpeed = 20f;
-    public float m_MaxSpeed = 60f;
+    public float WalkSpeed = 20f;
+    public float MaxSpeed = 60f;
     private Vector3 moveInput = new Vector3(0f,0f,0f);
 
     [Header("Dash Settings")]
-    public float m_DashSpeed = 1f;
-    public float m_DashDelay = 1f;
-    private float dashCooldown = 0f;
-    private bool doDash = false;
+    public float DashSpeed = 1f;
+    public float DashDelay = 1f;
+    private float _dashCooldown = 0f;
+    private bool _doDash = false;
+    public float DashDuration = 1f;
+    private float _dashTime = 0f;
+    private bool _isDashing = false;
+    private Collider[] _dashCollided;
     
     [Header("Attack Settings")]
-    public float m_AttackRange = 1f;
-    public float m_AttackDelay = 1f;
-    public LayerMask layerMask;
-    private float attackCooldown = 0f;
-    private bool doAttack = false;
+    public float AttackRange = 1f;
+    public float AttackDelay = 1f;
+    public LayerMask Lm;
+    private float _attackCooldown = 0f;
+    private bool _doAttack = false;
 
     [Header("Ground Settings")]
-    public float m_MaxGroundDuration = 1f;
-    public float m_GroundDelay = 1f;
-    public float m_GroundedMass = 10f;
-    public float m_UnGroundedMass = 1f;
-    public float m_GroundedDamping = 3f;
-    public float m_UnGroundedDamping = 0.5f;
-    private bool isGrounded = false;
-    private float groundedTime = 0f;
-    private float groundCooldown = 0f;
+    public float MaxGroundDuration = 1f;
+    public float GroundDelay = 1f;
+    public float GroundedMass = 10f;
+    public float UngroundedMass = 1f;
+    public float GroundedDamping = 3f;
+    public float UngroundedDamping = 0.5f;
+    private bool _isGrounded = false;
+    private float _groundedTime = 0f;
+    private float _groundCooldown = 0f;
 
-    private Vector3 lastMoveDirection = new Vector3(1f,0f,0f);
+    private Vector3 _lastMoveDirection = new Vector3(1f,0f,0f);
 
     private void Start()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
-        dashAction = InputSystem.actions.FindAction("Jump");
-        attackAction = InputSystem.actions.FindAction("Attack");
-        groundAction = InputSystem.actions.FindAction("Crouch");
+        _moveAction = InputSystem.actions.FindAction("Move");
+        _dashAction = InputSystem.actions.FindAction("Jump");
+        _attackAction = InputSystem.actions.FindAction("Attack");
+        _groundAction = InputSystem.actions.FindAction("Crouch");
     }
 
     void Update()
     {
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
+        Vector2 moveValue = _moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         moveInput = move;
 
@@ -66,118 +71,119 @@ public class PlayerController : MonoBehaviour
         CheckIsStunned();
         CheckIsGrounded();
         
-        if (m_Rigidbody.linearVelocity.magnitude > 0.1) {
-            lastMoveDirection = m_Rigidbody.linearVelocity.normalized;
+        if (Rb.linearVelocity.magnitude > 0.1) {
+            _lastMoveDirection = Rb.linearVelocity.normalized;
         }
     }
 
     void Ground()
     {
-        isGrounded = false;
-        if (groundCooldown > 0f)
+        _isGrounded = false;
+        if (_groundCooldown > 0f)
         {
-            groundCooldown -= Time.deltaTime;
+            _groundCooldown -= Time.deltaTime;
         }
 
-        if (groundAction.IsPressed() && groundCooldown <= 0)
+        if (_groundAction.IsPressed() && _groundCooldown <= 0)
         {
-            groundedTime += Time.deltaTime;
-            if (groundedTime >= m_MaxGroundDuration)
+            _groundedTime += Time.deltaTime;
+            if (_groundedTime >= MaxGroundDuration)
             {
-                groundedTime = 0.0f;
-                groundCooldown = m_GroundDelay;
+                _groundedTime = 0.0f;
+                _groundCooldown = GroundDelay;
             } else {
-                isGrounded = true;
+                _isGrounded = true;
             }
         }
     }
     void Dash()
     {
-        if (dashCooldown > 0f)
+        if (_dashCooldown > 0f)
         {
-            dashCooldown -= Time.deltaTime;
+            _dashCooldown -= Time.deltaTime;
         }
-        if (dashAction.IsPressed() && dashCooldown <= 0 && moveInput.magnitude > 0f)
+        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f)
         {
-            doDash = true;
-            dashCooldown = m_DashDelay;
+            _doDash = true;
+            _dashCooldown = DashDelay;
+            _dashTime = DashDuration;
         } else
         {
-            doDash = false;
+            _doDash = false;
         }
     }
 
     void Attack()
     {
-        if (attackCooldown > 0f)
+        if (_attackCooldown > 0f)
         {
-            attackCooldown -= Time.deltaTime;
+            _attackCooldown -= Time.deltaTime;
         }
-        if (attackAction.IsPressed() && attackCooldown <= 0)
+        if (_attackAction.IsPressed() && _attackCooldown <= 0)
         {
-            doAttack = true;
-            attackCooldown = m_AttackDelay;
+            _doAttack = true;
+            _attackCooldown = AttackDelay;
         } else
         {
-            doAttack = false;
+            _doAttack = false;
         }
     }
     void CheckIsStunned()
     {
-        if (isStunned)
+        if (_isStunned)
         {
-            stunTimer -= Time.deltaTime;
-            if (stunTimer <= 0)
+            _stunTimer -= Time.deltaTime;
+            if (_stunTimer <= 0)
             {
-                isStunned = false;
-                stunTimer = 0f;
+                _isStunned = false;
+                _stunTimer = 0f;
             }
 
             moveInput = Vector3.zero;
-            isGrounded = false;
-            doAttack = false;
-            doDash = false;
+            _isGrounded = false;
+            _doAttack = false;
+            _doDash = false;
         }
     }
     void CheckIsGrounded()
     {
-        if (isGrounded)
+        if (_isGrounded)
         {
             moveInput = Vector3.zero;
-            m_Rigidbody.mass = m_GroundedMass;
-            m_Rigidbody.linearDamping = m_GroundedDamping;
-            if (doAttack)
+            Rb.mass = GroundedMass;
+            Rb.linearDamping = GroundedDamping;
+            if (_doAttack)
             {
-                doAttack = false;
-                attackCooldown = 0f;
+                _doAttack = false;
+                _attackCooldown = 0f;
             }
-            if (doDash)
+            if (_doDash)
             {
-                doDash = false;
-                dashCooldown = 0f;
+                _doDash = false;
+                _dashCooldown = 0f;
             }
         } else
         {
-            m_Rigidbody.mass = m_UnGroundedMass;
-            m_Rigidbody.linearDamping = m_UnGroundedDamping;
+            Rb.mass = UngroundedMass;
+            Rb.linearDamping = UngroundedDamping;
         }
     }
 
     void FixedUpdate()
     {
-        m_Rigidbody.AddForce(moveInput * m_WalkSpeed, ForceMode.Force);
+        Rb.AddForce(moveInput * WalkSpeed, ForceMode.Force);
 
-        if (doDash)
+        if (_doDash)
         {
-            m_Rigidbody.AddForce(moveInput * m_DashSpeed, ForceMode.Impulse);
+            Rb.AddForce(moveInput * DashSpeed, ForceMode.Impulse);
         }
 
-        if (doAttack)
+        if (_doAttack)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position + lastMoveDirection * (m_AttackRange + 0.2f), m_AttackRange, layerMask);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange, Lm);
             foreach (var hitCollider in hitColliders)
             {
-                if (hitCollider == null || hitCollider == m_Collider)
+                if (hitCollider == null || hitCollider == Col)
                 {
                     continue;
                 }
@@ -185,26 +191,26 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (m_Rigidbody.linearVelocity.magnitude > m_MaxSpeed) {
-            m_Rigidbody.linearVelocity = m_Rigidbody.linearVelocity.normalized * m_MaxSpeed;
+        if (Rb.linearVelocity.magnitude > MaxSpeed) {
+            Rb.linearVelocity = Rb.linearVelocity.normalized * MaxSpeed;
         }
     }
 
     void OnDrawGizmos()
     {
-        if (doAttack)
+        if (_doAttack)
         {
-            Gizmos.DrawSphere(transform.position + lastMoveDirection * (m_AttackRange + 0.2f), m_AttackRange);
+            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange);
         }
 
-        if (isStunned)
+        if (_isStunned)
         {
             Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
         }
 
         
-        if (isGrounded)
+        if (_isGrounded)
         {
             Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
@@ -213,7 +219,7 @@ public class PlayerController : MonoBehaviour
 
     public void Stun()
     {
-        isStunned = true;
-        stunTimer = m_StunTime;
+        _isStunned = true;
+        _stunTimer = StunTime;
     }
 }
