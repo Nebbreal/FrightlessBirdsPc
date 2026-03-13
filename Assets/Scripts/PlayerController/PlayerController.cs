@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour
     public string GroundActionName = "Crouch";
     public Rigidbody Rb;
     public Collider Col;
+    public ParticleSystem AttackParticles;
 
-    public bool LockState = false;
+    public PlayerState TargetState = PlayerState.Idle;
 
     [Header("Player Settings")]
     public float StunTime = 1f;
@@ -87,15 +88,12 @@ public class PlayerController : MonoBehaviour
         
         if (Rb.linearVelocity.magnitude > 0.1) {
             _lastMoveDirection = Rb.linearVelocity.normalized;
+            transform.rotation = Quaternion.LookRotation (_lastMoveDirection);
         }
     }
 
     void SetPlayerState(PlayerState newState)
     {
-        if (LockState)
-        {
-            return;
-        }
         switch (newState) {
             case PlayerState.Dash:
                 _dashTime = DashDuration;
@@ -150,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Braced:
-                if (!_doBrace)
+                if (!_doBrace && TargetState != PlayerState.Braced)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -167,6 +165,10 @@ public class PlayerController : MonoBehaviour
 
     void IdleToState()
     {
+        if (TargetState != PlayerState.Idle)
+        {
+            SetPlayerState(TargetState);
+        }
         if (_doBrace)
         {
             SetPlayerState(PlayerState.Braced);
@@ -229,7 +231,7 @@ public class PlayerController : MonoBehaviour
 
     void ActivateAttack()
     {
-        if (_attackAction.IsPressed() && _attackCooldown <= 0)
+        if (_attackAction.IsPressed() && _attackCooldown <= 0 && PState != PlayerState.Attack)
         {
             _doAttack = true;
         }
@@ -294,6 +296,9 @@ public class PlayerController : MonoBehaviour
 
         if (_doAttack)
         {
+            var main = AttackParticles.main;
+            main.startRotation = (Quaternion.LookRotation (_lastMoveDirection).y * Mathf.Rad2Deg) / 2f - 90f;
+            AttackParticles.Play();
             Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange, Lm);
             foreach (var hitCollider in hitColliders)
             {
