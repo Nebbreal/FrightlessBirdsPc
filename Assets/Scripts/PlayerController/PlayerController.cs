@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _attackAction;
     private InputAction _groundAction;
     [Header("Initialization Settings")]
+    public PlayerState PState;
     public string MoveActionName = "Move";
     public string DashActionName = "Jump";
     public string AttackActionName = "Attack";
@@ -17,10 +19,11 @@ public class PlayerController : MonoBehaviour
     public Rigidbody Rb;
     public Collider Col;
 
+    public bool LockState = false;
+
     [Header("Player Settings")]
     public float StunTime = 1f;
     private float _stunTimer = 0f;
-    private bool _isStunned = false;
     [Header("Walk Settings")]
     public float WalkSpeed = 20f;
     public float MaxSpeed = 60f;
@@ -34,7 +37,6 @@ public class PlayerController : MonoBehaviour
     public float DashDuration = 1f;
     public float DashEarlyEndSpeed = 10f;
     private float _dashTime = 0f;
-    private bool _isDashing = false;
     public float DashHitRange = 2f;
     public float DashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
@@ -42,22 +44,18 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     public float AttackRange = 1f;
     public float AttackDelay = 1f;
+    public float AttackDuration = 1f;
     public float AttackKnockbackSpeed = 2f;
     public LayerMask Lm;
     private float _attackCooldown = 0f;
+    private float _attackTime = 0f;
     private bool _doAttack = false;
 
-    [Header("Ground Settings")]
-    public float MaxGroundDuration = 1f;
-    public float GroundDelay = 1f;
-    public float GroundedMass = 10f;
-    public float UngroundedMass = 1f;
-    public float GroundedDamping = 3f;
-    public float UngroundedDamping = 0.5f;
-    public float GroundedReturnKnockbackSpeed = 2f;
-    private bool _isGrounded = false;
-    private float _groundedTime = 0f;
-    private float _groundCooldown = 0f;
+    [Header("Braced Settings")]
+    public float BracedDelay = 1f;
+    public float BracedReturnKnockbackSpeed = 2f;
+    private bool _doBrace = false;
+    private float _bracedCooldown = 0f;
 
     private Vector3 _lastMoveDirection = new Vector3(1f,0f,0f);
 
@@ -75,139 +73,213 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         moveInput = move;
 
-        Ground();
-        Dash();
-        Attack();
-        CheckIsStunned();
-        CheckIsGrounded();
-        CheckIsDashing();
+        if (PState != PlayerState.Stunned)
+        {
+            ActivateGrounded();
+            ActivateDash();
+            ActivateAttack();
+        }
+
+        UpdateCooldowns();
+        UpdateActiveTimer();
+
+        UpdateStates();
         
         if (Rb.linearVelocity.magnitude > 0.1) {
             _lastMoveDirection = Rb.linearVelocity.normalized;
         }
     }
 
-    void Ground()
+    void SetPlayerState(PlayerState newState)
     {
-        _isGrounded = false;
-        if (_groundCooldown > 0f)
+        if (LockState)
         {
-            _groundCooldown -= Time.deltaTime;
+            return;
         }
+        switch (newState) {
+            case PlayerState.Dash:
+                _dashTime = DashDuration;
+                break;
+            case PlayerState.Attack:
+                _attackTime = AttackDuration;
+                break;
+            case PlayerState.Stunned:
+                _stunTimer = StunTime;
+                break;
+            case PlayerState.Braced:
+                Rb.constraints = RigidbodyConstraints.FreezeAll;
+                break;
+        }
+        ExitState(PState);
+        PState = newState;
+    }
 
-        if (_groundAction.IsPressed() && _groundCooldown <= 0)
-        {
-            _groundedTime += Time.deltaTime;
-            if (_groundedTime >= MaxGroundDuration)
-            {
-                _groundedTime = 0.0f;
-                _groundCooldown = GroundDelay;
-            } else {
-                _isGrounded = true;
-            }
+    void ExitState(PlayerState current)
+    {
+        switch (current) {
+            case PlayerState.Dash:
+                _dashCooldown = DashDelay;
+                _dashTime = DashDuration;
+                _dashCollided.Clear();
+                break;
+            case PlayerState.Attack:
+                _attackCooldown = AttackDelay;
+                break;
+            case PlayerState.Braced:
+                Rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                _bracedCooldown = BracedDelay;
+                break;
         }
     }
-    void Dash()
+
+    void UpdateStates()
+    {
+        switch (PState)
+        {
+            case PlayerState.Idle:
+                if (moveInput.magnitude > 0f)
+                {
+                    SetPlayerState(PlayerState.Movement);
+                }
+                IdleToState();
+                break;
+            case PlayerState.Movement:
+                IdleToState();
+                break;
+            case PlayerState.Dash:
+                CheckIsDashing();
+                break;
+            case PlayerState.Braced:
+                if (!_doBrace)
+                {
+                    SetPlayerState(PlayerState.Idle);
+                }
+                CheckIsGrounded();
+                break;
+            case PlayerState.Attack:
+                CheckIsAttacking();
+                break;
+            case PlayerState.Stunned:
+                CheckIsStunned();
+                break;
+        }
+    }
+
+    void IdleToState()
+    {
+        if (_doBrace)
+        {
+            SetPlayerState(PlayerState.Braced);
+        } else if (_doDash)
+        {
+            SetPlayerState(PlayerState.Dash);
+        } else if (_doAttack)
+        {
+            SetPlayerState(PlayerState.Attack);
+        }
+    }
+
+    void UpdateCooldowns()
     {
         if (_dashCooldown > 0f)
         {
             _dashCooldown -= Time.deltaTime;
         }
-        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f && !_isDashing)
+        if (_bracedCooldown > 0f)
         {
-            _doDash = true;
-        } else
-        {
-            _doDash = false;
+            _bracedCooldown -= Time.deltaTime;
         }
-
-    }
-
-    void Attack()
-    {
         if (_attackCooldown > 0f)
         {
             _attackCooldown -= Time.deltaTime;
         }
+    }
+
+    void UpdateActiveTimer()
+    {
+        switch (PState)
+        {
+            case PlayerState.Dash:
+                _dashTime -= Time.deltaTime;
+                break;
+            case PlayerState.Attack:
+                _attackTime -= Time.deltaTime;
+                break;
+            case PlayerState.Stunned:
+                _stunTimer -= Time.deltaTime;
+                break;
+        }
+    }
+
+    void ActivateGrounded()
+    {
+        if (_groundAction.IsPressed() && _bracedCooldown <= 0)
+        {
+            _doBrace = true;
+        }
+    }
+    void ActivateDash()
+    {
+        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f && PState != PlayerState.Dash)
+        {
+            _doDash = true;
+        }
+
+    }
+
+    void ActivateAttack()
+    {
         if (_attackAction.IsPressed() && _attackCooldown <= 0)
         {
             _doAttack = true;
-            _attackCooldown = AttackDelay;
-        } else
-        {
-            _doAttack = false;
         }
     }
     void CheckIsDashing()
     {
-        if (_isDashing)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (DashHitRange / 2f), DashHitRange, Lm);
+        foreach (var hitCollider in hitColliders)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, DashHitRange, Lm);
-            foreach (var hitCollider in hitColliders)
+            if (hitCollider == null || hitCollider == Col || _dashCollided.Contains(hitCollider))
             {
-                if (hitCollider == null || hitCollider == Col || _dashCollided.Contains(hitCollider))
-                {
-                    continue;
-                }
-                _dashCollided.Add(hitCollider);
-                hitCollider.SendMessage("Knockback", new CollisionData(Rb.linearVelocity.normalized, DashKnockbackSpeed, Col));
+                continue;
             }
-
-            if (_dashTime > 0.0f)
-            {
-                _dashTime -= Time.deltaTime;
-            } else {
-                _isDashing = false;
-                _dashCooldown = DashDelay;
-                _dashTime = DashDuration;
-                _dashCollided.Clear();
-            }
-            if (Rb.linearVelocity.magnitude < DashEarlyEndSpeed) {
-                _isDashing = false;
-                _dashCooldown = DashDelay;
-                _dashTime = DashDuration;
-                _dashCollided.Clear();
-            }
+            _dashCollided.Add(hitCollider);
+            hitCollider.SendMessage("DashKnockback", new CollisionData(Rb.linearVelocity.normalized, DashKnockbackSpeed, Col));
         }
+
+        if (_dashTime <= 0.0f) {
+            SetPlayerState(PlayerState.Movement);
+        }
+        if (_dashTime <= DashDuration - 0.1f && Rb.linearVelocity.magnitude < DashEarlyEndSpeed) {
+            SetPlayerState(PlayerState.Idle);
+        }
+        
+    }
+    void CheckIsAttacking()
+    {
+        if (_attackTime <= 0)
+        {
+            SetPlayerState(PlayerState.Idle);
+            _attackTime = 0f;
+        }
+
+        moveInput = Vector3.zero;
     }
     void CheckIsStunned()
     {
-        if (_isStunned)
+        if (_stunTimer <= 0)
         {
-            _stunTimer -= Time.deltaTime;
-            if (_stunTimer <= 0)
-            {
-                _isStunned = false;
-                _stunTimer = 0f;
-            }
-
-            moveInput = Vector3.zero;
-            _isGrounded = false;
-            _doAttack = false;
-            _doDash = false;
+            SetPlayerState(PlayerState.Idle);
+            _stunTimer = 0f;
         }
+
+        moveInput = Vector3.zero;
     }
     void CheckIsGrounded()
     {
-        if (_isGrounded)
+        if (PState == PlayerState.Braced)
         {
             moveInput = Vector3.zero;
-            Rb.mass = GroundedMass;
-            Rb.linearDamping = GroundedDamping;
-            if (_doAttack)
-            {
-                _doAttack = false;
-                _attackCooldown = 0f;
-            }
-            if (_doDash)
-            {
-                _doDash = false;
-                _dashCooldown = 0f;
-            }
-        } else
-        {
-            Rb.mass = UngroundedMass;
-            Rb.linearDamping = UngroundedDamping;
         }
     }
 
@@ -218,7 +290,6 @@ public class PlayerController : MonoBehaviour
         if (_doDash)
         {
             Rb.AddForce(moveInput * DashSpeed, ForceMode.Impulse);
-            _isDashing = true;
         }
 
         if (_doAttack)
@@ -237,23 +308,32 @@ public class PlayerController : MonoBehaviour
         if (Rb.linearVelocity.magnitude > MaxSpeed) {
             Rb.linearVelocity = Rb.linearVelocity.normalized * MaxSpeed;
         }
+
+        _doAttack = false;
+        _doDash = false;
+        _doBrace = false;
     }
 
     void OnDrawGizmos()
     {
-        if (_doAttack)
+        if (PState == PlayerState.Attack)
         {
             Gizmos.DrawSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange);
         }
 
-        if (_isStunned)
+        if (PState == PlayerState.Dash)
+        {
+            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (DashHitRange / 2f), DashHitRange);
+        }
+
+        if (PState == PlayerState.Stunned)
         {
             Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
         }
 
         
-        if (_isGrounded)
+        if (PState == PlayerState.Braced)
         {
             Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
@@ -262,19 +342,25 @@ public class PlayerController : MonoBehaviour
 
     public void Stun(CollisionData data)
     {
-        _isStunned = true;
-        _stunTimer = StunTime;
-        Knockback(new CollisionData(data.Direction, data.Speed, null));
+        if (PState != PlayerState.Dash) {
+            SetPlayerState(PlayerState.Stunned);
+            Knockback(data);
+        }
+    }
+
+    public void DashKnockback(CollisionData data)
+    {
+        if (PState != PlayerState.Braced)
+        {
+            Knockback(data);
+        } else if (data.OriginCollider != null)
+        {
+            data.OriginCollider.SendMessage("Knockback", new CollisionData(-data.Direction, BracedReturnKnockbackSpeed, Col));
+        }
     }
 
     public void Knockback(CollisionData data)
     {
-        if (!_isGrounded)
-        {
-            Rb.AddForce(data.Direction, ForceMode.Impulse);
-        } else if (data.OriginCollider != null)
-        {
-            data.OriginCollider.SendMessage("Knockback", new CollisionData(-data.Direction, GroundedReturnKnockbackSpeed, Col));
-        }
+        Rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
     }
 }
