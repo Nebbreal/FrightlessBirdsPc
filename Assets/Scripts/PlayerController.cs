@@ -60,7 +60,19 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         moveInput = move;
 
-#region Grounded Action
+        Ground();
+        Dash();
+        Attack();
+        CheckIsStunned();
+        CheckIsGrounded();
+        
+        if (m_Rigidbody.linearVelocity.magnitude > 0.1) {
+            lastMoveDirection = m_Rigidbody.linearVelocity.normalized;
+        }
+    }
+
+    void Ground()
+    {
         isGrounded = false;
         if (groundCooldown > 0f)
         {
@@ -78,9 +90,9 @@ public class PlayerController : MonoBehaviour
                 isGrounded = true;
             }
         }
-#endregion 
-
-#region Dash Action
+    }
+    void Dash()
+    {
         if (dashCooldown > 0f)
         {
             dashCooldown -= Time.deltaTime;
@@ -93,9 +105,10 @@ public class PlayerController : MonoBehaviour
         {
             doDash = false;
         }
-#endregion
+    }
 
-#region Attack Action
+    void Attack()
+    {
         if (attackCooldown > 0f)
         {
             attackCooldown -= Time.deltaTime;
@@ -108,9 +121,9 @@ public class PlayerController : MonoBehaviour
         {
             doAttack = false;
         }
-#endregion
-
-#region Is Stunned
+    }
+    void CheckIsStunned()
+    {
         if (isStunned)
         {
             stunTimer -= Time.deltaTime;
@@ -125,9 +138,9 @@ public class PlayerController : MonoBehaviour
             doAttack = false;
             doDash = false;
         }
-#endregion
-
-#region Is Grounded
+    }
+    void CheckIsGrounded()
+    {
         if (isGrounded)
         {
             moveInput = Vector3.zero;
@@ -147,11 +160,6 @@ public class PlayerController : MonoBehaviour
         {
             m_Rigidbody.mass = m_UnGroundedMass;
             m_Rigidbody.linearDamping = m_UnGroundedDamping;
-        }
-#endregion
-
-        if (m_Rigidbody.linearVelocity.magnitude > 0.1) {
-            lastMoveDirection = m_Rigidbody.linearVelocity.normalized;
         }
     }
 
