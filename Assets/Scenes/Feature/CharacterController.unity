@@ -822,11 +822,11 @@ MonoBehaviour:
   AttackRange: 1.5
   AttackDelay: 1
   AttackDuration: 1
-  AttackKnockbackSpeed: 1
+  AttackKnockbackSpeed: 2
   Lm:
     serializedVersion: 2
     m_Bits: 256
-  BracedDelay: 1
+  BracedDelay: 2
   BracedReturnKnockbackSpeed: 10
 --- !u!54 &617745709
 Rigidbody:
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   Lm:
     serializedVersion: 2
     m_Bits: 256
-  BracedDelay: 0
+  BracedDelay: 2
   BracedReturnKnockbackSpeed: 20
 --- !u!54 &1598537357
 Rigidbody:
