@@ -7,5 +7,6 @@ public enum PlayerState
     Dash,
     Braced,
     Attack,
-    Stunned
+    Stunned,
+    InputRestricted
 }

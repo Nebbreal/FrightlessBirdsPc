@@ -103,6 +103,9 @@ public class PlayerController : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
                 break;
+            case PlayerState.InputRestricted:
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                break;
         }
 
         ExitState(playerState);
@@ -126,6 +129,10 @@ public class PlayerController : MonoBehaviour
                                  RigidbodyConstraints.FreezeRotationZ;
                 _bracedCooldown = bracedDelay;
                 break;
+            case PlayerState.InputRestricted:
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+                                 RigidbodyConstraints.FreezeRotationZ;
+                break;
         }
     }
 
@@ -142,6 +149,11 @@ public class PlayerController : MonoBehaviour
                 IdleToState();
                 break;
             case PlayerState.Movement:
+                if (_moveInput.magnitude <= 0f)
+                {
+                    SetPlayerState(PlayerState.Idle);
+                }
+
                 IdleToState();
                 break;
             case PlayerState.Dash:
@@ -231,7 +243,7 @@ public class PlayerController : MonoBehaviour
 
     void InputDash()
     {
-        if (_dashAction.IsPressed() && _dashCooldown <= 0 && _moveInput.magnitude > 0f &&
+        if (_dashAction.IsPressed() && _dashCooldown <= 0 &&
             playerState != PlayerState.Dash)
         {
             _doDash = true;

@@ -801,33 +801,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f99aaf6308f4341944772ea1104f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  PState: 0
-  MoveActionName: Move
-  DashActionName: Jump
-  AttackActionName: Attack
-  GroundActionName: Crouch
-  Rb: {fileID: 617745709}
-  Col: {fileID: 617745710}
-  AttackParticles: {fileID: 1971291872}
-  TargetState: 0
-  StunTime: 1
-  WalkSpeed: 20
-  MaxSpeed: 20
-  DashSpeed: 7
-  DashDelay: 1
-  DashDuration: 0.5
-  DashEarlyEndSpeed: 10
-  DashHitRange: 0.8
-  DashKnockbackSpeed: 10
-  AttackRange: 1.5
-  AttackDelay: 1
-  AttackDuration: 1
-  AttackKnockbackSpeed: 2
-  Lm:
+  playerState: 0
+  moveActionName: Move
+  dashActionName: Jump
+  attackActionName: Attack
+  groundActionName: Crouch
+  rb: {fileID: 617745709}
+  col: {fileID: 617745710}
+  attackParticles: {fileID: 1971291872}
+  targetState: 0
+  stunTime: 1
+  walkSpeed: 20
+  maxSpeed: 20
+  dashSpeed: 10
+  dashDelay: 1
+  dashDuration: 1
+  dashEarlyEndSpeed: 10
+  dashHitRange: 0.8
+  dashKnockbackSpeed: 13
+  attackRange: 1.5
+  attackDelay: 1
+  attackDuration: 0.3
+  attackKnockbackSpeed: 2
+  layerMask:
     serializedVersion: 2
     m_Bits: 256
-  BracedDelay: 2
-  BracedReturnKnockbackSpeed: 10
+  bracedDelay: 1
+  bracedReturnKnockbackSpeed: 20
 --- !u!54 &617745709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -837,7 +837,7 @@ Rigidbody:
   m_GameObject: {fileID: 617745707}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0.5
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1247,33 +1247,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f99aaf6308f4341944772ea1104f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  PState: 0
-  MoveActionName: Move
-  DashActionName: Jump
-  AttackActionName: Attack
-  GroundActionName: Crouch
-  Rb: {fileID: 1266981086}
-  Col: {fileID: 1266981087}
-  AttackParticles: {fileID: 698149442}
-  TargetState: 0
-  StunTime: 1
-  WalkSpeed: 0
-  MaxSpeed: 60
-  DashSpeed: 0
-  DashDelay: 1
-  DashDuration: 1
-  DashEarlyEndSpeed: 10
-  DashHitRange: 2
-  DashKnockbackSpeed: 2
-  AttackRange: 0
-  AttackDelay: 1
-  AttackDuration: 1
-  AttackKnockbackSpeed: 2
-  Lm:
+  playerState: 0
+  moveActionName: Move
+  dashActionName: Jump
+  attackActionName: Attack
+  groundActionName: Crouch
+  rb: {fileID: 1266981086}
+  col: {fileID: 1266981087}
+  attackParticles: {fileID: 698149442}
+  targetState: 0
+  stunTime: 1
+  walkSpeed: 0
+  maxSpeed: 20
+  dashSpeed: 0
+  dashDelay: 1
+  dashDuration: 1
+  dashEarlyEndSpeed: 10
+  dashHitRange: 2
+  dashKnockbackSpeed: 2
+  attackRange: 0
+  attackDelay: 1
+  attackDuration: 1
+  attackKnockbackSpeed: 2
+  layerMask:
     serializedVersion: 2
-    m_Bits: 256
-  BracedDelay: 1
-  BracedReturnKnockbackSpeed: 2
+    m_Bits: 0
+  bracedDelay: 1
+  bracedReturnKnockbackSpeed: 2
 --- !u!54 &1266981086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1558,33 +1558,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f99aaf6308f4341944772ea1104f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  PState: 3
-  MoveActionName: Move
-  DashActionName: Jump
-  AttackActionName: Attack
-  GroundActionName: Crouch
-  Rb: {fileID: 1598537357}
-  Col: {fileID: 1598537358}
-  AttackParticles: {fileID: 39333196}
-  TargetState: 3
-  StunTime: 1
-  WalkSpeed: 0
-  MaxSpeed: 60
-  DashSpeed: 0
-  DashDelay: 1
-  DashDuration: 1
-  DashEarlyEndSpeed: 10
-  DashHitRange: 2
-  DashKnockbackSpeed: 2
-  AttackRange: 0
-  AttackDelay: 1
-  AttackDuration: 1
-  AttackKnockbackSpeed: 2
-  Lm:
+  playerState: 0
+  moveActionName: Move
+  dashActionName: Jump
+  attackActionName: Attack
+  groundActionName: Crouch
+  rb: {fileID: 1598537357}
+  col: {fileID: 1598537358}
+  attackParticles: {fileID: 39333196}
+  targetState: 3
+  stunTime: 1
+  walkSpeed: 0
+  maxSpeed: 60
+  dashSpeed: 0
+  dashDelay: 1
+  dashDuration: 1
+  dashEarlyEndSpeed: 10
+  dashHitRange: 2
+  dashKnockbackSpeed: 2
+  attackRange: 1
+  attackDelay: 1
+  attackDuration: 1
+  attackKnockbackSpeed: 2
+  layerMask:
     serializedVersion: 2
-    m_Bits: 256
-  BracedDelay: 2
-  BracedReturnKnockbackSpeed: 20
+    m_Bits: 0
+  bracedDelay: 2
+  bracedReturnKnockbackSpeed: 20
 --- !u!54 &1598537357
 Rigidbody:
   m_ObjectHideFlags: 0
