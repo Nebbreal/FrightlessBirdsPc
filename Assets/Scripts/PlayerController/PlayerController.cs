@@ -4,16 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private InputAction _moveAction;
-    private InputAction _dashAction;
-    private InputAction _attackAction;
-    private InputAction _groundAction;
     [Header("Initialization Settings")] 
     public PlayerState playerState;
-    public string moveActionName = "Move";
-    public string dashActionName = "Jump";
-    public string attackActionName = "Attack";
-    public string groundActionName = "Crouch";
     public Rigidbody rb;
     public Collider col;
     public ParticleSystem attackParticles;
@@ -53,27 +45,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
-    private void Start()
+    private void Update()
     {
-        _moveAction = InputSystem.actions.FindAction(moveActionName);
-        _dashAction = InputSystem.actions.FindAction(dashActionName);
-        _attackAction = InputSystem.actions.FindAction(attackActionName);
-        _groundAction = InputSystem.actions.FindAction(groundActionName);
-    }
-
-    void Update()
-    {
-        Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-        Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
-        _moveInput = move;
-
-        if (playerState != PlayerState.Stunned)
-        {
-            InputBraced();
-            InputDash();
-            InputAttack();
-        }
-
         UpdateCooldowns();
         UpdateActiveTimer();
 
@@ -86,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SetPlayerState(PlayerState newState)
+    public void SetPlayerState(PlayerState newState)
     {
         switch (newState)
         {
@@ -112,7 +85,7 @@ public class PlayerController : MonoBehaviour
         playerState = newState;
     }
 
-    void ExitState(PlayerState current)
+    private void ExitState(PlayerState current)
     {
         switch (current)
         {
@@ -136,7 +109,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateStates()
+    private void UpdateStates()
     {
         switch (playerState)
         {
@@ -177,7 +150,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
-    void IdleToState()
+    private void IdleToState()
     {
         // Target state is the state that a bot tries to keep (Braced state in the example scene)
         if (targetState != PlayerState.Idle)
@@ -199,7 +172,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateCooldowns()
+    private void UpdateCooldowns()
     {
         if (_dashCooldown > 0f)
         {
@@ -217,7 +190,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateActiveTimer()
+    private void UpdateActiveTimer()
     {
         switch (playerState)
         {
@@ -233,32 +206,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void InputBraced()
+    public void InputMove(InputAction.CallbackContext context)
     {
-        if (_groundAction.IsPressed() && _bracedCooldown <= 0)
+        Vector2 moveValue = context.action.ReadValue<Vector2>();
+        Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
+        _moveInput = move;
+    }
+
+    public void InputBraced(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed() && _bracedCooldown <= 0 && playerState != PlayerState.Stunned)
         {
             _doBrace = true;
         }
     }
 
-    void InputDash()
+    public void InputDash(InputAction.CallbackContext context)
     {
-        if (_dashAction.IsPressed() && _dashCooldown <= 0 &&
-            playerState != PlayerState.Dash)
+        if (context.action.IsPressed() && _dashCooldown <= 0 &&
+            playerState != PlayerState.Dash && playerState != PlayerState.Stunned)
         {
             _doDash = true;
         }
     }
 
-    void InputAttack()
+    public void InputAttack(InputAction.CallbackContext context)
     {
-        if (_attackAction.IsPressed() && _attackCooldown <= 0 && playerState != PlayerState.Attack)
+        if (context.action.IsPressed() && _attackCooldown <= 0 && playerState != PlayerState.Attack &&
+            playerState != PlayerState.Stunned)
         {
             _doAttack = true;
         }
     }
 
-    void CheckIsDashing()
+    private void CheckIsDashing()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f),
             dashHitRange, layerMask);
@@ -285,7 +266,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckIsAttacking()
+    private void CheckIsAttacking()
     {
         if (_attackTime <= 0)
         {
@@ -296,7 +277,7 @@ public class PlayerController : MonoBehaviour
         _moveInput = Vector3.zero;
     }
 
-    void CheckIsStunned()
+    private void CheckIsStunned()
     {
         if (_stunTimer <= 0)
         {
@@ -307,7 +288,7 @@ public class PlayerController : MonoBehaviour
         _moveInput = Vector3.zero;
     }
 
-    void CheckIsGrounded()
+    private void CheckIsGrounded()
     {
         if (playerState == PlayerState.Braced)
         {
@@ -315,7 +296,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.AddForce(_moveInput * walkSpeed, ForceMode.Force);
 
@@ -358,7 +339,7 @@ public class PlayerController : MonoBehaviour
         _doBrace = false;
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         if (playerState == PlayerState.Attack)
         {
