@@ -41,12 +41,18 @@ public class PlayerController : MonoBehaviour
     [Header("Braced Settings")] public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
     private bool _doBrace = false;
+    private bool _holdingBrace = false;
     private float _bracedCooldown = 0f;
 
     private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
     private void Update()
     {
+        if (_holdingBrace && _bracedCooldown <= 0 && playerState != PlayerState.Stunned)
+        {
+            _doBrace = true;
+        }
+        
         UpdateCooldowns();
         UpdateActiveTimer();
 
@@ -215,9 +221,14 @@ public class PlayerController : MonoBehaviour
 
     public void InputBraced(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && _bracedCooldown <= 0 && playerState != PlayerState.Stunned)
+        if (context.started)
         {
-            _doBrace = true;
+            _holdingBrace = true;
+        }
+
+        if (context.canceled)
+        {
+            _holdingBrace = false;
         }
     }
 
