@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,135 +8,137 @@ public class PlayerController : MonoBehaviour
     private InputAction _dashAction;
     private InputAction _attackAction;
     private InputAction _groundAction;
-    [Header("Initialization Settings")]
-    public PlayerState PState;
-    public string MoveActionName = "Move";
-    public string DashActionName = "Jump";
-    public string AttackActionName = "Attack";
-    public string GroundActionName = "Crouch";
-    public Rigidbody Rb;
-    public Collider Col;
-    public ParticleSystem AttackParticles;
+    [Header("Initialization Settings")] 
+    public PlayerState playerState;
+    public string moveActionName = "Move";
+    public string dashActionName = "Jump";
+    public string attackActionName = "Attack";
+    public string groundActionName = "Crouch";
+    public Rigidbody rb;
+    public Collider col;
+    public ParticleSystem attackParticles;
 
-    public PlayerState TargetState = PlayerState.Idle;
+    public PlayerState targetState = PlayerState.Idle;
 
-    [Header("Player Settings")]
-    public float StunTime = 1f;
+    [Header("Player Settings")] public float stunTime = 1f;
     private float _stunTimer = 0f;
-    [Header("Walk Settings")]
-    public float WalkSpeed = 20f;
-    public float MaxSpeed = 60f;
-    private Vector3 moveInput = new Vector3(0f,0f,0f);
+    [Header("Walk Settings")] public float walkSpeed = 20f;
+    public float maxSpeed = 60f;
+    private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
 
-    [Header("Dash Settings")]
-    public float DashSpeed = 1f;
-    public float DashDelay = 1f;
+    [Header("Dash Settings")] public float dashSpeed = 1f;
+    public float dashDelay = 1f;
     private float _dashCooldown = 0f;
     private bool _doDash = false;
-    public float DashDuration = 1f;
-    public float DashEarlyEndSpeed = 10f;
+    public float dashDuration = 1f;
+    public float dashEarlyEndSpeed = 10f;
     private float _dashTime = 0f;
-    public float DashHitRange = 2f;
-    public float DashKnockbackSpeed = 2f;
+    public float dashHitRange = 2f;
+    public float dashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
-    
-    [Header("Attack Settings")]
-    public float AttackRange = 1f;
-    public float AttackDelay = 1f;
-    public float AttackDuration = 1f;
-    public float AttackKnockbackSpeed = 2f;
-    public LayerMask Lm;
+
+    [Header("Attack Settings")] public float attackRange = 1f;
+    public float attackDelay = 1f;
+    public float attackDuration = 1f;
+    public float attackKnockbackSpeed = 2f;
+    public LayerMask layerMask;
     private float _attackCooldown = 0f;
     private float _attackTime = 0f;
     private bool _doAttack = false;
 
-    [Header("Braced Settings")]
-    public float BracedDelay = 1f;
-    public float BracedReturnKnockbackSpeed = 2f;
+    [Header("Braced Settings")] public float bracedDelay = 1f;
+    public float bracedReturnKnockbackSpeed = 2f;
     private bool _doBrace = false;
     private float _bracedCooldown = 0f;
 
-    private Vector3 _lastMoveDirection = new Vector3(1f,0f,0f);
+    private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
     private void Start()
     {
-        _moveAction = InputSystem.actions.FindAction(MoveActionName);
-        _dashAction = InputSystem.actions.FindAction(DashActionName);
-        _attackAction = InputSystem.actions.FindAction(AttackActionName);
-        _groundAction = InputSystem.actions.FindAction(GroundActionName);
+        _moveAction = InputSystem.actions.FindAction(moveActionName);
+        _dashAction = InputSystem.actions.FindAction(dashActionName);
+        _attackAction = InputSystem.actions.FindAction(attackActionName);
+        _groundAction = InputSystem.actions.FindAction(groundActionName);
     }
 
     void Update()
     {
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
-        moveInput = move;
+        _moveInput = move;
 
-        if (PState != PlayerState.Stunned)
+        if (playerState != PlayerState.Stunned)
         {
-            ActivateGrounded();
-            ActivateDash();
-            ActivateAttack();
+            InputBraced();
+            InputDash();
+            InputAttack();
         }
 
         UpdateCooldowns();
         UpdateActiveTimer();
 
         UpdateStates();
-        
-        if (Rb.linearVelocity.magnitude > 0.1) {
-            _lastMoveDirection = Rb.linearVelocity.normalized;
-            transform.rotation = Quaternion.LookRotation (_lastMoveDirection);
+
+        if (rb.linearVelocity.magnitude > 0.1)
+        {
+            _lastMoveDirection = rb.linearVelocity.normalized;
+            transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
 
     void SetPlayerState(PlayerState newState)
     {
-        switch (newState) {
+        switch (newState)
+        {
             case PlayerState.Dash:
-                _dashTime = DashDuration;
+                _dashTime = dashDuration;
                 break;
             case PlayerState.Attack:
-                _attackTime = AttackDuration;
+                _attackTime = attackDuration;
                 break;
             case PlayerState.Stunned:
-                _stunTimer = StunTime;
+                _stunTimer = stunTime;
                 break;
             case PlayerState.Braced:
-                Rb.constraints = RigidbodyConstraints.FreezeAll;
+                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+                                 RigidbodyConstraints.FreezeRotationZ;
                 break;
         }
-        ExitState(PState);
-        PState = newState;
+
+        ExitState(playerState);
+        playerState = newState;
     }
 
     void ExitState(PlayerState current)
     {
-        switch (current) {
+        switch (current)
+        {
             case PlayerState.Dash:
-                _dashCooldown = DashDelay;
-                _dashTime = DashDuration;
+                _dashCooldown = dashDelay;
+                _dashTime = dashDuration;
                 _dashCollided.Clear();
                 break;
             case PlayerState.Attack:
-                _attackCooldown = AttackDelay;
+                _attackCooldown = attackDelay;
                 break;
             case PlayerState.Braced:
-                Rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-                _bracedCooldown = BracedDelay;
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+                                 RigidbodyConstraints.FreezeRotationZ;
+                _bracedCooldown = bracedDelay;
                 break;
         }
     }
 
     void UpdateStates()
     {
-        switch (PState)
+        switch (playerState)
         {
             case PlayerState.Idle:
-                if (moveInput.magnitude > 0f)
+                if (_moveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
                 }
+
                 IdleToState();
                 break;
             case PlayerState.Movement:
@@ -148,10 +148,11 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Braced:
-                if (!_doBrace && TargetState != PlayerState.Braced)
+                if (!_doBrace && targetState != PlayerState.Braced)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
+
                 CheckIsGrounded();
                 break;
             case PlayerState.Attack:
@@ -163,19 +164,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     void IdleToState()
     {
-        if (TargetState != PlayerState.Idle)
+        // Target state is the state that a bot tries to keep (Braced state in the example scene)
+        if (targetState != PlayerState.Idle)
         {
-            SetPlayerState(TargetState);
+            SetPlayerState(targetState);
         }
+
         if (_doBrace)
         {
             SetPlayerState(PlayerState.Braced);
-        } else if (_doDash)
+        }
+        else if (_doDash)
         {
             SetPlayerState(PlayerState.Dash);
-        } else if (_doAttack)
+        }
+        else if (_doAttack)
         {
             SetPlayerState(PlayerState.Attack);
         }
@@ -187,10 +193,12 @@ public class PlayerController : MonoBehaviour
         {
             _dashCooldown -= Time.deltaTime;
         }
+
         if (_bracedCooldown > 0f)
         {
             _bracedCooldown -= Time.deltaTime;
         }
+
         if (_attackCooldown > 0f)
         {
             _attackCooldown -= Time.deltaTime;
@@ -199,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateActiveTimer()
     {
-        switch (PState)
+        switch (playerState)
         {
             case PlayerState.Dash:
                 _dashTime -= Time.deltaTime;
@@ -213,50 +221,58 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ActivateGrounded()
+    void InputBraced()
     {
         if (_groundAction.IsPressed() && _bracedCooldown <= 0)
         {
             _doBrace = true;
         }
     }
-    void ActivateDash()
+
+    void InputDash()
     {
-        if (_dashAction.IsPressed() && _dashCooldown <= 0 && moveInput.magnitude > 0f && PState != PlayerState.Dash)
+        if (_dashAction.IsPressed() && _dashCooldown <= 0 && _moveInput.magnitude > 0f &&
+            playerState != PlayerState.Dash)
         {
             _doDash = true;
         }
-
     }
 
-    void ActivateAttack()
+    void InputAttack()
     {
-        if (_attackAction.IsPressed() && _attackCooldown <= 0 && PState != PlayerState.Attack)
+        if (_attackAction.IsPressed() && _attackCooldown <= 0 && playerState != PlayerState.Attack)
         {
             _doAttack = true;
         }
     }
+
     void CheckIsDashing()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (DashHitRange / 2f), DashHitRange, Lm);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f),
+            dashHitRange, layerMask);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider == null || hitCollider == Col || _dashCollided.Contains(hitCollider))
+            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider))
             {
                 continue;
             }
+
             _dashCollided.Add(hitCollider);
-            hitCollider.SendMessage("DashKnockback", new CollisionData(Rb.linearVelocity.normalized, DashKnockbackSpeed, Col));
+            hitCollider.SendMessage("DashKnockback",
+                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col));
         }
 
-        if (_dashTime <= 0.0f) {
+        if (_dashTime <= 0.0f)
+        {
             SetPlayerState(PlayerState.Movement);
         }
-        if (_dashTime <= DashDuration - 0.1f && Rb.linearVelocity.magnitude < DashEarlyEndSpeed) {
+
+        if (_dashTime <= dashDuration - 0.1f && rb.linearVelocity.magnitude < dashEarlyEndSpeed)
+        {
             SetPlayerState(PlayerState.Idle);
         }
-        
     }
+
     void CheckIsAttacking()
     {
         if (_attackTime <= 0)
@@ -265,8 +281,9 @@ public class PlayerController : MonoBehaviour
             _attackTime = 0f;
         }
 
-        moveInput = Vector3.zero;
+        _moveInput = Vector3.zero;
     }
+
     void CheckIsStunned()
     {
         if (_stunTimer <= 0)
@@ -275,43 +292,53 @@ public class PlayerController : MonoBehaviour
             _stunTimer = 0f;
         }
 
-        moveInput = Vector3.zero;
+        _moveInput = Vector3.zero;
     }
+
     void CheckIsGrounded()
     {
-        if (PState == PlayerState.Braced)
+        if (playerState == PlayerState.Braced)
         {
-            moveInput = Vector3.zero;
+            _moveInput = Vector3.zero;
         }
     }
 
     void FixedUpdate()
     {
-        Rb.AddForce(moveInput * WalkSpeed, ForceMode.Force);
+        rb.AddForce(_moveInput * walkSpeed, ForceMode.Force);
 
         if (_doDash)
         {
-            Rb.AddForce(moveInput * DashSpeed, ForceMode.Impulse);
+            var dir = _lastMoveDirection;
+            if (_moveInput.magnitude > 0f)
+            {
+                dir = _moveInput;
+            }
+            rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
         }
 
         if (_doAttack)
         {
-            var main = AttackParticles.main;
-            main.startRotation = (Quaternion.LookRotation (_lastMoveDirection).y * Mathf.Rad2Deg) / 2f - 90f;
-            AttackParticles.Play();
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange, Lm);
+            var main = attackParticles.main;
+            main.startRotation = (Quaternion.LookRotation(_lastMoveDirection).y * Mathf.Rad2Deg) / 2f - 90f;
+            attackParticles.Play();
+            Collider[] hitColliders =
+                Physics.OverlapSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange,
+                    layerMask);
             foreach (var hitCollider in hitColliders)
             {
-                if (hitCollider == null || hitCollider == Col)
+                if (!hitCollider || hitCollider == col)
                 {
                     continue;
                 }
-                hitCollider.SendMessage("Stun", new CollisionData(_lastMoveDirection, AttackKnockbackSpeed, Col));
+
+                hitCollider.SendMessage("Stun", new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col));
             }
         }
 
-        if (Rb.linearVelocity.magnitude > MaxSpeed) {
-            Rb.linearVelocity = Rb.linearVelocity.normalized * MaxSpeed;
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
 
         _doAttack = false;
@@ -321,24 +348,24 @@ public class PlayerController : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (PState == PlayerState.Attack)
+        if (playerState == PlayerState.Attack)
         {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (AttackRange + 0.2f), AttackRange);
+            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange);
         }
 
-        if (PState == PlayerState.Dash)
+        if (playerState == PlayerState.Dash)
         {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (DashHitRange / 2f), DashHitRange);
+            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f), dashHitRange);
         }
 
-        if (PState == PlayerState.Stunned)
+        if (playerState == PlayerState.Stunned)
         {
             Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
         }
 
-        
-        if (PState == PlayerState.Braced)
+
+        if (playerState == PlayerState.Braced)
         {
             Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
@@ -347,7 +374,8 @@ public class PlayerController : MonoBehaviour
 
     public void Stun(CollisionData data)
     {
-        if (PState != PlayerState.Dash) {
+        if (playerState != PlayerState.Dash)
+        {
             SetPlayerState(PlayerState.Stunned);
             Knockback(data);
         }
@@ -355,17 +383,19 @@ public class PlayerController : MonoBehaviour
 
     public void DashKnockback(CollisionData data)
     {
-        if (PState != PlayerState.Braced)
+        if (playerState != PlayerState.Braced)
         {
             Knockback(data);
-        } else if (data.OriginCollider != null)
+        }
+        else if (data.OriginCollider != null)
         {
-            data.OriginCollider.SendMessage("Knockback", new CollisionData(-data.Direction, BracedReturnKnockbackSpeed, Col));
+            data.OriginCollider.SendMessage("Knockback",
+                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col));
         }
     }
 
     public void Knockback(CollisionData data)
     {
-        Rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
+        rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
     }
 }
