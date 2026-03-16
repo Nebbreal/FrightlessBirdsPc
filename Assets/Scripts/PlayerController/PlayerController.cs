@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("Walk Settings")] public float walkSpeed = 20f;
     public float maxSpeed = 60f;
     private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
+    private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
 
     [Header("Dash Settings")] public float dashSpeed = 1f;
     public float dashDelay = 1f;
@@ -52,7 +53,8 @@ public class PlayerController : MonoBehaviour
         {
             _doBrace = true;
         }
-        
+
+        _moveThisFrame = _moveInput;
         UpdateCooldowns();
         UpdateActiveTimer();
 
@@ -143,8 +145,7 @@ public class PlayerController : MonoBehaviour
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
-
-                CheckIsGrounded();
+                CheckIsBraced();
                 break;
             case PlayerState.Attack:
                 CheckIsAttacking();
@@ -285,7 +286,7 @@ public class PlayerController : MonoBehaviour
             _attackTime = 0f;
         }
 
-        _moveInput = Vector3.zero;
+        _moveThisFrame = Vector3.zero;
     }
 
     private void CheckIsStunned()
@@ -296,15 +297,12 @@ public class PlayerController : MonoBehaviour
             _stunTimer = 0f;
         }
 
-        _moveInput = Vector3.zero;
+        _moveThisFrame = Vector3.zero;
     }
 
-    private void CheckIsGrounded()
+    private void CheckIsBraced()
     {
-        if (playerState == PlayerState.Braced)
-        {
-            _moveInput = Vector3.zero;
-        }
+        _moveThisFrame = Vector3.zero;
     }
 
     private void FixedUpdate()
