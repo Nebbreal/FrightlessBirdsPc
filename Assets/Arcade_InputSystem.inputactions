@@ -123,6 +123,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b464f081-3804-4a9e-a20b-89e0dcda2053",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "09f0efcc-3b73-4456-9d54-44c9a65a3c9b",
                     "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
                     "interactions": "",
@@ -145,8 +156,19 @@
                 },
                 {
                     "name": "",
+                    "id": "213d292f-0c29-4de9-9613-5a84ca03181f",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "be05dae8-5aa0-42f2-a3c7-db101e89523b",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -167,8 +189,19 @@
                 },
                 {
                     "name": "",
-                    "id": "47a07f8e-e48a-447b-87ec-7a59ad840bb4",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/trigger",
+                    "id": "153f2ea5-9111-4006-9e5e-4add9f111f64",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "565060a9-e173-4be1-8cf0-bca04ccbcaa8",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

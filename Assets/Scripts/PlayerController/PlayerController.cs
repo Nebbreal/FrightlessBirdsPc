@@ -230,6 +230,15 @@ public class PlayerController : MonoBehaviour
     public void InputMove(InputAction.CallbackContext context)
     {
         Vector2 moveValue = context.action.ReadValue<Vector2>();
+        switch (gameObject.name)
+        {
+            case "Player1": case "Player2":
+                moveValue = new Vector2(moveValue.x, moveValue.y);
+                break;
+            case "Player3": case "Player4":
+                moveValue = new Vector2(-moveValue.x, -moveValue.y);
+                break;
+        }
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         _moveInput = move;
     }
