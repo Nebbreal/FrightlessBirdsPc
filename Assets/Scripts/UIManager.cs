@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
     
     public void UpdateWinningPlayer(string winningPlayer)
     {
-        winningPlayerTextTop.text = winningPlayer;
-        winningPlayerTextBottom.text = winningPlayer;
+        winningPlayerTextTop.text = winningPlayer + " wins!";
+        winningPlayerTextBottom.text = winningPlayer + " wins!";
         winTextObject.SetActive(true);
     }
 }

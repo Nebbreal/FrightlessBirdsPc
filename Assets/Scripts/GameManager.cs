@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+        Time.timeScale = 1f;
     }
 
     public void OnWin()

@@ -8,7 +8,6 @@ namespace Minigames.FrozenFeathers
 {
     public class MinigameManager : MonoBehaviour, IMinigameManager
     {
-        
         public UnityEvent winEvent = new();
         [SerializeField]
         private GameObject shrinkingPlatform;
@@ -17,7 +16,11 @@ namespace Minigames.FrozenFeathers
 
         [SerializeField] 
         private GameObject respawnPoint;
-        //Config
+
+        [SerializeField] 
+        private List<GameObject> initialSpawnPoints;
+        
+        //General Config
         private GameObject _gameManager;
         private GameConfig _gameConfig;
         private MockPlayerManager _playerManager;
@@ -40,6 +43,35 @@ namespace Minigames.FrozenFeathers
             
             _roundTimer = _gameConfig.roundLength;
             _startScale = shrinkingPlatform.transform.localScale.x;
+
+            foreach (GameObject player in _players)
+            {
+                Rigidbody playerBody = player.GetComponent<Rigidbody>();
+                Transform playerTransform = player.GetComponent<Transform>();
+                switch (player.name)
+                {
+                    case "Player 1":
+                        playerBody.linearVelocity = Vector3.zero;
+                        playerTransform.position = initialSpawnPoints[0].transform.position;
+                        playerTransform.rotation = initialSpawnPoints[0].transform.rotation;
+                        break;
+                    case "Player 2":
+                        playerBody.linearVelocity = Vector3.zero;
+                        playerTransform.position = initialSpawnPoints[1].transform.position;
+                        playerTransform.rotation = initialSpawnPoints[1].transform.rotation;
+                        break;
+                    case "Player 3":
+                        playerBody.linearVelocity = Vector3.zero;
+                        playerTransform.position = initialSpawnPoints[2].transform.position;
+                        playerTransform.rotation = initialSpawnPoints[2].transform.rotation;
+                        break;
+                    case "Player 4":
+                        playerBody.linearVelocity = Vector3.zero;
+                        playerTransform.position = initialSpawnPoints[3].transform.position;
+                        playerTransform.rotation = initialSpawnPoints[3].transform.rotation;
+                        break;
+                }
+            }
         }
 
         public void Update()
