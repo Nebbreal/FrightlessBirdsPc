@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "TempInputSystem",
+    "name": "Arcade_InputSystem",
     "maps": [
         {
             "name": "Player",
@@ -101,8 +101,30 @@
                 },
                 {
                     "name": "",
+                    "id": "34e7de03-fbfc-41e3-8242-1b6b3c53c31c",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "546a762c-3bf1-400b-b5bf-923c410e898c",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09f0efcc-3b73-4456-9d54-44c9a65a3c9b",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -123,8 +145,30 @@
                 },
                 {
                     "name": "",
+                    "id": "47a07f8e-e48a-447b-87ec-7a59ad840bb4",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5f59d017-c293-4745-9ae4-81d33b59132c",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be05dae8-5aa0-42f2-a3c7-db101e89523b",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

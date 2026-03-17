@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState playerState;
     public Rigidbody rb;
     public Collider col;
-    public ParticleSystem attackParticles;
+    public Transform attackHitbox;
 
     public PlayerState targetState = PlayerState.Idle;
 
@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Attack:
                 _attackCooldown = attackDelay;
+                attackHitbox.gameObject.SetActive(false);
                 break;
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -321,9 +322,9 @@ public class PlayerController : MonoBehaviour
 
         if (_doAttack)
         {
-            var main = attackParticles.main;
-            main.startRotation = (Quaternion.LookRotation(_lastMoveDirection).y * Mathf.Rad2Deg) / 2f - 90f;
-            attackParticles.Play();
+            attackHitbox.position = transform.position + _lastMoveDirection * (attackRange + 0.2f);
+            attackHitbox.localScale = new Vector3(attackRange, attackRange, attackRange);
+            attackHitbox.gameObject.SetActive(true);
             Collider[] hitColliders =
                 Physics.OverlapSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange,
                     layerMask);
