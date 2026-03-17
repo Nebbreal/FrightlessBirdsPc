@@ -112,7 +112,6 @@ namespace Minigames.FrozenFeathers
 
         private void OnWin()
         {
-            Time.timeScale = 0;
             winEvent.Invoke();
         }
     }

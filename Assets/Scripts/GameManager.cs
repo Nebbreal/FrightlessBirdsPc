@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void OnWin()
     {
+        Time.timeScale = 0;
         string winningPlayer = _playerManager.AlivePlayers.First().name;
         _uiManager.UpdateWinningPlayer(winningPlayer);
     }
