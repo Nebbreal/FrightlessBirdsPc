@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToMainMenu",
+                    "type": "Button",
+                    "id": "f9a18cc0-d6f5-4ff2-967a-b8b9f0d48151",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,6 +130,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8847ca9c-f6cb-47a7-b08e-bc0492f06482",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "546a762c-3bf1-400b-b5bf-923c410e898c",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -134,6 +154,17 @@
                     "name": "",
                     "id": "b464f081-3804-4a9e-a20b-89e0dcda2053",
                     "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da2e9280-d15a-4267-a40e-7dd4016c9c72",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -165,6 +196,17 @@
                 },
                 {
                     "name": "",
+                    "id": "92bc5d77-7f23-4c12-b269-b82dc46c567c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5f59d017-c293-4745-9ae4-81d33b59132c",
                     "path": "<Keyboard>/v",
                     "interactions": "",
@@ -187,12 +229,45 @@
                 },
                 {
                     "name": "",
+                    "id": "64710fcc-c7e6-49fa-97e8-9c6d73c04ae8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8ce219dd-e412-4c12-9213-63a8b937e20b",
                     "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "TempLoadScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c62d4246-c495-4617-b8b0-69ada65d7750",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToMainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61bd7a02-c88e-4fc1-8a0c-76142832fe89",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToMainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
