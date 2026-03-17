@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
             players = new List<GameObject>();
         }
         players.Add(player.gameObject);
+        DontDestroyOnLoad(player.gameObject);
         player.gameObject.name = "Player" + players.Count;
         player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[players.Count - 1];
     }
