@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "TempInputSystem",
+    "name": "Arcade_InputSystem",
     "maps": [
         {
             "name": "Player",
@@ -25,6 +25,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "3c8e5a2e-65f8-4aa4-93e6-6a164b1f9a0d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Brace",
                     "type": "Button",
                     "id": "1522946a-16e1-41fe-acfe-dbca86e4e20c",
@@ -34,9 +43,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "TempLoadScene",
                     "type": "Button",
-                    "id": "3c8e5a2e-65f8-4aa4-93e6-6a164b1f9a0d",
+                    "id": "c69d2ae3-3910-4535-853a-fc69730bd7b0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -101,8 +110,30 @@
                 },
                 {
                     "name": "",
+                    "id": "34e7de03-fbfc-41e3-8242-1b6b3c53c31c",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "546a762c-3bf1-400b-b5bf-923c410e898c",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b464f081-3804-4a9e-a20b-89e0dcda2053",
+                    "path": "<Joystick>/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -123,12 +154,45 @@
                 },
                 {
                     "name": "",
+                    "id": "213d292f-0c29-4de9-9613-5a84ca03181f",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5f59d017-c293-4745-9ae4-81d33b59132c",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "153f2ea5-9111-4006-9e5e-4add9f111f64",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ce219dd-e412-4c12-9213-63a8b937e20b",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TempLoadScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

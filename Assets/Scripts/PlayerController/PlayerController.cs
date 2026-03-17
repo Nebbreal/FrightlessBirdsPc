@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class PlayerController : MonoBehaviour
     public PlayerState playerState;
     public Rigidbody rb;
     public Collider col;
-    public ParticleSystem attackParticles;
+    public Transform attackHitbox;
+    public Transform dashHitbox;
+    public Transform braceHitbox;
+    public Transform stunTransform;
 
     public PlayerState targetState = PlayerState.Idle;
 
@@ -69,32 +73,43 @@ public class PlayerController : MonoBehaviour
 
     public void SetPlayerState(PlayerState newState)
     {
+        ExitState(playerState);
         switch (newState)
         {
             case PlayerState.Dash:
                 _dashTime = dashDuration;
+                dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
+                dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
+                dashHitbox.gameObject.SetActive(true);
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
+                stunTransform.gameObject.SetActive(true);
                 break;
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
+                braceHitbox.position = transform.position;
+                braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                braceHitbox.gameObject.SetActive(true);
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 break;
         }
 
-        ExitState(playerState);
         playerState = newState;
     }
 
     private void ExitState(PlayerState current)
     {
+        attackHitbox.gameObject.SetActive(false);
+        dashHitbox.gameObject.SetActive(false);
+        braceHitbox.gameObject.SetActive(false);
+        stunTransform.gameObject.SetActive(false);
         switch (current)
         {
             case PlayerState.Dash:
@@ -216,6 +231,15 @@ public class PlayerController : MonoBehaviour
     public void InputMove(InputAction.CallbackContext context)
     {
         Vector2 moveValue = context.action.ReadValue<Vector2>();
+        switch (gameObject.name)
+        {
+            case "Player1": case "Player2":
+                moveValue = new Vector2(moveValue.x, moveValue.y);
+                break;
+            case "Player3": case "Player4":
+                moveValue = new Vector2(-moveValue.x, -moveValue.y);
+                break;
+        }
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         _moveInput = move;
     }
@@ -307,23 +331,24 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(_moveInput * walkSpeed, ForceMode.Force);
+        rb.AddForce(_moveThisFrame * walkSpeed, ForceMode.Force);
 
         if (_doDash)
         {
             var dir = _lastMoveDirection;
-            if (_moveInput.magnitude > 0f)
+            if (_moveThisFrame.magnitude > 0f)
             {
-                dir = _moveInput;
+                dir = _moveThisFrame;
             }
+            rb.linearVelocity = Vector3.zero;
             rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
         }
 
         if (_doAttack)
         {
-            var main = attackParticles.main;
-            main.startRotation = (Quaternion.LookRotation(_lastMoveDirection).y * Mathf.Rad2Deg) / 2f - 90f;
-            attackParticles.Play();
+            attackHitbox.position = transform.position + _lastMoveDirection * (attackRange + 0.2f);
+            attackHitbox.localScale = new Vector3(attackRange * 2f, attackRange * 2f, attackRange * 2f);
+            attackHitbox.gameObject.SetActive(true);
             Collider[] hitColliders =
                 Physics.OverlapSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange,
                     layerMask);
