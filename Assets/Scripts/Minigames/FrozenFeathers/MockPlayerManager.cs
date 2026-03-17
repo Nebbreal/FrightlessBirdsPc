@@ -7,7 +7,8 @@ namespace Minigames.FrozenFeathers
 {
     public class MockPlayerManager : MonoBehaviour
     {
-        public List<GameObject> players;
+        [NonSerialized]
+        public List<GameObject> Players;
         
         [NonSerialized]
         public Dictionary<string, int> PlayerLives = new();
@@ -17,19 +18,17 @@ namespace Minigames.FrozenFeathers
 
         public void Start()
         {
+            Players = GameObject.FindGameObjectsWithTag("Player").ToList();
             _gameConfig = gameObject.GetComponent<GameConfig>();
         }
 
         public void SetPlayerLives()
         {
-            AlivePlayers = players;
-            foreach (var player in players)
+            AlivePlayers = Players;
+            foreach (var player in Players)
             {
-                if (PlayerLives.ContainsKey(player.name))
-                {
-                    PlayerLives[player.name] = _gameConfig.playerLives;
-                }
-                PlayerLives.Add(player.name, _gameConfig.playerLives);
+                player.SetActive(true);
+                PlayerLives[player.name] = _gameConfig.playerLives;
             }
         }
 

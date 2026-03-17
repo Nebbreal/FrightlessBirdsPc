@@ -36,9 +36,8 @@ namespace Minigames.FrozenFeathers
                 _gameConfig = _gameManager.GetComponent<GameConfig>();
                 
                 _playerManager = _gameManager.GetComponent<MockPlayerManager>();
-                _players = _playerManager.players;
+                _players = _playerManager.Players;
                 
-                _playerManager.SetPlayerLives();
             #endregion
             
             _roundTimer = _gameConfig.roundLength;
@@ -72,6 +71,8 @@ namespace Minigames.FrozenFeathers
                         break;
                 }
             }
+            _playerManager.SetPlayerLives();
+
         }
 
         public void Update()
