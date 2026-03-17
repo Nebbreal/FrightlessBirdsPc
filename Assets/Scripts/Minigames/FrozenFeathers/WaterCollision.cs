@@ -1,17 +1,22 @@
-using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class WaterCollision : MonoBehaviour
+namespace Minigames.FrozenFeathers
 {
-    public AudioSource splashSource;
-    public LayerMask lMask;
-    
-    private void OnTriggerEnter(Collider other)
+    public class WaterCollision : MonoBehaviour
     {
-        if (other.gameObject.layer != lMask)
+        
+        [SerializeField]
+        private AudioSource splashSource;
+        [SerializeField]
+        private LayerMask lMask;
+    
+        private void OnTriggerEnter(Collider other)
         {
-            splashSource.Play();
-
+            if (other.gameObject.layer != lMask)
+            {
+                splashSource.Play();
+            }
         }
     }
 }
