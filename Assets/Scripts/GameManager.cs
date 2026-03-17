@@ -8,11 +8,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private UIManager _uiManager;
-    private MockPlayerManager _playerManager;
+    private PlayerManager _playerManager;
     public void Start()
     {
+        DontDestroyOnLoad(gameObject);
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        _playerManager = GetComponent<MockPlayerManager>();
+        _playerManager = GetComponent<PlayerManager>();
     }
 
     //To be reworked after first prototype test
