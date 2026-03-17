@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TempLoadScene",
+                    "name": "StartGame",
                     "type": "Button",
                     "id": "c69d2ae3-3910-4535-853a-fc69730bd7b0",
                     "expectedControlType": "",
@@ -245,7 +245,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TempLoadScene",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "826d7ab5-7fde-45ea-8acb-4bb54ba0f2f0",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a680de7-6297-4c41-b708-63fa56731c1c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -264,6 +286,17 @@
                     "name": "",
                     "id": "61bd7a02-c88e-4fc1-8a0c-76142832fe89",
                     "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToMainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce5c8c2c-539a-4b8c-bb45-26a706290e24",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
