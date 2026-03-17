@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Minigames.FrozenFeathers
 {
     public class MinigameManager : MonoBehaviour, IMinigameManager
     {
+        
+        public UnityEvent winEvent = new();
         [SerializeField]
         private GameObject shrinkingPlatform;
         [SerializeField]
@@ -30,6 +34,7 @@ namespace Minigames.FrozenFeathers
                 
                 _playerManager = _gameManager.GetComponent<MockPlayerManager>();
                 _players = _playerManager.players;
+                
                 _playerManager.SetPlayerLives();
             #endregion
             
@@ -55,20 +60,28 @@ namespace Minigames.FrozenFeathers
         public void EliminatePlayer(GameObject entity)
         {
             if (!_players.Contains(entity)) return;
-            
-            if (_playerManager.PlayerLives[entity.name] <= 0)
+           
+            _playerManager.DeductLife(entity);
+
+            if (_playerManager.PlayerLives[entity.name] > 0)
             {
-                entity.SetActive(false);
-            }
-            else
-            {
-                _playerManager.PlayerLives[entity.name]--;
-                
                 GameObject playerObject = entity.gameObject;
                 Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
                 playerRigidbody.linearVelocity = Vector3.zero;
                 playerObject.transform.position = respawnPoint.transform.position;
             }
+            
+
+            if (_playerManager.GetAlivePlayerAmount() <= 1)
+            {
+                OnWin();
+            }
+        }
+
+        private void OnWin()
+        {
+            Time.timeScale = 0;
+            winEvent.Invoke();
         }
     }
 }
