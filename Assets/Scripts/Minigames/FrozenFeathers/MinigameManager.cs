@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Minigames.FrozenFeathers
 {
@@ -15,6 +13,9 @@ namespace Minigames.FrozenFeathers
         private float shrinkingPlatformTargetScale = 0.3f;
 
         [SerializeField] 
+        private GameObject deathPoint;
+
+        [SerializeField] 
         private GameObject respawnPoint;
 
         [SerializeField] 
@@ -23,7 +24,7 @@ namespace Minigames.FrozenFeathers
         //General Config
         private GameObject _gameManager;
         private GameConfig _gameConfig;
-        private MockPlayerManager _playerManager;
+        private PlayerManager _playerManager;
         private List<GameObject> _players;
         
         private float _roundTimer;
@@ -35,7 +36,7 @@ namespace Minigames.FrozenFeathers
                 _gameManager = GameObject.FindWithTag("GameManager");
                 _gameConfig = _gameManager.GetComponent<GameConfig>();
                 
-                _playerManager = _gameManager.GetComponent<MockPlayerManager>();
+                _playerManager = _gameManager.GetComponentInChildren<PlayerManager>();
                 _players = _playerManager.Players;
                 
             #endregion
@@ -49,25 +50,25 @@ namespace Minigames.FrozenFeathers
                 Transform playerTransform = player.GetComponent<Transform>();
                 switch (player.name)
                 {
-                    case "Player 1":
+                    case "Player1":
                         playerBody.linearVelocity = Vector3.zero;
                         playerTransform.position = initialSpawnPoints[0].transform.position;
-                        playerTransform.rotation = initialSpawnPoints[0].transform.rotation;
+                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[0].transform.position);
                         break;
-                    case "Player 2":
+                    case "Player2":
                         playerBody.linearVelocity = Vector3.zero;
                         playerTransform.position = initialSpawnPoints[1].transform.position;
-                        playerTransform.rotation = initialSpawnPoints[1].transform.rotation;
+                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[1].transform.position);
                         break;
-                    case "Player 3":
+                    case "Player3":
                         playerBody.linearVelocity = Vector3.zero;
                         playerTransform.position = initialSpawnPoints[2].transform.position;
-                        playerTransform.rotation = initialSpawnPoints[2].transform.rotation;
+                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[2].transform.position);
                         break;
-                    case "Player 4":
+                    case "Player4":
                         playerBody.linearVelocity = Vector3.zero;
                         playerTransform.position = initialSpawnPoints[3].transform.position;
-                        playerTransform.rotation = initialSpawnPoints[3].transform.rotation;
+                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[3].transform.position);
                         break;
                 }
             }
@@ -102,6 +103,11 @@ namespace Minigames.FrozenFeathers
                 Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
                 playerRigidbody.linearVelocity = Vector3.zero;
                 playerObject.transform.position = respawnPoint.transform.position;
+            }
+            else
+            {
+                entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                entity.transform.position = deathPoint.transform.position;
             }
             
 
