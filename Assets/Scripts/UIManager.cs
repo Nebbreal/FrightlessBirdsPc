@@ -17,4 +17,9 @@ public class UIManager : MonoBehaviour
         winningPlayerTextBottom.text = winningPlayer + " wins!";
         winTextObject.SetActive(true);
     }
+
+    public void SetWinUI(bool state)
+    {
+        winTextObject.SetActive(state);
+    }
 }
