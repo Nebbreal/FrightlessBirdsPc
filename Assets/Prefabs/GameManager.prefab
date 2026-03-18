@@ -1039,6 +1039,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c374235e6a195754fb5c07e52f777c08, type: 2}
   - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
   - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
+  gameConfig: {fileID: 3897508759123251652}
 --- !u!1 &8657201635695876032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1050,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6261225260295015777}
   - component: {fileID: 3897508759123251652}
-  - component: {fileID: 8983065149070898585}
   - component: {fileID: 2829976537248166007}
   m_Layer: 0
   m_Name: GameManager
@@ -1089,18 +1089,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
   roundLength: 40
   playerLives: 1
---- !u!114 &8983065149070898585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8657201635695876032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76353d6794313274da033fce378d4471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MockPlayerManager
 --- !u!114 &2829976537248166007
 MonoBehaviour:
   m_ObjectHideFlags: 0
