@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 {
     [NonSerialized] public List<GameObject> Players;
     public List<Material> playerMaterials;
+    public List<GameObject> playerModels;
 
     [NonSerialized] public Dictionary<string, int> PlayerLives = new();
     [NonSerialized] public List<GameObject> AlivePlayers;
@@ -29,7 +30,10 @@ public class PlayerManager : MonoBehaviour
         Players.Add(player.gameObject);
         DontDestroyOnLoad(player.gameObject);
         player.gameObject.name = "Player" + Players.Count;
-        player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+        //player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+        //player.gameObject.GetComponent<MeshFilter>().mesh = playerMeshes[Players.Count - 1];
+        var model = Instantiate(playerModels[Players.Count - 1]);
+        model.transform.parent = player.gameObject.transform;
     }
     
     public void Start()
