@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Braced Settings")] public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
+    public float bracedReturnStunDuration = 0.3f;
     private bool _doBrace = false;
     private bool _holdingBrace = false;
     private float _bracedCooldown = 0f;
@@ -381,7 +382,7 @@ public class PlayerController : MonoBehaviour
 
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, 0.8f);
         }
 
         _doAttack = false;
@@ -420,6 +421,7 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.Dash)
         {
             SetPlayerState(PlayerState.Stunned);
+            _stunTimer = stunTime;
             Knockback(data);
         }
     }
@@ -427,6 +429,7 @@ public class PlayerController : MonoBehaviour
     public void BracedReturnStun(CollisionData data)
     {
         SetPlayerState(PlayerState.Stunned);
+        _stunTimer = bracedReturnStunDuration;
         Knockback(data);
     }
 

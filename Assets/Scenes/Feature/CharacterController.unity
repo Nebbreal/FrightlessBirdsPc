@@ -1257,10 +1257,10 @@ MonoBehaviour:
   rotationSpeed: 0.15
   walkSpeed: 20
   maxSpeed: 20
-  dashSpeed: 10
+  dashSpeed: 20
   dashDelay: 1
   dashDuration: 1
-  dashEarlyEndSpeed: 10
+  dashEarlyEndSpeed: 5
   dashHitRange: 0.8
   dashKnockbackSpeed: 13
   attackRange: 1.5
@@ -1272,6 +1272,7 @@ MonoBehaviour:
     m_Bits: 256
   bracedDelay: 1
   bracedReturnKnockbackSpeed: 20
+  bracedReturnStunDuration: 0.3
 --- !u!54 &617745709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2155,6 +2156,7 @@ MonoBehaviour:
     m_Bits: 0
   bracedDelay: 1
   bracedReturnKnockbackSpeed: 2
+  bracedReturnStunDuration: 0.3
 --- !u!54 &1266981086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2918,6 +2920,7 @@ MonoBehaviour:
     m_Bits: 0
   bracedDelay: 2
   bracedReturnKnockbackSpeed: 20
+  bracedReturnStunDuration: 0.3
 --- !u!54 &1598537357
 Rigidbody:
   m_ObjectHideFlags: 0
