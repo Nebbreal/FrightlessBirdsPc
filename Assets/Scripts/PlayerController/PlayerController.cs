@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState targetState = PlayerState.Idle;
 
     [Header("Player Settings")] public float stunTime = 1f;
+    public float rotationSpeed = 0.15f;
     private float _stunTimer = 0f;
     [Header("Walk Settings")] public float walkSpeed = 20f;
     public float maxSpeed = 60f;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         if (rb.linearVelocity.magnitude > 0.1)
         {
-            _lastMoveDirection = rb.linearVelocity.normalized;
+            _lastMoveDirection = Vector3.Lerp(_lastMoveDirection, rb.linearVelocity.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
