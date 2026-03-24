@@ -430,12 +430,17 @@ public class PlayerController : MonoBehaviour
         Knockback(data);
     }
 
+    public void HasHitWithDash()
+    {
+        rb.linearVelocity = Vector3.zero;
+    }
+
     public void DashKnockback(CollisionData data)
     {
         if (playerState != PlayerState.Braced)
         {
             Knockback(data);
-            rb.linearVelocity = Vector3.zero;
+            data.OriginCollider.SendMessage("HasHitWithDash");
         }
         else if (data.OriginCollider != null)
         {
