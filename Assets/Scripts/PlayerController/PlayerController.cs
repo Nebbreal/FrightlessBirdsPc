@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour
                     continue;
                 }
 
-                hitCollider.SendMessage("Stun", new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col));
+                hitCollider.SendMessage("AttackStun", new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col));
             }
         }
 
@@ -415,7 +415,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Stun(CollisionData data)
+    public void AttackStun(CollisionData data)
     {
         if (playerState != PlayerState.Dash)
         {
@@ -424,15 +424,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void BracedReturnStun(CollisionData data)
+    {
+        SetPlayerState(PlayerState.Stunned);
+        Knockback(data);
+    }
+
     public void DashKnockback(CollisionData data)
     {
         if (playerState != PlayerState.Braced)
         {
             Knockback(data);
+            rb.linearVelocity = Vector3.zero;
         }
         else if (data.OriginCollider != null)
         {
-            data.OriginCollider.SendMessage("Knockback",
+            data.OriginCollider.SendMessage("BracedReturnStun",
                 new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col));
         }
     }
