@@ -358,6 +358,7 @@ public class PlayerController : MonoBehaviour
                 dir = _moveThisFrame;
             }
             rb.linearVelocity = Vector3.zero;
+            _lastMoveDirection = dir;
             rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
         }
 
