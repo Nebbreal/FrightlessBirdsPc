@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (_holdingBrace && _bracedCooldown <= 0 && playerState != PlayerState.Stunned)
+        if (_holdingBrace && _bracedCooldown <= 0 && 
+            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
         {
             _doBrace = true;
         }
@@ -84,13 +85,20 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
                 dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
+                _doBrace = false;
+                _doAttack = false;
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
+                _doBrace = false;
+                _doDash = false;
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
                 stunTransform.gameObject.SetActive(true);
+                _doAttack = false;
+                _doDash = false;
+                _doBrace = false;
                 break;
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -98,9 +106,14 @@ public class PlayerController : MonoBehaviour
                 braceHitbox.position = transform.position;
                 braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 braceHitbox.gameObject.SetActive(true);
+                _doAttack = false;
+                _doDash = false;
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;
+                _doAttack = false;
+                _doDash = false;
+                _doBrace = false;
                 break;
         }
 
@@ -263,7 +276,7 @@ public class PlayerController : MonoBehaviour
     public void InputDash(InputAction.CallbackContext context)
     {
         if (context.action.IsPressed() && _dashCooldown <= 0 &&
-            playerState != PlayerState.Dash && playerState != PlayerState.Stunned)
+            playerState is PlayerState.Idle or PlayerState.Movement)
         {
             _doDash = true;
         }
@@ -271,8 +284,8 @@ public class PlayerController : MonoBehaviour
 
     public void InputAttack(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && _attackCooldown <= 0 && playerState != PlayerState.Attack &&
-            playerState != PlayerState.Stunned)
+        if (context.action.IsPressed() && _attackCooldown <= 0 && 
+            playerState is PlayerState.Idle or PlayerState.Movement)
         {
             _doAttack = true;
         }
