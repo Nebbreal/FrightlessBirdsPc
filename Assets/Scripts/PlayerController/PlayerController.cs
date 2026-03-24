@@ -64,9 +64,12 @@ public class PlayerController : MonoBehaviour
 
         UpdateStates();
 
-        if (rb.linearVelocity.magnitude > 0.1)
+
+        var facing = rb.linearVelocity;
+        facing.y = 0f;
+        if (facing.normalized.magnitude > 0.1)
         {
-            _lastMoveDirection = Vector3.Lerp(_lastMoveDirection, rb.linearVelocity.normalized, rotationSpeed).normalized;
+            _lastMoveDirection = Vector3.Lerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
@@ -423,6 +426,7 @@ public class PlayerController : MonoBehaviour
 
     public void Knockback(CollisionData data)
     {
+        rb.linearVelocity = Vector3.zero;
         rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
     }
 }
