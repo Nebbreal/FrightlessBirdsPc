@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,12 @@ public class PlayerController : MonoBehaviour
     public Transform dashHitbox;
     public Transform braceHitbox;
     public Transform stunTransform;
+
+    public UnityEvent<CollisionData> onAttackHit;
+    public UnityEvent<CollisionData> onDashBracedHit;
+    public UnityEvent<CollisionData> onDashHit;
+    public UnityEvent onDashHasHit;
+
 
     public PlayerState targetState = PlayerState.Idle;
 
@@ -309,8 +316,9 @@ public class PlayerController : MonoBehaviour
             }
 
             _dashCollided.Add(hitCollider);
-            hitCollider.SendMessage("DashKnockback",
-                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col));
+            hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
+                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
+            );
         }
 
         if (_dashTime <= 0.0f)
@@ -390,7 +398,10 @@ public class PlayerController : MonoBehaviour
                     continue;
                 }
 
-                hitCollider.SendMessage("AttackStun", new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col));
+
+                hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
             }
         }
 
@@ -459,12 +470,13 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.Braced)
         {
             Knockback(data);
-            data.OriginCollider.SendMessage("HasHitWithDash");
+            data.OriginCollider.GetComponent<PlayerController>().onDashHasHit.Invoke();
         }
         else if (data.OriginCollider != null)
         {
-            data.OriginCollider.SendMessage("BracedReturnStun",
-                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col));
+            data.OriginCollider.GetComponent<PlayerController>().onDashBracedHit.Invoke(
+                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col)
+            );
         }
     }
 

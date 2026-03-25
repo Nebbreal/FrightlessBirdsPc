@@ -392,6 +392,66 @@ MonoBehaviour:
   dashHitbox: {fileID: 4674111606895480734}
   braceHitbox: {fileID: 468585141356533814}
   stunTransform: {fileID: 6296072274662204348}
+  onAttackHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: AttackStun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDashBracedHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: BracedReturnStun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDashHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DashKnockback
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDashHasHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HasHitWithDash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   targetState: 0
   stunTime: 1
   rotationSpeed: 0.15
