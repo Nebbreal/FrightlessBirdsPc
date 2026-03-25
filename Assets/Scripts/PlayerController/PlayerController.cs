@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerState targetState = PlayerState.Idle;
 
-    [Header("Player Settings")] public float stunTime = 1f;
+    [Header("Player Settings")] 
+    public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
     private float _stunTimer = 0f;
     [Header("Walk Settings")] public float walkSpeed = 20f;
@@ -23,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
 
-    [Header("Dash Settings")] public float dashSpeed = 1f;
+    [Header("Dash Settings")] 
+    public float dashSpeed = 1f;
     public float dashDelay = 1f;
     private float _dashCooldown = 0f;
     private bool _doDash = false;
@@ -34,7 +37,8 @@ public class PlayerController : MonoBehaviour
     public float dashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
 
-    [Header("Attack Settings")] public float attackRange = 1f;
+    [Header("Attack Settings")] 
+    public float attackRange = 1f;
     public float attackDelay = 1f;
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
@@ -43,7 +47,8 @@ public class PlayerController : MonoBehaviour
     private float _attackTime = 0f;
     private bool _doAttack = false;
 
-    [Header("Braced Settings")] public float bracedDelay = 1f;
+    [Header("Braced Settings")] 
+    public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
     public float bracedReturnStunDuration = 0.3f;
     private bool _doBrace = false;
@@ -364,6 +369,14 @@ public class PlayerController : MonoBehaviour
 
         if (_doAttack)
         {
+            var dir = _lastMoveDirection;
+            if (_moveThisFrame.magnitude > 0f)
+            {
+                dir = _moveThisFrame;
+            }
+            _lastMoveDirection = dir;
+            transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+
             attackHitbox.position = transform.position + _lastMoveDirection * (attackRange + 0.2f);
             attackHitbox.localScale = new Vector3(attackRange * 2f, attackRange * 2f, attackRange * 2f);
             attackHitbox.gameObject.SetActive(true);
@@ -437,6 +450,8 @@ public class PlayerController : MonoBehaviour
     public void HasHitWithDash()
     {
         rb.linearVelocity = Vector3.zero;
+        _doDash = false;
+        SetPlayerState(PlayerState.Idle);
     }
 
     public void DashKnockback(CollisionData data)
