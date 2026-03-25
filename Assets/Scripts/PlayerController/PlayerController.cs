@@ -447,16 +447,19 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState != PlayerState.Dash)
         {
-            SetPlayerState(PlayerState.Stunned);
-            _stunTimer = stunTime;
-            Knockback(data);
+            Stun(data, stunTime);
         }
     }
 
     public void BracedReturnStun(CollisionData data)
     {
+        Stun(data, bracedReturnStunDuration);
+    }
+
+    public void Stun(CollisionData data, float duration)
+    {
         SetPlayerState(PlayerState.Stunned);
-        _stunTimer = bracedReturnStunDuration;
+        _stunTimer = duration;
         Knockback(data);
     }
 
