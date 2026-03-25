@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
     public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
     private float _stunTimer = 0f;
-    [Header("Walk Settings")] public float walkSpeed = 20f;
+    [Header("Walk Settings")] 
+    public float walkSpeed = 20f;
     public float maxSpeed = 60f;
+    public float maxSpeedClampFactor = 0.8f;
     private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
 
@@ -407,7 +409,7 @@ public class PlayerController : MonoBehaviour
 
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
-            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, 0.8f);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, maxSpeedClampFactor);
         }
 
         _doAttack = false;
