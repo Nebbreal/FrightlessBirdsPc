@@ -454,16 +454,18 @@ MonoBehaviour:
         m_CallState: 2
   targetState: 0
   stunTime: 1
-  rotationSpeed: 0.15
+  rotationSpeed: 0.4
   walkSpeed: 20
   maxSpeed: 20
+  maxSpeedClampFactor: 0.8
   dashSpeed: 30
   dashDelay: 1
   dashDuration: 1
   dashEarlyEndSpeed: 10
   dashHitRange: 0.8
   dashKnockbackSpeed: 13
-  attackRange: 1.5
+  attackRange: 1.7
+  attackRadius: 1.5
   attackDelay: 1
   attackDuration: 0.3
   attackKnockbackSpeed: 2

@@ -1705,6 +1705,7 @@ MonoBehaviour:
   rotationSpeed: 0.15
   walkSpeed: 0
   maxSpeed: 20
+  maxSpeedClampFactor: 0.8
   dashSpeed: 0
   dashDelay: 1
   dashDuration: 1
@@ -1712,6 +1713,7 @@ MonoBehaviour:
   dashHitRange: 2
   dashKnockbackSpeed: 2
   attackRange: 0
+  attackRadius: 1
   attackDelay: 1
   attackDuration: 1
   attackKnockbackSpeed: 2
@@ -2306,6 +2308,7 @@ MonoBehaviour:
   rotationSpeed: 0.15
   walkSpeed: 0
   maxSpeed: 60
+  maxSpeedClampFactor: 0.8
   dashSpeed: 0
   dashDelay: 1
   dashDuration: 1
@@ -2313,6 +2316,7 @@ MonoBehaviour:
   dashHitRange: 2
   dashKnockbackSpeed: 2
   attackRange: 1
+  attackRadius: 1
   attackDelay: 1
   attackDuration: 1
   attackKnockbackSpeed: 2
@@ -2498,6 +2502,14 @@ PrefabInstance:
     - target: {fileID: 388992629093003344, guid: 73964ff35dff73d41b77347b12344097, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 809311008639500745, guid: 73964ff35dff73d41b77347b12344097, type: 3}
+      propertyPath: attackRange
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 809311008639500745, guid: 73964ff35dff73d41b77347b12344097, type: 3}
+      propertyPath: attackRadius
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 809311008639500745, guid: 73964ff35dff73d41b77347b12344097, type: 3}
       propertyPath: rotationSpeed

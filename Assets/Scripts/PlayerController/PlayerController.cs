@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack Settings")] 
     public float attackRange = 1f;
+
+    public float attackRadius = 1f;
     public float attackDelay = 1f;
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
@@ -387,11 +389,11 @@ public class PlayerController : MonoBehaviour
             _lastMoveDirection = dir;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
 
-            attackHitbox.position = transform.position + _lastMoveDirection * (attackRange + 0.2f);
-            attackHitbox.localScale = new Vector3(attackRange * 2f, attackRange * 2f, attackRange * 2f);
+            attackHitbox.position = transform.position + _lastMoveDirection * attackRange;
+            attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
             attackHitbox.gameObject.SetActive(true);
             Collider[] hitColliders =
-                Physics.OverlapSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange,
+                Physics.OverlapSphere(transform.position + _lastMoveDirection * attackRange, attackRadius,
                     layerMask);
             foreach (var hitCollider in hitColliders)
             {
