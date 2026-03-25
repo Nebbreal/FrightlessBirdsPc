@@ -1101,3 +1101,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4350747fe007e1848bc1a0fccc1a9ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  minigames:
+  - {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}

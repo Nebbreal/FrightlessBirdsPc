@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Minigames;
 using Minigames.FrozenFeathers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +14,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private UIManager _uiManager;
     private PlayerManager _playerManager;
+    [SerializeField]
+    private List<Minigame> minigames;
 
     public void Awake()
     {

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 6fcd1d1c3ebf141c5b6f69b18c00a1bd
   - enabled: 1
-    path: Assets/Scenes/Feature/FrozenFeathers.unity
+    path: Assets/Scenes/Minigames/FrozenFeathers.unity
     guid: 8a857b45561c86347a2822ef9db9fe98
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
