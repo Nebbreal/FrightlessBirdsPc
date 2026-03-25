@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour
         _playerManager = GetComponentInChildren<PlayerManager>();
     }
     
-    public void Update()
-    {
-        Debug.Log(_playerManager.name);
-    }
-    
     //To be reworked after first prototype test
     public void StartGame(InputAction.CallbackContext context)
     {
