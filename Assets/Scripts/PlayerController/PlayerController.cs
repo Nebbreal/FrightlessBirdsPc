@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         facing.y = 0f;
         if (facing.normalized.magnitude > 0.1)
         {
-            _lastMoveDirection = Vector3.Lerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
+            _lastMoveDirection = Vector3.Slerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
@@ -385,6 +385,8 @@ public class PlayerController : MonoBehaviour
             {
                 dir = _moveThisFrame;
             }
+
+            rb.linearVelocity = dir * rb.linearVelocity.magnitude;
             _lastMoveDirection = dir;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
 
