@@ -389,10 +389,12 @@ public class PlayerController : MonoBehaviour
     private void ExecuteAttack()
     {
         var dir = _lastMoveDirection;
-        if (_moveThisFrame.magnitude > 0f)
+        if (_moveInput.magnitude > 0f)
         {
-            dir = _moveThisFrame;
+            dir = _moveInput;
         }
+
+        Debug.Log(dir + ", " + _lastMoveDirection + ", " + _moveInput);
 
         rb.linearVelocity = dir * rb.linearVelocity.magnitude;
         _lastMoveDirection = dir;
