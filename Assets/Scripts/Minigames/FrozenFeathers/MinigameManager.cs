@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Minigames.FrozenFeathers
 {
-    public class MinigameManager : MonoBehaviour, IMinigameManager
+    public class MinigameManager : MonoBehaviour
     {
         public GameEvent onEndMinigame;
         [SerializeField]
