@@ -31,6 +31,7 @@ namespace Minigames.FrozenFeathers
         private float _roundTimer;
         private float _startScale;
 
+        private bool _hasMinigameStarted;
         public void Start()
         {
             #region MinigameConfig
@@ -79,11 +80,17 @@ namespace Minigames.FrozenFeathers
 
         public void Update()
         {
-            if (_roundTimer > 0)
+            if (_hasMinigameStarted && _roundTimer > 0)
             {
                 _roundTimer -= Time.deltaTime;
                 ShrinkPlatform();
             }
+        }
+
+        public void OnStartMinigame()
+        {
+            Debug.Log("Started minigame!");
+            _hasMinigameStarted = true;
         }
 
         private void ShrinkPlatform()

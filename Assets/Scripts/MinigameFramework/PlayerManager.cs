@@ -51,12 +51,31 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void ResetPlayerStates()
+    public void ResetAllPlayerStates()
     {
-        foreach (var player in Players)
+        foreach (GameObject player in Players)
         {
             player.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
             player.transform.position = new Vector3(0, 3, 0);
+        }
+    }
+
+    public void OnEnableAllPlayerMovement()
+    {
+        foreach (GameObject player in Players)
+        {
+            PlayerController controller  = player.GetComponent<PlayerController>();
+            controller.SetPlayerState(PlayerState.Idle);
+        }
+    }
+
+    public void OnDisableAllPlayerMovement()
+    {
+        foreach (GameObject player in Players)
+        {
+            Debug.Log("Disabling movement for " + player.name);
+            PlayerController controller  = player.GetComponent<PlayerController>();
+            controller.SetPlayerState(PlayerState.InputRestricted);
         }
     }
 

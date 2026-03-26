@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using EventSystem;
 using Minigames;
@@ -13,24 +14,33 @@ public class GameManager : MonoBehaviour
 {
     [NonSerialized]
     public static GameManager Instance;
+    private GameConfig _gameConfig;
     private UIManager _uiManager;
     private PlayerManager _playerManager;
+
+    [NonSerialized]
+    public float CountdownTime;
     
     [Header("Game config")]
     [SerializeField]
     private List<Minigame> minigames;
-    private Minigame _currentMinigame;
+    private Minigame _previousMinigame;
     [SerializeField]
     private SceneField lobbyScene;
     [NonSerialized]
-    public bool IsMinigameSceneActive = false;
+    public bool IsMinigameSceneActive;
     [NonSerialized]
-    public bool ArePlayersPlaying = false;
+    private bool _isMinigameActive;
 
     [Header("Events")] 
+    public GameEvent onLoadMinigame;
     public GameEvent onStartMinigame;
-
     public GameEvent onEnableJoining;
+    public GameEvent onCountdownTimerUpdate;
+    public GameEvent onCountdownEnable;
+    public GameEvent onCountdownDisable;
+    public GameEvent onDisablePlayerMovement;
+    public GameEvent onEnablePlayerMovement;
     public void Awake()
     {
         if (Instance == null)
@@ -48,9 +58,34 @@ public class GameManager : MonoBehaviour
     {
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         _playerManager = GetComponentInChildren<PlayerManager>();
+        _gameConfig = GetComponent<GameConfig>();
     }
 
-    public void PickRandomMinigame()
+    public void Update()
+    {
+        if (IsMinigameSceneActive)
+        {
+            CheckCountdownState();
+        }
+    }
+
+    private void CheckCountdownState()
+    {
+        if (Instance.CountdownTime > 0)
+        {
+            Instance.CountdownTime -= Time.deltaTime;
+            onCountdownTimerUpdate.Raise(this, CountdownTime.ToString("0"));
+        }
+        else if (!_isMinigameActive)
+        {
+            onEnablePlayerMovement.Raise(this);
+            onCountdownDisable.Raise(this);
+            onStartMinigame.Raise(this);
+            Instance._isMinigameActive = true;
+        }
+    }
+
+    public void OnLoadMinigame()
     {
         Minigame selectedMinigame = null;
         
@@ -59,38 +94,45 @@ public class GameManager : MonoBehaviour
             int rnd = Random.Range(0, minigames.Count);
             selectedMinigame = minigames[rnd];
             Debug.Log("Selected minigame: " + selectedMinigame.name);
-        } while (!selectedMinigame || selectedMinigame == _currentMinigame && minigames.Count != 1);
+        } while (!selectedMinigame || selectedMinigame == Instance._previousMinigame && minigames.Count != 1);
+        
+        Instance._previousMinigame = selectedMinigame;
 
-        Instance.IsMinigameSceneActive = true;
+        onDisablePlayerMovement.Raise(this);
+        
+        Instance.CountdownTime = Instance._gameConfig.countdownLength;
+        onCountdownEnable.Raise(this);
+        
         Instance.LoadScene(selectedMinigame.sceneToLoad);
+        Instance.IsMinigameSceneActive = true;
     }
 
     public void ToLobby()
     {
         Instance.LoadScene(lobbyScene);
         Instance.IsMinigameSceneActive = false;
+        Instance._isMinigameActive = false;
         onEnableJoining.Raise(this, null);
     }
     
     public void StartGame(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!context.started || _isMinigameActive) return;
+        
+        if (!Instance.IsMinigameSceneActive)
         {
-            if (!Instance.IsMinigameSceneActive)
-            {
-                onStartMinigame.Raise(this, null);
-            }
-            else
-            {
-                Instance.ToLobby();
-            }
+            onLoadMinigame.Raise(this, null);
+        }
+        else
+        {
+            Instance.ToLobby();
         }
     }
     
     private void LoadScene(string sceneName)
     {
         Instance._uiManager.SetWinUI(false);
-        Instance._playerManager.ResetPlayerStates();
+        Instance._playerManager.ResetAllPlayerStates();
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1f;
     }
@@ -107,6 +149,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         string winningPlayer = Instance._playerManager.AlivePlayers.First().name;
         Instance._uiManager.UpdateWinningPlayer(winningPlayer);
-        Instance.ArePlayersPlaying = false;
+        Instance._isMinigameActive = false;
     }
 }

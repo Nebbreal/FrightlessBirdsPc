@@ -7,4 +7,6 @@ public class GameConfig : MonoBehaviour
     [Tooltip("In seconds")]
     public float roundLength;
     public int playerLives;
+    [Tooltip("In seconds")] 
+    public float countdownLength = 5;
 }
