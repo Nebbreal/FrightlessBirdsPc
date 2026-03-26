@@ -394,8 +394,6 @@ public class PlayerController : MonoBehaviour
             dir = _moveInput;
         }
 
-        Debug.Log(dir + ", " + _lastMoveDirection + ", " + _moveInput);
-
         rb.linearVelocity = dir * rb.linearVelocity.magnitude;
         _lastMoveDirection = dir;
         transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
