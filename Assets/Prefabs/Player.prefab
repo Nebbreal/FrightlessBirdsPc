@@ -620,7 +620,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SwitchScene
+        m_MethodName: StartGame
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

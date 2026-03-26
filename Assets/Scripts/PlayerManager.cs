@@ -15,12 +15,20 @@ public class PlayerManager : MonoBehaviour
     [NonSerialized] public Dictionary<string, int> PlayerLives = new();
     [NonSerialized] public List<GameObject> AlivePlayers;
 
-    [FormerlySerializedAs("_gameConfig")] [SerializeField]
+    [SerializeField]
     private GameConfig gameConfig;
+    
+    private PlayerInputManager _playerInputManager;
+    public void Start()
+    {
+        Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+        _playerInputManager = GetComponent<PlayerInputManager>();
+    }
     
     public void RegisterPlayer(PlayerInput player)
     {
-        if (SceneManager.GetActiveScene().name != "Main") return;
+        if(GameManager.Instance.IsMinigameSceneActive) return;
+     
         if (Players == null || Players.Count == 0)
         {
             Players = new List<GameObject>();
@@ -30,11 +38,6 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(player.gameObject);
         player.gameObject.name = "Player" + Players.Count;
         player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
-    }
-    
-    public void Start()
-    {
-        Players = GameObject.FindGameObjectsWithTag("Player").ToList();
     }
     
     public void SetPlayerLives()
@@ -57,7 +60,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-public void DeductLife(GameObject player)
+    public void DeductLife(GameObject player)
     {
         PlayerLives[player.name]--;
         if (PlayerLives[player.name] == 0)

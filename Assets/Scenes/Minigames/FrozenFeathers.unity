@@ -807,21 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf99b400b456d74a8378d8ae9553581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.FrozenFeathers.ShrinkingPlatform
-  winEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnWin
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  onEndMinigame: {fileID: 11400000, guid: bf127ee6c272f5ecf9d61cf2afced266, type: 2}
   shrinkingPlatform: {fileID: 1131622062}
   shrinkingPlatformTargetScale: 1
   deathPoint: {fileID: 170241768}

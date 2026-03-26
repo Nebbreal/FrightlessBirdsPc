@@ -647,28 +647,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1486493166 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-  m_PrefabInstance: {fileID: 2144778076}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273ea2b4db36c47478c44fbfe3dd85c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
---- !u!114 &2129530477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3897508759123251652, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-  m_PrefabInstance: {fileID: 2144778076}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dea871604e3d5c4fbfd0ab742f8fd75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameConfig
 --- !u!1001 &2144778076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -677,14 +655,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2262906417296289554, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2823410605061427194, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AllowJoining
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2823410605061427194, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_JoinBehavior
       value: 1
@@ -697,22 +667,6 @@ PrefabInstance:
       propertyPath: m_JoinAction.m_UseReference
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2823410605061427194, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2823410605061427194, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 31452060-b04a-4027-977f-b76a7581d666
-      objectReference: {fileID: 0}
-    - target: {fileID: 2823410605061427194, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Join
-      objectReference: {fileID: 0}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: playerManager
-      value: 
-      objectReference: {fileID: 1486493166}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.80371
@@ -761,10 +715,6 @@ PrefabInstance:
       propertyPath: m_text
       value: Press "Select" to go to return menu
       objectReference: {fileID: 0}
-    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: gameConfig
-      value: 
-      objectReference: {fileID: 2129530477}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -773,8 +723,7 @@ PrefabInstance:
       propertyPath: m_text
       value: Press "Select" to go to return menu
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

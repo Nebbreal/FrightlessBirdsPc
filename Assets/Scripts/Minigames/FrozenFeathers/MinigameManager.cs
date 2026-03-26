@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EventSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +7,7 @@ namespace Minigames.FrozenFeathers
 {
     public class MinigameManager : MonoBehaviour, IMinigameManager
     {
-        public UnityEvent winEvent = new();
+        public GameEvent onEndMinigame;
         [SerializeField]
         private GameObject shrinkingPlatform;
         [SerializeField]
@@ -119,7 +120,7 @@ namespace Minigames.FrozenFeathers
 
         private void OnWin()
         {
-            winEvent.Invoke();
+            onEndMinigame.Raise(this, null);
         }
     }
 }
