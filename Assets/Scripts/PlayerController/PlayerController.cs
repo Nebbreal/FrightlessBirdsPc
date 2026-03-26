@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Settings")] 
     public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
-    private float _stunTimer = 0f;
+    private float _stunTimer;
     [Header("Walk Settings")] 
     public float walkSpeed = 20f;
     public float maxSpeed = 60f;
@@ -37,11 +36,11 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
     public float dashDelay = 1f;
-    private float _dashCooldown = 0f;
-    private bool _doDash = false;
+    private float _dashCooldown;
+    private bool _doDash;
     public float dashDuration = 1f;
     public float dashEarlyEndSpeed = 10f;
-    private float _dashTime = 0f;
+    private float _dashTime;
     public float dashHitRange = 2f;
     public float dashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
@@ -54,17 +53,17 @@ public class PlayerController : MonoBehaviour
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
     public LayerMask layerMask;
-    private float _attackCooldown = 0f;
-    private float _attackTime = 0f;
-    private bool _doAttack = false;
+    private float _attackCooldown;
+    private float _attackTime;
+    private bool _doAttack;
 
     [Header("Braced Settings")] 
     public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
     public float bracedReturnStunDuration = 0.3f;
-    private bool _doBrace = false;
-    private bool _holdingBrace = false;
-    private float _bracedCooldown = 0f;
+    private bool _doBrace;
+    private bool _holdingBrace;
+    private float _bracedCooldown;
 
     private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
@@ -474,14 +473,15 @@ public class PlayerController : MonoBehaviour
 
     public void DashKnockback(CollisionData data)
     {
+        PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
         if (playerState != PlayerState.Braced)
         {
             Knockback(data);
-            data.OriginCollider.GetComponent<PlayerController>().onDashHasHit.Invoke();
+            player.onDashHasHit.Invoke();
         }
         else if (data.OriginCollider != null)
         {
-            data.OriginCollider.GetComponent<PlayerController>().onDashBracedHit.Invoke(
+            player.onDashBracedHit.Invoke(
                 new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col)
             );
         }
