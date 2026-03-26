@@ -368,46 +368,12 @@ public class PlayerController : MonoBehaviour
 
         if (_doDash)
         {
-            var dir = _lastMoveDirection;
-            if (_moveThisFrame.magnitude > 0f)
-            {
-                dir = _moveThisFrame;
-            }
-            rb.linearVelocity = Vector3.zero;
-            _lastMoveDirection = dir;
-            rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
+            ExecuteDash();
         }
 
         if (_doAttack)
         {
-            var dir = _lastMoveDirection;
-            if (_moveThisFrame.magnitude > 0f)
-            {
-                dir = _moveThisFrame;
-            }
-
-            rb.linearVelocity = dir * rb.linearVelocity.magnitude;
-            _lastMoveDirection = dir;
-            transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
-
-            attackHitbox.position = transform.position + _lastMoveDirection * attackRange;
-            attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
-            attackHitbox.gameObject.SetActive(true);
-            Collider[] hitColliders =
-                Physics.OverlapSphere(transform.position + _lastMoveDirection * attackRange, attackRadius,
-                    layerMask);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (!hitCollider || hitCollider == col)
-                {
-                    continue;
-                }
-
-
-                hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
-                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
-                );
-            }
+            ExecuteAttack();
         }
 
         if (rb.linearVelocity.magnitude > maxSpeed)
@@ -418,6 +384,51 @@ public class PlayerController : MonoBehaviour
         _doAttack = false;
         _doDash = false;
         _doBrace = false;
+    }
+
+    private void ExecuteAttack()
+    {
+        var dir = _lastMoveDirection;
+        if (_moveThisFrame.magnitude > 0f)
+        {
+            dir = _moveThisFrame;
+        }
+
+        rb.linearVelocity = dir * rb.linearVelocity.magnitude;
+        _lastMoveDirection = dir;
+        transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+
+        attackHitbox.position = transform.position + _lastMoveDirection * attackRange;
+        attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
+        attackHitbox.gameObject.SetActive(true);
+        Collider[] hitColliders =
+            Physics.OverlapSphere(transform.position + _lastMoveDirection * attackRange, attackRadius,
+                layerMask);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (!hitCollider || hitCollider == col)
+            {
+                continue;
+            }
+
+
+            hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+            );
+        }
+    }
+
+    private void ExecuteDash()
+    {
+        var dir = _lastMoveDirection;
+        if (_moveThisFrame.magnitude > 0f)
+        {
+            dir = _moveThisFrame;
+        }
+
+        rb.linearVelocity = Vector3.zero;
+        _lastMoveDirection = dir;
+        rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
     }
 
     private void OnDrawGizmos()
