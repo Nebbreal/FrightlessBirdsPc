@@ -70,4 +70,12 @@ public class GameManager : MonoBehaviour
         string winningPlayer = Instance._playerManager.AlivePlayers.First().name;
         Instance._uiManager.UpdateWinningPlayer(winningPlayer);
     }
+
+    public void ResetCalibration(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            SceneManager.LoadScene("CalibrationScene");
+        }
+    }
 }

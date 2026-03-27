@@ -13,8 +13,26 @@ public class CalibrationManager : MonoBehaviour
         controllerCount++;
         if (controllerCount >= BlinkForCalibrations.Length)
         {
-            SceneManager.LoadScene("Main");
             return;
+        }
+        BlinkForCalibrations[controllerCount].SetActive(true);
+    }
+
+    public void ConfirmCalibration()
+    {
+        if (controllerCount < BlinkForCalibrations.Length - 1)
+        {
+            return;
+        }
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void OnResetCalibration()
+    {
+        controllerCount = 0;
+        foreach (var blink in BlinkForCalibrations)
+        {
+            blink.SetActive(false);
         }
         BlinkForCalibrations[controllerCount].SetActive(true);
     }

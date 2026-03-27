@@ -632,9 +632,35 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f9a18cc0-d6f5-4ff2-967a-b8b9f0d48151
     m_ActionName: 'Player/ToMainMenu[/Gamepad/select,/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a06e90f-7869-4702-8588-993f5d8d6b96
+    m_ActionName: 'Calibration/Join[/DragonRise Inc.   Generic   USB  Joystick  /button8]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 128ec783-bb0e-41a3-b777-2cbfe781d140
+    m_ActionName: 'Calibration/Reset[/DragonRise Inc.   Generic   USB  Joystick 
+      /button7]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b50f9cc7-d1e9-4100-8a80-bd3bb4a6f697
+    m_ActionName: 'Calibration/Confirm[/DragonRise Inc.   Generic   USB  Joystick 
+      /button8]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Calibration
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &7724844911593060753
