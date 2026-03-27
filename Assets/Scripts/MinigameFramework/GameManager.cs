@@ -152,10 +152,12 @@ namespace MinigameFramework
             Time.timeScale = 1f;
         }
 
-        public void OnEndMinigame()
+        public void OnEndMinigame(Component sender, object[] winnerObj)
         {
+            if (winnerObj.First() is not GameObject winner) return;
+            
             Time.timeScale = 0;
-            string winningPlayer = Instance.PlayerManager.AlivePlayers.First().name;
+            string winningPlayer = winner.name;
             onEnableWinUI.Raise(this);
             onUpdateWinUI.Raise(this, winningPlayer);
 

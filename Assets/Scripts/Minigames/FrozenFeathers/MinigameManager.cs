@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EventSystem;
 using MinigameFramework;
 using UnityEngine;
@@ -125,7 +126,7 @@ namespace Minigames.FrozenFeathers
 
         private void OnWin()
         {
-            onEndMinigame.Raise(this, null);
+            onEndMinigame.Raise(this, _playerManager.AlivePlayers.First());
         }
     }
 }
