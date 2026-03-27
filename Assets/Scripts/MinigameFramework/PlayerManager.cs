@@ -1,99 +1,99 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
-public class PlayerManager : MonoBehaviour
+namespace MinigameFramework
 {
-    [NonSerialized] public List<GameObject> Players;
-    public List<Material> playerMaterials;
-
-    [NonSerialized] public Dictionary<string, int> PlayerLives = new();
-    [NonSerialized] public List<GameObject> AlivePlayers;
-
-    [SerializeField]
-    private GameConfig gameConfig;
-    
-    private PlayerInputManager _playerInputManager;
-    public void Start()
+    public class PlayerManager : MonoBehaviour
     {
-        Players = GameObject.FindGameObjectsWithTag("Player").ToList();
-        _playerInputManager = GetComponent<PlayerInputManager>();
-    }
+        [NonSerialized] public List<GameObject> Players;
+        public List<Material> playerMaterials;
+
+        [NonSerialized] public Dictionary<string, int> PlayerLives = new();
+        [NonSerialized] public List<GameObject> AlivePlayers;
+
+        [SerializeField]
+        private GameConfig gameConfig;
     
-    public void RegisterPlayer(PlayerInput player)
-    {
-        if(GameManager.Instance.IsMinigameSceneActive) return;
+        private PlayerInputManager _playerInputManager;
+        public void Start()
+        {
+            Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+            _playerInputManager = GetComponent<PlayerInputManager>();
+        }
+    
+        public void RegisterPlayer(PlayerInput player)
+        {
+            if(GameManager.Instance.IsMinigameSceneActive) return;
      
-        if (Players == null || Players.Count == 0)
-        {
-            Players = new List<GameObject>();
-        }
+            if (Players == null || Players.Count == 0)
+            {
+                Players = new List<GameObject>();
+            }
 
-        Players.Add(player.gameObject);
-        DontDestroyOnLoad(player.gameObject);
-        player.gameObject.name = "Player" + Players.Count;
-        player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
-    }
+            Players.Add(player.gameObject);
+            DontDestroyOnLoad(player.gameObject);
+            player.gameObject.name = "Player" + Players.Count;
+            player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+        }
     
-    public void SetPlayerLives()
-    {
-        AlivePlayers = new List<GameObject>();
-        foreach (var player in Players)
+        public void SetPlayerLives()
         {
-            AlivePlayers.Add(player);
-            player.SetActive(true);
-            PlayerLives[player.name] = gameConfig.playerLives;
+            AlivePlayers = new List<GameObject>();
+            foreach (var player in Players)
+            {
+                AlivePlayers.Add(player);
+                player.SetActive(true);
+                PlayerLives[player.name] = gameConfig.playerLives;
+            }
         }
-    }
 
-    public void ResetAllPlayerStates()
-    {
-        foreach (GameObject player in Players)
+        public void ResetAllPlayerStates()
         {
-            player.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
-            player.transform.position = new Vector3(0, 3, 0);
+            foreach (GameObject player in Players)
+            {
+                player.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
+                player.transform.position = new Vector3(0, 3, 0);
+            }
         }
-    }
 
-    public void OnEnableAllPlayerMovement()
-    {
-        foreach (GameObject player in Players)
+        public void OnEnableAllPlayerMovement()
         {
-            PlayerController controller  = player.GetComponent<PlayerController>();
-            controller.SetPlayerState(PlayerState.Idle);
+            foreach (GameObject player in Players)
+            {
+                PlayerController controller  = player.GetComponent<PlayerController>();
+                controller.SetPlayerState(PlayerState.Idle);
+            }
         }
-    }
 
-    public void OnDisableAllPlayerMovement()
-    {
-        foreach (GameObject player in Players)
+        public void OnDisableAllPlayerMovement()
         {
-            Debug.Log("Disabling movement for " + player.name);
-            PlayerController controller  = player.GetComponent<PlayerController>();
-            controller.SetPlayerState(PlayerState.InputRestricted);
+            foreach (GameObject player in Players)
+            {
+                Debug.Log("Disabling movement for " + player.name);
+                PlayerController controller  = player.GetComponent<PlayerController>();
+                controller.SetPlayerState(PlayerState.InputRestricted);
+            }
         }
-    }
 
-    public void DeductLife(GameObject player)
-    {
-        PlayerLives[player.name]--;
-        if (PlayerLives[player.name] == 0)
+        public void DeductLife(GameObject player)
         {
-            AlivePlayers.Remove(player);
-            PlayerController controller  = player.GetComponent<PlayerController>();
-            controller.SetPlayerState(PlayerState.InputRestricted);
+            PlayerLives[player.name]--;
+            if (PlayerLives[player.name] == 0)
+            {
+                AlivePlayers.Remove(player);
+                PlayerController controller  = player.GetComponent<PlayerController>();
+                controller.SetPlayerState(PlayerState.InputRestricted);
+            }
         }
-    }
 
-    public int GetAlivePlayerAmount()
-    {
-        int alivePlayers = AlivePlayers.Count;
-        return alivePlayers;
+        public int GetAlivePlayerAmount()
+        {
+            int alivePlayers = AlivePlayers.Count;
+            return alivePlayers;
+        }
     }
 }
 

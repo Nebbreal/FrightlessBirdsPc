@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EventSystem;
+using MinigameFramework;
 using UnityEngine;
 using UnityEngine.Events;
 

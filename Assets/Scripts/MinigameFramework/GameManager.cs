@@ -1,154 +1,156 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using EventSystem;
 using Minigames;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class GameManager : MonoBehaviour
+namespace MinigameFramework
 {
-    [NonSerialized]
-    public static GameManager Instance;
-    private GameConfig _gameConfig;
-    private UIManager _uiManager;
-    private PlayerManager _playerManager;
+    public class GameManager : MonoBehaviour
+    {
+        [NonSerialized]
+        public static GameManager Instance;
+        private GameConfig _gameConfig;
+        private UIManager _uiManager;
+        private PlayerManager _playerManager;
 
-    [NonSerialized]
-    public float CountdownTime;
+        [NonSerialized]
+        private float _countdownTime;
     
-    [Header("Game config")]
-    [SerializeField]
-    private List<Minigame> minigames;
-    private Minigame _previousMinigame;
-    [SerializeField]
-    private SceneField lobbyScene;
-    [NonSerialized]
-    public bool IsMinigameSceneActive;
-    [NonSerialized]
-    private bool _isMinigameActive;
+        [Header("Game manager config")]
+        [SerializeField]
+        private List<Minigame> minigames;
+        private Minigame _previousMinigame;
+        [SerializeField]
+        private SceneField lobbyScene;
+        [NonSerialized]
+        public bool IsMinigameSceneActive;
+        [NonSerialized]
+        private bool _isMinigameActive;
 
-    [Header("Events")] 
-    public GameEvent onLoadMinigame;
-    public GameEvent onStartMinigame;
-    public GameEvent onEnableJoining;
-    public GameEvent onCountdownTimerUpdate;
-    public GameEvent onCountdownEnable;
-    public GameEvent onCountdownDisable;
-    public GameEvent onDisablePlayerMovement;
-    public GameEvent onEnablePlayerMovement;
-    public void Awake()
-    {
-        if (Instance == null)
+        [Header("Events")] 
+        public GameEvent onLoadMinigame;
+        public GameEvent onStartMinigame;
+        public GameEvent onEnableJoining;
+        public GameEvent onCountdownTimerUpdate;
+        public GameEvent onCountdownEnable;
+        public GameEvent onCountdownDisable;
+        public GameEvent onDisablePlayerMovement;
+        public GameEvent onEnablePlayerMovement;
+        public void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
-    public void Start()
-    {
-        _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        _playerManager = GetComponentInChildren<PlayerManager>();
-        _gameConfig = GetComponent<GameConfig>();
-    }
-
-    public void Update()
-    {
-        if (IsMinigameSceneActive)
+        public void Start()
         {
-            CheckCountdownState();
+            _uiManager = Instance.GetComponentInChildren<UIManager>();
+            _playerManager = Instance.GetComponentInChildren<PlayerManager>();
+            _gameConfig = Instance.GetComponent<GameConfig>();
         }
-    }
 
-    private void CheckCountdownState()
-    {
-        if (Instance.CountdownTime > 0)
+        public void Update()
         {
-            Instance.CountdownTime -= Time.deltaTime;
-            onCountdownTimerUpdate.Raise(this, CountdownTime.ToString("0"));
+            if (IsMinigameSceneActive)
+            {
+                CheckCountdownState();
+            }
         }
-        else if (!_isMinigameActive)
-        {
-            onEnablePlayerMovement.Raise(this);
-            onCountdownDisable.Raise(this);
-            onStartMinigame.Raise(this);
-            Instance._isMinigameActive = true;
-        }
-    }
 
-    public void OnLoadMinigame()
-    {
-        Minigame selectedMinigame = null;
+        private void CheckCountdownState()
+        {
+            if (Instance._countdownTime > 0)
+            {
+                Instance._countdownTime -= Time.deltaTime;
+                onCountdownTimerUpdate.Raise(this, _countdownTime.ToString("0"));
+            }
+            else if (!_isMinigameActive)
+            {
+                onEnablePlayerMovement.Raise(this);
+                onCountdownDisable.Raise(this);
+                onStartMinigame.Raise(this);
+                Instance._isMinigameActive = true;
+            }
+        }
+
+        public void OnLoadMinigame()
+        {
+            Minigame selectedMinigame = null;
         
-        do
+            do
+            {
+                int rnd = Random.Range(0, minigames.Count);
+                selectedMinigame = minigames[rnd];
+                Debug.Log("Selected minigame: " + selectedMinigame.name);
+            } while (!selectedMinigame || selectedMinigame == Instance._previousMinigame && minigames.Count != 1);
+        
+            Instance._previousMinigame = selectedMinigame;
+          
+            onDisablePlayerMovement.Raise(this);
+        
+            Instance._countdownTime = Instance._gameConfig.countdownLength;
+            onCountdownEnable.Raise(this);
+        
+            Instance.LoadScene(selectedMinigame.sceneToLoad);
+            Instance.IsMinigameSceneActive = true;
+        }
+
+        public void ToLobby()
         {
-            int rnd = Random.Range(0, minigames.Count);
-            selectedMinigame = minigames[rnd];
-            Debug.Log("Selected minigame: " + selectedMinigame.name);
-        } while (!selectedMinigame || selectedMinigame == Instance._previousMinigame && minigames.Count != 1);
-        
-        Instance._previousMinigame = selectedMinigame;
-
-        onDisablePlayerMovement.Raise(this);
-        
-        Instance.CountdownTime = Instance._gameConfig.countdownLength;
-        onCountdownEnable.Raise(this);
-        
-        Instance.LoadScene(selectedMinigame.sceneToLoad);
-        Instance.IsMinigameSceneActive = true;
-    }
-
-    public void ToLobby()
-    {
-        Instance.LoadScene(lobbyScene);
-        Instance.IsMinigameSceneActive = false;
-        Instance._isMinigameActive = false;
-        onEnableJoining.Raise(this, null);
-    }
+            Instance.LoadScene(lobbyScene);
+            Instance.IsMinigameSceneActive = false;
+            Instance._isMinigameActive = false;
+            onEnableJoining.Raise(this, null);
+        }
     
-    public void StartGame(InputAction.CallbackContext context)
-    {
-        if (!context.started || _isMinigameActive) return;
+        public void StartGame(InputAction.CallbackContext context)
+        {
+            if (!context.started || _isMinigameActive) return;
         
-        if (!Instance.IsMinigameSceneActive)
-        {
-            onLoadMinigame.Raise(this, null);
+            if (!Instance.IsMinigameSceneActive)
+            {
+                onLoadMinigame.Raise(this, null);
+            }
+            else
+            {
+                Instance.ToLobby();
+            }
         }
-        else
-        {
-            Instance.ToLobby();
-        }
-    }
     
-    private void LoadScene(string sceneName)
-    {
-        Instance._uiManager.SetWinUI(false);
-        Instance._playerManager.ResetAllPlayerStates();
-        SceneManager.LoadScene(sceneName);
-        Time.timeScale = 1f;
-    }
+        private void LoadScene(string sceneName)
+        {
+            Instance._uiManager.SetWinUI(false);
+            Instance._playerManager.ResetAllPlayerStates();
+            SceneManager.LoadScene(sceneName);
+            Time.timeScale = 1f;
+        }
 
-    public void ReloadScene(InputAction.CallbackContext context)
-    {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
-        Time.timeScale = 1f;
-    }
+        public void ReloadScene(InputAction.CallbackContext context)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+            Time.timeScale = 1f;
+        }
 
-    public void OnEndMinigame()
-    {
-        Time.timeScale = 0;
-        string winningPlayer = Instance._playerManager.AlivePlayers.First().name;
-        Instance._uiManager.UpdateWinningPlayer(winningPlayer);
-        Instance._isMinigameActive = false;
+        public void OnEndMinigame()
+        {
+            Time.timeScale = 0;
+            string winningPlayer = Instance._playerManager.AlivePlayers.First().name;
+            Instance._uiManager.UpdateWinningPlayer(winningPlayer);
+            Instance._isMinigameActive = false;
+        }
     }
 }
