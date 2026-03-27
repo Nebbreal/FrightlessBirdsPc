@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour
         _playerManager = GetComponentInChildren<PlayerManager>();
     }
     
-    public void Update()
-    {
-        Debug.Log(_playerManager.name);
-    }
-    
     //To be reworked after first prototype test
     public void StartGame(InputAction.CallbackContext context)
     {
@@ -73,9 +68,18 @@ public class GameManager : MonoBehaviour
 
     public void ResetCalibration(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
-            SceneManager.LoadScene("CalibrationScene");
+            Instance._playerManager.ResetPlayers();
+            Instance._playerManager.GetComponent<CalibrationManager>().OnResetCalibration();
+        }
+    }
+
+    public void CompleteCalibration(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Instance._playerManager.GetComponent<CalibrationManager>().ConfirmCalibration();
         }
     }
 }

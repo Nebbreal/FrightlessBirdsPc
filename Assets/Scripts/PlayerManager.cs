@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     
     public void RegisterPlayer(PlayerInput player)
     {
-        if (SceneManager.GetActiveScene().name != "Main") return;
+        // if (SceneManager.GetActiveScene().name != "Main") return;
         if (Players == null || Players.Count == 0)
         {
             Players = new List<GameObject>();
@@ -35,6 +35,17 @@ public class PlayerManager : MonoBehaviour
     public void Start()
     {
         Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+    }
+
+    public void ResetPlayers()
+    {
+        Debug.Log(Players.Count);
+        foreach (var player in Players)
+        {
+            Destroy(player.gameObject);
+        }
+
+        Players.Clear();
     }
     
     public void SetPlayerLives()

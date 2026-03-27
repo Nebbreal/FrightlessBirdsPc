@@ -24,11 +24,12 @@ public class CalibrationManager : MonoBehaviour
         {
             return;
         }
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Main");
     }
 
     public void OnResetCalibration()
     {
+        Debug.Log("hi3");
         controllerCount = 0;
         foreach (var blink in BlinkForCalibrations)
         {
