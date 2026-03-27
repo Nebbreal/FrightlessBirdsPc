@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventSystem;
-using MinigameFramework.UIElements;
 using Minigames;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -96,6 +93,7 @@ namespace MinigameFramework
 
         public void OnLoadMinigame()
         {
+            if (Instance.PlayerManager.Players.Count < 2) return;
             Minigame selectedMinigame = null;
         
             do
