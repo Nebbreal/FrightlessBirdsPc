@@ -174,6 +174,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cb945977-d6ce-480b-a1f3-d680f7d0e8eb",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d999cea7-33bf-4d54-a92f-b3ef87f859d6",
                     "path": "<Keyboard>/c",
                     "interactions": "",
@@ -207,6 +218,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ea091342-efa9-43c7-91d2-e504471e7fe3",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5f59d017-c293-4745-9ae4-81d33b59132c",
                     "path": "<Keyboard>/v",
                     "interactions": "",
@@ -231,6 +253,17 @@
                     "name": "",
                     "id": "64710fcc-c7e6-49fa-97e8-9c6d73c04ae8",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89692069-b874-49c9-8898-736a1f2b5042",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
