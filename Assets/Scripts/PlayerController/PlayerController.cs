@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,9 +20,6 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<CollisionData> onDashHit;
     public UnityEvent onDashHasHit;
 
-
-    public PlayerState targetState = PlayerState.Idle;
-
     [Header("Player Settings")] 
     public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
@@ -30,14 +28,17 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 20f;
     public float maxSpeed = 60f;
     public float maxSpeedClampFactor = 0.8f;
-    private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
+    [NonSerialized] 
+    public Vector3 _moveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
     public float dashDelay = 1f;
-    private float _dashCooldown;
-    private bool _doDash;
+    [NonSerialized]
+    public float _dashCooldown;
+    [NonSerialized]
+    public bool _doDash;
     public float dashDuration = 1f;
     public float dashEarlyEndSpeed = 10f;
     private float _dashTime;
@@ -53,9 +54,11 @@ public class PlayerController : MonoBehaviour
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
     public LayerMask layerMask;
-    private float _attackCooldown;
+    [NonSerialized] 
+    public float _attackCooldown;
     private float _attackTime;
-    private bool _doAttack;
+    [NonSerialized] 
+    public bool _doAttack;
 
     [Header("Braced Settings")] 
     public float bracedDelay = 1f;
@@ -65,10 +68,19 @@ public class PlayerController : MonoBehaviour
     private bool _holdingBrace;
     private float _bracedCooldown;
 
-    private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
+    [NonSerialized] 
+    public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
     private void Update()
     {
+        if (playerState is PlayerState.InputRestricted)
+        {
+            _doAttack = false;
+            _doBrace = false;
+            _doDash = false;
+            _moveThisFrame = Vector3.zero;
+            return;
+        }
         if (_holdingBrace && _bracedCooldown <= 0 && 
             playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
         {
@@ -188,7 +200,7 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Braced:
-                if (!_doBrace && targetState != PlayerState.Braced)
+                if (!_doBrace)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -206,12 +218,6 @@ public class PlayerController : MonoBehaviour
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     private void IdleToState()
     {
-        // Target state is the state that a bot tries to keep (Braced state in the example scene)
-        if (targetState != PlayerState.Idle)
-        {
-            SetPlayerState(targetState);
-        }
-
         if (_doBrace)
         {
             SetPlayerState(PlayerState.Braced);
