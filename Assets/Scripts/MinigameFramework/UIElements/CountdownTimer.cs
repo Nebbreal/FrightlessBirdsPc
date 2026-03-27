@@ -8,7 +8,7 @@ namespace MinigameFramework.UIElements
     {
         private TMP_Text _timerText;
 
-        public void Start()
+        public void Awake()
         {
             _timerText = GetComponent<TMP_Text>();
         }

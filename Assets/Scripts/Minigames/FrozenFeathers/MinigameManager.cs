@@ -16,16 +16,16 @@ namespace Minigames.FrozenFeathers
 
         [SerializeField] 
         private GameObject deathPoint;
-
         [SerializeField] 
         private GameObject respawnPoint;
-
         [SerializeField] 
         private List<GameObject> initialSpawnPoints;
-        
+
+        [SerializeField] 
+        private GameEvent onSetAllPlayerLives;
         //General Config
         private GameObject _gameManager;
-        private GameConfig _gameConfig;
+        private Minigame _gameConfig;
         private PlayerManager _playerManager;
         private List<GameObject> _players;
         
@@ -36,14 +36,12 @@ namespace Minigames.FrozenFeathers
         public void Start()
         {
             #region MinigameConfig
-                _gameManager = GameObject.FindWithTag("GameManager");
-                _gameConfig = _gameManager.GetComponent<GameConfig>();
+                _gameConfig = GameManager.Instance.CurrentMinigame;
                 
-                _playerManager = _gameManager.GetComponentInChildren<PlayerManager>();
+                _playerManager = GameManager.Instance.PlayerManager;
                 _players = _playerManager.Players;
-                
             #endregion
-            
+
             _roundTimer = _gameConfig.roundLength;
             _startScale = shrinkingPlatform.transform.localScale.x;
 
@@ -75,8 +73,8 @@ namespace Minigames.FrozenFeathers
                         break;
                 }
             }
-            _playerManager.SetPlayerLives();
-
+            
+            onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
         }
 
         public void Update()
@@ -90,7 +88,6 @@ namespace Minigames.FrozenFeathers
 
         public void OnStartMinigame()
         {
-            Debug.Log("Started minigame!");
             _hasMinigameStarted = true;
         }
 

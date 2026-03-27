@@ -39,14 +39,16 @@ namespace MinigameFramework
             player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
         }
     
-        public void SetPlayerLives()
+        public void SetPlayerLives(Component sender, object[] livesObj)
         {
+            if (livesObj.First() is not int lives) return;
+            
             AlivePlayers = new List<GameObject>();
             foreach (var player in Players)
             {
                 AlivePlayers.Add(player);
                 player.SetActive(true);
-                PlayerLives[player.name] = gameConfig.playerLives;
+                PlayerLives[player.name] = lives;
             }
         }
 
@@ -72,7 +74,6 @@ namespace MinigameFramework
         {
             foreach (GameObject player in Players)
             {
-                Debug.Log("Disabling movement for " + player.name);
                 PlayerController controller  = player.GetComponent<PlayerController>();
                 controller.SetPlayerState(PlayerState.InputRestricted);
             }

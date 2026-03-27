@@ -9,6 +9,7 @@ namespace Minigames
         public SceneField sceneToLoad;
         public string gameName;
         public string gameDescription;
+        public float roundLength;
         [Range(1, 20)]
         public int maxLives;
         [Range(1, 120)] 

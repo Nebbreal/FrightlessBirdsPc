@@ -7,24 +7,6 @@ namespace EventSystem
     public class GameEvent : ScriptableObject
     {
         public List<GameEventListener> listeners = new();
-
-        public void Raise(Component sender)
-        {
-            //Trigger all listeners
-            foreach (GameEventListener listener in listeners)
-            {
-                listener.OnEventRaised(sender);
-            }
-        }
-        
-        public void Raise(Component sender, object data)
-        {
-            //Trigger all listeners
-            foreach (GameEventListener listener in listeners)
-            {
-                listener.OnEventRaised(sender, data);
-            }
-        }
         
         public void Raise(Component sender, params object[] data)
         {

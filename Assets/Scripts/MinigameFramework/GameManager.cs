@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventSystem;
+using MinigameFramework.UIElements;
 using Minigames;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -16,8 +18,8 @@ namespace MinigameFramework
         [NonSerialized]
         public static GameManager Instance;
         private GameConfig _gameConfig;
-        private UIManager _uiManager;
-        private PlayerManager _playerManager;
+        [NonSerialized]
+        public PlayerManager PlayerManager;
 
         [NonSerialized]
         private float _countdownTime;
@@ -25,7 +27,8 @@ namespace MinigameFramework
         [Header("Game manager config")]
         [SerializeField]
         private List<Minigame> minigames;
-        private Minigame _previousMinigame;
+        [NonSerialized]
+        public Minigame CurrentMinigame;
         [SerializeField]
         private SceneField lobbyScene;
         [NonSerialized]
@@ -33,15 +36,21 @@ namespace MinigameFramework
         [NonSerialized]
         private bool _isMinigameActive;
 
-        [Header("Events")] 
+        [Header("Game Events")] 
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
         public GameEvent onEnableJoining;
-        public GameEvent onCountdownTimerUpdate;
-        public GameEvent onCountdownEnable;
-        public GameEvent onCountdownDisable;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
+        
+        [Header("UI Events")]
+        public GameEvent onUpdateCountdownTimer;
+        public GameEvent onEnableCountdownUI;
+        public GameEvent onDisableCountdownUI;
+        public GameEvent onEnableWinUI;
+        public GameEvent onDisableWinUI;
+        public GameEvent onUpdateWinUI;
+        
         public void Awake()
         {
             if (Instance == null)
@@ -57,8 +66,7 @@ namespace MinigameFramework
 
         public void Start()
         {
-            _uiManager = Instance.GetComponentInChildren<UIManager>();
-            _playerManager = Instance.GetComponentInChildren<PlayerManager>();
+            PlayerManager = Instance.GetComponentInChildren<PlayerManager>();
             _gameConfig = Instance.GetComponent<GameConfig>();
         }
 
@@ -75,12 +83,12 @@ namespace MinigameFramework
             if (Instance._countdownTime > 0)
             {
                 Instance._countdownTime -= Time.deltaTime;
-                onCountdownTimerUpdate.Raise(this, _countdownTime.ToString("0"));
+                onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
             else if (!_isMinigameActive)
             {
                 onEnablePlayerMovement.Raise(this);
-                onCountdownDisable.Raise(this);
+                onDisableCountdownUI.Raise(this);
                 onStartMinigame.Raise(this);
                 Instance._isMinigameActive = true;
             }
@@ -94,16 +102,15 @@ namespace MinigameFramework
             {
                 int rnd = Random.Range(0, minigames.Count);
                 selectedMinigame = minigames[rnd];
-                Debug.Log("Selected minigame: " + selectedMinigame.name);
-            } while (!selectedMinigame || selectedMinigame == Instance._previousMinigame && minigames.Count != 1);
+            } while (!selectedMinigame || selectedMinigame == Instance.CurrentMinigame && minigames.Count != 1);
         
-            Instance._previousMinigame = selectedMinigame;
+            Instance.CurrentMinigame = selectedMinigame;
           
             onDisablePlayerMovement.Raise(this);
         
+            onEnableCountdownUI.Raise(this);
             Instance._countdownTime = Instance._gameConfig.countdownLength;
-            onCountdownEnable.Raise(this);
-        
+
             Instance.LoadScene(selectedMinigame.sceneToLoad);
             Instance.IsMinigameSceneActive = true;
         }
@@ -132,8 +139,8 @@ namespace MinigameFramework
     
         private void LoadScene(string sceneName)
         {
-            Instance._uiManager.SetWinUI(false);
-            Instance._playerManager.ResetAllPlayerStates();
+            onDisableWinUI.Raise(this);
+            Instance.PlayerManager.ResetAllPlayerStates();
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1f;
         }
@@ -148,8 +155,10 @@ namespace MinigameFramework
         public void OnEndMinigame()
         {
             Time.timeScale = 0;
-            string winningPlayer = Instance._playerManager.AlivePlayers.First().name;
-            Instance._uiManager.UpdateWinningPlayer(winningPlayer);
+            string winningPlayer = Instance.PlayerManager.AlivePlayers.First().name;
+            onEnableWinUI.Raise(this);
+            onUpdateWinUI.Raise(this, winningPlayer);
+
             Instance._isMinigameActive = false;
         }
     }

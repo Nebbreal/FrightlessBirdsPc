@@ -818,6 +818,7 @@ MonoBehaviour:
   - {fileID: 346843168}
   - {fileID: 2124693547}
   - {fileID: 1729560054}
+  onSetAllPlayerLives: {fileID: 11400000, guid: 13d3833b3d1b43d45953371ad8e4b59d, type: 2}
 --- !u!4 &1287276735
 Transform:
   m_ObjectHideFlags: 0
