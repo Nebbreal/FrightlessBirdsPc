@@ -56,7 +56,6 @@ namespace MinigameFramework
         {
             foreach (GameObject player in Players)
             {
-                player.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
                 player.transform.position = new Vector3(0, 3, 0);
             }
         }

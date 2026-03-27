@@ -30,8 +30,8 @@ namespace MinigameFramework
         private SceneField lobbyScene;
         [NonSerialized]
         public bool IsMinigameSceneActive;
-        [NonSerialized]
         private bool _isMinigameActive;
+        private bool _hasMinigameEnded;
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -82,7 +82,7 @@ namespace MinigameFramework
                 Instance._countdownTime -= Time.deltaTime;
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
-            else if (!_isMinigameActive)
+            else if (!Instance._isMinigameActive && !Instance._hasMinigameEnded)
             {
                 onEnablePlayerMovement.Raise(this);
                 onDisableCountdownUI.Raise(this);
@@ -94,19 +94,22 @@ namespace MinigameFramework
         public void OnLoadMinigame()
         {
             if (Instance.PlayerManager.Players.Count < 2) return;
-            Minigame selectedMinigame = null;
-        
+            Minigame selectedMinigame;
+            int currentPlayerCount = Instance.PlayerManager.Players.Count;
+            List<Minigame> validMinigames = minigames.Where(m=> m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
             do
             {
-                int rnd = Random.Range(0, minigames.Count);
-                selectedMinigame = minigames[rnd];
-            } while (!selectedMinigame || selectedMinigame == Instance.CurrentMinigame && minigames.Count != 1);
+                int rnd = Random.Range(0, validMinigames.Count);
+                
+                selectedMinigame = validMinigames[rnd];
+            } while (!selectedMinigame || selectedMinigame == Instance.CurrentMinigame && validMinigames.Count != 1);
         
             Instance.CurrentMinigame = selectedMinigame;
           
             onDisablePlayerMovement.Raise(this);
         
             onEnableCountdownUI.Raise(this);
+            Instance._hasMinigameEnded = false;
             Instance._countdownTime = Instance._gameConfig.countdownLength;
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
@@ -123,7 +126,7 @@ namespace MinigameFramework
     
         public void StartGame(InputAction.CallbackContext context)
         {
-            if (!context.started || _isMinigameActive) return;
+            if (!context.started || Instance._isMinigameActive && !Instance._hasMinigameEnded || Instance._countdownTime > 0) return;
         
             if (!Instance.IsMinigameSceneActive)
             {
@@ -159,6 +162,7 @@ namespace MinigameFramework
             onEnableWinUI.Raise(this);
             onUpdateWinUI.Raise(this, winningPlayer);
 
+            Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;
         }
     }
