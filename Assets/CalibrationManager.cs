@@ -29,7 +29,6 @@ public class CalibrationManager : MonoBehaviour
 
     public void OnResetCalibration()
     {
-        Debug.Log("hi3");
         controllerCount = 0;
         foreach (var blink in BlinkForCalibrations)
         {

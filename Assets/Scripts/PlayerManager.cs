@@ -39,7 +39,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetPlayers()
     {
-        Debug.Log(Players.Count);
         foreach (var player in Players)
         {
             Destroy(player.gameObject);
