@@ -97,9 +97,9 @@ namespace MinigameFramework
 
         public void OnLoadMinigame()
         {
-            if (Instance.PlayerManager.Players.Count < 2) return;
+            if (Instance.PlayerManager.ActivePlayers.Count < 2) return;
             Minigame selectedMinigame;
-            int currentPlayerCount = Instance.PlayerManager.Players.Count;
+            int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
             List<Minigame> validMinigames = minigames.Where(m=> m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
             do
             {
@@ -169,6 +169,29 @@ namespace MinigameFramework
 
             Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;
+        }
+
+        public void ResetCalibration(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Instance.PlayerManager.ResetPlayers();
+                Instance.PlayerManager.GetComponent<CalibrationManager>().OnResetCalibration();
+            }
+        }
+
+        public void CompleteCalibration(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                if (Instance.PlayerManager.GetComponent<CalibrationManager>().ConfirmCalibration())
+                {
+                    PlayerInputManager playerInputManager = FindAnyObjectByType<PlayerInputManager>();
+                    playerInputManager.enabled = false;
+                    Instance.PlayerManager.ResetPlayerStates();
+                }
+                
+            }
         }
     }
 }

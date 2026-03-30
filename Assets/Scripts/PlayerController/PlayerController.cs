@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using EventSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,10 +21,16 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<CollisionData> onDashHit;
     public UnityEvent onDashHasHit;
 
+    public GameEvent onJoin;
+
+    public GameEvent onLeave;
+
     [Header("Player Settings")] 
     public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
     private float _stunTimer;
+
+    [NonSerialized] public bool IsActive = false;
     [Header("Walk Settings")] 
     public float walkSpeed = 20f;
     public float maxSpeed = 60f;
@@ -100,6 +107,25 @@ public class PlayerController : MonoBehaviour
         {
             _lastMoveDirection = Vector3.Slerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+        }
+    }
+
+    public void Join(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (IsActive)
+            {
+                Debug.Log("leave");
+                IsActive = false;
+                onLeave.Raise(this);
+            }
+            else
+            {
+                Debug.Log("join");
+                IsActive = true;
+                onJoin.Raise(this);
+            }
         }
     }
 

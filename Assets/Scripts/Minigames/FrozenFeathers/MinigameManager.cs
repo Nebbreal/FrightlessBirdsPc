@@ -40,7 +40,7 @@ namespace Minigames.FrozenFeathers
                 _gameConfig = GameManager.Instance.CurrentMinigame;
                 
                 _playerManager = GameManager.Instance.PlayerManager;
-                _players = _playerManager.Players;
+                _players = _playerManager.ActivePlayers;
             #endregion
 
             _roundTimer = _gameConfig.roundLength;
