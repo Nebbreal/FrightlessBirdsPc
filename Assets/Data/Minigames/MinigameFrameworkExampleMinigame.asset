@@ -20,5 +20,5 @@ MonoBehaviour:
   roundLength: 0
   maxLives: 1
   respawnTime: 1
-  intendedPlayerCounts: 000000000300000004000000
+  intendedPlayerCounts: 020000000300000004000000
   teamSizes: 

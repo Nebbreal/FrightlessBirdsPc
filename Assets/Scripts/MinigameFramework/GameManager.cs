@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using EventSystem;
 using Minigames;
 using UnityEngine;
@@ -69,6 +70,10 @@ namespace MinigameFramework
 
         public void Update()
         {
+            #region Timers
+            Instance._countdownTime -= Time.deltaTime;
+            #endregion
+            
             if (IsMinigameSceneActive)
             {
                 CheckCountdownState();
@@ -79,7 +84,6 @@ namespace MinigameFramework
         {
             if (Instance._countdownTime > 0)
             {
-                Instance._countdownTime -= Time.deltaTime;
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
             else if (!Instance._isMinigameActive && !Instance._hasMinigameEnded)
@@ -121,7 +125,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
-            onEnableJoining.Raise(this, null);
+            onEnablePlayerMovement.Raise(this);
         }
     
         public void StartGame(InputAction.CallbackContext context)
@@ -135,6 +139,7 @@ namespace MinigameFramework
             else
             {
                 Instance.ToLobby();
+                Instance._countdownTime = 1; //Debounce ToLobby
             }
         }
     

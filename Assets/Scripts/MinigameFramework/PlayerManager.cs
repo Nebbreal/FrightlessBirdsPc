@@ -66,6 +66,9 @@ namespace MinigameFramework
             {
                 PlayerController controller  = player.GetComponent<PlayerController>();
                 controller.SetPlayerState(PlayerState.Idle);
+                PlayerInput playerInput = player.GetComponent<PlayerInput>();
+                playerInput.enabled = false;
+                playerInput.enabled = true;
             }
         }
 
