@@ -12,14 +12,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 6fcd1d1c3ebf141c5b6f69b18c00a1bd
   - enabled: 1
-    path: Assets/Scenes/Feature/FrozenFeathers.unity
+    path: Assets/Scenes/Minigames/FrozenFeathers.unity
     guid: 8a857b45561c86347a2822ef9db9fe98
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Feature/ControllerManager.unity
     guid: f5ee11741e3d860438aa572906e6b5a0
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 5984e344666c36f439f39c3fc52f9999
+=======
+    path: Assets/Scenes/Documentation/MinigameFramework.unity
+    guid: e5eec99df770d364bbdd9592e3891d8f
+  - enabled: 1
+    path: Assets/Scenes/Documentation/MinigameFrameworkExampleMinigame.unity
+    guid: 311ecb3c560939346b877e31b87b5b7f
+>>>>>>> origin/dev
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
