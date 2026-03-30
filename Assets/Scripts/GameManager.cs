@@ -79,7 +79,11 @@ public class GameManager : MonoBehaviour
     {
         if (context.performed)
         {
-            Instance._playerManager.GetComponent<CalibrationManager>().ConfirmCalibration();
+            if (Instance._playerManager.GetComponent<CalibrationManager>().ConfirmCalibration())
+            {
+                Instance._playerManager.ResetPlayerStates();
+            }
+            
         }
     }
 }

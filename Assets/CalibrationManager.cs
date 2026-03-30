@@ -18,13 +18,14 @@ public class CalibrationManager : MonoBehaviour
         BlinkForCalibrations[controllerCount].SetActive(true);
     }
 
-    public void ConfirmCalibration()
+    public bool ConfirmCalibration()
     {
         if (controllerCount < BlinkForCalibrations.Length - 1)
         {
-            return;
+            return false;
         }
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Lobby");
+        return true;
     }
 
     public void OnResetCalibration()

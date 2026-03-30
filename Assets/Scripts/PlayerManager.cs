@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 {
     [NonSerialized] public List<GameObject> Players;
     public List<Material> playerMaterials;
+    public GameObject deathPoint;
 
     [NonSerialized] public Dictionary<string, int> PlayerLives = new();
     [NonSerialized] public List<GameObject> AlivePlayers;
@@ -30,6 +31,7 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(player.gameObject);
         player.gameObject.name = "Player" + Players.Count;
         player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+        player.transform.position = deathPoint.transform.position;
     }
     
     public void Start()
@@ -63,7 +65,8 @@ public class PlayerManager : MonoBehaviour
         foreach (var player in Players)
         {
             player.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
-            player.transform.position = new Vector3(0, 3, 0);
+            player.GetComponent<PlayerInput>().defaultActionMap = "Player";
+            player.transform.position = deathPoint.transform.position;
         }
     }
 
