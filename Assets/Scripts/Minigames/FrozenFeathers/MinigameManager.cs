@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using EventSystem;
+using MinigameFramework;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Minigames.FrozenFeathers
 {
-    public class MinigameManager : MonoBehaviour, IMinigameManager
+    public class MinigameManager : MonoBehaviour
     {
-        public UnityEvent winEvent = new();
+        public GameEvent onEndMinigame;
         [SerializeField]
         private GameObject shrinkingPlatform;
         [SerializeField]
@@ -14,33 +17,32 @@ namespace Minigames.FrozenFeathers
 
         [SerializeField] 
         private GameObject deathPoint;
-
         [SerializeField] 
         private GameObject respawnPoint;
-
         [SerializeField] 
         private List<GameObject> initialSpawnPoints;
-        
+
+        [SerializeField] 
+        private GameEvent onSetAllPlayerLives;
         //General Config
         private GameObject _gameManager;
-        private GameConfig _gameConfig;
+        private Minigame _gameConfig;
         private PlayerManager _playerManager;
         private List<GameObject> _players;
         
         private float _roundTimer;
         private float _startScale;
 
+        private bool _hasMinigameStarted;
         public void Start()
         {
             #region MinigameConfig
-                _gameManager = GameObject.FindWithTag("GameManager");
-                _gameConfig = _gameManager.GetComponent<GameConfig>();
+                _gameConfig = GameManager.Instance.CurrentMinigame;
                 
-                _playerManager = _gameManager.GetComponentInChildren<PlayerManager>();
+                _playerManager = GameManager.Instance.PlayerManager;
                 _players = _playerManager.Players;
-                
             #endregion
-            
+
             _roundTimer = _gameConfig.roundLength;
             _startScale = shrinkingPlatform.transform.localScale.x;
 
@@ -72,17 +74,22 @@ namespace Minigames.FrozenFeathers
                         break;
                 }
             }
-            _playerManager.SetPlayerLives();
-
+            
+            onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
         }
 
         public void Update()
         {
-            if (_roundTimer > 0)
+            if (_hasMinigameStarted && _roundTimer > 0)
             {
                 _roundTimer -= Time.deltaTime;
                 ShrinkPlatform();
             }
+        }
+
+        public void OnStartMinigame()
+        {
+            _hasMinigameStarted = true;
         }
 
         private void ShrinkPlatform()
@@ -119,7 +126,7 @@ namespace Minigames.FrozenFeathers
 
         private void OnWin()
         {
-            winEvent.Invoke();
+            onEndMinigame.Raise(this, _playerManager.AlivePlayers.First());
         }
     }
 }
