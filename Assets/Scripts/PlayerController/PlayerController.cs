@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,46 +15,74 @@ public class PlayerController : MonoBehaviour
     public Transform braceHitbox;
     public Transform stunTransform;
 
-    public PlayerState targetState = PlayerState.Idle;
+    public UnityEvent<CollisionData> onAttackHit;
+    public UnityEvent<CollisionData> onDashBracedHit;
+    public UnityEvent<CollisionData> onDashHit;
+    public UnityEvent onDashHasHit;
 
-    [Header("Player Settings")] public float stunTime = 1f;
-    private float _stunTimer = 0f;
-    [Header("Walk Settings")] public float walkSpeed = 20f;
+    [Header("Player Settings")] 
+    public float stunTime = 1f;
+    public float rotationSpeed = 0.15f;
+    private float _stunTimer;
+    [Header("Walk Settings")] 
+    public float walkSpeed = 20f;
     public float maxSpeed = 60f;
-    private Vector3 _moveInput = new Vector3(0f, 0f, 0f);
+    public float maxSpeedClampFactor = 0.8f;
+    [NonSerialized] 
+    public Vector3 _moveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
 
-    [Header("Dash Settings")] public float dashSpeed = 1f;
+    [Header("Dash Settings")] 
+    public float dashSpeed = 1f;
     public float dashDelay = 1f;
-    private float _dashCooldown = 0f;
-    private bool _doDash = false;
+    [NonSerialized]
+    public float _dashCooldown;
+    [NonSerialized]
+    public bool _doDash;
     public float dashDuration = 1f;
     public float dashEarlyEndSpeed = 10f;
-    private float _dashTime = 0f;
+    private float _dashTime;
     public float dashHitRange = 2f;
     public float dashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
 
-    [Header("Attack Settings")] public float attackRange = 1f;
+    [Header("Attack Settings")] 
+    public float attackRange = 1f;
+
+    public float attackRadius = 1f;
     public float attackDelay = 1f;
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
     public LayerMask layerMask;
-    private float _attackCooldown = 0f;
-    private float _attackTime = 0f;
-    private bool _doAttack = false;
+    [NonSerialized] 
+    public float _attackCooldown;
+    private float _attackTime;
+    [NonSerialized] 
+    public bool _doAttack;
 
-    [Header("Braced Settings")] public float bracedDelay = 1f;
+    [Header("Braced Settings")] 
+    public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
-    private bool _doBrace = false;
-    private bool _holdingBrace = false;
-    private float _bracedCooldown = 0f;
+    public float bracedReturnStunDuration = 0.3f;
+    private bool _doBrace;
+    private bool _holdingBrace;
+    private float _bracedCooldown;
 
-    private Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
+    [NonSerialized] 
+    public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
     private void Update()
     {
-        if (_holdingBrace && _bracedCooldown <= 0 && playerState != PlayerState.Stunned)
+        if (playerState is PlayerState.InputRestricted)
+        {
+            _doAttack = false;
+            _doBrace = false;
+            _doDash = false;
+            _moveThisFrame = Vector3.zero;
+            return;
+        }
+        if (_holdingBrace && _bracedCooldown <= 0 && 
+            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
         {
             _doBrace = true;
         }
@@ -64,9 +93,12 @@ public class PlayerController : MonoBehaviour
 
         UpdateStates();
 
-        if (rb.linearVelocity.magnitude > 0.1)
+
+        var facing = rb.linearVelocity;
+        facing.y = 0f;
+        if (facing.normalized.magnitude > 0.1)
         {
-            _lastMoveDirection = rb.linearVelocity.normalized;
+            _lastMoveDirection = Vector3.Slerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
@@ -81,13 +113,20 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
                 dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
+                _doBrace = false;
+                _doAttack = false;
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
+                _doBrace = false;
+                _doDash = false;
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
                 stunTransform.gameObject.SetActive(true);
+                _doAttack = false;
+                _doDash = false;
+                _doBrace = false;
                 break;
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -95,9 +134,14 @@ public class PlayerController : MonoBehaviour
                 braceHitbox.position = transform.position;
                 braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 braceHitbox.gameObject.SetActive(true);
+                _doAttack = false;
+                _doDash = false;
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;
+                _doAttack = false;
+                _doDash = false;
+                _doBrace = false;
                 break;
         }
 
@@ -156,7 +200,7 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Braced:
-                if (!_doBrace && targetState != PlayerState.Braced)
+                if (!_doBrace)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -174,12 +218,6 @@ public class PlayerController : MonoBehaviour
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     private void IdleToState()
     {
-        // Target state is the state that a bot tries to keep (Braced state in the example scene)
-        if (targetState != PlayerState.Idle)
-        {
-            SetPlayerState(targetState);
-        }
-
         if (_doBrace)
         {
             SetPlayerState(PlayerState.Braced);
@@ -260,7 +298,7 @@ public class PlayerController : MonoBehaviour
     public void InputDash(InputAction.CallbackContext context)
     {
         if (context.action.IsPressed() && _dashCooldown <= 0 &&
-            playerState != PlayerState.Dash && playerState != PlayerState.Stunned)
+            playerState is PlayerState.Idle or PlayerState.Movement)
         {
             _doDash = true;
         }
@@ -268,8 +306,8 @@ public class PlayerController : MonoBehaviour
 
     public void InputAttack(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && _attackCooldown <= 0 && playerState != PlayerState.Attack &&
-            playerState != PlayerState.Stunned)
+        if (context.action.IsPressed() && _attackCooldown <= 0 && 
+            playerState is PlayerState.Idle or PlayerState.Movement)
         {
             _doAttack = true;
         }
@@ -287,8 +325,9 @@ public class PlayerController : MonoBehaviour
             }
 
             _dashCollided.Add(hitCollider);
-            hitCollider.SendMessage("DashKnockback",
-                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col));
+            hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
+                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
+            );
         }
 
         if (_dashTime <= 0.0f)
@@ -335,42 +374,67 @@ public class PlayerController : MonoBehaviour
 
         if (_doDash)
         {
-            var dir = _lastMoveDirection;
-            if (_moveThisFrame.magnitude > 0f)
-            {
-                dir = _moveThisFrame;
-            }
-            rb.linearVelocity = Vector3.zero;
-            rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
+            ExecuteDash();
         }
 
         if (_doAttack)
         {
-            attackHitbox.position = transform.position + _lastMoveDirection * (attackRange + 0.2f);
-            attackHitbox.localScale = new Vector3(attackRange * 2f, attackRange * 2f, attackRange * 2f);
-            attackHitbox.gameObject.SetActive(true);
-            Collider[] hitColliders =
-                Physics.OverlapSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange,
-                    layerMask);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (!hitCollider || hitCollider == col)
-                {
-                    continue;
-                }
-
-                hitCollider.SendMessage("Stun", new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col));
-            }
+            ExecuteAttack();
         }
 
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, maxSpeedClampFactor);
         }
 
         _doAttack = false;
         _doDash = false;
         _doBrace = false;
+    }
+
+    private void ExecuteAttack()
+    {
+        var dir = _lastMoveDirection;
+        if (_moveInput.magnitude > 0f)
+        {
+            dir = _moveInput;
+        }
+
+        rb.linearVelocity = dir * rb.linearVelocity.magnitude;
+        _lastMoveDirection = dir;
+        transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+
+        attackHitbox.position = transform.position + _lastMoveDirection * attackRange;
+        attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
+        attackHitbox.gameObject.SetActive(true);
+        Collider[] hitColliders =
+            Physics.OverlapSphere(transform.position + _lastMoveDirection * attackRange, attackRadius,
+                layerMask);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (!hitCollider || hitCollider == col)
+            {
+                continue;
+            }
+
+
+            hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+            );
+        }
+    }
+
+    private void ExecuteDash()
+    {
+        var dir = _lastMoveDirection;
+        if (_moveThisFrame.magnitude > 0f)
+        {
+            dir = _moveThisFrame;
+        }
+
+        rb.linearVelocity = Vector3.zero;
+        _lastMoveDirection = dir;
+        rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
     }
 
     private void OnDrawGizmos()
@@ -399,30 +463,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Stun(CollisionData data)
+    public void AttackStun(CollisionData data)
     {
         if (playerState != PlayerState.Dash)
         {
-            SetPlayerState(PlayerState.Stunned);
-            Knockback(data);
+            Stun(data, stunTime);
         }
+    }
+
+    public void BracedReturnStun(CollisionData data)
+    {
+        Stun(data, bracedReturnStunDuration);
+    }
+
+    public void Stun(CollisionData data, float duration)
+    {
+        SetPlayerState(PlayerState.Stunned);
+        _stunTimer = duration;
+        Knockback(data);
+    }
+
+    public void HasHitWithDash()
+    {
+        rb.linearVelocity = Vector3.zero;
+        _doDash = false;
+        SetPlayerState(PlayerState.Idle);
     }
 
     public void DashKnockback(CollisionData data)
     {
+        PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
         if (playerState != PlayerState.Braced)
         {
             Knockback(data);
+            player.onDashHasHit.Invoke();
         }
         else if (data.OriginCollider != null)
         {
-            data.OriginCollider.SendMessage("Knockback",
-                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col));
+            player.onDashBracedHit.Invoke(
+                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col)
+            );
         }
     }
 
     public void Knockback(CollisionData data)
     {
+        rb.linearVelocity = Vector3.zero;
         rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
     }
 }
