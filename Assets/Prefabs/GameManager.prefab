@@ -1515,7 +1515,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
   - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
   playerModels:
-  - {fileID: 6781146086021645290, guid: 9f23b2fac244b7d4b91f2cd5cbff9d9c, type: 3}
+  - {fileID: 6781146086021645290, guid: fbc8750a2f0fcb64fa38c3abad34daa3, type: 3}
   - {fileID: 6781146086021645290, guid: 6ef426908681f464094530ee4c22b5e5, type: 3}
   - {fileID: 6781146086021645290, guid: 9bb91a8afa9bf2e4f963f28c6caa6a2a, type: 3}
   - {fileID: 6781146086021645290, guid: 994e02524505b1d46aa96907a632f0e2, type: 3}
