@@ -48,6 +48,8 @@ namespace MinigameFramework
         public GameEvent onEnableWinUI;
         public GameEvent onDisableWinUI;
         public GameEvent onUpdateWinUI;
+        public GameEvent onEnableLobbyUI;
+        public GameEvent onDisableLobbyUI;
         
         public void Awake()
         {
@@ -118,6 +120,8 @@ namespace MinigameFramework
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
             Instance.IsMinigameSceneActive = true;
+            onDisableLobbyUI.Raise(this);
+            Instance.PlayerManager.CanJoin = false;
         }
 
         public void ToLobby()
@@ -126,6 +130,8 @@ namespace MinigameFramework
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
             onEnablePlayerMovement.Raise(this);
+            onEnableLobbyUI.Raise(this);
+            Instance.PlayerManager.CanJoin = true;
         }
     
         public void StartGame(InputAction.CallbackContext context)
@@ -189,6 +195,8 @@ namespace MinigameFramework
                     PlayerInputManager playerInputManager = FindAnyObjectByType<PlayerInputManager>();
                     playerInputManager.enabled = false;
                     Instance.PlayerManager.ResetPlayerStates();
+                    onEnableLobbyUI.Raise(this);
+                    Instance.PlayerManager.CanJoin = true;
                 }
                 
             }

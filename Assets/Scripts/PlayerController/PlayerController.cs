@@ -116,14 +116,10 @@ public class PlayerController : MonoBehaviour
         {
             if (IsActive)
             {
-                Debug.Log("leave");
-                IsActive = false;
                 onLeave.Raise(this);
             }
             else
             {
-                Debug.Log("join");
-                IsActive = true;
                 onJoin.Raise(this);
             }
         }

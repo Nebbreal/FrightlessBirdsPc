@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,8 +14,13 @@ namespace MinigameFramework
         public List<Material> playerMaterials;
         public GameObject deathPoint;
 
+        [NonSerialized] public bool CanJoin = false;
+
         [NonSerialized] public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] public List<GameObject> AlivePlayers;
+
+        public GameEvent OnEnablePlayerUI;
+        public GameEvent OnDisablePlayerUI;
 
         [SerializeField]
         private GameConfig gameConfig;
@@ -81,19 +87,30 @@ namespace MinigameFramework
             }
         }
 
-        public void OnPlayerJoinLobby(Component sender, object[] livesObj){
+        public void OnPlayerJoinLobby(Component sender, object[] livesObj)
+        {
+            if (!CanJoin) return;
             sender.gameObject.transform.position = new Vector3(0, 3, 0);
-            sender.GetComponent<PlayerController>().SetPlayerState(PlayerState.Idle);
+            PlayerController player = sender.GetComponent<PlayerController>();
+            player.SetPlayerState(PlayerState.Idle);
+            player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
-            Debug.Log("Joining with " + sender.name);
+
+            int id = Players.IndexOf(sender.gameObject);
+            OnEnablePlayerUI.Raise(this, id);
         }
 
         public void OnPlayerLeaveLobby(Component sender, object[] livesObj)
         {
+            if (!CanJoin) return;
             sender.gameObject.transform.position = deathPoint.transform.position;
-            sender.GetComponent<PlayerController>().SetPlayerState(PlayerState.InputRestricted);
+            PlayerController player = sender.GetComponent<PlayerController>();
+            player.SetPlayerState(PlayerState.InputRestricted);
+            player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
-            Debug.Log("Leaving with " + sender.name);
+
+            int id = Players.IndexOf(sender.gameObject);
+            OnDisablePlayerUI.Raise(this, id);
         }
 
         public void OnEnableAllPlayerMovement()

@@ -1722,6 +1722,14 @@ PrefabInstance:
       propertyPath: 'BlinkForCalibrations.Array.data[3]'
       value: 
       objectReference: {fileID: 1438193729}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onEnableLobbyUI
+      value: 
+      objectReference: {fileID: 11400000, guid: 69b026567c0c8944da0d0b84021831e4, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onDisableLobbyUI
+      value: 
+      objectReference: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.38872
@@ -1766,6 +1774,14 @@ PrefabInstance:
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: OnEnablePlayerUI
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: OnDisablePlayerUI
+      value: 
+      objectReference: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
