@@ -12,7 +12,8 @@ namespace MinigameFramework
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<GameObject> ActivePlayers;
         public List<Material> playerMaterials;
-        public GameObject deathPoint;
+        [Tooltip("The point to place the inactive players (within the deathbox)")]
+        public GameObject inactivePlayerPoint;
 
         [NonSerialized] public bool CanJoin = false;
 
@@ -39,7 +40,7 @@ namespace MinigameFramework
             DontDestroyOnLoad(player.gameObject);
             player.gameObject.name = "Player" + Players.Count;
             player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
-            player.transform.position = deathPoint.transform.position;
+            player.transform.position = inactivePlayerPoint.transform.position;
         }
     
         public void SetPlayerLives(Component sender, object[] livesObj)
@@ -60,7 +61,7 @@ namespace MinigameFramework
             foreach (var player in Players)
             {
                 player.GetComponent<PlayerController>().SetPlayerState(PlayerState.InputRestricted);
-                player.transform.position = deathPoint.transform.position;
+                player.transform.position = inactivePlayerPoint.transform.position;
 
                 PlayerInput playerInput = player.GetComponent<PlayerInput>();
                 playerInput.defaultActionMap = "Player";
@@ -87,7 +88,7 @@ namespace MinigameFramework
             }
         }
 
-        public void OnPlayerJoinLobby(Component sender, object[] livesObj)
+        public void OnPlayerJoinLobby(Component sender)
         {
             if (!CanJoin) return;
             sender.gameObject.transform.position = new Vector3(0, 3, 0);
@@ -100,10 +101,10 @@ namespace MinigameFramework
             OnEnablePlayerUI.Raise(this, id);
         }
 
-        public void OnPlayerLeaveLobby(Component sender, object[] livesObj)
+        public void OnPlayerLeaveLobby(Component sender)
         {
             if (!CanJoin) return;
-            sender.gameObject.transform.position = deathPoint.transform.position;
+            sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
             PlayerController player = sender.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.InputRestricted);
             player.IsActive = false;

@@ -28,9 +28,12 @@ public class StartMinigameTrigger : MonoBehaviour
     {
         areInside.Add(other.gameObject);
 
-        if (GameManager.Instance.PlayerManager.ActivePlayers.Count == areInside.Count 
-            && !GameManager.Instance.IsMinigameSceneActive 
-            && GameManager.Instance.PlayerManager.ActivePlayers.Count >= 2)
+        GameManager gameManager = GameManager.Instance;
+        PlayerManager playerManager = gameManager.PlayerManager;
+
+        if (playerManager.ActivePlayers.Count == areInside.Count 
+            && !gameManager.IsMinigameSceneActive 
+            && playerManager.ActivePlayers.Count >= 2)
         {
             onStartMinigame.Raise(this, other.gameObject);
             areInside = new List<GameObject>();

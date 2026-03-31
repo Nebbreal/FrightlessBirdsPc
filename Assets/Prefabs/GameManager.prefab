@@ -4081,6 +4081,7 @@ GameObject:
   - component: {fileID: 1690358537828402848}
   - component: {fileID: 8592122562101958675}
   - component: {fileID: 3126173711858656794}
+  - component: {fileID: 1318421042151552096}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -4120,7 +4121,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c374235e6a195754fb5c07e52f777c08, type: 2}
   - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
   - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
-  deathPoint: {fileID: 2699060145278647577}
+  inactivePlayerPoint: {fileID: 0}
   OnEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   OnDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
   gameConfig: {fileID: 3897508759123251652}
@@ -4300,10 +4301,10 @@ MonoBehaviour:
       - m_Target: {fileID: 8528424308456378767}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
         m_MethodName: OnPlayerJoinLobby
-        m_Mode: 0
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Component, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4328,7 +4329,35 @@ MonoBehaviour:
       - m_Target: {fileID: 8528424308456378767}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
         m_MethodName: OnPlayerLeaveLobby
-        m_Mode: 0
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Component, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1318421042151552096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617473543875544781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 0e98b5b7fec7c194eaddc1186c280f13, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1690358537828402848}
+        m_TargetAssemblyTypeName: CalibrationManager, Assembly-CSharp
+        m_MethodName: OnResetCalibration
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4389,7 +4418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
   roundLength: 40
   playerLives: 1
-  countdownLength: 5
+  countdownLength: 3
 --- !u!114 &2829976537248166007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4409,6 +4438,7 @@ MonoBehaviour:
     m_SceneName: Lobby
   onLoadMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
   onStartMinigame: {fileID: 11400000, guid: d833516471e2c9c3daa60d106a51cce2, type: 2}
+  onResetCalibration: {fileID: 11400000, guid: 0e98b5b7fec7c194eaddc1186c280f13, type: 2}
   onEnableJoining: {fileID: 11400000, guid: 2b66f0d7e0b1ed053aa1e80343299dfd, type: 2}
   onDisablePlayerMovement: {fileID: 11400000, guid: 8a92ce558600cd5209a7f1169367b7de, type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 7682d2dbb9ac6f527ac42f03e5714a2b, type: 2}

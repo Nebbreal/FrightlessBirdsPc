@@ -37,6 +37,7 @@ namespace MinigameFramework
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
+        public GameEvent onResetCalibration;
         public GameEvent onEnableJoining;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
@@ -182,7 +183,7 @@ namespace MinigameFramework
             if (context.performed)
             {
                 Instance.PlayerManager.ResetPlayers();
-                Instance.PlayerManager.GetComponent<CalibrationManager>().OnResetCalibration();
+                onResetCalibration.Raise(this);
             }
         }
 
@@ -192,6 +193,7 @@ namespace MinigameFramework
             {
                 if (Instance.PlayerManager.GetComponent<CalibrationManager>().ConfirmCalibration())
                 {
+                    //To make sure there are no issues with the player input manager detecting a new PlayerInput, we have to find it and turn it off.
                     PlayerInputManager playerInputManager = FindAnyObjectByType<PlayerInputManager>();
                     playerInputManager.enabled = false;
                     Instance.PlayerManager.ResetPlayerStates();

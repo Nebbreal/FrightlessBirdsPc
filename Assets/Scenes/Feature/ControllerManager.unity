@@ -1730,6 +1730,10 @@ PrefabInstance:
       propertyPath: onDisableLobbyUI
       value: 
       objectReference: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onResetCalibration
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e98b5b7fec7c194eaddc1186c280f13, type: 2}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.38872
