@@ -10,6 +10,7 @@ namespace MinigameFramework
     {
         [NonSerialized] public List<GameObject> Players;
         public List<Material> playerMaterials;
+        public List<GameObject> playerModels;
 
         [NonSerialized] public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] public List<GameObject> AlivePlayers;
@@ -36,7 +37,9 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             player.gameObject.name = "Player" + Players.Count;
-            player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+            // player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+            var model = Instantiate(playerModels[Players.Count - 1]);
+            model.transform.parent = player.gameObject.transform;
         }
     
         public void SetPlayerLives(Component sender, object[] livesObj)
