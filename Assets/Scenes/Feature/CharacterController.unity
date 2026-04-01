@@ -1133,6 +1133,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301991528}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &319935912
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1264092103}
+    m_Modifications:
+    - target: {fileID: 6016664880736420198, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_Name
+      value: Screech
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016664880736420198, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+--- !u!4 &319935913 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7324450762324446053, guid: e0eb4afc34c62c44e884c0d54d3423a9, type: 3}
+  m_PrefabInstance: {fileID: 319935912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &345502519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1770,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onJoin: {fileID: 0}
+  onLeave: {fileID: 0}
   stunTime: 1
   rotationSpeed: 0.15
   walkSpeed: 0
@@ -2759,7 +2827,7 @@ MonoBehaviour:
   playerState: 0
   rb: {fileID: 1264092099}
   col: {fileID: 1264092100}
-  attackHitbox: {fileID: 1127795936}
+  attackHitbox: {fileID: 319935913}
   dashHitbox: {fileID: 155736892}
   braceHitbox: {fileID: 1575333671}
   stunTransform: {fileID: 294174248}
@@ -2823,6 +2891,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onJoin: {fileID: 0}
+  onLeave: {fileID: 0}
   stunTime: 1
   rotationSpeed: 0.15
   walkSpeed: 0
@@ -2972,6 +3042,7 @@ Transform:
   - {fileID: 1575333671}
   - {fileID: 1290869235}
   - {fileID: 294174248}
+  - {fileID: 319935913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 47.62, z: 0}
 --- !u!114 &1264092104
@@ -3088,6 +3159,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onJoin: {fileID: 0}
+  onLeave: {fileID: 0}
   stunTime: 1
   rotationSpeed: 0.15
   walkSpeed: 0
@@ -3915,6 +3988,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onJoin: {fileID: 0}
+  onLeave: {fileID: 0}
   stunTime: 1
   rotationSpeed: 0.15
   walkSpeed: 0

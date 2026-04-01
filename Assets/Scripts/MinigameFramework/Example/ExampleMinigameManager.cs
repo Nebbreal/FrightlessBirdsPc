@@ -21,7 +21,7 @@ namespace MinigameFramework.Example
                 _gameConfig = GameManager.Instance.CurrentMinigame;
                 
                 _playerManager = GameManager.Instance.PlayerManager;
-                _players = _playerManager.Players;
+                _players = _playerManager.ActivePlayers;
             #endregion
             
             foreach (GameObject player in _players)
