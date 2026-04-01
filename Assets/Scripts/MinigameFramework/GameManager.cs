@@ -41,6 +41,7 @@ namespace MinigameFramework
         public GameEvent onEnableJoining;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
+        public GameEvent onStartMusic;
         
         [Header("UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -123,6 +124,7 @@ namespace MinigameFramework
             Instance.IsMinigameSceneActive = true;
             onDisableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = false;
+            onStartMusic.Raise(this);
         }
 
         public void ToLobby()
