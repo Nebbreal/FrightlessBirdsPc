@@ -12,6 +12,7 @@ namespace MinigameFramework
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<GameObject> ActivePlayers;
         public List<Material> playerMaterials;
+        public List<GameObject> playerModels;
         [Tooltip("The point to place the inactive players (within the deathbox)")]
         public GameObject inactivePlayerPoint;
 
@@ -39,7 +40,9 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             player.gameObject.name = "Player" + Players.Count;
-            player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
+            var model = Instantiate(playerModels[Players.Count - 1]);
+            // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
+            model.transform.parent = player.gameObject.transform;
             player.transform.position = inactivePlayerPoint.transform.position;
         }
     

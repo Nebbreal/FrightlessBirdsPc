@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public Vector3 _moveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
+    public Animator animator;
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
@@ -77,6 +78,12 @@ public class PlayerController : MonoBehaviour
 
     [NonSerialized] 
     public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        Debug.Log(animator);
+    }
 
     private void Update()
     {
@@ -137,6 +144,7 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.gameObject.SetActive(true);
                 _doBrace = false;
                 _doAttack = false;
+                // HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
@@ -206,6 +214,9 @@ public class PlayerController : MonoBehaviour
                 if (_moveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
+                    Debug.Log("started walking");
+                    animator.SetBool("IsWalking", true);
+                    Debug.Log("bool true");
                 }
 
                 IdleToState();
@@ -214,6 +225,9 @@ public class PlayerController : MonoBehaviour
                 if (_moveInput.magnitude <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
+                    Debug.Log("stopped walking");
+                    animator.SetBool("IsWalking", false);
+                    Debug.Log("bool false");
                 }
 
                 IdleToState();
