@@ -37,9 +37,11 @@ namespace MinigameFramework
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
+        public GameEvent onResetCalibration;
         public GameEvent onEnableJoining;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
+        public GameEvent onStartMusic;
         
         [Header("UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -48,6 +50,8 @@ namespace MinigameFramework
         public GameEvent onEnableWinUI;
         public GameEvent onDisableWinUI;
         public GameEvent onUpdateWinUI;
+        public GameEvent onEnableLobbyUI;
+        public GameEvent onDisableLobbyUI;
         
         public void Awake()
         {
@@ -97,9 +101,9 @@ namespace MinigameFramework
 
         public void OnLoadMinigame()
         {
-            if (Instance.PlayerManager.Players.Count < 2) return;
+            if (Instance.PlayerManager.ActivePlayers.Count < 2) return;
             Minigame selectedMinigame;
-            int currentPlayerCount = Instance.PlayerManager.Players.Count;
+            int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
             List<Minigame> validMinigames = minigames.Where(m=> m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
             do
             {
@@ -118,6 +122,9 @@ namespace MinigameFramework
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
             Instance.IsMinigameSceneActive = true;
+            onDisableLobbyUI.Raise(this);
+            Instance.PlayerManager.CanJoin = false;
+            onStartMusic.Raise(this);
         }
 
         public void ToLobby()
@@ -126,6 +133,8 @@ namespace MinigameFramework
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
             onEnablePlayerMovement.Raise(this);
+            onEnableLobbyUI.Raise(this);
+            Instance.PlayerManager.CanJoin = true;
         }
     
         public void StartGame(InputAction.CallbackContext context)
@@ -169,6 +178,32 @@ namespace MinigameFramework
 
             Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;
+        }
+
+        public void ResetCalibration(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Instance.PlayerManager.ResetPlayers();
+                onResetCalibration.Raise(this);
+            }
+        }
+
+        public void CompleteCalibration(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                if (Instance.PlayerManager.GetComponent<CalibrationManager>().ConfirmCalibration())
+                {
+                    //To make sure there are no issues with the player input manager detecting a new PlayerInput, we have to find it and turn it off.
+                    PlayerInputManager playerInputManager = FindAnyObjectByType<PlayerInputManager>();
+                    playerInputManager.enabled = false;
+                    Instance.PlayerManager.ResetPlayerStates();
+                    onEnableLobbyUI.Raise(this);
+                    Instance.PlayerManager.CanJoin = true;
+                }
+                
+            }
         }
     }
 }
