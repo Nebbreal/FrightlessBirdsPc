@@ -88,7 +88,7 @@ namespace MinigameFramework
             }
         }
 
-        public void OnPlayerJoinLobby(Component sender)
+        public void OnPlayerJoinLobby(Component sender, object[] _objects)
         {
             if (!CanJoin) return;
             sender.gameObject.transform.position = new Vector3(0, 3, 0);
@@ -101,7 +101,7 @@ namespace MinigameFramework
             OnEnablePlayerUI.Raise(this, id);
         }
 
-        public void OnPlayerLeaveLobby(Component sender)
+        public void OnPlayerLeaveLobby(Component sender, object[] _objects)
         {
             if (!CanJoin) return;
             sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
