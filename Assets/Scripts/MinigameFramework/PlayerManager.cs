@@ -37,8 +37,8 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             player.gameObject.name = "Player" + Players.Count;
-            // player.gameObject.GetComponentInChildren<Renderer>().material = playerMaterials[Players.Count - 1];
             var model = Instantiate(playerModels[Players.Count - 1]);
+            // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
             model.transform.parent = player.gameObject.transform;
         }
     
