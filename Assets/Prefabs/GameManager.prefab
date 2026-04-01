@@ -4260,12 +4260,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5285195864294377565}
   - component: {fileID: 8528424308456378767}
+  - component: {fileID: 1690358537828402848}
   - component: {fileID: 8395923793041907275}
   - component: {fileID: 2741834477841923983}
   - component: {fileID: 4868356136705404873}
   - component: {fileID: 6054689567793613528}
   - component: {fileID: 4546052075184221369}
-  - component: {fileID: 1690358537828402848}
   - component: {fileID: 8592122562101958675}
   - component: {fileID: 3126173711858656794}
   - component: {fileID: 1318421042151552096}
@@ -4312,6 +4312,23 @@ MonoBehaviour:
   OnEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   OnDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
   gameConfig: {fileID: 3897508759123251652}
+--- !u!114 &1690358537828402848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617473543875544781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e244ea8023910e4bb524056f6da3a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CalibrationManager
+  BlinkForCalibrations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8395923793041907275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4452,23 +4469,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1690358537828402848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8617473543875544781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e244ea8023910e4bb524056f6da3a82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CalibrationManager
-  BlinkForCalibrations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &8592122562101958675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4586,10 +4586,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4185751807378121082}
-  - {fileID: 5991073175174389012}
   - {fileID: 5285195864294377565}
   - {fileID: 1341748401162627674}
+  - {fileID: 4185751807378121082}
+  - {fileID: 5991073175174389012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3897508759123251652
