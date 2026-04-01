@@ -4309,10 +4309,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
   - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
   playerModels:
-  - {fileID: 6781146086021645290, guid: fbc8750a2f0fcb64fa38c3abad34daa3, type: 3}
-  - {fileID: 6781146086021645290, guid: 6ef426908681f464094530ee4c22b5e5, type: 3}
-  - {fileID: 6781146086021645290, guid: 9bb91a8afa9bf2e4f963f28c6caa6a2a, type: 3}
-  - {fileID: 6781146086021645290, guid: 994e02524505b1d46aa96907a632f0e2, type: 3}
+  - {fileID: 3963998781930086071, guid: 62789f69cfd877e478a49fe970abb84d, type: 3}
+  - {fileID: 3963998781930086071, guid: 1fd4d5d16c67d6f45af872f10bf43ba2, type: 3}
+  - {fileID: 3963998781930086071, guid: 6e5c58368a5a11147afdf4ebab5d5d93, type: 3}
+  - {fileID: 3963998781930086071, guid: e5491ba4e84299f43a84da9a393ced6a, type: 3}
   inactivePlayerPoint: {fileID: 2699060145278647577}
   OnEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   OnDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
