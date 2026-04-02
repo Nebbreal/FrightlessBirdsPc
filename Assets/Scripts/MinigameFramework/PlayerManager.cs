@@ -6,6 +6,7 @@ using Minigames;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace MinigameFramework
 {
@@ -77,7 +78,7 @@ namespace MinigameFramework
         #endregion
 
         #region Teams
-        public void InitializeTeams(Component sender, object[] minigameConfigObj)
+        public void InitializeTeams(Component sender, object[] minigameConfigObj) //TODO: Cleanup, testing & look for better ways to implement
         {
             Teams = new List<Team>();
             if (minigameConfigObj.First() is not Minigame minigameConfig) return;
@@ -101,62 +102,84 @@ namespace MinigameFramework
             
             if (Teams.All(team => team.Size == 2)) //2v2
             {
-                foreach (GameObject player in unassignedPlayers.ToList())
-                {
-                    switch (player.name)
-                    {
-                        case "Player1":
-                        case "Player4":
-                            Teams[0].Players.Add(player);
-                            unassignedPlayers.Remove(player);
-                            break;
-                        case "Player2":
-                        case "Player3": 
-                            Teams[1].Players.Add(player);
-                            unassignedPlayers.Remove(player);
-                            break;
-                    }
-                }
+                Init2Versus2Teams(unassignedPlayers);
             }
-            else if (Teams.Count == 2 && Teams.Any(team => team.Size is 3 or 2)) //3v1 or 2v1
+            else if (Teams.Count == 2 && Teams.Any(team => team.Size is 3 or 2)) //3v1 or 2v1 or 2v1v1
             {
-                
+                InitAsymmetricalTeams(unassignedPlayers, Teams.Count);
             }
-            
             List<Team> teamsToFill = Teams.Where(team => team.Size > team.Players.Count).ToList();
+
             if (unassignedPlayers.Count > 0)
             {
-                if (teamsToFill.Count != 0)
+                HandlePlayerOverflow(unassignedPlayers, teamsToFill);
+            }
+        }
+
+        private void HandlePlayerOverflow(List<GameObject> unassignedPlayers, List<Team> teamsToFill)
+        {
+            if (teamsToFill.Count > 0)
+            {
+                foreach (Team team in teamsToFill)
                 {
-                    foreach (Team team in teamsToFill)
+                    int missingPlayerCount = team.Size - team.Players.Count;
+                    if (unassignedPlayers.Count < missingPlayerCount)
                     {
-                        int missingPlayerCount = team.Size - team.Players.Count;
-                        if (unassignedPlayers.Count < missingPlayerCount)
-                        {
-                            Debug.LogError("Not enough players to fill the teams!");
-                        }
-                        else
-                        {
-                            unassignedPlayers.Take(missingPlayerCount).ToList().ForEach(player =>
-                            {
-                                team.Players.Add(player);
-                                unassignedPlayers.Remove(player);
-                            });
-                        }
-                        
+                        Debug.LogError("Not enough players to fill the teams!");
                     }
-                    //todo finish this so it fills players in the not filled yet teams
-                }
-                else
-                {
-                    Debug.LogError("Too many players for the team sizes! Unassigned players will be put in an overflow team.");
-                    Team overflowTeam = new Team(unassignedPlayers.Count)
+                    else
                     {
-                        Players = unassignedPlayers
-                    };
-                    Teams.Add(overflowTeam);
+                        unassignedPlayers.Take(missingPlayerCount).ToList().ForEach(player =>
+                        {
+                            team.Players.Add(player);
+                            unassignedPlayers.Remove(player);
+                        });
+                    }
                 }
             }
+            else
+            {
+                Debug.LogError("Too many players for the team sizes! Unassigned players will be put in an overflow team.");
+                Team overflowTeam = new Team(unassignedPlayers.Count)
+                {
+                    Players = unassignedPlayers
+                };
+                Teams.Add(overflowTeam);
+            }
+        }
+
+        private void Init2Versus2Teams(List<GameObject> unassignedPlayers)
+        {
+            foreach (GameObject player in unassignedPlayers.ToList())
+            {
+                switch (player.name)
+                {
+                    case "Player1":
+                    case "Player4":
+                        Teams[0].Players.Add(player);
+                        unassignedPlayers.Remove(player);
+                        break;
+                    case "Player2":
+                    case "Player3": 
+                        Teams[1].Players.Add(player);
+                        unassignedPlayers.Remove(player);
+                        break;
+                }
+            }
+        }
+
+        private void InitAsymmetricalTeams(List<GameObject> unassignedPlayers, int teamAmount)
+        {
+            for (int i = 0; i < teamAmount - 1; i++)
+            {
+                int rndPlayerIndex = Random.Range(0, unassignedPlayers.Count);
+                Team singlePlayerTeam = Teams.First(team => team.Size == 1 && team.Players.Count == 0);
+                singlePlayerTeam.Players.Add(unassignedPlayers[rndPlayerIndex]);
+                unassignedPlayers.Remove(unassignedPlayers[rndPlayerIndex]);
+            }
+            
+            Team multiplePlayersTeam = Teams.Find(team => team.Size != 1);
+            multiplePlayersTeam.Players.AddRange(unassignedPlayers);
         }
         #endregion
         
