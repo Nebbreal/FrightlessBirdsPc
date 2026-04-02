@@ -127,6 +127,11 @@ namespace MinigameFramework
             onStartMusic.Raise(this);
         }
 
+        private void InitTeams()
+        {
+            
+        }
+
         public void ToLobby()
         {
             Instance.LoadScene(lobbyScene);
@@ -155,7 +160,7 @@ namespace MinigameFramework
         private void LoadScene(string sceneName)
         {
             onDisableWinUI.Raise(this);
-            Instance.PlayerManager.ResetAllPlayerStates();
+            Instance.PlayerManager.ResetAllPlayerPositions();
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1f;
         }

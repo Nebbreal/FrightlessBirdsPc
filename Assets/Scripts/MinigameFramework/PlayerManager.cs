@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventSystem;
+using Minigames;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,7 @@ namespace MinigameFramework
     {
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<GameObject> ActivePlayers;
+        [NonSerialized] public List<Team> Teams;
         public List<Material> playerMaterials;
         public List<GameObject> playerModels;
         [Tooltip("The point to place the inactive players (within the deathbox)")]
@@ -73,6 +76,90 @@ namespace MinigameFramework
         }
         #endregion
 
+        #region Teams
+        public void InitializeTeams(Component sender, object[] minigameConfigObj)
+        {
+            Teams = new List<Team>();
+            if (minigameConfigObj.First() is not Minigame minigameConfig) return;
+            List<int> teamSizes = minigameConfig.teamSizes;
+            
+            if (teamSizes.Count == 0) return;
+            foreach (int teamSize in teamSizes)
+            {
+                Team teamToAdd = new Team(teamSize);
+                Teams.Add(teamToAdd);
+            }
+
+            int requiredPlayerCount = Teams.Sum(team => team.Size);
+            if (requiredPlayerCount > ActivePlayers.Count)
+            {
+                Debug.LogError("Not enough players to fill the teams! Required: " + requiredPlayerCount + ", Available: " + ActivePlayers.Count);
+                return;
+            }
+            
+            List<GameObject> unassignedPlayers = new List<GameObject>(ActivePlayers);
+            
+            if (Teams.All(team => team.Size == 2)) //2v2
+            {
+                foreach (GameObject player in unassignedPlayers.ToList())
+                {
+                    switch (player.name)
+                    {
+                        case "Player1":
+                        case "Player4":
+                            Teams[0].Players.Add(player);
+                            unassignedPlayers.Remove(player);
+                            break;
+                        case "Player2":
+                        case "Player3": 
+                            Teams[1].Players.Add(player);
+                            unassignedPlayers.Remove(player);
+                            break;
+                    }
+                }
+            }
+            else if (Teams.Count == 2 && Teams.Any(team => team.Size is 3 or 2)) //3v1 or 2v1
+            {
+                
+            }
+            
+            List<Team> teamsToFill = Teams.Where(team => team.Size > team.Players.Count).ToList();
+            if (unassignedPlayers.Count > 0)
+            {
+                if (teamsToFill.Count != 0)
+                {
+                    foreach (Team team in teamsToFill)
+                    {
+                        int missingPlayerCount = team.Size - team.Players.Count;
+                        if (unassignedPlayers.Count < missingPlayerCount)
+                        {
+                            Debug.LogError("Not enough players to fill the teams!");
+                        }
+                        else
+                        {
+                            unassignedPlayers.Take(missingPlayerCount).ToList().ForEach(player =>
+                            {
+                                team.Players.Add(player);
+                                unassignedPlayers.Remove(player);
+                            });
+                        }
+                        
+                    }
+                    //todo finish this so it fills players in the not filled yet teams
+                }
+                else
+                {
+                    Debug.LogError("Too many players for the team sizes! Unassigned players will be put in an overflow team.");
+                    Team overflowTeam = new Team(unassignedPlayers.Count)
+                    {
+                        Players = unassignedPlayers
+                    };
+                    Teams.Add(overflowTeam);
+                }
+            }
+        }
+        #endregion
+        
         #region PlayerStates
         public void ResetPlayerStates()
         {
