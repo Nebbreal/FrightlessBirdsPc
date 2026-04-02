@@ -26,7 +26,8 @@ namespace MinigameFramework
 
         [SerializeField]
         private GameConfig gameConfig;
-    
+
+        #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
         {
             if(GameManager.Instance.IsMinigameSceneActive) return;
@@ -40,25 +41,39 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             player.gameObject.name = "Player" + Players.Count;
-            var model = Instantiate(playerModels[Players.Count - 1]);
+            Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
             // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
-            model.transform.parent = player.gameObject.transform;
             player.transform.position = inactivePlayerPoint.transform.position;
         }
-    
-        public void SetPlayerLives(Component sender, object[] livesObj)
+        
+        public void OnPlayerJoinLobby(Component sender, object[] objects)
         {
-            if (livesObj.First() is not int lives) return;
-            
-            AlivePlayers = new List<GameObject>();
-            foreach (var player in ActivePlayers)
-            {
-                AlivePlayers.Add(player);
-                player.SetActive(true);
-                PlayerLives[player.name] = lives;
-            }
+            if (!CanJoin) return;
+            sender.gameObject.transform.position = new Vector3(0, 3, 0);
+            PlayerController player = sender.GetComponent<PlayerController>();
+            player.SetPlayerState(PlayerState.Idle);
+            player.IsActive = true;
+            ActivePlayers.Add(sender.gameObject);
+
+            int id = Players.IndexOf(sender.gameObject);
+            OnEnablePlayerUI.Raise(this, id);
         }
 
+        public void OnPlayerLeaveLobby(Component sender, object[] objects)
+        {
+            if (!CanJoin) return;
+            sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
+            PlayerController player = sender.GetComponent<PlayerController>();
+            player.SetPlayerState(PlayerState.InputRestricted);
+            player.IsActive = false;
+            ActivePlayers.Remove(sender.gameObject);
+
+            int id = Players.IndexOf(sender.gameObject);
+            OnDisablePlayerUI.Raise(this, id);
+        }
+        #endregion
+
+        #region PlayerStates
         public void ResetPlayerStates()
         {
             foreach (var player in Players)
@@ -83,38 +98,12 @@ namespace MinigameFramework
             Players.Clear();
         }
 
-        public void ResetAllPlayerStates()
+        public void ResetAllPlayerPositions()
         {
             foreach (GameObject player in ActivePlayers)
             {
                 player.transform.position = new Vector3(0, 3, 0);
             }
-        }
-
-        public void OnPlayerJoinLobby(Component sender, object[] _objects)
-        {
-            if (!CanJoin) return;
-            sender.gameObject.transform.position = new Vector3(0, 3, 0);
-            PlayerController player = sender.GetComponent<PlayerController>();
-            player.SetPlayerState(PlayerState.Idle);
-            player.IsActive = true;
-            ActivePlayers.Add(sender.gameObject);
-
-            int id = Players.IndexOf(sender.gameObject);
-            OnEnablePlayerUI.Raise(this, id);
-        }
-
-        public void OnPlayerLeaveLobby(Component sender, object[] _objects)
-        {
-            if (!CanJoin) return;
-            sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
-            PlayerController player = sender.GetComponent<PlayerController>();
-            player.SetPlayerState(PlayerState.InputRestricted);
-            player.IsActive = false;
-            ActivePlayers.Remove(sender.gameObject);
-
-            int id = Players.IndexOf(sender.gameObject);
-            OnDisablePlayerUI.Raise(this, id);
         }
 
         public void OnEnableAllPlayerMovement()
@@ -137,7 +126,24 @@ namespace MinigameFramework
                 controller.SetPlayerState(PlayerState.InputRestricted);
             }
         }
+        
 
+        #endregion
+        
+        #region PlayerLives
+        public void SetPlayerLives(Component sender, object[] livesObj)
+        {
+            if (livesObj.First() is not int lives) return;
+            
+            AlivePlayers = new List<GameObject>();
+            foreach (var player in ActivePlayers)
+            {
+                AlivePlayers.Add(player);
+                player.SetActive(true);
+                PlayerLives[player.name] = lives;
+            }
+        }
+        
         public void DeductLife(GameObject player)
         {
             PlayerLives[player.name]--;
@@ -154,6 +160,8 @@ namespace MinigameFramework
             int alivePlayers = AlivePlayers.Count;
             return alivePlayers;
         }
+        #endregion
+        
     }
 }
 
