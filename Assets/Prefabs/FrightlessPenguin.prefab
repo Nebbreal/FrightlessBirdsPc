@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrightlessPenguin
       objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: b296b4bbc8e006941a5ea243583ce3d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

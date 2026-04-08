@@ -379,6 +379,7 @@ MonoBehaviour:
   walkSpeed: 20
   maxSpeed: 20
   maxSpeedClampFactor: 0.8
+  animator: {fileID: 0}
   dashSpeed: 30
   dashDelay: 1
   dashDuration: 1
