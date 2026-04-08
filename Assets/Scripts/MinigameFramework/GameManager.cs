@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using EventSystem;
 using Minigames;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -37,11 +38,14 @@ namespace MinigameFramework
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
+        public GameEvent onStartMusic;
+        
+        [Header("Player Events")]
         public GameEvent onResetCalibration;
         public GameEvent onEnableJoining;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
-        public GameEvent onStartMusic;
+        public GameEvent onInitializeTeams;
         
         [Header("UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -116,6 +120,7 @@ namespace MinigameFramework
           
             onDisablePlayerMovement.Raise(this);
         
+            onInitializeTeams.Raise(this, Instance.CurrentMinigame);
             onEnableCountdownUI.Raise(this);
             Instance._hasMinigameEnded = false;
             Instance._countdownTime = Instance._gameConfig.countdownLength;

@@ -7,7 +7,7 @@ namespace MinigameFramework
     {
         public int Lives;
         public int Size;
-        public List<GameObject> Players;
+        public List<GameObject> Players = new();
 
         public Team(int size)
         {

@@ -14,7 +14,8 @@ namespace MinigameFramework
     {
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<GameObject> ActivePlayers;
-        [NonSerialized] public List<Team> Teams;
+        [NonSerialized] public List<GameObject> DebugPlayers;
+        public List<Team> Teams;
         public List<Material> playerMaterials;
         public List<GameObject> playerModels;
         [Tooltip("The point to place the inactive players (within the deathbox)")]
@@ -30,6 +31,8 @@ namespace MinigameFramework
 
         [SerializeField]
         private GameConfig gameConfig;
+        [SerializeField]
+        private GameObject playerPrefab;
 
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
@@ -50,6 +53,25 @@ namespace MinigameFramework
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
+        public void OnRegisterDebugPlayers (Component sender, object[] objects)
+        {
+            #if  UNITY_EDITOR
+            if (DebugPlayers == null || DebugPlayers.Count == 0)
+            {
+                DebugPlayers = new List<GameObject>();
+            }
+            
+            if(Players.Count == 0) return;
+           
+            int missingPlayerCount = 4 - Players.Count;
+            for (int i = missingPlayerCount; i > 0; i--)
+            {
+                GameObject debugPlayer = Instantiate(playerPrefab);
+                DebugPlayers.Add(debugPlayer);
+            }
+            #endif
+        }
+        
         public void OnPlayerJoinLobby(Component sender, object[] objects)
         {
             if (!CanJoin) return;
@@ -61,6 +83,15 @@ namespace MinigameFramework
 
             int id = Players.IndexOf(sender.gameObject);
             OnEnablePlayerUI.Raise(this, id);
+
+            #if UNITY_EDITOR
+            //Disable input of initiated debug players
+            GameObject playerObj = player.gameObject;
+            if (DebugPlayers.Contains(playerObj))
+            {
+                playerObj.GetComponent<PlayerInput>().enabled = false;
+            }
+            #endif
         }
 
         public void OnPlayerLeaveLobby(Component sender, object[] objects)
@@ -78,7 +109,7 @@ namespace MinigameFramework
         #endregion
 
         #region Teams
-        public void InitializeTeams(Component sender, object[] minigameConfigObj) //TODO: Cleanup, testing & look for better ways to implement
+        public void OnInitializeTeams(Component sender, object[] minigameConfigObj)
         {
             Teams = new List<Team>();
             if (minigameConfigObj.First() is not Minigame minigameConfig) return;
@@ -222,9 +253,14 @@ namespace MinigameFramework
             {
                 PlayerController controller  = player.GetComponent<PlayerController>();
                 controller.SetPlayerState(PlayerState.Idle);
+                
                 PlayerInput playerInput = player.GetComponent<PlayerInput>();
                 playerInput.enabled = false;
-                playerInput.enabled = true;
+                if (!DebugPlayers.Contains(player))
+                {
+                    playerInput.enabled = true;
+
+                }
             }
         }
 
@@ -271,7 +307,6 @@ namespace MinigameFramework
             return alivePlayers;
         }
         #endregion
-        
     }
 }
 
