@@ -25,12 +25,12 @@ public class PlayerUI : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(90f, 0.0f, parent.transform.rotation.z * -1.0f);
 
-        if (parent.playerState == PlayerState.Dash)
+        if (parent.playerState == PlayerState.Dash && dash.activeSelf)
         {
             controller.SetActive(true);
             dash.SetActive(false);
             attack.SetActive(true);
-        } else if (parent.playerState == PlayerState.Attack)
+        } else if (parent.playerState == PlayerState.Attack && attack.activeSelf)
         {
             controller.SetActive(false);
             attack.SetActive(false);
