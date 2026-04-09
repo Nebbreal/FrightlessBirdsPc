@@ -4,14 +4,17 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public UnityEvent<CollisionData> onAttackHit;
+    public int player_id = -1;
 
     public void Break(CollisionData data)
     {
-        gameObject.GetComponent<MeshCollider>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
         player.onDashHasHit.Invoke();
+        if (player.id == player_id)
+        {
+            gameObject.GetComponent<MeshCollider>().enabled = false;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 
     public void Knockback(CollisionData data)
