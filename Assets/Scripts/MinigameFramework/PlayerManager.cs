@@ -39,6 +39,9 @@ namespace MinigameFramework
 
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
+            var playerController = player.GetComponent<PlayerController>();
+            playerController.id = Players.Count - 1;
+
             player.gameObject.name = "Player" + Players.Count;
             var model = Instantiate(playerModels[Players.Count - 1]);
             // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
@@ -94,14 +97,12 @@ namespace MinigameFramework
         public void OnPlayerJoinLobby(Component sender, object[] _objects)
         {
             if (!CanJoin) return;
-            sender.gameObject.transform.position = new Vector3(0, 3, 0);
             PlayerController player = sender.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.Idle);
             player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
 
-            int id = Players.IndexOf(sender.gameObject);
-            OnEnablePlayerUI.Raise(this, id);
+            OnEnablePlayerUI.Raise(this, player.id);
         }
 
         public void OnPlayerLeaveLobby(Component sender, object[] _objects)
@@ -113,8 +114,7 @@ namespace MinigameFramework
             player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
 
-            int id = Players.IndexOf(sender.gameObject);
-            OnDisablePlayerUI.Raise(this, id);
+            OnDisablePlayerUI.Raise(this, player.id);
         }
 
         public void OnEnableAllPlayerMovement()

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private float _stunTimer;
 
     [NonSerialized] public bool IsActive = false;
+    [NonSerialized] public int id = -1;
+
     [Header("Walk Settings")] 
     public float walkSpeed = 20f;
     public float maxSpeed = 60f;
@@ -82,7 +84,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        Debug.Log(animator);
     }
 
     private void Update()
@@ -186,6 +187,9 @@ public class PlayerController : MonoBehaviour
         stunTransform.gameObject.SetActive(false);
         switch (current)
         {
+            case PlayerState.Movement:
+                animator.SetBool("IsWalking", false);
+                break;
             case PlayerState.Dash:
                 _dashCooldown = dashDelay;
                 _dashTime = dashDuration;
@@ -214,9 +218,7 @@ public class PlayerController : MonoBehaviour
                 if (_moveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
-                    Debug.Log("started walking");
                     animator.SetBool("IsWalking", true);
-                    Debug.Log("bool true");
                 }
 
                 IdleToState();
@@ -225,9 +227,7 @@ public class PlayerController : MonoBehaviour
                 if (_moveInput.magnitude <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
-                    Debug.Log("stopped walking");
                     animator.SetBool("IsWalking", false);
-                    Debug.Log("bool false");
                 }
 
                 IdleToState();
@@ -360,10 +360,19 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
 
-            _dashCollided.Add(hitCollider);
-            hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
-                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
-            );
+            if (hitCollider.gameObject.layer == 8)
+            {
+                _dashCollided.Add(hitCollider);
+                hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
+                    new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
+                );
+            }
+            else
+            {
+                hitCollider.GetComponent<Interactable>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
         }
 
         if (_dashTime <= 0.0f)
@@ -454,9 +463,12 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
-                new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
-            );
+            if (hitCollider.gameObject.layer == 8)
+            {
+                hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
         }
     }
 
