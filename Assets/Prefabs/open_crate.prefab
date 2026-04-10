@@ -4960,6 +4960,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   onAttackHit:
     m_PersistentCalls:
+      m_Calls: []
+  onDashHit:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4358053329073086899}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
@@ -4985,3 +4988,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  player_id: -1

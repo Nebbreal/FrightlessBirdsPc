@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                hitCollider.GetComponent<Interactable>().onAttackHit.Invoke(
+                hitCollider.GetComponent<Interactable>().onDashHit.Invoke(
                     new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
@@ -466,6 +466,12 @@ public class PlayerController : MonoBehaviour
             if (hitCollider.gameObject.layer == 8)
             {
                 hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
+            else
+            {
+                hitCollider.GetComponent<Interactable>().onAttackHit.Invoke(
                     new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
