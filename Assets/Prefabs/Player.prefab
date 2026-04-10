@@ -1185,8 +1185,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
-  onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
   stunTime: 1
   rotationSpeed: 0.4
   walkSpeed: 20
@@ -1210,6 +1208,9 @@ MonoBehaviour:
   bracedDelay: 1
   bracedReturnKnockbackSpeed: 20
   bracedReturnStunDuration: 0.3
+  onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
+  onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
+  onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,6 +1370,22 @@ MonoBehaviour:
     m_ActionId: b50f9cc7-d1e9-4100-8a80-bd3bb4a6f697
     m_ActionName: 'Calibration/Confirm[/DragonRise Inc.   Generic   USB  Joystick 
       /button8]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SpawnDebugPlayers
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e0de0401-c131-42e7-9b85-33ad64d775b1
+    m_ActionName: 'Calibration/SpawnDebugPlayers[/Keyboard/backslash]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Calibration

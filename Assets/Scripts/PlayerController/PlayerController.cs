@@ -21,9 +21,7 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<CollisionData> onDashHit;
     public UnityEvent onDashHasHit;
 
-    public GameEvent onJoin;
-
-    public GameEvent onLeave;
+    
 
     [Header("Player Settings")] 
     public float stunTime = 1f;
@@ -81,6 +79,12 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
 
+    [Header("Game events")]
+    [SerializeField] 
+    private GameEvent onSpawnDebugPlayers;
+    public GameEvent onJoin;
+    public GameEvent onLeave;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -117,7 +121,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
-
+    
     public void Join(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -133,6 +137,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SpawnDebugPlayers(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        onSpawnDebugPlayers.Raise(this);
+    }
+    
     public void SetPlayerState(PlayerState newState)
     {
         ExitState(playerState);
@@ -145,7 +155,6 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.gameObject.SetActive(true);
                 _doBrace = false;
                 _doAttack = false;
-                // HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
