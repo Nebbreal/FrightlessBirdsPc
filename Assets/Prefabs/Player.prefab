@@ -1208,6 +1208,9 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   bracedDelay: 1
   bracedReturnKnockbackSpeed: 20
   bracedReturnStunDuration: 0.3

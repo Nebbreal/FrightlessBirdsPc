@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6050663718797585467}
   - component: {fileID: 6188475057634260598}
   - component: {fileID: 8573411803047017868}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,4 +4988,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  knockbackStrength: 0.25
   player_id: -1
