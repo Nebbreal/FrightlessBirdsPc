@@ -1786,6 +1786,10 @@ PrefabInstance:
       propertyPath: OnDisablePlayerUI
       value: 
       objectReference: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: playerSpawns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager

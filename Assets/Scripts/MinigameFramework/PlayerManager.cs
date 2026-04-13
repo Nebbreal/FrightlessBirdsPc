@@ -47,6 +47,9 @@ namespace MinigameFramework
 
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
+            var playerController = player.GetComponent<PlayerController>();
+            playerController.id = Players.Count - 1;
+
             player.gameObject.name = "Player" + Players.Count;
             Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
             // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
@@ -81,8 +84,7 @@ namespace MinigameFramework
             player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
 
-            int id = Players.IndexOf(sender.gameObject);
-            OnEnablePlayerUI.Raise(this, id);
+            OnEnablePlayerUI.Raise(this, player.id);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
@@ -103,8 +105,7 @@ namespace MinigameFramework
             player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
 
-            int id = Players.IndexOf(sender.gameObject);
-            OnDisablePlayerUI.Raise(this, id);
+            OnDisablePlayerUI.Raise(this, player.id);
         }
         #endregion
 

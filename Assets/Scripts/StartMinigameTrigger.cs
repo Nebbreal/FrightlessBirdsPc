@@ -26,7 +26,10 @@ public class StartMinigameTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        PlayerUI p = other.GetComponentInChildren<PlayerUI>();
+        if (!p) return;
         areInside.Add(other.gameObject);
+        p.IsReady();
 
         GameManager gameManager = GameManager.Instance;
         PlayerManager playerManager = gameManager.PlayerManager;
@@ -42,6 +45,9 @@ public class StartMinigameTrigger : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
+        PlayerUI p = other.GetComponentInChildren<PlayerUI>();
+        if (!p) return;
         areInside.Remove(other.gameObject);
+        p.NotReady();
     }
 }

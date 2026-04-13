@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     private float _stunTimer;
 
     [NonSerialized] public bool IsActive = false;
+    [NonSerialized] public int id = -1;
+
     [Header("Walk Settings")] 
     public float walkSpeed = 20f;
     public float maxSpeed = 60f;
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
     public LayerMask layerMask;
+    public LayerMask playerLayerMask;
+    public LayerMask interactableLayerMask;
     [NonSerialized] 
     public float _attackCooldown;
     private float _attackTime;
@@ -367,10 +371,20 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
 
-            _dashCollided.Add(hitCollider);
-            hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
-                new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
-            );
+            if ((playerLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
+            {
+                _dashCollided.Add(hitCollider);
+                hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
+                    new CollisionData(rb.linearVelocity.normalized, dashKnockbackSpeed, col)
+                );
+            }
+            else if ((interactableLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
+            {
+                Debug.Log(hitCollider.name);
+                hitCollider.GetComponent<Interactable>().onDashHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
         }
 
         if (_dashTime <= 0.0f)
@@ -460,10 +474,18 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
 
-
-            hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
-                new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
-            );
+            if ((playerLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
+            {
+                hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
+            else if ((interactableLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
+            {
+                hitCollider.GetComponent<Interactable>().onAttackHit.Invoke(
+                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                );
+            }
         }
     }
 
