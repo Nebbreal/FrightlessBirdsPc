@@ -20,7 +20,7 @@ public class CalibrationManager : MonoBehaviour
 
     public bool ConfirmCalibration()
     {
-        if (controllerCount < 1)
+        if (controllerCount < BlinkForCalibrations.Length - 1)
         {
             return false;
         }

@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public float attackDuration = 1f;
     public float attackKnockbackSpeed = 2f;
     public LayerMask layerMask;
+    public LayerMask playerLayerMask;
     [NonSerialized] 
     public float _attackCooldown;
     private float _attackTime;
@@ -369,7 +370,7 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
 
-            if (hitCollider.gameObject.layer == 8)
+            if (hitCollider.gameObject.layer == playerLayerMask)
             {
                 _dashCollided.Add(hitCollider);
                 hitCollider.GetComponent<PlayerController>().onDashHit.Invoke(
@@ -472,7 +473,7 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (hitCollider.gameObject.layer == 8)
+            if (hitCollider.gameObject.layer == playerLayerMask)
             {
                 hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
                     new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)

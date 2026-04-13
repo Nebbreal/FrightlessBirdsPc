@@ -23,23 +23,35 @@ public class PlayerUI : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = Quaternion.Euler(90f, 0.0f, parent.transform.rotation.z * -1.0f);
+        RotateAbovePlayer();
 
+        UpdateTutorialUIVisibility();
+    }
+
+    void UpdateTutorialUIVisibility()
+    {
         if (parent.playerState == PlayerState.Dash && dash.activeSelf)
         {
             controller.SetActive(true);
             dash.SetActive(false);
             attack.SetActive(true);
-        } else if (parent.playerState == PlayerState.Attack && attack.activeSelf)
+        }
+        else if (parent.playerState == PlayerState.Attack && attack.activeSelf)
         {
             controller.SetActive(false);
             attack.SetActive(false);
-        } else if (!parent.IsActive)
+        }
+        else if (!parent.IsActive)
         {
             controller.SetActive(true);
             dash.SetActive(true);
             attack.SetActive(false);
         }
+    }
+
+    void RotateAbovePlayer()
+    {
+        transform.rotation = Quaternion.Euler(90f, 0.0f, parent.transform.rotation.z * -1.0f);
     }
 
     public void IsReady()
