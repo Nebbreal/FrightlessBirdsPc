@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -87,6 +87,12 @@ public class PlayerController : MonoBehaviour
     public GameEvent onJoin;
     public GameEvent onLeave;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip dashSound;
+    public AudioClip attackSound;
+    public AudioClip stunSound;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -152,6 +158,7 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.Dash:
                 _dashTime = dashDuration;
+                audioSource.PlayOneShot(dashSound);
                 dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
                 dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
@@ -160,11 +167,13 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
+                audioSource.PlayOneShot(attackSound);
                 _doBrace = false;
                 _doDash = false;
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
+                audioSource.PlayOneShot(stunSound);
                 stunTransform.gameObject.SetActive(true);
                 _doAttack = false;
                 _doDash = false;
