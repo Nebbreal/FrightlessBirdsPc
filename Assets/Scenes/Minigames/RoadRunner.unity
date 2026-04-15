@@ -2979,6 +2979,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fc1948512e56574a9f95d22947bc879, type: 3}
   m_PrefabInstance: {fileID: 1719303255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1737056143
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58099588866562018, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_Name
+      value: DeathPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: OnEliminatePlayer
+      value: 
+      objectReference: {fileID: 11400000, guid: 56a5cd36de89b0249aeb8a1a3e13085b, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
 --- !u!1 &1774698421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,8 +3186,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1818067495}
-  - component: {fileID: 1818067494}
   - component: {fileID: 1818067496}
+  - component: {fileID: 1818067497}
   m_Layer: 0
   m_Name: MinigameManager
   m_TagString: Untagged
@@ -3122,24 +3195,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1818067494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818067493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420954d8fb2464c4aa1a9a8d5f16f600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Data.Events.MinigameFramework.Examples.ExampleMinigame.ExampleMinigameManager
-  initialSpawnPoints:
-  - {fileID: 467433747}
-  - {fileID: 932613375}
-  - {fileID: 1367602604}
-  - {fileID: 1364138250}
-  onSetAllPlayerLives: {fileID: 11400000, guid: 13d3833b3d1b43d45953371ad8e4b59d, type: 2}
 --- !u!4 &1818067495
 Transform:
   m_ObjectHideFlags: 0
@@ -3167,8 +3222,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b049687e6180c846bfb0e3d7e86796f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadRunnerMinigameManager
-  initialSpawnPoints: []
-  onSetAllPlayerLives: {fileID: 0}
+  onEndMinigame: {fileID: 0}
+  deathPoint: {fileID: 0}
+  initialSpawnPoints:
+  - {fileID: 467433747}
+  - {fileID: 932613375}
+  - {fileID: 1367602604}
+  - {fileID: 1364138250}
+  onSetAllPlayerLives: {fileID: 11400000, guid: 13d3833b3d1b43d45953371ad8e4b59d, type: 2}
+--- !u!114 &1818067497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818067493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 56a5cd36de89b0249aeb8a1a3e13085b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1818067496}
+        m_TargetAssemblyTypeName: Minigames.RoadRunner.RoadRunnerMinigameManager,
+          Assembly-CSharp
+        m_MethodName: EliminatePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1859978073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3455,3 +3545,4 @@ SceneRoots:
   - {fileID: 501729551}
   - {fileID: 333475869}
   - {fileID: 1339805640}
+  - {fileID: 1737056143}

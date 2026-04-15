@@ -98,29 +98,32 @@ namespace Minigames.FrozenFeathers
             shrinkingPlatform.transform.localScale = new Vector3(currentPlatRadius,  shrinkingPlatform.transform.transform.localScale.y, currentPlatRadius);
         }
 
-        public void EliminatePlayer(GameObject entity)
+        public void EliminatePlayer(Component sender, object[] entities)
         {
-            if (!_players.Contains(entity)) return;
-           
-            _playerManager.DeductLife(entity);
+            if (entities.First() is GameObject entity)
+            {
+                if (!_players.Contains(entity)) return;
 
-            if (_playerManager.PlayerLives[entity.name] > 0)
-            {
-                GameObject playerObject = entity.gameObject;
-                Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
-                playerRigidbody.linearVelocity = Vector3.zero;
-                playerObject.transform.position = respawnPoint.transform.position;
-            }
-            else
-            {
-                entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-                entity.transform.position = deathPoint.transform.position;
-            }
-            
+                _playerManager.DeductLife(entity);
 
-            if (_playerManager.GetAlivePlayerAmount() <= 1)
-            {
-                OnWin();
+                if (_playerManager.PlayerLives[entity.name] > 0)
+                {
+                    GameObject playerObject = entity.gameObject;
+                    Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
+                    playerRigidbody.linearVelocity = Vector3.zero;
+                    playerObject.transform.position = respawnPoint.transform.position;
+                }
+                else
+                {
+                    entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                    entity.transform.position = deathPoint.transform.position;
+                }
+
+
+                if (_playerManager.GetAlivePlayerAmount() <= 1)
+                {
+                    OnWin();
+                }
             }
         }
 

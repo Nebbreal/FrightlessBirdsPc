@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 1287276735}
   - component: {fileID: 1287276734}
   - component: {fileID: 1287276736}
+  - component: {fileID: 1287276737}
   m_Layer: 0
   m_Name: MinigameManager
   m_TagString: Untagged
@@ -775,6 +776,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Minigames.FrozenFeathers.MinigameManager, Assembly-CSharp
         m_MethodName: OnStartMinigame
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1287276737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287276733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 56a5cd36de89b0249aeb8a1a3e13085b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1287276734}
+        m_TargetAssemblyTypeName: Minigames.FrozenFeathers.MinigameManager, Assembly-CSharp
+        m_MethodName: EliminatePlayer
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1944,6 +1973,10 @@ PrefabInstance:
       propertyPath: minigameManager
       value: 
       objectReference: {fileID: 1287276734}
+    - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: OnEliminatePlayer
+      value: 
+      objectReference: {fileID: 11400000, guid: 56a5cd36de89b0249aeb8a1a3e13085b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

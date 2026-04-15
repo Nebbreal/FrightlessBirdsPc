@@ -3,14 +3,22 @@ using EventSystem;
 using Minigames;
 using MinigameFramework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Minigames.RoadRunner
 {
     public class RoadRunnerMinigameManager : MonoBehaviour
     {
+        //General Config
+        private GameObject _gameManager;
         private Minigame _gameConfig;
         private PlayerManager _playerManager;
         private List<GameObject> _players;
+
+        public GameEvent onEndMinigame;
+        [SerializeField] 
+        private GameObject deathPoint;
+
         
         [SerializeField] 
         private List<GameObject> initialSpawnPoints;
@@ -38,6 +46,42 @@ namespace Minigames.RoadRunner
             }
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
+        }
+
+        public void EliminatePlayer(Component sender, object[] entities)
+        {
+            if (entities.First() is GameObject entity)
+            {
+                if (!_players.Contains(entity)) return;
+
+                _playerManager.DeductLife(entity);
+
+                if (_playerManager.PlayerLives[entity.name] > 0)
+                {
+                    GameObject playerObject = entity;
+                    PlayerController player = entity.GetComponent<PlayerController>();
+                    Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
+                    playerRigidbody.linearVelocity = Vector3.zero;
+
+                    playerObject.transform.position = initialSpawnPoints[player.id].transform.position;
+                }
+                else
+                {
+                    entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                    entity.transform.position = deathPoint.transform.position;
+                }
+
+
+                if (_playerManager.GetAlivePlayerAmount() <= 1)
+                {
+                    OnWin();
+                }
+            }
+        }
+
+        private void OnWin()
+        {
+            onEndMinigame.Raise(this, _playerManager.AlivePlayers.First());
         }
     }
 }
