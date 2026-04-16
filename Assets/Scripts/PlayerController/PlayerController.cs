@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip dashSound;
     public AudioClip attackSound;
     public AudioClip stunSound;
+    public AudioClip braceSound;
 
     private void Start()
     {
@@ -183,6 +184,7 @@ public class PlayerController : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
                 braceHitbox.position = transform.position;
+                audioSource.PlayOneShot(braceSound);
                 braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 braceHitbox.gameObject.SetActive(true);
                 _doAttack = false;

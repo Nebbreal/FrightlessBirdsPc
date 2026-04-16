@@ -1222,6 +1222,7 @@ MonoBehaviour:
   dashSound: {fileID: 8300000, guid: 3e20d9e29c915204b81b04fae96d9645, type: 3}
   attackSound: {fileID: 8300000, guid: 842cd1e1e99c91340a7ccb863c6fc5e7, type: 3}
   stunSound: {fileID: 8300000, guid: 8a4c43b081409b94a96f698b7edbeb95, type: 3}
+  braceSound: {fileID: 8300000, guid: 93663615deb745c429975011be0d326f, type: 3}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
