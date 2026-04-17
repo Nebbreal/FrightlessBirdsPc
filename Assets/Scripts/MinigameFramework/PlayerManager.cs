@@ -43,6 +43,7 @@ namespace MinigameFramework
             {
                 Players = new List<GameObject>();
                 ActivePlayers = new List<GameObject>();
+                DebugPlayers = new List<GameObject>();
             }
 
             Players.Add(player.gameObject);
