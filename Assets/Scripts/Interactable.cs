@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent<CollisionData> onAttackHit;
     public UnityEvent<CollisionData> onDashHit;
     public float knockbackStrength = 0.25f;
+    public float upStrength = 0.25f;
     public int player_id = -1;
 
     public void Break(CollisionData data)
@@ -22,7 +23,7 @@ public class Interactable : MonoBehaviour
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.linearVelocity = Vector3.zero;
-        rb.AddForce(data.Direction * data.Speed+ Vector3.up * knockbackStrength, ForceMode.Impulse);
+        rb.AddForce(data.Direction * data.Speed * knockbackStrength + Vector3.up * upStrength, ForceMode.Impulse);
 
 
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();

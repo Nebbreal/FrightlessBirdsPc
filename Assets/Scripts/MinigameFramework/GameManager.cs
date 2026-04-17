@@ -177,14 +177,29 @@ namespace MinigameFramework
             Time.timeScale = 1f;
         }
 
-        public void OnEndMinigame(Component sender, object[] winnerObj)
+        public void OnEndMinigame(Component sender, object[] winnerObjs)
         {
-            if (winnerObj.First() is not GameObject winner) return;
-            
+            if (winnerObjs == null || winnerObjs.Length == 0) return;
+
             Time.timeScale = 0;
-            string winningPlayer = winner.name;
+
+            List<string> winnerNames = new List<string>();
+
+            foreach (var obj in winnerObjs)
+            {
+                if (obj is GameObject playerGo)
+                {
+                    winnerNames.Add(playerGo.name);
+                }
+                else if (obj is string teamName)
+                {
+                    winnerNames.Add(teamName); 
+                }
+            }
+            string winningDisplayString = string.Join(", ", winnerNames);
+
             onEnableWinUI.Raise(this);
-            onUpdateWinUI.Raise(this, winningPlayer);
+            onUpdateWinUI.Raise(this, winningDisplayString);
 
             Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;
