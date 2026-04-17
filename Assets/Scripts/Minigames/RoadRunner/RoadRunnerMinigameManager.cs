@@ -61,14 +61,20 @@ namespace Minigames.RoadRunner
                     GameObject playerObject = entity;
                     PlayerController player = entity.GetComponent<PlayerController>();
                     Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
+                    playerRigidbody.useGravity = true;
+                    playerRigidbody.linearDamping = 1f;
                     playerRigidbody.linearVelocity = Vector3.zero;
 
                     playerObject.transform.position = initialSpawnPoints[player.id].transform.position;
                 }
                 else
                 {
-                    entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                    Rigidbody rb = entity.GetComponent<Rigidbody>();
+                    rb.linearVelocity = Vector3.zero;
                     entity.transform.position = deathPoint.transform.position;
+
+                    rb.useGravity = true;
+                    rb.linearDamping = 1f;
                 }
 
 

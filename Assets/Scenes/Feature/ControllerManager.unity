@@ -1739,9 +1739,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[1]'
+      propertyPath: 'minigames.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'minigames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.38872
@@ -1798,6 +1802,22 @@ PrefabInstance:
       propertyPath: playerSpawns.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'playerModels.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1432483604677397781, guid: be039ba11e4a68343ad6c8364f43de2f, type: 3}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'playerModels.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1432483604677397781, guid: 6f8f490e6e083ff458b6475ab36ede17, type: 3}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'playerModels.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1432483604677397781, guid: 047b5c62f8f9c4c469a25683fc8d58cb, type: 3}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'playerModels.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1432483604677397781, guid: d13ad122a02924a4da64996fdbab6d27, type: 3}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager

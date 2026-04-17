@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using EventSystem;
 using Minigames;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -43,6 +42,7 @@ namespace MinigameFramework
             {
                 Players = new List<GameObject>();
                 ActivePlayers = new List<GameObject>();
+                DebugPlayers = new List<GameObject>();
             }
 
             Players.Add(player.gameObject);
