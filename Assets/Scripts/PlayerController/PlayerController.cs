@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private float _stunTimer;
 
     [NonSerialized] public bool IsActive = false;
-    [NonSerialized] public int id = -1;
+    [NonSerialized] public int ID = -1;
 
     [Header("Walk Settings")] 
     public float walkSpeed = 20f;
@@ -327,12 +327,13 @@ public class PlayerController : MonoBehaviour
     public void InputMove(InputAction.CallbackContext context)
     {
         Vector2 moveValue = context.action.ReadValue<Vector2>();
-        switch (gameObject.name)
+        
+        switch (ID)
         {
-            case "Player1": case "Player2":
+            case 0: case 1:
                 moveValue = new Vector2(moveValue.x, moveValue.y);
                 break;
-            case "Player3": case "Player4":
+            case 2: case 3:
                 moveValue = new Vector2(-moveValue.x, -moveValue.y);
                 break;
         }

@@ -34,6 +34,22 @@ namespace MinigameFramework
         [SerializeField]
         private GameObject playerPrefab;
 
+        //Temporary solution untill the scriptable object method is implemented
+        [NonSerialized] public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
+        {
+            { 0, "Blue" },
+            { 1, "Green" },
+            { 2, "Red" },
+            { 3, "Yellow" }
+        };
+        [NonSerialized] 
+        public Dictionary<int, string> PlayerColors = new Dictionary<int, string>
+        {
+            { 0, "15E2FF" },
+            { 1, "00FF0C" },
+            { 2, "FF0000" },
+            { 3, "FCFF00" }
+        };
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
         {
@@ -49,7 +65,7 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             var playerController = player.GetComponent<PlayerController>();
-            playerController.id = Players.Count - 1;
+            playerController.ID = Players.Count - 1;
 
             player.gameObject.name = "Player" + Players.Count;
             Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
@@ -85,7 +101,7 @@ namespace MinigameFramework
             player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
 
-            OnEnablePlayerUI.Raise(this, player.id);
+            OnEnablePlayerUI.Raise(this, player.ID);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
@@ -106,7 +122,7 @@ namespace MinigameFramework
             player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
 
-            OnDisablePlayerUI.Raise(this, player.id);
+            OnDisablePlayerUI.Raise(this, player.ID);
         }
         #endregion
 
