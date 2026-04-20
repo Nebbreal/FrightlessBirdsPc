@@ -20,7 +20,7 @@ public class SpawnObstacle : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 1f) {
+        if (timer <= 0.5f && dangerIndicator.activeSelf) {
             dangerIndicator.SetActive(true);
         }
         if (timer <= 0f)
