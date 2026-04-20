@@ -12,6 +12,10 @@ public class CharacterSoundController : MonoBehaviour
     [SerializeField] private AudioClip stunSound;
     [SerializeField] private AudioClip braceSound;
 
+    [Header("Attack Pitch Settings")]
+    [SerializeField] private float minAttackPitch;
+    [SerializeField] private float maxAttackPitch;
+
     private PlayerState lastState;
 
     private void Update()
@@ -36,7 +40,7 @@ public class CharacterSoundController : MonoBehaviour
                 break;
 
             case PlayerState.Attack:
-                audioSource.PlayOneShot(attackSound);
+                PlayPitchedSound(attackSound, minAttackPitch, maxAttackPitch);
                 break;
 
             case PlayerState.Stunned:
@@ -47,5 +51,18 @@ public class CharacterSoundController : MonoBehaviour
                 audioSource.PlayOneShot(braceSound);
                 break;
         }
+    }
+    private void PlayPitchedSound(AudioClip clip, float minPitch, float maxPitch)
+    {
+        audioSource.clip = clip;
+        audioSource.pitch = Random.Range(minPitch, maxPitch);
+        audioSource.Play();
+
+        StartCoroutine(ResetPitch(clip.length));
+    }
+    private System.Collections.IEnumerator ResetPitch(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        audioSource.pitch = 1f;
     }
 }
