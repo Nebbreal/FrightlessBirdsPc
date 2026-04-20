@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: frightlessOstrich
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1106095854c7b946a4ba7c980129884, type: 3}
+      propertyPath: m_TagString
+      value: PlayerModel
+      objectReference: {fileID: 0}
     - target: {fileID: 7603786706384944740, guid: d1106095854c7b946a4ba7c980129884, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
