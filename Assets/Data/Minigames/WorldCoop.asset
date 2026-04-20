@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef12ddb145f6774a96c8bb289eb7866, type: 3}
-  m_Name: FIFAWorldCoop
+  m_Name: WorldCoop
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 24ce65f2df34b064fae1201f9b3da5e4, type: 3}
-    m_SceneName: SecondMinigamePlaceholdername
+    m_SceneName: WorldCoop
   gameName: FIFA World Coop
   gameDescription: Football
-  roundLength: 60
+  roundLength: 120
   maxLives: 20
   respawnTime: 1
   intendedPlayerCounts: 04000000

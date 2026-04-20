@@ -380,7 +380,6 @@ public class PlayerController : MonoBehaviour
             }
             else if ((interactableLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
             {
-                Debug.Log(hitCollider.name);
                 hitCollider.GetComponent<Interactable>().onDashHit.Invoke(
                     new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
                 );
