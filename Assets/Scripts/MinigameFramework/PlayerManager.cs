@@ -201,15 +201,16 @@ namespace MinigameFramework
         {
             foreach (GameObject player in unassignedPlayers.ToList())
             {
-                switch (player.name)
+                int playerID = player.GetComponent<PlayerController>().ID;
+                switch (playerID)
                 {
-                    case "Player1":
-                    case "Player4":
+                    case 0:
+                    case 3:
                         Teams[0].Players.Add(player);
                         unassignedPlayers.Remove(player);
                         break;
-                    case "Player2":
-                    case "Player3": 
+                    case 1:
+                    case 2: 
                         Teams[1].Players.Add(player);
                         unassignedPlayers.Remove(player);
                         break;
