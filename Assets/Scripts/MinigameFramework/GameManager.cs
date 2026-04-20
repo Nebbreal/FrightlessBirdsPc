@@ -33,7 +33,8 @@ namespace MinigameFramework
         [NonSerialized]
         public bool IsMinigameSceneActive;
         private bool _isMinigameActive;
-        private bool _hasMinigameEnded;
+        [NonSerialized]
+        public bool _hasMinigameEnded;
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;

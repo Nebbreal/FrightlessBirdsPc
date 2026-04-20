@@ -2,41 +2,45 @@ using UnityEngine;
 
 public class RoadRunnerCar : MonoBehaviour
 {
-    public Vector3 direction;
+    public float speed;
     public float resetLength;
     private Vector3 start;
     public float Strength = 50f;
 
-    void Start()
+    private Rigidbody rb;
+
+    private void Start()
     {
         start = transform.position;
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        transform.position += direction;
+        var direction = transform.forward * speed;
+        rb.linearVelocity = direction;
 
         if ((transform.position - start).magnitude > resetLength)
         {
-            transform.position = start;
+            Destroy(this.gameObject);
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (!collision.rigidbody) return;
+        if (!collision.attachedRigidbody) return;
         PlayerController p = collision.gameObject.GetComponent<PlayerController>();
 
-        Rigidbody rb = collision.rigidbody;
-        rb.linearVelocity = Vector3.zero;
+        Rigidbody rb2 = collision.attachedRigidbody;
+        rb2.linearVelocity = Vector3.zero;
         Vector3 dir = p.transform.position;
         dir.y = 0f;
         dir.Normalize();
         dir.y = 4f;
         dir *= Strength;
-        rb.linearDamping = 0f;
-        rb.AddForce(dir, ForceMode.Impulse);
-        rb.useGravity = false;
+        rb2.linearDamping = 0f;
+        rb2.AddForce(dir, ForceMode.Impulse);
+        rb2.useGravity = false;
         p.SetPlayerState(PlayerState.Stunned);
     }
 }

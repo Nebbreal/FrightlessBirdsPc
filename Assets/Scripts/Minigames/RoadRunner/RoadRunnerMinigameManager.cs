@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using EventSystem;
 using Minigames;
 using MinigameFramework;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 namespace Minigames.RoadRunner
 {
@@ -14,10 +16,18 @@ namespace Minigames.RoadRunner
         private Minigame _gameConfig;
         private PlayerManager _playerManager;
         private List<GameObject> _players;
+        public List<TextMeshProUGUI> _playerScoreboards;
+
+        [NonSerialized] 
+        private Dictionary<string, int> playerScores = new();
+        [NonSerialized] 
+        public Dictionary<string, int> playerSides = new();
 
         public GameEvent onEndMinigame;
         [SerializeField] 
         private GameObject deathPoint;
+
+        private float timer = 12f;
 
         
         [SerializeField] 
@@ -44,8 +54,28 @@ namespace Minigames.RoadRunner
 
                 // player.AddComponent();
             }
+
+            playerSides = new();
+            foreach (GameObject player in _players)
+            {
+                PlayerController p = player.GetComponent<PlayerController>();
+                playerSides.Add(player.name, p.id is > 0 and < 3 ? 1 : 0);
+                playerScores.Add(player.name, 0);
+            }
+
+            timer = _gameConfig.roundLength;
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
+        }
+
+        public void Update()
+        {
+            timer -= Time.deltaTime;
+
+            if (timer < 0f && !GameManager.Instance._hasMinigameEnded)
+            {
+                OnWin();
+            }
         }
 
         public void EliminatePlayer(Component sender, object[] entities)
@@ -60,6 +90,7 @@ namespace Minigames.RoadRunner
                 {
                     GameObject playerObject = entity;
                     PlayerController player = entity.GetComponent<PlayerController>();
+                    playerSides[player.name] = player.id is > 0 and < 3 ? 1 : 0;
                     Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
                     playerRigidbody.useGravity = true;
                     playerRigidbody.linearDamping = 1f;
@@ -87,7 +118,37 @@ namespace Minigames.RoadRunner
 
         private void OnWin()
         {
-            onEndMinigame.Raise(this, _playerManager.AlivePlayers.First());
+            List<GameObject> winners = new();
+            var highestScore = 0;
+            foreach (GameObject player in _players)
+            {
+                var score = playerScores[player.name];
+                if (score > highestScore)
+                {
+                    winners.Clear();
+                    winners.Add(player);
+                    highestScore = score;
+                } else if (score == highestScore)
+                {
+                    winners.Add(player);
+                }
+            }
+
+            onEndMinigame.Raise(this, winners.ToArray());
+        }
+
+        public void OnScorePoint(Component sender, object[] entities)
+        {
+            if (entities.First() is GameObject entity)
+            {
+                if (!_players.Contains(entity)) return;
+
+                PlayerController player = entity.GetComponent<PlayerController>();
+                int newScore = playerScores[player.name] + 1;
+                playerScores[player.name] = newScore;
+
+                _playerScoreboards[player.id].text = newScore.ToString();
+            }
         }
     }
 }
