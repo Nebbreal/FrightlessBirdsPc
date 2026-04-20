@@ -1805,11 +1805,11 @@ PrefabInstance:
     - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'playerModels.Array.data[0]'
       value: 
-      objectReference: {fileID: 1432483604677397781, guid: be039ba11e4a68343ad6c8364f43de2f, type: 3}
+      objectReference: {fileID: 5640296361227305022, guid: a585f667215221d44bc783f9c878ebc9, type: 3}
     - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'playerModels.Array.data[1]'
       value: 
-      objectReference: {fileID: 1432483604677397781, guid: 6f8f490e6e083ff458b6475ab36ede17, type: 3}
+      objectReference: {fileID: 5334743558687489018, guid: 52cc4db1ba31dded8936112b65404237, type: 3}
     - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'playerModels.Array.data[2]'
       value: 
@@ -1817,7 +1817,7 @@ PrefabInstance:
     - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'playerModels.Array.data[3]'
       value: 
-      objectReference: {fileID: 1432483604677397781, guid: d13ad122a02924a4da64996fdbab6d27, type: 3}
+      objectReference: {fileID: 4016176274238889955, guid: a44ae079c8ba00842b422987bc8278c1, type: 3}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
