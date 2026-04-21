@@ -218,7 +218,16 @@ namespace MinigameFramework
                     int playerID = player.GetComponent<PlayerController>().ID;
                     string playerName = PlayerManager.PlayerNames[playerID];
                     GameObject playerModel = player.GetComponentInChildren<PlayerModel>().gameObject;
-                    winnerColor = Instance.PlayerManager.PlayerColors[playerID];
+
+                    if (player == PlayerManager.Teams.Any(t => t.Players.Contains(player)))
+                    {
+                        winnerColor = defaultColor;
+                    }
+                    else
+                    {
+                        winnerColor = Instance.PlayerManager.PlayerColors[playerID];    
+                    }
+                    
                     winnerModels.Add(playerModel);
                     winnerNames.Add(playerName);
                 }
