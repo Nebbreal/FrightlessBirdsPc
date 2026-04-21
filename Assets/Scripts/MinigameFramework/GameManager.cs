@@ -206,7 +206,7 @@ namespace MinigameFramework
         {
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
-            onDisablePlayerMovement.Raise(this); //TODO: freeze moving minigame parts when minigame has ended
+            onDisablePlayerMovement.Raise(this);
             
             List<string> winnerNames = new List<string>();
             List<GameObject> winnerModels = new();
