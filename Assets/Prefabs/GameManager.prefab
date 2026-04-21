@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8611998926496973844
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33,9 +33,9 @@ RectTransform:
   - {fileID: 5935879073079206636}
   m_Father: {fileID: 6964280425427873961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960.00006, y: -540}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9181260458361499158
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6618962443842467061}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,9 +388,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8611998926496973844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5015380241793246221
@@ -586,7 +586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2897854360540782133
 RectTransform:
   m_ObjectHideFlags: 0
@@ -603,9 +603,9 @@ RectTransform:
   - {fileID: 6922267519937116216}
   m_Father: {fileID: 6964280425427873961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960.00006, y: -935}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8003335840666834040
@@ -1362,7 +1362,6 @@ GameObject:
   - component: {fileID: 6964280425427873961}
   - component: {fileID: 8392674031963949314}
   - component: {fileID: 6044063295726650173}
-  - component: {fileID: 6894331880606423039}
   - component: {fileID: 8725424815740709453}
   - component: {fileID: 3510916434285743876}
   - component: {fileID: 9153031831903173808}
@@ -1493,48 +1492,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6894331880606423039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2262906417296289554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
-  gameEvent: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5382900761860274380}
-        m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerText,
-          Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4091195025316692264}
-        m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerText,
-          Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2782,6 +2739,8 @@ GameObject:
   - component: {fileID: 7878619490405009897}
   - component: {fileID: 1705736734203890}
   - component: {fileID: 1640092416075011180}
+  - component: {fileID: 6652806007583163808}
+  - component: {fileID: 1159718049144274558}
   m_Layer: 5
   m_Name: WinningPlayerText
   m_TagString: Untagged
@@ -2803,9 +2762,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2897854360540782133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1705736734203890
@@ -2908,6 +2867,47 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6652806007583163808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091195025316692264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c0a524e55837849b129acb9cf9ae35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerText
+--- !u!114 &1159718049144274558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091195025316692264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6652806007583163808}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4139395659744838135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,6 +3273,8 @@ GameObject:
   - component: {fileID: 2807416585383769094}
   - component: {fileID: 4723509762139839999}
   - component: {fileID: 3497002996675575136}
+  - component: {fileID: 5939913088504325794}
+  - component: {fileID: 6233179204837860610}
   m_Layer: 5
   m_Name: WinningPlayerText
   m_TagString: Untagged
@@ -3294,9 +3296,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8611998926496973844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4723509762139839999
@@ -3399,6 +3401,47 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5939913088504325794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382900761860274380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c0a524e55837849b129acb9cf9ae35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerText
+--- !u!114 &6233179204837860610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382900761860274380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5939913088504325794}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5873844246888768845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,9 +3611,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2897854360540782133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3870574050917573699
@@ -4917,9 +4960,11 @@ MonoBehaviour:
   onDisableCountdownUI: {fileID: 11400000, guid: abb743a912a8a830aa73c908c68a21f4, type: 2}
   onEnableWinUI: {fileID: 11400000, guid: 5bd6ef34adf873f44b540a11f30e3830, type: 2}
   onDisableWinUI: {fileID: 11400000, guid: a030b53d4cac6e74cbeebf93fc23392d, type: 2}
-  onUpdateWinUI: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
+  onUpdateWinnerUIText: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
+  onUpdateWinUIModel: {fileID: 11400000, guid: 567a2b864b5c9cc4fbdb002903e1a9e6, type: 2}
   onEnableLobbyUI: {fileID: 11400000, guid: 69b026567c0c8944da0d0b84021831e4, type: 2}
   onDisableLobbyUI: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
+  defaultColor: {r: 0.6609668, g: 0.4029, b: 0.79, a: 1}
 --- !u!114 &2194438222066439326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5201,13 +5246,15 @@ GameObject:
   - component: {fileID: 2089561148082438565}
   - component: {fileID: 5523191190832675124}
   - component: {fileID: 8460896419525580976}
-  m_Layer: 0
+  - component: {fileID: 1958192946488356900}
+  - component: {fileID: 353044266932260827}
+  m_Layer: 5
   m_Name: WinningPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2089561148082438565
 Transform:
   m_ObjectHideFlags: 0
@@ -5216,8 +5263,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8797171652226718216}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65, y: 62, z: -356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 24, z: -356}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5267,6 +5314,48 @@ MonoBehaviour:
   transitionDurationMin: 2
   transitionDurationMax: 6
   useLocalSpace: 1
+--- !u!114 &1958192946488356900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797171652226718216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868b47ff21174885a9c6eb54effac45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerModelInstantiator
+  pivot: {fileID: 198211300176442715}
+--- !u!114 &353044266932260827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797171652226718216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 567a2b864b5c9cc4fbdb002903e1a9e6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1958192946488356900}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerModelInstantiator,
+          Assembly-CSharp
+        m_MethodName: OnUpdateWinUIModel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9205910897178434408
 GameObject:
   m_ObjectHideFlags: 0

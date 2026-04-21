@@ -43,12 +43,12 @@ namespace MinigameFramework
             { 3, "Yellow" }
         };
         [NonSerialized] 
-        public Dictionary<int, string> PlayerColors = new Dictionary<int, string>
+        public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
         {
-            { 0, "15E2FF" },
-            { 1, "00FF0C" },
-            { 2, "FF0000" },
-            { 3, "FCFF00" }
+            { 0, Color.HSVToRGB(187, 92, 100)},
+            { 1, Color.HSVToRGB(123, 100, 100)},
+            { 2, Color.HSVToRGB(0, 100, 100) },
+            { 3, Color.HSVToRGB(61, 100, 100) }
         };
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
