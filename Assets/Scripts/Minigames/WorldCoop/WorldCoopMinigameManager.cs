@@ -4,6 +4,7 @@ using Minigames;
 using MinigameFramework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 namespace Minigames.WorldCoop
 {
@@ -19,20 +20,20 @@ namespace Minigames.WorldCoop
         private int scoreTeam2 = 0;
 
         public GameEvent onEndMinigame;
-        [SerializeField] 
-        private GameObject deathPoint;
-        
-        [SerializeField] 
-        private List<GameObject> initialSpawnPoints;
-        [SerializeField] 
-        private GameEvent onSetAllPlayerLives;
 
-        [SerializeField] 
-        private int scoreToWin = 3;
-        [SerializeField] 
-        private GameObject ballObject;
-        [SerializeField] 
-        private Vector3 ballInitialSpawn;
+        [SerializeField] private GameObject deathPoint;
+        
+        [SerializeField] private List<GameObject> initialSpawnPoints;
+        [SerializeField] private GameEvent onSetAllPlayerLives;
+
+        [SerializeField] private int scoreToWin = 3;
+        [SerializeField] private GameObject ballObject;
+        [SerializeField] private Vector3 ballInitialSpawn;
+
+        [Header("Scoreboard Visuals")]
+        [SerializeField] private List<MeshRenderer> team1ScoreBalls; 
+        [SerializeField] private List<MeshRenderer> team2ScoreBalls; 
+        [SerializeField] private float fadeSpeed = 2f;
 
         public void Start()
         {
@@ -56,6 +57,22 @@ namespace Minigames.WorldCoop
             }
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
+
+            InitializeScoreboardBalls(team1ScoreBalls);
+            InitializeScoreboardBalls(team2ScoreBalls);
+        }
+
+        private void InitializeScoreboardBalls(List<MeshRenderer> balls)
+        {
+            foreach (var renderer in balls)
+            {
+                foreach (var mat in renderer.materials)
+                {
+                    Color c = mat.color;
+                    c.a = 0.2f; 
+                    mat.color = c;
+                }
+            }
         }
 
         public void OnGoalScored(Component sender, object[] data)
@@ -64,9 +81,14 @@ namespace Minigames.WorldCoop
             {
                 int scoringTeam = (int)data[0];
 
-                if (scoringTeam == 1) {
+                if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
+                {
+                    StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
                     scoreTeam1++;
-                } else if (scoringTeam == 2) {
+                } 
+                else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
+                {
+                    StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
                     scoreTeam2++;
                 }
                 
@@ -74,6 +96,24 @@ namespace Minigames.WorldCoop
             }
 
             ResetRound();
+        }
+
+        private IEnumerator FadeInBall(MeshRenderer renderer)
+        {
+            Material[] mats = renderer.materials;
+            float alpha = mats[0].color.a;
+
+            while (alpha < 1f)
+            {
+                alpha += Time.deltaTime * fadeSpeed;
+                foreach (var mat in mats)
+                {
+                    Color c = mat.color;
+                    c.a = Mathf.Clamp01(alpha);
+                    mat.color = c;
+                }
+                yield return null;
+            }
         }
 
         private void ResetRound()
