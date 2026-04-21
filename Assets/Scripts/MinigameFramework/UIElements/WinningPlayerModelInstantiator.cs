@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,20 +8,53 @@ namespace MinigameFramework.UIElements
 {
     public class WinningPlayerModelInstantiator : MonoBehaviour
     {
+        [FormerlySerializedAs("pivot")] [FormerlySerializedAs("pivotPosition")] [SerializeField] 
+        private GameObject centerPivot;
         [SerializeField] 
-        private GameObject pivot;
+        private Vector3 modelPivotOffset;
+        [SerializeField]
+        private float multipleModelGap = 5f;
 
+        private List<GameObject> _instantiatedPivots = new List<GameObject>();
+        
         public void OnUpdateWinUIModel(Component sender, object[] modelsObj)
         {
             if (modelsObj.First() is not List<GameObject> winnerModels) return;
-            foreach (GameObject winnerModel in winnerModels)
+            if (winnerModels.Count == 0) return;
+
+            if (winnerModels.Count == 1)
             {
-                GameObject spinningModel = Instantiate(winnerModel, pivot.transform);
-                spinningModel.transform.localPosition = Vector3.zero;
-                SetObjectLayer(spinningModel, LayerMask.NameToLayer("UI"));
+                InstantiateModel(winnerModels[0], 0f);
+            }
+            else
+            {
+                //Calculate the starting position and offset the models will need to be evenly distributed
+                //around the center (Based on the multipleModelGap)
+                float centerX = centerPivot.transform.localPosition.x;
+                float totalWidth = multipleModelGap * (winnerModels.Count - 1);
+                float startPoint = centerX - (totalWidth / 2f);
+                
+                for (int i = 0; i < winnerModels.Count; i++)
+                {
+                    float modelXPos = startPoint + (i * multipleModelGap);
+                    
+                    InstantiateModel(winnerModels[i], modelXPos);
+                }
             }
         }
 
+        private void InstantiateModel(GameObject model, float xPos)
+        {
+            GameObject pivot = Instantiate(centerPivot, gameObject.transform);
+            pivot.GetComponent<WinningPlayerModelSpin>().isSpinning = true;
+            pivot.transform.localPosition = new Vector3(xPos, 0f, 0f);
+            GameObject spinningModel = Instantiate(model, pivot.transform);
+                
+            _instantiatedPivots.Add(pivot);
+            spinningModel.transform.localPosition = modelPivotOffset;
+            SetObjectLayer(spinningModel, LayerMask.NameToLayer("UI"));
+        }
+        
         private void SetObjectLayer(GameObject model, int layer)
         {
             model.layer = layer;
@@ -33,12 +67,11 @@ namespace MinigameFramework.UIElements
 
         public void OnCleanWinUI(Component sender, object[] data)
         {
-            Transform[] children = pivot.GetComponentsInChildren<Transform>(true);
-            foreach (Transform child in children)
+            foreach (GameObject pivot in _instantiatedPivots)
             {
-                if (child == pivot.transform) continue;
+                if (pivot == centerPivot) continue;
               
-                Destroy(child.gameObject);
+                Destroy(pivot);
             }
         }
     }

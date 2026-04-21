@@ -33,9 +33,9 @@ RectTransform:
   - {fileID: 5935879073079206636}
   m_Father: {fileID: 3176019395192251141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9181260458361499158
@@ -109,8 +109,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6618962443842467061}
+  - component: {fileID: 6940555790801112508}
   m_Layer: 5
-  m_Name: Pivot
+  m_Name: CenterPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,12 +126,29 @@ Transform:
   m_GameObject: {fileID: 198211300176442715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 2.17, y: 2.17, z: 2.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2089561148082438565}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &6940555790801112508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198211300176442715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80dd090378e2db6469cddc17f6db4394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerModelSpin
+  isSpinning: 0
+  angularSpeed: 30
+  transitionDurationMin: 2
+  transitionDurationMax: 6
+  useLocalSpace: 1
 --- !u!1 &274642367884560759
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,9 +471,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8611998926496973844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5015380241793246221
@@ -668,9 +686,9 @@ RectTransform:
   - {fileID: 6922267519937116216}
   m_Father: {fileID: 3176019395192251141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -800}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8003335840666834040
@@ -2819,9 +2837,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2897854360540782133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1705736734203890
@@ -2852,7 +2870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Red
+  m_text: Yellow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b53f9a99cca438438e878af70a90df7, type: 2}
   m_sharedMaterial: {fileID: 446429571775730557, guid: 3b53f9a99cca438438e878af70a90df7, type: 2}
@@ -2918,7 +2936,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -344.06622, y: 0, z: 6.0006104, w: -12.437149}
+  m_margin: {x: -374.55862, y: 0, z: 6.0006104, w: -12.437149}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3353,9 +3371,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8611998926496973844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4723509762139839999
@@ -3386,7 +3404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Red
+  m_text: Yellow
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b53f9a99cca438438e878af70a90df7, type: 2}
   m_sharedMaterial: {fileID: 446429571775730557, guid: 3b53f9a99cca438438e878af70a90df7, type: 2}
@@ -3452,7 +3470,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -344.06622, y: 0, z: 6.0006104, w: -12.437149}
+  m_margin: {x: -376.46326, y: 0, z: 6.0006104, w: -12.437149}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3668,9 +3686,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2897854360540782133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3870574050917573699
@@ -4987,6 +5005,7 @@ MonoBehaviour:
   roundLength: 40
   playerLives: 1
   countdownLength: 3
+  winScreenLength: 5
 --- !u!114 &2829976537248166007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5303,7 +5322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2089561148082438565}
   - component: {fileID: 5523191190832675124}
-  - component: {fileID: 8460896419525580976}
   - component: {fileID: 1958192946488356900}
   - component: {fileID: 353044266932260827}
   - component: {fileID: 2197424283662711290}
@@ -5357,22 +5375,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8460896419525580976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8797171652226718216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80dd090378e2db6469cddc17f6db4394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerModelSpin
-  angularSpeed: 30
-  transitionDurationMin: 2
-  transitionDurationMax: 6
-  useLocalSpace: 1
 --- !u!114 &1958192946488356900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5385,7 +5387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868b47ff21174885a9c6eb54effac45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.WinningPlayerModelInstantiator
-  pivot: {fileID: 198211300176442715}
+  centerPivot: {fileID: 198211300176442715}
+  modelPivotOffset: {x: 0, y: -0.5, z: 0}
+  multipleModelGap: 5
 --- !u!114 &353044266932260827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5435,10 +5439,10 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MinigameFramework.UIElements.WinningPlayerModelInstantiator,
           Assembly-CSharp
         m_MethodName: OnCleanWinUI
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Component, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -4,10 +4,15 @@ namespace MinigameFramework.UIElements
 {
     public class WinningPlayerModelSpin : MonoBehaviour
     {
-        public float angularSpeed = 30f;
-        public float transitionDurationMin = 2f;
-        public float transitionDurationMax = 6f;
-        public bool useLocalSpace = true;
+        public bool isSpinning = true;
+        [SerializeField]
+        private float angularSpeed = 30f;
+        [SerializeField]
+        private float transitionDurationMin = 2f;
+        [SerializeField]
+        private float transitionDurationMax = 6f;
+        [SerializeField]
+        private bool useLocalSpace = true;
 
         private Vector3 _startDir;
         private Vector3 _targetDir;
@@ -24,6 +29,8 @@ namespace MinigameFramework.UIElements
 
         void Update()
         {
+            if (!isSpinning) return;
+            
             _timer += Time.deltaTime;
             float t = Mathf.Clamp01(_timer / Mathf.Max(0.0001f, _transitionDuration));
             float smoothStep = Mathf.SmoothStep(0f, 1f, t);
