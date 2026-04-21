@@ -29,30 +29,10 @@ namespace MinigameFramework.Example
                 Rigidbody playerBody = player.GetComponent<Rigidbody>();
                 Transform playerTransform = player.GetComponent<Transform>();
                 PlayerController playerController = player.GetComponent<PlayerController>();
-
-                switch (playerController.ID)
-                {
-                    case 0:
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[0].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[0].transform.position);
-                        break;
-                    case 1:
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[1].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[1].transform.position);
-                        break;
-                    case 2:
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[2].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[2].transform.position);
-                        break;
-                    case 3:
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[3].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[3].transform.position);
-                        break;
-                }
+                
+                playerBody.linearVelocity = Vector3.zero;
+                playerTransform.position = initialSpawnPoints[playerController.ID].transform.position;
+                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[playerController.ID].transform.position);
             }
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
