@@ -83,7 +83,7 @@ namespace Minigames.FrozenFeathers
 
         public void Update()
         {
-            if (_hasMinigameStarted && _roundTimer > 0)
+            if (_hasMinigameStarted && _roundTimer > 0 && !GameManager.Instance.IsWinUIActive)
             {
                 _roundTimer -= Time.deltaTime;
                 ShrinkPlatform();

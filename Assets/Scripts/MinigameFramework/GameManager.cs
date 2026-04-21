@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using EventSystem;
 using Minigames;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,7 @@ namespace MinigameFramework
 
         [NonSerialized]
         private float _countdownTime;
+        private float _winUITime;
     
         [Header("Game manager config")]
         [SerializeField]
@@ -35,6 +37,8 @@ namespace MinigameFramework
         public bool IsMinigameSceneActive;
         private bool _isMinigameActive;
         private bool _hasMinigameEnded;
+        [NonSerialized]
+        public bool IsWinUIActive;
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -54,7 +58,8 @@ namespace MinigameFramework
         public GameEvent onDisableCountdownUI;
         public GameEvent onEnableWinUI;
         public GameEvent onDisableWinUI;
-        [FormerlySerializedAs("onUpdateWinUI")] public GameEvent onUpdateWinnerUIText;
+        public GameEvent onUpdateWinnerUIText;
+        public GameEvent onCleanWinUI;
         public GameEvent onUpdateWinUIModel;
         public GameEvent onEnableLobbyUI;
         public GameEvent onDisableLobbyUI;
@@ -84,11 +89,26 @@ namespace MinigameFramework
         {
             #region Timers
             Instance._countdownTime -= Time.deltaTime;
+            Instance._winUITime -= Time.deltaTime;
             #endregion
             
             if (IsMinigameSceneActive)
             {
                 CheckCountdownState();
+            }
+
+            if (Instance.IsWinUIActive)
+            {
+                CheckWinUITime();
+            }
+        }
+
+        private void CheckWinUITime()
+        {
+            if(Instance._winUITime <= 0)
+            {
+                ToLobby();
+                Instance.IsWinUIActive = false;
             }
         }
 
@@ -168,6 +188,7 @@ namespace MinigameFramework
     
         private void LoadScene(string sceneName)
         {
+            onCleanWinUI.Raise(this, null);
             onDisableWinUI.Raise(this);
             Instance.PlayerManager.ResetAllPlayerPositions();
             SceneManager.LoadScene(sceneName);
@@ -197,7 +218,7 @@ namespace MinigameFramework
                     int playerID = player.GetComponent<PlayerController>().ID;
                     string playerName = PlayerManager.PlayerNames[playerID];
                     GameObject playerModel = player.GetComponentInChildren<PlayerModel>().gameObject;
-                    winnerColor = PlayerManager.PlayerColors[playerID];
+                    winnerColor = Instance.PlayerManager.PlayerColors[playerID];
                     winnerModels.Add(playerModel);
                     winnerNames.Add(playerName);
                 }
@@ -212,6 +233,8 @@ namespace MinigameFramework
             onEnableWinUI.Raise(this);
             onUpdateWinUIModel.Raise(this, winnerModels);
             onUpdateWinnerUIText.Raise(this, winnerData);
+            Instance._winUITime = Instance._gameConfig.winScreenLength;
+            Instance.IsWinUIActive = true;
 
             Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;

@@ -34,8 +34,9 @@ namespace MinigameFramework
         [SerializeField]
         private GameObject playerPrefab;
 
-        //Temporary solution untill the scriptable object method is implemented
-        [NonSerialized] public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
+        //Temporary solution until the scriptable object method is implemented
+        [NonSerialized] 
+        public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
         {
             { 0, "Blue" },
             { 1, "Green" },
@@ -45,11 +46,12 @@ namespace MinigameFramework
         [NonSerialized] 
         public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
         {
-            { 0, Color.HSVToRGB(187, 92, 100)},
-            { 1, Color.HSVToRGB(123, 100, 100)},
-            { 2, Color.HSVToRGB(0, 100, 100) },
-            { 3, Color.HSVToRGB(61, 100, 100) }
+            { 0, new Color(0.08113199f, 0.8873519f, 1f)},
+            { 1, new Color(0f, 1f, 0.459039f)},
+            { 2, new Color(1f, 0f, 0f) },
+            { 3, new Color(0.9863279f, 1f, 0f) }
         };
+        
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
         {

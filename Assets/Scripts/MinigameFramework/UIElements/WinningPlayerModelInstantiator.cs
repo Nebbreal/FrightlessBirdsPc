@@ -31,10 +31,13 @@ namespace MinigameFramework.UIElements
             }
         }
 
-        private void ClearChildren()//TODO: trigger this when leaving win screen
+        public void OnCleanWinUI(Component sender, object[] data)
         {
-            foreach (Transform child in pivot.transform)
+            Transform[] children = pivot.GetComponentsInChildren<Transform>(true);
+            foreach (Transform child in children)
             {
+                if (child == pivot.transform) continue;
+              
                 Destroy(child.gameObject);
             }
         }
