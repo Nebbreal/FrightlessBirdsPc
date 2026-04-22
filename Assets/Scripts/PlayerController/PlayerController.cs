@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        KeepRbAwake();
+        
         if (playerState is PlayerState.InputRestricted)
         {
             _doAttack = false;
@@ -123,7 +125,15 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
-    
+
+    private void KeepRbAwake()
+    {
+        if (rb.IsSleeping())
+        {
+            rb.WakeUp();
+        }
+    }
+
     public void Join(InputAction.CallbackContext context)
     {
         if (context.started)
