@@ -1110,10 +1110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 155897338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a32d8dd380f4f4b8498bfc50d9d865, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 30
+  bounceMultiplier: 5
 --- !u!4 &155897342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -1846,10 +1846,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 317230194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a32d8dd380f4f4b8498bfc50d9d865, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 30
+  bounceMultiplier: 5
 --- !u!4 &317230198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -3452,7 +3452,7 @@ Transform:
   m_GameObject: {fileID: 681125191}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0, z: 0}
+  m_LocalPosition: {x: 0.17, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3897,7 +3897,7 @@ Transform:
   m_GameObject: {fileID: 718440174}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 16.8, y: 0, z: 0.089999914}
+  m_LocalPosition: {x: 16.58, y: 0, z: 0.089999914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4815,10 +4815,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 990600384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a32d8dd380f4f4b8498bfc50d9d865, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 30
+  bounceMultiplier: 5
 --- !u!4 &990600388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -6559,7 +6559,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.WorldCoop.WorldCoopMinigameManager
   onEndMinigame: {fileID: 11400000, guid: bf127ee6c272f5ecf9d61cf2afced266, type: 2}
-  deathPoint: {fileID: 1639575799}
   initialSpawnPoints:
   - {fileID: 1602542222}
   - {fileID: 1900720269}
@@ -6568,7 +6567,7 @@ MonoBehaviour:
   onSetAllPlayerLives: {fileID: 11400000, guid: 13d3833b3d1b43d45953371ad8e4b59d, type: 2}
   scoreToWin: 3
   ballObject: {fileID: 1898598745}
-  ballInitialSpawn: {x: 0, y: 5, z: 0}
+  initialBallSpawn: {x: 0, y: 5, z: 0}
   team1ScoreBalls:
   - {fileID: 705379128}
   - {fileID: 1582161400}
@@ -6578,6 +6577,7 @@ MonoBehaviour:
   - {fileID: 927498055}
   - {fileID: 1523460524}
   fadeSpeed: 2
+  scoreStartOpacity: 0.2
 --- !u!4 &1433831948
 Transform:
   m_ObjectHideFlags: 0
@@ -7132,7 +7132,7 @@ Transform:
   m_GameObject: {fileID: 1602542222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: 0, z: -6}
+  m_LocalPosition: {x: 0.42, y: 0, z: -5.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8266,7 +8266,7 @@ Transform:
   m_GameObject: {fileID: 1900720269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 16, y: 0, z: -6.25}
+  m_LocalPosition: {x: 16.07, y: 0, z: -5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8477,10 +8477,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1946192681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a32d8dd380f4f4b8498bfc50d9d865, type: 3}
+  m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 30
+  bounceMultiplier: 5
 --- !u!136 &1946192683
 CapsuleCollider:
   m_ObjectHideFlags: 0

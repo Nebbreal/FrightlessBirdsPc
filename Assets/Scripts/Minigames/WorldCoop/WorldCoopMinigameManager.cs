@@ -32,6 +32,7 @@ namespace Minigames.WorldCoop
         [SerializeField] private List<MeshRenderer> team1ScoreBalls; 
         [SerializeField] private List<MeshRenderer> team2ScoreBalls; 
         [SerializeField] private float fadeSpeed = 2f;
+        [SerializeField] private float scoreStartOpacity = 0.2f;
 
         public void Start()
         {
@@ -67,7 +68,7 @@ namespace Minigames.WorldCoop
                 foreach (var mat in renderer.materials)
                 {
                     Color c = mat.color;
-                    c.a = 0.2f; 
+                    c.a = scoreStartOpacity; 
                     mat.color = c;
                 }
             }
@@ -75,24 +76,18 @@ namespace Minigames.WorldCoop
 
         public void OnGoalScored(Component sender, object[] data)
         {
-            if (data != null && data.Length > 0 && data[0] is int)
+            if (data == null || data.Length == 0 || data[0] is not int scoringTeam) return;
+
+            if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
             {
-                int scoringTeam = (int)data[0];
-
-                if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
-                {
-                    StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
-                    scoreTeam1++;
-                } 
-                else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
-                {
-                    StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
-                    scoreTeam2++;
-                }
-                
-                Debug.Log($"Score Update! Team 1: {scoreTeam1} | Team 2: {scoreTeam2}");
+                StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
+                scoreTeam1++;
+            } 
+            else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
+            {
+                StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
+                scoreTeam2++;
             }
-
             ResetRound();
         }
 
@@ -121,7 +116,7 @@ namespace Minigames.WorldCoop
                 Rigidbody ballRb = ballObject.GetComponent<Rigidbody>();
                 ballRb.linearVelocity = Vector3.zero;
                 ballRb.angularVelocity = Vector3.zero;
-                ballObject.transform.position = ballInitialSpawn;
+                ballObject.transform.position = initialBallSpawn;
             }
 
             foreach (GameObject player in _players)
