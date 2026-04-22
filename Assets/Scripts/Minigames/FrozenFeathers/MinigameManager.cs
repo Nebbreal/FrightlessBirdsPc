@@ -100,30 +100,29 @@ namespace Minigames.FrozenFeathers
 
         public void EliminatePlayer(Component sender, object[] entities)
         {
-            if (entities.First() is GameObject entity)
+            if (entities.First() is not GameObject entity) return;
+
+            if (!_players.Contains(entity)) return;
+
+            _playerManager.DeductLife(entity);
+
+            if (_playerManager.PlayerLives[entity.name] > 0)
             {
-                if (!_players.Contains(entity)) return;
-
-                _playerManager.DeductLife(entity);
-
-                if (_playerManager.PlayerLives[entity.name] > 0)
-                {
-                    GameObject playerObject = entity.gameObject;
-                    Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
-                    playerRigidbody.linearVelocity = Vector3.zero;
-                    playerObject.transform.position = respawnPoint.transform.position;
-                }
-                else
-                {
-                    entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-                    entity.transform.position = deathPoint.transform.position;
-                }
+                GameObject playerObject = entity.gameObject;
+                Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
+                playerRigidbody.linearVelocity = Vector3.zero;
+                playerObject.transform.position = respawnPoint.transform.position;
+            }
+            else
+            {
+                entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                entity.transform.position = deathPoint.transform.position;
+            }
 
 
-                if (_playerManager.GetAlivePlayerAmount() <= 1)
-                {
-                    OnWin();
-                }
+            if (_playerManager.GetAlivePlayerAmount() <= 1)
+            {
+                OnWin();
             }
         }
 

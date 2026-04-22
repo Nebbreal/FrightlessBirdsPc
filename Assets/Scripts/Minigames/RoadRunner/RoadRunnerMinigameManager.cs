@@ -28,7 +28,6 @@ namespace Minigames.RoadRunner
         private GameObject deathPoint;
 
         private float timer = 12f;
-
         
         [SerializeField] 
         private List<GameObject> initialSpawnPoints;

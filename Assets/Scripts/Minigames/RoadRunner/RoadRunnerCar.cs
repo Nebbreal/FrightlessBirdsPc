@@ -6,6 +6,7 @@ public class RoadRunnerCar : MonoBehaviour
     public float resetLength;
     private Vector3 start;
     public float Strength = 50f;
+    public float UpStrengthMultiplier = 4f;
 
     private Rigidbody rb;
 
@@ -36,7 +37,7 @@ public class RoadRunnerCar : MonoBehaviour
         Vector3 dir = p.transform.position;
         dir.y = 0f;
         dir.Normalize();
-        dir.y = 4f;
+        dir.y = UpStrengthMultiplier;
         dir *= Strength;
         rb2.linearDamping = 0f;
         rb2.AddForce(dir, ForceMode.Impulse);
