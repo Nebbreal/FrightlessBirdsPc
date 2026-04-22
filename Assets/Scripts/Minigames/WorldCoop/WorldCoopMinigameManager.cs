@@ -16,8 +16,8 @@ namespace Minigames.WorldCoop
         private PlayerManager _playerManager;
         private List<GameObject> _players;
 
-        private int scoreTeam1 = 0;
-        private int scoreTeam2 = 0;
+        private int _scoreTeam1 = 0;
+        private int _scoreTeam2 = 0;
 
         public GameEvent onEndMinigame;
         
@@ -49,8 +49,8 @@ namespace Minigames.WorldCoop
                 Transform playerTransform = player.GetComponent<Transform>();
                 PlayerController p = player.GetComponent<PlayerController>();
                 playerBody.linearVelocity = Vector3.zero;
-                playerTransform.position = initialSpawnPoints[p.id].transform.position;
-                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.id].transform.position);
+                playerTransform.position = initialSpawnPoints[p.ID].transform.position;
+                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
 
                 // player.AddComponent();
             }
@@ -63,9 +63,9 @@ namespace Minigames.WorldCoop
 
         private void InitializeScoreboardBalls(List<MeshRenderer> balls)
         {
-            foreach (var renderer in balls)
+            foreach (var ballRenderer in balls)
             {
-                foreach (var mat in renderer.materials)
+                foreach (var mat in ballRenderer.materials)
                 {
                     Color c = mat.color;
                     c.a = scoreStartOpacity; 
@@ -78,22 +78,22 @@ namespace Minigames.WorldCoop
         {
             if (data == null || data.Length == 0 || data[0] is not int scoringTeam) return;
 
-            if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
+            if (scoringTeam == 1 && _scoreTeam1 < team1ScoreBalls.Count)
             {
-                StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
-                scoreTeam1++;
+                StartCoroutine(FadeInBall(team1ScoreBalls[_scoreTeam1]));
+                _scoreTeam1++;
             } 
-            else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
+            else if (scoringTeam == 2 && _scoreTeam2 < team2ScoreBalls.Count)
             {
-                StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
-                scoreTeam2++;
+                StartCoroutine(FadeInBall(team2ScoreBalls[_scoreTeam2]));
+                _scoreTeam2++;
             }
             ResetRound();
         }
 
-        private IEnumerator FadeInBall(MeshRenderer renderer)
+        private IEnumerator FadeInBall(MeshRenderer ballRenderer)
         {
-            Material[] mats = renderer.materials;
+            Material[] mats = ballRenderer.materials;
             float alpha = mats[0].color.a;
 
             while (alpha < 1f)
@@ -125,11 +125,11 @@ namespace Minigames.WorldCoop
                 Transform playerTransform = player.GetComponent<Transform>();
                 PlayerController p = player.GetComponent<PlayerController>();
                 playerBody.linearVelocity = Vector3.zero;
-                playerTransform.position = initialSpawnPoints[p.id].transform.position;
-                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.id].transform.position);
+                playerTransform.position = initialSpawnPoints[p.ID].transform.position;
+                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
             }
 
-            if (scoreTeam1 >= scoreToWin || scoreTeam2 >= scoreToWin)
+            if (_scoreTeam1 >= scoreToWin || _scoreTeam2 >= scoreToWin)
             {
                 OnWin();
             }
@@ -137,15 +137,17 @@ namespace Minigames.WorldCoop
 
         private void OnWin()
         {
-            if (scoreTeam1 >= scoreToWin)
+            if (_scoreTeam1 >= scoreToWin)
             {
                 GameObject[] team1Players = _playerManager.Teams[0].Players.ToArray();
-                onEndMinigame.Raise(this, team1Players);
+                object[] data = team1Players.Cast<object>().ToArray();
+                onEndMinigame.Raise(this, data);
             }
-            else if (scoreTeam2 >= scoreToWin)
+            else if (_scoreTeam2 >= scoreToWin)
             {
                 GameObject[] team2Players = _playerManager.Teams[1].Players.ToArray();
-                onEndMinigame.Raise(this, team2Players);
+                object[] data = team2Players.Cast<object>().ToArray();
+                onEndMinigame.Raise(this, data);
             }
         }
     }
