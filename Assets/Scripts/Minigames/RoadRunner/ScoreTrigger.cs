@@ -1,6 +1,5 @@
 using UnityEngine;
 using EventSystem;
-using Minigames;
 using Minigames.RoadRunner;
 
 public class ScoreTrigger : MonoBehaviour

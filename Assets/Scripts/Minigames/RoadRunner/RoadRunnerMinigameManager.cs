@@ -47,8 +47,8 @@ namespace Minigames.RoadRunner
                 Transform playerTransform = player.GetComponent<Transform>();
                 PlayerController p = player.GetComponent<PlayerController>();
                 playerBody.linearVelocity = Vector3.zero;
-                playerTransform.position = initialSpawnPoints[p.id].transform.position;
-                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.id].transform.position);
+                playerTransform.position = initialSpawnPoints[p.ID].transform.position;
+                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
 
                 // player.AddComponent();
             }
@@ -57,7 +57,7 @@ namespace Minigames.RoadRunner
             foreach (GameObject player in _players)
             {
                 PlayerController p = player.GetComponent<PlayerController>();
-                bool isOnRightSideOfScreen = p.id is > 0 and < 3;
+                bool isOnRightSideOfScreen = p.ID is > 0 and < 3;
                 playerSides.Add(player.name, isOnRightSideOfScreen ? 1 : 0);
                 playerScores.Add(player.name, 0);
             }
@@ -89,13 +89,13 @@ namespace Minigames.RoadRunner
                 {
                     GameObject playerObject = entity;
                     PlayerController player = entity.GetComponent<PlayerController>();
-                    playerSides[player.name] = player.id is > 0 and < 3 ? 1 : 0;
+                    playerSides[player.name] = player.ID is > 0 and < 3 ? 1 : 0;
                     Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
                     playerRigidbody.useGravity = true;
                     playerRigidbody.linearDamping = 1f;
                     playerRigidbody.linearVelocity = Vector3.zero;
 
-                    playerObject.transform.position = initialSpawnPoints[player.id].transform.position;
+                    playerObject.transform.position = initialSpawnPoints[player.ID].transform.position;
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace Minigames.RoadRunner
                 int newScore = playerScores[player.name] + 1;
                 playerScores[player.name] = newScore;
 
-                _playerScoreboards[player.id].text = newScore.ToString();
+                _playerScoreboards[player.ID].text = newScore.ToString();
             }
         }
     }
