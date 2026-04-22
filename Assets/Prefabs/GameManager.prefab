@@ -5019,7 +5019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   minigames:
-  - {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
+  - {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
   lobbyScene:
     m_SceneAsset: {fileID: 102900000, guid: 5984e344666c36f439f39c3fc52f9999, type: 3}
     m_SceneName: Lobby

@@ -457,6 +457,17 @@
                     "action": "SpawnDebugPlayers",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "030f3d96-1d25-40a7-849a-8b354dbab4c5",
+                    "path": "<Keyboard>/backslash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnDebugPlayers",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
