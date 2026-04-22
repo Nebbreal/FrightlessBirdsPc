@@ -58,7 +58,8 @@ namespace Minigames.RoadRunner
             foreach (GameObject player in _players)
             {
                 PlayerController p = player.GetComponent<PlayerController>();
-                playerSides.Add(player.name, p.id is > 0 and < 3 ? 1 : 0);
+                bool isOnRightSideOfScreen = p.id is > 0 and < 3;
+                playerSides.Add(player.name, isOnRightSideOfScreen ? 1 : 0);
                 playerScores.Add(player.name, 0);
             }
 
@@ -117,23 +118,14 @@ namespace Minigames.RoadRunner
 
         private void OnWin()
         {
-            List<GameObject> winners = new();
-            var highestScore = 0;
-            foreach (GameObject player in _players)
-            {
-                var score = playerScores[player.name];
-                if (score > highestScore)
-                {
-                    winners.Clear();
-                    winners.Add(player);
-                    highestScore = score;
-                } else if (score == highestScore)
-                {
-                    winners.Add(player);
-                }
-            }
+            var highestScore = _players.Max(p =>
+            (
+                playerScores[p.name]
+            ));
 
-            onEndMinigame.Raise(this, winners.ToArray());
+            object[] winners = _players.Where(p => playerScores[p.name] == highestScore).ToArray<object>();
+
+            onEndMinigame.Raise(this, winners);
         }
 
         public void OnScorePoint(Component sender, object[] entities)

@@ -119,7 +119,6 @@ namespace Minigames.FrozenFeathers
                 entity.transform.position = deathPoint.transform.position;
             }
 
-
             if (_playerManager.GetAlivePlayerAmount() <= 1)
             {
                 OnWin();

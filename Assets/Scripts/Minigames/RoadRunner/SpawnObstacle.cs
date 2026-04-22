@@ -9,18 +9,17 @@ public class SpawnObstacle : MonoBehaviour
     public List<GameObject> obstacles;
     public GameObject dangerIndicator;
 
+    public float showDangerBelowTime = 0.5f;
     private float timer = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timer = Random.Range(minWaitTime, maxWaitTime) / 10f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0.5f && !dangerIndicator.activeSelf) {
+        if (timer <= showDangerBelowTime && !dangerIndicator.activeSelf) {
             dangerIndicator.SetActive(true);
         }
         if (timer <= 0f)
