@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using EventSystem;
 using Minigames;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -36,7 +32,7 @@ namespace MinigameFramework
         [NonSerialized]
         public bool IsMinigameSceneActive;
         private bool _isMinigameActive;
-        private bool _hasMinigameEnded;
+        public bool _hasMinigameEnded;
         [NonSerialized]
         public bool IsWinUIActive;
 

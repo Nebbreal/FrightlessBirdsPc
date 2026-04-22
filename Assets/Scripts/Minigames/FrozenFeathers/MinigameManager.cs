@@ -82,10 +82,12 @@ namespace Minigames.FrozenFeathers
             shrinkingPlatform.transform.localScale = new Vector3(currentPlatRadius,  shrinkingPlatform.transform.transform.localScale.y, currentPlatRadius);
         }
 
-        public void EliminatePlayer(GameObject entity)
+        public void EliminatePlayer(Component sender, object[] entities)
         {
+            if (entities.First() is not GameObject entity) return;
+
             if (!_players.Contains(entity)) return;
-           
+
             _playerManager.DeductLife(entity);
 
             if (_playerManager.PlayerLives[entity.name] > 0)
@@ -100,7 +102,6 @@ namespace Minigames.FrozenFeathers
                 entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
                 entity.transform.position = deathPoint.transform.position;
             }
-            
 
             if (_playerManager.GetAlivePlayerAmount() <= 1)
             {

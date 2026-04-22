@@ -306,17 +306,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c62d4246-c495-4617-b8b0-69ada65d7750",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button7",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "61bd7a02-c88e-4fc1-8a0c-76142832fe89",
                     "path": "<Gamepad>/select",
                     "interactions": "",

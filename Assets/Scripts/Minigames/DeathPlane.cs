@@ -1,5 +1,5 @@
-﻿using System;
-using Minigames.FrozenFeathers;
+﻿using EventSystem;
+
 using UnityEngine;
 
 namespace Minigames
@@ -7,11 +7,11 @@ namespace Minigames
     public class DeathPlane : MonoBehaviour
     {
         [SerializeField]
-        private MinigameManager minigameManager;
+        private GameEvent OnEliminatePlayer;
 
         public void OnTriggerEnter(Collider other)
         {
-            minigameManager.EliminatePlayer(other.gameObject);
+            OnEliminatePlayer.Raise(this, other.gameObject);
         }
     }
 }

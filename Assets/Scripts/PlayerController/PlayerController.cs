@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Dash:
                 _dashTime = dashDuration;
                 dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
-                dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
+                // dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
                 _doBrace = false;
                 _doAttack = false;
