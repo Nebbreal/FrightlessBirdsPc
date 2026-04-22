@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 5
+  bounceMultiplier: 20
 --- !u!4 &155897342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 5
+  bounceMultiplier: 20
 --- !u!4 &317230198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -4681,7 +4681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 5
+  bounceMultiplier: 20
 --- !u!4 &990600388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b8cf4c7f2e3ff4408a618ffdbd44aea, type: 3}
@@ -8343,7 +8343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4da2566f49a094683905bc6597c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  bounceMultiplier: 5
+  bounceMultiplier: 20
 --- !u!136 &1946192683
 CapsuleCollider:
   m_ObjectHideFlags: 0
