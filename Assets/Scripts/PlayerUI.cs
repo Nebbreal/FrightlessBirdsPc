@@ -14,7 +14,7 @@ public class PlayerUI : MonoBehaviour
     {
         var player = gameObject.GetComponentInParent<PlayerController>();
         parent = player;
-        if (player.id > 1)
+        if (player.ID > 1)
         {
             isFlipped = true;
             transform.localScale = new Vector3(-transform.localScale.x,-transform.localScale.y,transform.localScale.z);

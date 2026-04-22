@@ -4,10 +4,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using EventSystem;
 using Minigames;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -22,6 +24,7 @@ namespace MinigameFramework
 
         [NonSerialized]
         private float _countdownTime;
+        private float _winUITime;
     
         [Header("Game manager config")]
         [SerializeField]
@@ -34,6 +37,8 @@ namespace MinigameFramework
         public bool IsMinigameSceneActive;
         private bool _isMinigameActive;
         private bool _hasMinigameEnded;
+        [NonSerialized]
+        public bool IsWinUIActive;
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -53,10 +58,14 @@ namespace MinigameFramework
         public GameEvent onDisableCountdownUI;
         public GameEvent onEnableWinUI;
         public GameEvent onDisableWinUI;
-        public GameEvent onUpdateWinUI;
+        public GameEvent onUpdateWinnerUIText;
+        public GameEvent onCleanWinUI;
+        public GameEvent onUpdateWinUIModel;
         public GameEvent onEnableLobbyUI;
         public GameEvent onDisableLobbyUI;
-        
+
+        [SerializeField]
+        private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
         {
             if (Instance == null)
@@ -80,11 +89,26 @@ namespace MinigameFramework
         {
             #region Timers
             Instance._countdownTime -= Time.deltaTime;
+            Instance._winUITime -= Time.deltaTime;
             #endregion
             
             if (IsMinigameSceneActive)
             {
                 CheckCountdownState();
+            }
+
+            if (Instance.IsWinUIActive)
+            {
+                CheckWinUITime();
+            }
+        }
+
+        private void CheckWinUITime()
+        {
+            if(Instance._winUITime <= 0)
+            {
+                ToLobby();
+                Instance.IsWinUIActive = false;
             }
         }
 
@@ -164,6 +188,7 @@ namespace MinigameFramework
     
         private void LoadScene(string sceneName)
         {
+            onCleanWinUI.Raise(this, null);
             onDisableWinUI.Raise(this);
             Instance.PlayerManager.ResetAllPlayerPositions();
             SceneManager.LoadScene(sceneName);
@@ -177,18 +202,53 @@ namespace MinigameFramework
             Time.timeScale = 1f;
         }
 
-        public void OnEndMinigame(Component sender, object[] winnerObj)
+        public void OnEndMinigame(Component sender, object[] winnerObjs)
         {
-            if (winnerObj.First() is not GameObject winner) return;
+            if (winnerObjs == null || winnerObjs.Length == 0) return;
+
+            onDisablePlayerMovement.Raise(this);
             
-            Time.timeScale = 0;
-            string winningPlayer = winner.name;
+            List<string> winnerNames = new List<string>();
+            List<GameObject> winnerModels = new();
+            Color winnerColor = defaultColor;
+            foreach (var obj in winnerObjs)
+            {
+                if (obj is GameObject player)
+                {
+                    int playerID = player.GetComponent<PlayerController>().ID;
+                    string playerName = PlayerManager.PlayerNames[playerID];
+                    GameObject playerModel = player.GetComponentInChildren<PlayerModel>().gameObject;
+
+                    if (player == PlayerManager.Teams.Any(t => t.Players.Contains(player)))
+                    {
+                        winnerColor = defaultColor;
+                    }
+                    else
+                    {
+                        winnerColor = Instance.PlayerManager.PlayerColors[playerID];    
+                    }
+                    
+                    winnerModels.Add(playerModel);
+                    winnerNames.Add(playerName);
+                }
+                else if (obj is string teamName)
+                {
+                    winnerNames.Add(teamName); 
+                }
+            }
+            string winningDisplayString = string.Join(", ", winnerNames);
+            object[] winnerData = { winningDisplayString, winnerColor };
+            
             onEnableWinUI.Raise(this);
-            onUpdateWinUI.Raise(this, winningPlayer);
+            onUpdateWinUIModel.Raise(this, winnerModels);
+            onUpdateWinnerUIText.Raise(this, winnerData);
+            Instance._winUITime = Instance._gameConfig.winScreenLength;
+            Instance.IsWinUIActive = true;
 
             Instance._hasMinigameEnded = true;
             Instance._isMinigameActive = false;
         }
+
 
         public void ResetCalibration(InputAction.CallbackContext context)
         {

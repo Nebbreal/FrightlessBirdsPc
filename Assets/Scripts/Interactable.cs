@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
     public void Break(CollisionData data)
     {
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
-        if (player.id == player_id)
+        if (player.ID == player_id)
         {
             gameObject.GetComponent<MeshCollider>().enabled = false;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
