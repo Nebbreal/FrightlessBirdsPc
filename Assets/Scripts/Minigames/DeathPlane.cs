@@ -1,6 +1,5 @@
-﻿using System;
-using EventSystem;
-using Minigames.FrozenFeathers;
+﻿using EventSystem;
+
 using UnityEngine;
 
 namespace Minigames

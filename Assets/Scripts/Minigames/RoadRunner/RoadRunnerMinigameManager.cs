@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using EventSystem;
-using Minigames;
 using MinigameFramework;
 using System.Collections.Generic;
 using System.Linq;
