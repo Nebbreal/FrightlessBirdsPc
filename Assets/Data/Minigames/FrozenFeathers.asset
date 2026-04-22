@@ -17,7 +17,7 @@ MonoBehaviour:
     m_SceneName: FrozenFeathers
   gameName: FrozenFeathers
   gameDescription: Don't fall off!
-  roundLength: 10
+  roundLength: 40
   maxLives: 1
   respawnTime: 1
   intendedPlayerCounts: 020000000300000004000000
