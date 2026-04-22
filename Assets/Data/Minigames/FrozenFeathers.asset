@@ -15,7 +15,7 @@ MonoBehaviour:
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 8a857b45561c86347a2822ef9db9fe98, type: 3}
     m_SceneName: FrozenFeathers
-  gameName: FrozenFeathers
+  gameName: Frozen Feathers
   gameDescription: Don't fall off!
   roundLength: 40
   maxLives: 1
