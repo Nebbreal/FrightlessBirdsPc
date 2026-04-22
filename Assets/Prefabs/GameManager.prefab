@@ -4311,10 +4311,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
   - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
   playerModels:
-  - {fileID: 3963998781930086071, guid: 62789f69cfd877e478a49fe970abb84d, type: 3}
-  - {fileID: 3963998781930086071, guid: 1fd4d5d16c67d6f45af872f10bf43ba2, type: 3}
+  - {fileID: 5640296361227305022, guid: a585f667215221d44bc783f9c878ebc9, type: 3}
+  - {fileID: 5334743558687489018, guid: 52cc4db1ba31dded8936112b65404237, type: 3}
   - {fileID: 3963998781930086071, guid: 6e5c58368a5a11147afdf4ebab5d5d93, type: 3}
-  - {fileID: 3963998781930086071, guid: e5491ba4e84299f43a84da9a393ced6a, type: 3}
+  - {fileID: 4016176274238889955, guid: a44ae079c8ba00842b422987bc8278c1, type: 3}
   inactivePlayerPoint: {fileID: 2699060145278647577}
   OnEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   OnDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
