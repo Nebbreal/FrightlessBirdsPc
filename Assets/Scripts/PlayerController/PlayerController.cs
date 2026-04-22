@@ -94,8 +94,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        KeepRbAwake();
-        
         if (playerState is PlayerState.InputRestricted)
         {
             _doAttack = false;
@@ -437,6 +435,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        KeepRbAwake();
+        
         rb.AddForce(_moveThisFrame * walkSpeed, ForceMode.Force);
 
         if (_doDash)
