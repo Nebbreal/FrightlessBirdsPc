@@ -14,11 +14,12 @@ namespace MinigameFramework.UIElements
             _winningPlayerText = GetComponent<TMP_Text>();
         }
 
-        public void UpdateWinningPlayer(Component sender, object[] winningPlayerObj)
+        public void UpdateWinningPlayer(Component sender, object[] winnerDataObj)
         {
-            if (winningPlayerObj.First() is string winningPlayer)
+            if (winnerDataObj[0] is string winningPlayers && winnerDataObj[1] is Color winnerColor)
             {
-                _winningPlayerText.text = winningPlayer + " wins!";
+                _winningPlayerText.color = winnerColor;
+                _winningPlayerText.text = winningPlayers;
             }
         }
     }

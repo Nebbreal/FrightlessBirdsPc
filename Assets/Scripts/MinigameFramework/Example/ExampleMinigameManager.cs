@@ -28,29 +28,11 @@ namespace MinigameFramework.Example
             {
                 Rigidbody playerBody = player.GetComponent<Rigidbody>();
                 Transform playerTransform = player.GetComponent<Transform>();
-                switch (player.name)
-                {
-                    case "Player1":
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[0].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[0].transform.position);
-                        break;
-                    case "Player2":
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[1].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[1].transform.position);
-                        break;
-                    case "Player3":
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[2].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[2].transform.position);
-                        break;
-                    case "Player4":
-                        playerBody.linearVelocity = Vector3.zero;
-                        playerTransform.position = initialSpawnPoints[3].transform.position;
-                        playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[3].transform.position);
-                        break;
-                }
+                PlayerController playerController = player.GetComponent<PlayerController>();
+                
+                playerBody.linearVelocity = Vector3.zero;
+                playerTransform.position = initialSpawnPoints[playerController.ID].transform.position;
+                playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[playerController.ID].transform.position);
             }
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);

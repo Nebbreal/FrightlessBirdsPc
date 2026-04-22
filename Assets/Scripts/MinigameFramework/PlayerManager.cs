@@ -33,6 +33,24 @@ namespace MinigameFramework
         [SerializeField]
         private GameObject playerPrefab;
 
+        //Temporary solution until the scriptable object method is implemented
+        [NonSerialized] 
+        public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
+        {
+            { 0, "Blue" },
+            { 1, "Green" },
+            { 2, "Red" },
+            { 3, "Yellow" }
+        };
+        [NonSerialized] 
+        public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
+        {
+            { 0, new Color(0.08113199f, 0.8873519f, 1f)},
+            { 1, new Color(0f, 1f, 0.459039f)},
+            { 2, new Color(1f, 0f, 0f) },
+            { 3, new Color(0.9863279f, 1f, 0f) }
+        };
+        
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
         {
@@ -48,7 +66,7 @@ namespace MinigameFramework
             Players.Add(player.gameObject);
             DontDestroyOnLoad(player.gameObject);
             var playerController = player.GetComponent<PlayerController>();
-            playerController.id = Players.Count - 1;
+            playerController.ID = Players.Count - 1;
 
             player.gameObject.name = "Player" + Players.Count;
             Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
@@ -84,7 +102,7 @@ namespace MinigameFramework
             player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
 
-            OnEnablePlayerUI.Raise(this, player.id);
+            OnEnablePlayerUI.Raise(this, player.ID);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
@@ -105,7 +123,7 @@ namespace MinigameFramework
             player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
 
-            OnDisablePlayerUI.Raise(this, player.id);
+            OnDisablePlayerUI.Raise(this, player.ID);
         }
         #endregion
 
@@ -184,15 +202,16 @@ namespace MinigameFramework
         {
             foreach (GameObject player in unassignedPlayers.ToList())
             {
-                switch (player.name)
+                int playerID = player.GetComponent<PlayerController>().ID;
+                switch (playerID)
                 {
-                    case "Player1":
-                    case "Player4":
+                    case 0:
+                    case 3:
                         Teams[0].Players.Add(player);
                         unassignedPlayers.Remove(player);
                         break;
-                    case "Player2":
-                    case "Player3": 
+                    case 1:
+                    case 2: 
                         Teams[1].Players.Add(player);
                         unassignedPlayers.Remove(player);
                         break;

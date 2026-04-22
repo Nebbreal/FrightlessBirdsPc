@@ -8,5 +8,7 @@ public class GameConfig : MonoBehaviour
     public float roundLength;
     public int playerLives;
     [Tooltip("In seconds")] 
-    public float countdownLength = 5;
+    public float countdownLength = 5f;
+    [Tooltip("In seconds")]
+    public float winScreenLength = 5f;
 }

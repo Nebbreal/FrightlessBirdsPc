@@ -5922,6 +5922,7 @@ GameObject:
   - component: {fileID: 809311008639500745}
   - component: {fileID: 3318753757977760567}
   - component: {fileID: 1377396957945174431}
+  - component: {fileID: 1924860270469549094}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5960,7 +5961,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7632095940213447734}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ff19daa9828b7c442be9c320d468245a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6114,11 +6115,6 @@ MonoBehaviour:
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
-  audioSource: {fileID: 1377396957945174431}
-  dashSound: {fileID: 8300000, guid: 3e20d9e29c915204b81b04fae96d9645, type: 3}
-  attackSound: {fileID: 8300000, guid: 842cd1e1e99c91340a7ccb863c6fc5e7, type: 3}
-  stunSound: {fileID: 8300000, guid: 8a4c43b081409b94a96f698b7edbeb95, type: 3}
-  braceSound: {fileID: 8300000, guid: 93663615deb745c429975011be0d326f, type: 3}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6396,6 +6392,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1924860270469549094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632095940213447734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f56ce97491478d4c8bead47b3ffc5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSoundController
+  playerController: {fileID: 809311008639500745}
+  audioSource: {fileID: 1377396957945174431}
+  dashSound: {fileID: 8300000, guid: 3e20d9e29c915204b81b04fae96d9645, type: 3}
+  attackSound: {fileID: 8300000, guid: 842cd1e1e99c91340a7ccb863c6fc5e7, type: 3}
+  stunSound: {fileID: 8300000, guid: 8a4c43b081409b94a96f698b7edbeb95, type: 3}
+  braceSound: {fileID: 8300000, guid: 93663615deb745c429975011be0d326f, type: 3}
+  minAttackPitch: 0.95
+  maxAttackPitch: 1.05
 --- !u!1 &7724844911593060753
 GameObject:
   m_ObjectHideFlags: 0
