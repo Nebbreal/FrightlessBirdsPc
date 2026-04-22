@@ -20,15 +20,13 @@ namespace Minigames.WorldCoop
         private int scoreTeam2 = 0;
 
         public GameEvent onEndMinigame;
-
-        [SerializeField] private GameObject deathPoint;
         
         [SerializeField] private List<GameObject> initialSpawnPoints;
         [SerializeField] private GameEvent onSetAllPlayerLives;
 
         [SerializeField] private int scoreToWin = 3;
         [SerializeField] private GameObject ballObject;
-        [SerializeField] private Vector3 ballInitialSpawn;
+        [SerializeField] private Vector3 initialBallSpawn;
 
         [Header("Scoreboard Visuals")]
         [SerializeField] private List<MeshRenderer> team1ScoreBalls; 
@@ -139,36 +137,6 @@ namespace Minigames.WorldCoop
             if (scoreTeam1 >= scoreToWin || scoreTeam2 >= scoreToWin)
             {
                 OnWin();
-            }
-        }
-
-        public void EliminatePlayer(Component sender, object[] entities)
-        {
-            if (entities.First() is GameObject entity)
-            {
-                if (!_players.Contains(entity)) return;
-
-                _playerManager.DeductLife(entity);
-
-                if (_playerManager.PlayerLives[entity.name] > 0)
-                {
-                    GameObject playerObject = entity;
-                    PlayerController player = entity.GetComponent<PlayerController>();
-                    Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
-                    playerRigidbody.linearVelocity = Vector3.zero;
-
-                    playerObject.transform.position = initialSpawnPoints[player.id].transform.position;
-                }
-                else
-                {
-                    entity.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-                    entity.transform.position = deathPoint.transform.position;
-                }
-
-                if (scoreTeam1 >= scoreToWin || scoreTeam2 >= scoreToWin)
-                {
-                    OnWin();
-                }
             }
         }
 
