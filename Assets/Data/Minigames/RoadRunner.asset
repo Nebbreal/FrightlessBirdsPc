@@ -16,7 +16,7 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: 8ec113458aff1854bb2cb1c240aecc0e, type: 3}
     m_SceneName: RoadRunner
   gameName: Road Runner
-  gameDescription: Cross to the other side while avoiding traffic
+  gameDescription: Keep crossing the road!
   roundLength: 60
   maxLives: 20
   respawnTime: 1
