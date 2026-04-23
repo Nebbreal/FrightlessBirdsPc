@@ -14,12 +14,8 @@ public class Interactable : MonoBehaviour
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
         if (player.ID == player_id)
         {
-            BoxCollider[] colliders = gameObject.GetComponents<BoxCollider>();
-            foreach (BoxCollider boxCollider in colliders)
-            {
-                boxCollider.enabled = false;
-            }
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            SetCollidersState(false);
+
         }
     }
 
@@ -36,11 +32,21 @@ public class Interactable : MonoBehaviour
 
     public void Reset()
     {
+        SetCollidersState(true);
+    }
+    
+    private void SetCollidersState(bool isEnabled)
+    {
         BoxCollider[] colliders = gameObject.GetComponents<BoxCollider>();
         foreach (BoxCollider boxCollider in colliders)
         {
-            boxCollider.enabled = true;
+            boxCollider.enabled = isEnabled;
         }
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            meshRenderer.enabled = isEnabled;
+        }
     }
 }
