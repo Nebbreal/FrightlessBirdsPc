@@ -1701,10 +1701,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1640092416075011180, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_margin.x
-      value: -399.22968
-      objectReference: {fileID: 0}
     - target: {fileID: 1690358537828402848, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'BlinkForCalibrations.Array.data[0]'
       value: 
@@ -1721,18 +1717,6 @@ PrefabInstance:
       propertyPath: 'BlinkForCalibrations.Array.data[3]'
       value: 
       objectReference: {fileID: 1438193729}
-    - target: {fileID: 2807416585383769094, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807416585383769094, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807416585383769094, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
     - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: minigames.Array.size
       value: 3
@@ -1749,38 +1733,6 @@ PrefabInstance:
       propertyPath: 'minigames.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
-    - target: {fileID: 2897854360540782133, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897854360540782133, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897854360540782133, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897854360540782133, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -800
-      objectReference: {fileID: 0}
-    - target: {fileID: 3497002996675575136, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_margin.x
-      value: -395.85428
-      objectReference: {fileID: 0}
-    - target: {fileID: 5935879073079206636, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5935879073079206636, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5935879073079206636, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1833,54 +1785,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6922267519937116216, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6922267519937116216, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6922267519937116216, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878619490405009897, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878619490405009897, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878619490405009897, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'playerModels.Array.data[0]'
-      value: 
-      objectReference: {fileID: 3582455526357074162, guid: 6ac4d616eb3979910a2a86cca93e5ee1, type: 3}
     - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'playerModels.Array.data[1]'
       value: 
-      objectReference: {fileID: 5640296361227305022, guid: a585f667215221d44bc783f9c878ebc9, type: 3}
-    - target: {fileID: 8611998926496973844, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611998926496973844, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611998926496973844, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8611998926496973844, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5334743558687489018, guid: 52cc4db1ba31dded8936112b65404237, type: 3}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'playerModels.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3582455526357074162, guid: 6ac4d616eb3979910a2a86cca93e5ee1, type: 3}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
