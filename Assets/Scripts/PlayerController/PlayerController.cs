@@ -123,7 +123,15 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
         }
     }
-    
+
+    private void KeepRbAwake()
+    {
+        if (rb.IsSleeping())
+        {
+            rb.WakeUp();
+        }
+    }
+
     public void Join(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -435,6 +443,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        KeepRbAwake();
+        
         rb.AddForce(_moveThisFrame * walkSpeed, ForceMode.Force);
 
         if (_doDash)
