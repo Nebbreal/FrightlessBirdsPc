@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
     
     public void SetPlayerState(PlayerState newState)
     {
-        ExitState(playerState);
+        ExitState(playerState, newState);
         switch (newState)
         {
             case PlayerState.Dash:
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
         playerState = newState;
     }
 
-    private void ExitState(PlayerState current)
+    private void ExitState(PlayerState current, PlayerState newState)
     {
         attackHitbox.gameObject.SetActive(false);
         dashHitbox.gameObject.SetActive(false);
@@ -199,7 +199,10 @@ public class PlayerController : MonoBehaviour
         switch (current)
         {
             case PlayerState.Movement:
-                animator.SetBool("IsWalking", false);
+                if (newState != PlayerState.Dash)
+                {
+                    animator.SetBool("IsWalking", false);
+                }
                 break;
             case PlayerState.Dash:
                 _dashCooldown = dashDelay;
