@@ -205,6 +205,11 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case PlayerState.Dash:
+                if (newState != PlayerState.Movement)
+                {
+                    animator.SetBool("IsWalking", false);
+                }
+                
                 _dashCooldown = dashDelay;
                 _dashTime = dashDuration;
                 _dashCollided.Clear();
