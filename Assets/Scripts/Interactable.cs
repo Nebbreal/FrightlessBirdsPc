@@ -15,7 +15,6 @@ public class Interactable : MonoBehaviour
         if (player.ID == player_id)
         {
             SetCollidersState(false);
-
         }
     }
 
