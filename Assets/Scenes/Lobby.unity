@@ -2094,7 +2094,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  knockbackStrength: 0.25
+  knockbackStrength: 1.5
   upStrength: 0.25
   player_id: -1
 --- !u!1001 &766093878
