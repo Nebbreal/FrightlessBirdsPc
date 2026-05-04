@@ -152,16 +152,17 @@ namespace MinigameFramework
             onStartMusic.Raise(this);
         }
 
-        private void InitTeams()
-        {
-            
-        }
-
         public void ToLobby()
         {
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
+            foreach (Rigidbody playerRb in PlayerManager.PlayerRigidbodies)
+            {
+                playerRb.useGravity = true;
+                playerRb.linearDamping = 1f;
+                playerRb.linearVelocity = Vector3.zero;
+            }
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = true;

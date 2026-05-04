@@ -5554,6 +5554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
       value: 
