@@ -293,8 +293,16 @@ namespace MinigameFramework
                 controller.SetPlayerState(PlayerState.InputRestricted);
             }
         }
-        
 
+        public void ResetAllPlayersGravity()
+        {
+            foreach (Rigidbody playerRb in PlayerRigidbodies)
+            {
+                playerRb.useGravity = true;
+                playerRb.linearDamping = 1f;
+                playerRb.linearVelocity = Vector3.zero;
+            }
+        }
         #endregion
         
         #region PlayerLives

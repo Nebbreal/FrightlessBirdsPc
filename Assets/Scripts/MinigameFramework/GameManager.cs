@@ -146,6 +146,7 @@ namespace MinigameFramework
             Instance._countdownTime = Instance._gameConfig.countdownLength;
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
+            PlayerManager.ResetAllPlayersGravity();
             Instance.IsMinigameSceneActive = true;
             onDisableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = false;
@@ -157,12 +158,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
-            foreach (Rigidbody playerRb in PlayerManager.PlayerRigidbodies)
-            {
-                playerRb.useGravity = true;
-                playerRb.linearDamping = 1f;
-                playerRb.linearVelocity = Vector3.zero;
-            }
+            PlayerManager.ResetAllPlayersGravity();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = true;
