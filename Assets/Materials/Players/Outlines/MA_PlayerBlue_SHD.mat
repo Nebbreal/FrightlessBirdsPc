@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerGreen
+  m_Name: MA_PlayerBlue_SHD
   m_Shader: {fileID: -6465566751694194690, guid: d4b897f62a5c5d445ac587c24bfd6263, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -96,9 +96,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Edge_width: 0.01
+    - _Edge_width: 0.1
     - _EnvironmentReflections: 1
-    - _Fresnel_power: 10
+    - _Fresnel_power: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -115,15 +115,17 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _TangentStrength: 0
     - _WorkflowMode: 0
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.254902, g: 0.88235295, b: 0.40944555, a: 1}
-    - _Color: {r: 0.25490198, g: 0.88235295, b: 0.40944552, a: 1}
+    - _BaseColor: {r: 0.254902, g: 0.40407252, b: 0.88235295, a: 1}
+    - _Color: {r: 0.25490198, g: 0.4040725, b: 0.88235295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel_color: {r: 0.1533742, g: 1, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 1, b: 0.04590392, a: 1}
+    - _Fresnel_color: {r: 0, g: 1, b: 0.7730062, a: 1}
+    - _LightPos: {r: 10, g: 30, b: 0, a: 0}
+    - _OutlineColor: {r: 0.081131995, g: 0.887352, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
