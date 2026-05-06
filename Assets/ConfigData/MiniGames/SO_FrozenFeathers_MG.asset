@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 8a857b45561c86347a2822ef9db9fe98, type: 3}
-    m_SceneName: FrozenFeathers
+    m_SceneName: SC_FrozenFeathers_MG
   gameName: Frozen Feathers
   gameDescription: Don't fall off!
   roundLength: 40

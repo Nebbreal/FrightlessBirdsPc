@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 24ce65f2df34b064fae1201f9b3da5e4, type: 3}
-    m_SceneName: WorldCoop
+    m_SceneName: SC_WorldCoop_MG
   gameName: World Coop
   gameDescription: Score against the others!
   roundLength: 120
