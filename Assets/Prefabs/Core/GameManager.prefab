@@ -4302,7 +4302,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3097480787841658643}
         m_TargetAssemblyTypeName: SetUIDescriptors, Assembly-CSharp
-        m_MethodName: SetDescriptorUI
+        m_MethodName: SetDescriptionUI
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -3,12 +3,12 @@ using Minigames;
 using TMPro;
 using UnityEngine;
 
-public class SetUIDescriptors : MonoBehaviour
+public class SetUIDescriptions : MonoBehaviour
 {
     public TextMeshProUGUI[] titles;
     public TextMeshProUGUI[] descriptions;
 
-    public void SetDescriptorUI(Component sender, object[] obj)
+    public void SetDescriptionUI(Component sender, object[] obj)
     {
         Minigame config = GameManager.Instance.CurrentMinigame;
 

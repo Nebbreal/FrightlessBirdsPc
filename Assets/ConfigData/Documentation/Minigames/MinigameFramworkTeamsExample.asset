@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MinigameFramworkTeamsExample
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
-    m_SceneAsset: {fileID: 102900000, guid: 9dc25bf6ccecdc646bf9956de4b474bd, type: 3}
-    m_SceneName: TeamsMinigameExample
+    m_SceneAsset: {fileID: 102900000, guid: 311ecb3c560939346b877e31b87b5b7f, type: 3}
+    m_SceneName: MinigameFrameworkExampleMinigame
   gameName: Team mingiame example
   gameDescription: 2 teams
   roundLength: 0

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ControllerCalibration.unity
+    path: Assets/Scenes/initialization.unity
     guid: f5ee11741e3d860438aa572906e6b5a0
   - enabled: 1
     path: Assets/Scenes/Minigames/FrozenFeathers.unity
