@@ -12,6 +12,7 @@ namespace MinigameFramework
     public class PlayerManager : MonoBehaviour
     {
         [NonSerialized] public List<GameObject> Players;
+        [NonSerialized] public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
         [NonSerialized] public List<GameObject> ActivePlayers;
         [NonSerialized] public List<GameObject> DebugPlayers;
         public List<Team> Teams;
@@ -62,15 +63,15 @@ namespace MinigameFramework
                 ActivePlayers = new List<GameObject>();
                 DebugPlayers = new List<GameObject>();
             }
-
-            Players.Add(player.gameObject);
-            DontDestroyOnLoad(player.gameObject);
+            GameObject playerObj = player.gameObject;
+            Players.Add(playerObj);
+            PlayerRigidbodies.Add(playerObj.GetComponent<Rigidbody>());
+            DontDestroyOnLoad(playerObj);
             var playerController = player.GetComponent<PlayerController>();
             playerController.ID = Players.Count - 1;
 
             player.gameObject.name = "Player" + Players.Count;
             Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
-            // model.GetComponentInChildren<SkinnedMeshRenderer>().materials[1] = playerMaterials[Players.Count - 1];
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
@@ -292,8 +293,16 @@ namespace MinigameFramework
                 controller.SetPlayerState(PlayerState.InputRestricted);
             }
         }
-        
 
+        public void ResetAllPlayersGravity()
+        {
+            foreach (Rigidbody playerRb in PlayerRigidbodies)
+            {
+                playerRb.useGravity = true;
+                playerRb.linearDamping = 1f;
+                playerRb.linearVelocity = Vector3.zero;
+            }
+        }
         #endregion
         
         #region PlayerLives

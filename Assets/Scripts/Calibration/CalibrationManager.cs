@@ -24,7 +24,7 @@ public class CalibrationManager : MonoBehaviour
         {
             return false;
         }
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("SC_Lobby_CO");
         return true;
     }
 
