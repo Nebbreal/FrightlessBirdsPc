@@ -5,26 +5,20 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Main.unity
-    guid: 6fcd1d1c3ebf141c5b6f69b18c00a1bd
   - enabled: 1
-    path: Assets/Scenes/Feature/ControllerManager.unity
+    path: Assets/Scenes/Core/SC_initialization_CO.unity
     guid: f5ee11741e3d860438aa572906e6b5a0
   - enabled: 1
-    path: Assets/Scenes/Minigames/FrozenFeathers.unity
+    path: Assets/Scenes/Minigames/SC_FrozenFeathers_MG.unity
     guid: 8a857b45561c86347a2822ef9db9fe98
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
+    path: Assets/Scenes/Core/SC_Lobby_CO.unity
     guid: 5984e344666c36f439f39c3fc52f9999
   - enabled: 1
-    path: Assets/Scenes/Minigames/WorldCoop.unity
+    path: Assets/Scenes/Minigames/SC_WorldCoop_MG.unity
     guid: 24ce65f2df34b064fae1201f9b3da5e4
   - enabled: 1
-    path: Assets/Scenes/Minigames/RoadRunner.unity
+    path: Assets/Scenes/Minigames/SC_RoadRunner_MG.unity
     guid: 8ec113458aff1854bb2cb1c240aecc0e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

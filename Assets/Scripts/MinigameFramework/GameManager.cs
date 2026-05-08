@@ -146,15 +146,11 @@ namespace MinigameFramework
             Instance._countdownTime = Instance._gameConfig.countdownLength;
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
+            PlayerManager.ResetAllPlayersGravity();
             Instance.IsMinigameSceneActive = true;
             onDisableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = false;
             onStartMusic.Raise(this);
-        }
-
-        private void InitTeams()
-        {
-            
         }
 
         public void ToLobby()
@@ -162,6 +158,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
+            PlayerManager.ResetAllPlayersGravity();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = true;
