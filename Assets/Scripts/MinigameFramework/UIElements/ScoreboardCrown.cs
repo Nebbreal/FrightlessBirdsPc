@@ -12,20 +12,27 @@ namespace MinigameFramework.UIElements
         private Quaternion _targetRotation;
         public float animationDuration;
         private float _animationTime = 0f;
+        public float offsetStrength;
         public GameEvent updateText;
 
         private void Awake(){
             _startPosition = transform.position;
             _startRotation = transform.rotation;
-            _targetRotation = Quaternion.LookRotation(target.transform.position, Vector3.forward);
+            Debug.Log(target.name + ": " + target.transform.localPosition);
+            _targetRotation = Quaternion.LookRotation(Vector3.forward, -(target.transform.localPosition).normalized);
         }
         private void Update(){
+            if (_animationTime >= animationDuration)
+            {
+                return;
+            }
             _animationTime += Time.deltaTime;
             float t = _animationTime / animationDuration;
             float easedT = easeInOutBack(t);
 
-            transform.position = Vector3.Slerp(_startPosition, target.transform.position, easedT);
-            transform.rotation = Quaternion.Slerp(_startRotation, _targetRotation, t);
+            Vector3 offset = target.transform.localPosition.normalized * offsetStrength;
+            transform.position = Vector3.Slerp(_startPosition, target.transform.position - offset, easedT);
+            transform.rotation = Quaternion.Lerp(_startRotation, _targetRotation, easeOutExpo(t));
 
             if (t >= 1f)
             {
@@ -45,6 +52,11 @@ namespace MinigameFramework.UIElements
             return x < 0.5
             ? (Mathf.Pow(2f * x, 2f) * ((c2 + 1) * 2f * x - c2)) / 2f
             : (Mathf.Pow(2f * x - 2f, 2f) * ((c2 + 1f) * (x * 2f - 2f) + c2) + 2f) / 2f;
+        }
+
+        private float easeOutExpo(float x)
+        {
+            return x >= 1f ? 1f : 1f - Mathf.Pow(2f, -10f * x);
         }
     }
 }

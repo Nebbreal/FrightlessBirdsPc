@@ -510,6 +510,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 92642931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &269005880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3573591660342560372, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &269005882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 644341565919600145, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269005880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ec92469f30724498f91476e13220b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.ScoreboardPlayerScoreText
+--- !u!114 &269005885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269005880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 331a1f5377a271946aa52a2ca2bb98d9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 269005882}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.ScoreboardPlayerScoreText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayerScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &301991528
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +937,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660183415}
   m_CullTransparentMesh: 1
+--- !u!1 &767737603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6112654219800858390, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &767737605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1239583427213004836, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767737603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ec92469f30724498f91476e13220b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.ScoreboardPlayerScoreText
+--- !u!114 &767737608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767737603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 331a1f5377a271946aa52a2ca2bb98d9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 767737605}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.ScoreboardPlayerScoreText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayerScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &947491105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1121,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004497263}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1038884041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 146666656586875434, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038884043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3783432833462440552, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038884041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ec92469f30724498f91476e13220b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.ScoreboardPlayerScoreText
+--- !u!114 &1038884046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038884041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 331a1f5377a271946aa52a2ca2bb98d9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1038884043}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.ScoreboardPlayerScoreText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayerScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1130249662 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1690358537828402848, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
@@ -1591,6 +1726,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594761367}
   m_CullTransparentMesh: 1
+--- !u!1 &1638154506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7667056086394416819, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1655030256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7275400505664998790, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1655030258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6121449195062319152, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 2029119136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655030256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ec92469f30724498f91476e13220b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.UIElements.ScoreboardPlayerScoreText
+--- !u!114 &1655030261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655030256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 331a1f5377a271946aa52a2ca2bb98d9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1655030258}
+        m_TargetAssemblyTypeName: MinigameFramework.UIElements.ScoreboardPlayerScoreText,
+          Assembly-CSharp
+        m_MethodName: UpdateWinningPlayerScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1946589912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1886,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: elements
+      value: 
+      objectReference: {fileID: 1638154506}
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: PlayerScoreTexts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'PlayerScoreTexts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 767737603}
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'PlayerScoreTexts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1038884041}
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'PlayerScoreTexts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 269005880}
+    - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'PlayerScoreTexts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1655030256}
     - target: {fileID: 1690358537828402848, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'BlinkForCalibrations.Array.data[0]'
       value: 
@@ -1718,25 +1927,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1438193729}
     - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: minigames.Array.size
-      value: 3
+      propertyPath: onEnableScoreboardUI
+      value: 
+      objectReference: {fileID: 11400000, guid: 602938e8aa9b36a4fb6448599e75757d, type: 2}
+    - target: {fileID: 4700671285054389264, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: lobbyScene.m_SceneName
-      value: SC_Lobby_CO
+    - target: {fileID: 5305457046575087748, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1777,6 +1978,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7165343302966317892, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165343302966317892, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165343302966317892, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165343302966317892, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667056086394416819, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1784,7 +2005,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6112654219800858390, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 767737608}
+    - targetCorrespondingSourceObject: {fileID: 146666656586875434, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1038884046}
+    - targetCorrespondingSourceObject: {fileID: 3573591660342560372, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 269005885}
+    - targetCorrespondingSourceObject: {fileID: 7275400505664998790, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1655030261}
   m_SourcePrefab: {fileID: 100100000, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

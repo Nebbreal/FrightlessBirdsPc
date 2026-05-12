@@ -10,6 +10,8 @@ namespace MinigameFramework.UIElements
     {
         private TMP_Text _scoreboardPlayerScoreText;
         public int id;
+        public float animationDuration;
+        private float _animationTime = 1f;
 
         public void Awake()
         {
@@ -19,22 +21,48 @@ namespace MinigameFramework.UIElements
             {
                 _scoreboardPlayerScoreText.text = " ";
             }
-            else
+        }
+
+        public void Update()
+        {
+            if (_animationTime <= 0.5f && _animationTime + Time.deltaTime > 0.5)
             {
-                String pname = GameManager.Instance.PlayerManager.Players[id].name;
-                _scoreboardPlayerScoreText.text = scm.PlayerScores[pname].ToString();
+                ScoreboardManager scm = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
+                _scoreboardPlayerScoreText.text = scm.PlayerScores[id].ToString();
             }
+            _animationTime += Time.deltaTime;
+            float t = _animationTime / animationDuration;
+
+            // _scoreboardPlayerScoreText.fontSize = ease(t) * 128f;
+            transform.localScale = new Vector3(ease(t), ease(t), 1f);
+            // transform.lossyScale.Set(ease(t), ease(t), ease(t));
         }
 
         public void UpdateWinningPlayerScore(Component sender, object[] _obj)
         {
-            if (_scoreboardPlayerScoreText.text == " ")
+            ScoreboardManager scm = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
+            if (_scoreboardPlayerScoreText.text == " " || _scoreboardPlayerScoreText.text == scm.PlayerScores[id].ToString())
             {
                 return;
             }
-            ScoreboardManager scm = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
-            String pname = GameManager.Instance.PlayerManager.PlayerNames[id];
-            _scoreboardPlayerScoreText.text = scm.PlayerScores[pname].ToString();
+
+            _animationTime = 0f;
+        }
+
+        private float ease(float x)
+        {
+            x = (MathF.Min(x, 1f) - 0.5f) * 2f;
+            if (x < 0)
+            {
+                return -x;
+            }
+
+            return easeOutCubic(x);
+        }
+
+        private float easeOutCubic(float x)
+        {
+            return 1f - MathF.Pow(1f - x, 3f);
         }
     }
 }

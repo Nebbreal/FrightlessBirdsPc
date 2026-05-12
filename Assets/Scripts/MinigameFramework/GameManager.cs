@@ -59,6 +59,7 @@ namespace MinigameFramework
         public GameEvent onUpdateWinUIModel;
         public GameEvent onEnableLobbyUI;
         public GameEvent onDisableLobbyUI;
+        public GameEvent onEnableScoreboardUI;
 
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -103,7 +104,9 @@ namespace MinigameFramework
         {
             if(Instance._winUITime <= 0)
             {
-                ToLobby();
+                onDisableWinUI.Raise(this);
+                onEnableScoreboardUI.Raise(this);
+                // ToLobby();
                 Instance.IsWinUIActive = false;
             }
         }
@@ -182,7 +185,6 @@ namespace MinigameFramework
         private void LoadScene(string sceneName)
         {
             onCleanWinUI.Raise(this, null);
-            onDisableWinUI.Raise(this);
             Instance.PlayerManager.ResetAllPlayerPositions();
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1f;
