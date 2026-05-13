@@ -15,11 +15,13 @@ namespace MinigameFramework.UIElements
         public float offsetStrength;
         public GameEvent updateText;
 
-        private void Awake(){
+        private void OnEnable()
+        {
+            transform.localPosition = new Vector3(0f, MathF.Sign(target.transform.localPosition.y)*300f, 0f);
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.localPosition.normalized);
             _startPosition = transform.position;
             _startRotation = transform.rotation;
-            Debug.Log(target.name + ": " + target.transform.localPosition);
-            _targetRotation = Quaternion.LookRotation(Vector3.forward, -(target.transform.localPosition).normalized);
+            _targetRotation = Quaternion.LookRotation(Vector3.forward, -target.transform.localPosition.normalized);
         }
         private void Update(){
             if (_animationTime >= animationDuration)

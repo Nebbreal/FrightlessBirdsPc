@@ -13,9 +13,16 @@ public class ScoreboardManager : MonoBehaviour
 {
     [NonSerialized] public List<int> PlayerScores = new();
     public List<GameObject> PlayerScoreTexts = new();
+
     public GameObject elements;
     public GameObject crownUI;
     public float outwardDistance;
+    private object[] winners;
+    private bool isActive;
+
+    //Event
+    public GameEvent onUpdateWinUIText;
+    public GameEvent onWinGame;
 
     private List<GameObject> _instantiatedCrowns = new List<GameObject>();
 
@@ -73,19 +80,58 @@ public class ScoreboardManager : MonoBehaviour
 
     public void OnCleanScoreboardUI(Component sender, object[] data)
     {
+        if (!isActive)
+        {
+            return;
+        }
+        isActive = false;
+        
         foreach (GameObject crown in _instantiatedCrowns)
         {
             Destroy(crown);
         }
         _instantiatedCrowns.Clear();
+
+        List<GameObject> winningPlayers = new();
+        foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers)
+        {
+            PlayerController p = player.GetComponent<PlayerController>();
+            if (PlayerScores[p.ID] >= 3)
+            {
+                winningPlayers.Add(player);
+            }
+        }
+
+        if (winningPlayers.Count > 0)
+        {
+            onWinGame.Raise(this, winningPlayers);
+        }
         GameManager.Instance.ToLobby();
     }
 
-    public void OnUpdateScoreboard(Component sender, object[] modelsObj)
+    public void OnShowCrowns(Component sender, object[] modelsObj)
     {
         foreach (GameObject crown in _instantiatedCrowns)
         {
             crown.SetActive(true);
         }
+    }
+
+    public void onUpdateWinnerUIText(Component sender, object[] winnerDataObj)
+    {
+        if (winnerDataObj[0] is string winningPlayers && winnerDataObj[1] is Color winnerColor)
+        {
+            winners = winnerDataObj;
+        }
+    }
+
+    public void ReCallUpdateWinner()
+    {
+        onUpdateWinUIText.Raise(this, winners);
+    }
+
+    public void SetIsActive(bool active)
+    {
+        isActive = active;
     }
 }

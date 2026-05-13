@@ -104,6 +104,7 @@ namespace MinigameFramework
         {
             if(Instance._winUITime <= 0)
             {
+                onCleanWinUI.Raise(this, null);
                 onDisableWinUI.Raise(this);
                 onEnableScoreboardUI.Raise(this);
                 // ToLobby();
