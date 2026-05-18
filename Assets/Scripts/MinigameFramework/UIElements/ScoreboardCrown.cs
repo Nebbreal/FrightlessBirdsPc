@@ -43,6 +43,7 @@ namespace MinigameFramework.UIElements
         }
 
         private float easeInOutBack(float x) {
+            // Easing function values from Easings.net
             float c1 = 1.70158f;
             float c2 = c1 * 1.525f;
 
