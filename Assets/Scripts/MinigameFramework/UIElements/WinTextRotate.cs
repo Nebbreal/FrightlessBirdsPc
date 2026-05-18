@@ -3,7 +3,7 @@ using UnityEngine;
 public class WinTextRotate : MonoBehaviour
 {
     public float animationDuration;
-    private float _animationTime = 1f;
+    private float _animationTime = 0f;
 
     void Update()
     {
