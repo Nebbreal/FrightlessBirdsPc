@@ -5,7 +5,7 @@ public class WinTextRotate : MonoBehaviour
     public float animationDuration;
     private float _animationTime = 0f;
 
-    void Update()
+    private void Update()
     {
         _animationTime += Time.deltaTime;
         if (_animationTime >= animationDuration)
@@ -17,7 +17,7 @@ public class WinTextRotate : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(180f * ease(t), Vector3.forward);
     }
 
-    float ease(float t)
+    private float ease(float t)
     {
         if (Mathf.Abs(t) < 0.5)
         {
