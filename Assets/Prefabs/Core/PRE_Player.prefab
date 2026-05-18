@@ -6290,6 +6290,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e0de0401-c131-42e7-9b85-33ad64d775b1
     m_ActionName: 'Calibration/SpawnDebugPlayers[/Keyboard/backslash]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+        m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
+        m_MethodName: SpeedUpWinUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 997fbbd4-4826-4274-989d-948e6c640166
+    m_ActionName: 'Player/Any[/Keyboard/v,/Keyboard/c,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Calibration

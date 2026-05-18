@@ -49,6 +49,11 @@ namespace MinigameFramework.UIElements
             _animationTime = 0f;
         }
 
+        private float ease_cos(float x)
+        {
+            return MathF.Pow((0.5f * MathF.Cos(x * 2f * MathF.PI)) / 16f, 0.2f) + 0.5f;
+        }
+
         private float ease(float x)
         {
             x = (MathF.Min(x, 1f) - 0.5f) * 2f;
