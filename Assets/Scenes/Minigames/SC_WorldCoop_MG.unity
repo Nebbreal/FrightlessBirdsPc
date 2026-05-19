@@ -469,103 +469,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b013b5a868b0d45ada5c16cb5701ce, type: 3}
---- !u!1001 &24021728
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1898598751}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_CastShadows
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 4c65cf7477d7e3a44a15d7799beff895, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 4c65cf7477d7e3a44a15d7799beff895, type: 2}
-    - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_Name
-      value: footballShadow
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
 --- !u!4 &42103292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 68b013b5a868b0d45ada5c16cb5701ce, type: 3}
@@ -1542,6 +1445,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_Name
       value: football (5)
@@ -3587,6 +3498,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: -3846018093981099296, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
@@ -4009,10 +3928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1084857519}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       insertIndex: -1
@@ -4931,11 +4847,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb28c71c1e5fc842a3ca8f5e9a1e4e4, type: 3}
---- !u!4 &1084857519 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-  m_PrefabInstance: {fileID: 24021728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1116435544
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,6 +5896,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_Name
       value: football (2)
@@ -6705,6 +6624,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_Name
       value: football (6)
@@ -7862,9 +7789,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_Name
       value: football (4)
@@ -8040,11 +7979,6 @@ MonoBehaviour:
   knockbackStrength: 3
   upStrength: 0.1
   player_id: -1
---- !u!4 &1898598751 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
-  m_PrefabInstance: {fileID: 769852057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1900720269
 GameObject:
   m_ObjectHideFlags: 0
@@ -8718,6 +8652,14 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0767c8580b11e8d44a48d09e493af57b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e71e209f5139f9445846376f27fa71c5, type: 2}
     - target: {fileID: 919132149155446097, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}
       propertyPath: m_Name
       value: football (3)

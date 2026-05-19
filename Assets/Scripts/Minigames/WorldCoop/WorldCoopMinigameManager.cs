@@ -19,6 +19,8 @@ namespace Minigames.WorldCoop
         private int _scoreTeam1 = 0;
         private int _scoreTeam2 = 0;
 
+        private float timer = 12f;
+
         public GameEvent onEndMinigame;
         
         [SerializeField] private List<GameObject> initialSpawnPoints;
@@ -55,6 +57,8 @@ namespace Minigames.WorldCoop
                 // player.AddComponent();
             }
             
+            timer = _gameConfig.roundLength;
+
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
 
             InitializeScoreboardBalls(team1ScoreBalls);
@@ -135,15 +139,25 @@ namespace Minigames.WorldCoop
             }
         }
 
+        public void Update()
+        {
+            timer -= Time.deltaTime;
+
+            if (timer < 0f && !GameManager.Instance._hasMinigameEnded)
+            {
+                OnWin();
+            }
+        }
+
         private void OnWin()
         {
-            if (_scoreTeam1 >= scoreToWin)
+            if (_scoreTeam1 > _scoreTeam2)
             {
                 GameObject[] team1Players = _playerManager.Teams[0].Players.ToArray();
                 object[] data = team1Players.Cast<object>().ToArray();
                 onEndMinigame.Raise(this, data);
             }
-            else if (_scoreTeam2 >= scoreToWin)
+            else if (_scoreTeam2 > _scoreTeam1)
             {
                 GameObject[] team2Players = _playerManager.Teams[1].Players.ToArray();
                 object[] data = team2Players.Cast<object>().ToArray();
