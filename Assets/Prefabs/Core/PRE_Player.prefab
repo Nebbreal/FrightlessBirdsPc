@@ -6090,7 +6090,7 @@ MonoBehaviour:
   maxSpeedClampFactor: 0.8
   animator: {fileID: 0}
   dashSpeed: 30
-  dashDelay: 1
+  dashDelay: 0.8
   dashDuration: 1
   dashEarlyEndSpeed: 10
   dashHitRange: 0.8
@@ -6109,7 +6109,7 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  bracedDelay: 1
+  bracedDelay: 0.5
   bracedReturnKnockbackSpeed: 20
   bracedReturnStunDuration: 0.3
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
