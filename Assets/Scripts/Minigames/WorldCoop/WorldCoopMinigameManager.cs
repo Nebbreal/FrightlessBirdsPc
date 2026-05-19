@@ -16,8 +16,9 @@ namespace Minigames.WorldCoop
         private PlayerManager _playerManager;
         private List<GameObject> _players;
 
-        private int _scoreTeam1 = 0;
-        private int _scoreTeam2 = 0;
+        private int scoreTeam1 = 0;
+        private int scoreTeam2 = 0;
+        private bool overtimeActive = false;
 
         private float timer = 12f;
 
@@ -82,15 +83,21 @@ namespace Minigames.WorldCoop
         {
             if (data == null || data.Length == 0 || data[0] is not int scoringTeam) return;
 
-            if (scoringTeam == 1 && _scoreTeam1 < team1ScoreBalls.Count)
+            if (overtimeActive)
             {
-                StartCoroutine(FadeInBall(team1ScoreBalls[_scoreTeam1]));
-                _scoreTeam1++;
+                OnWin(scoringTeam);
+                return;
+            }
+
+            if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
+            {
+                StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
+                scoreTeam1++;
             } 
-            else if (scoringTeam == 2 && _scoreTeam2 < team2ScoreBalls.Count)
+            else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
             {
-                StartCoroutine(FadeInBall(team2ScoreBalls[_scoreTeam2]));
-                _scoreTeam2++;
+                StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
+                scoreTeam2++;
             }
             ResetRound();
         }
@@ -133,31 +140,52 @@ namespace Minigames.WorldCoop
                 playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
             }
 
-            if (_scoreTeam1 >= scoreToWin || _scoreTeam2 >= scoreToWin)
+            if (scoreTeam1 >= scoreToWin || scoreTeam2 >= scoreToWin)
             {
-                OnWin();
+                if (scoreTeam1 > scoreTeam2)
+                {
+                    OnWin(1);
+                }
+                else if (scoreTeam2 > scoreTeam1)
+                {
+                    OnWin(2);
+                }
             }
         }
 
         public void Update()
         {
+            if (GameManager.Instance._hasMinigameEnded || overtimeActive)
+            {
+                return;
+            }
+
+
             timer -= Time.deltaTime;
 
             if (timer < 0f && !GameManager.Instance._hasMinigameEnded)
             {
-                OnWin();
+                if (scoreTeam1 == scoreTeam2)
+                {
+                    overtimeActive = true;
+                    ResetRound();
+                }
+                else
+                {
+                    OnWin(scoreTeam1 > scoreTeam2 ? 1 : 2);
+                }
             }
         }
 
-        private void OnWin()
+        private void OnWin(int winningTeam)
         {
-            if (_scoreTeam1 > _scoreTeam2)
+            if (winningTeam == 1)
             {
                 GameObject[] team1Players = _playerManager.Teams[0].Players.ToArray();
                 object[] data = team1Players.Cast<object>().ToArray();
                 onEndMinigame.Raise(this, data);
             }
-            else if (_scoreTeam2 > _scoreTeam1)
+            else if (winningTeam == 2)
             {
                 GameObject[] team2Players = _playerManager.Teams[1].Players.ToArray();
                 object[] data = team2Players.Cast<object>().ToArray();
