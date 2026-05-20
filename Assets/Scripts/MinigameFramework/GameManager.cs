@@ -276,7 +276,6 @@ namespace MinigameFramework
                     onEnableLobbyUI.Raise(this);
                     Instance.PlayerManager.CanJoin = true;
                 }
-                
             }
         }
     }

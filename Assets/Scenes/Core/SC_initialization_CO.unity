@@ -1829,6 +1829,10 @@ PrefabInstance:
       propertyPath: endDelay
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7191676235343108907, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUpdateWinnerUIText
+      objectReference: {fileID: 0}
     - target: {fileID: 7822805750636397890, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_fontSizeMax
       value: 96
