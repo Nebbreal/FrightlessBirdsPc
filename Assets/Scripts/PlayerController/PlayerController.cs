@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     public float bracedReturnStunDuration = 0.3f;
     private bool _doBrace;
     private bool _holdingBrace;
-    private float _bracedCooldown;
+    public float _bracedCooldown;
 
     [NonSerialized] 
     public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour
     public GameEvent onJoin;
     public GameEvent onLeave;
     public GameEvent onPlayerDash;
+    public GameEvent onPlayerAttack;
+    public GameEvent onPlayerBrace;
 
     private void Start()
     {
@@ -172,6 +174,7 @@ public class PlayerController : MonoBehaviour
                 _attackTime = attackDuration;
                 _doBrace = false;
                 _doDash = false;
+                onPlayerAttack.Raise(this);
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
@@ -188,6 +191,7 @@ public class PlayerController : MonoBehaviour
                 braceHitbox.gameObject.SetActive(true);
                 _doAttack = false;
                 _doDash = false;
+                onPlayerBrace.Raise(this);
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;

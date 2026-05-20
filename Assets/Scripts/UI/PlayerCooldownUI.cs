@@ -6,11 +6,13 @@ public class PlayerCooldownUI : MonoBehaviour
 {
     [Header("Cooldown Images")]
     public Image cooldownDashImage;
-    public int id;
-    //public Image cooldownAttackImage;
-    //public Image cooldownBraceImage;
+    public Image cooldownAttackImage;
+    public Image cooldownBracedImage;
 
-    private bool isCoolingDown;
+    public int id;
+    private bool dashIsCoolingDown;
+    private bool attackIsCoolingDown;
+    private bool bracedIsCoolingDown;
 
     private PlayerController playercontroller;
 
@@ -18,33 +20,76 @@ public class PlayerCooldownUI : MonoBehaviour
     {
 
         cooldownDashImage.fillAmount = 1f;
+        cooldownAttackImage.fillAmount = 1f;
+        cooldownBracedImage.fillAmount = 1f;
     }
 
     void Update()
     {
 
-        if (isCoolingDown)
-        {        
-
+        if (dashIsCoolingDown)
+        {       
             cooldownDashImage.fillAmount = 1 - (playercontroller._dashCooldown / playercontroller.dashDelay);
 
             if (playercontroller._dashCooldown <= 0 && playercontroller.playerState != PlayerState.Dash)
             {
-                isCoolingDown = false;
+                dashIsCoolingDown = false;
                 cooldownDashImage.fillAmount = 1f;
+            }
+        }
+        if (attackIsCoolingDown)
+        {       
+            cooldownAttackImage.fillAmount = 1 - (playercontroller._attackCooldown / playercontroller.attackDelay);
+
+            if (playercontroller._attackCooldown <= 0 && playercontroller.playerState != PlayerState.Attack)
+            {
+                attackIsCoolingDown = false;
+                cooldownAttackImage.fillAmount = 1f;
+            }
+        }
+        if (bracedIsCoolingDown)
+        {       
+            cooldownBracedImage.fillAmount = 1 - (playercontroller._bracedCooldown / playercontroller.bracedDelay);
+
+            if (playercontroller._bracedCooldown <= 0 && playercontroller.playerState != PlayerState.Braced)
+            {
+                bracedIsCoolingDown = false;
+                cooldownBracedImage.fillAmount = 1f;
             }
         }
     }
 
-    public void StartCooldown(Component sender, object[] _obj)
+    public void StartDashCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!isCoolingDown && pc.ID == id)
+        if (!dashIsCoolingDown && pc.ID == id)
         {
             playercontroller = pc;
-            isCoolingDown = true;
+            dashIsCoolingDown = true;
 
             cooldownDashImage.fillAmount = 0f;
+        }
+    }
+    public void StartAttackCooldown(Component sender, object[] _obj)
+    {
+        PlayerController pc = sender as PlayerController;
+        if (!attackIsCoolingDown && pc.ID == id)
+        {
+            playercontroller = pc;
+            attackIsCoolingDown = true;
+
+            cooldownAttackImage.fillAmount = 0f;
+        }
+    }
+    public void StartBracedCooldown(Component sender, object[] _obj)
+    {
+        PlayerController pc = sender as PlayerController;
+        if (!bracedIsCoolingDown && pc.ID == id)
+        {
+            playercontroller = pc;
+            bracedIsCoolingDown = true;
+
+            cooldownBracedImage.fillAmount = 0f;
         }
     }
 }
