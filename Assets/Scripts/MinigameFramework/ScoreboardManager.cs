@@ -13,6 +13,7 @@ public class ScoreboardManager : MonoBehaviour
 {
     [NonSerialized] public List<int> PlayerScores = new();
     public List<GameObject> PlayerScoreTexts = new();
+    public int ScoreToWin = 3;
 
     public GameObject elements;
     public GameObject crownUI;
@@ -34,32 +35,6 @@ public class ScoreboardManager : MonoBehaviour
     public void ResetPlayerScores()
     {
         PlayerScores = new List<int> { 0, 0, 0, 0 };
-    }
-
-    public bool showScores;
-    public bool spawnCrown;
-
-    void Update()
-    {
-        if (spawnCrown)
-            ButtonFunction1();
-        if (showScores)
-            elements.SetActive(true);
-        spawnCrown = false;
-        showScores = false;
-
-    }
-
-    void ButtonFunction1()
-    {
-        int id = 0;
-        PlayerScores[id]++;
-        GameObject crown = Instantiate(crownUI, elements.transform);
-        crown.transform.rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward);
-        crown.transform.position += crown.transform.up * outwardDistance;
-        ScoreboardCrown c = crown.GetComponent<ScoreboardCrown>();
-        c.target = PlayerScoreTexts[id].gameObject;
-        _instantiatedCrowns.Add(crown);
     }
 
     public void GainPoint(Component sender, object[] winnerObjs)
@@ -96,7 +71,7 @@ public class ScoreboardManager : MonoBehaviour
         foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers)
         {
             PlayerController p = player.GetComponent<PlayerController>();
-            if (PlayerScores[p.ID] >= 3)
+            if (PlayerScores[p.ID] >= ScoreToWin)
             {
                 winningPlayers.Add(player);
             }

@@ -1,15 +1,18 @@
 using EventSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreboardPanel : MonoBehaviour
 {
     public GameEvent onShowCrowns;
     public float animationDuration;
     private float _animationTime = 0f;
+    private float width = 0f;
 
     private void OnEnable()
     {
-        transform.localPosition = new Vector3(-1920f, 0f, 0f);
+        width = GetComponent<RectTransform>().sizeDelta.x;
+        transform.localPosition = new Vector3(-width, 0f, 0f);
         _animationTime = 0f;
     }
     
@@ -24,7 +27,7 @@ public class ScoreboardPanel : MonoBehaviour
         float t = _animationTime / animationDuration;
         float easedT = easeInOutCubic(t);
 
-        transform.localPosition = new Vector3(-1920f * (1f - easedT), 0f, 0f);
+        transform.localPosition = new Vector3(-width * (1f - easedT), 0f, 0f);
 
         if (t >= 1f)
         {
@@ -35,6 +38,6 @@ public class ScoreboardPanel : MonoBehaviour
 
     private float easeInOutCubic(float x)
     {
-        return x < 0.5f ? 4 * x * x * x : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
+        return x < 0.5f ? 4 * Mathf.Pow(x,3) : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
     }
 }
