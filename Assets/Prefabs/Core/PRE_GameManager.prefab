@@ -2901,7 +2901,7 @@ GameObject:
   - component: {fileID: 787369781308476484}
   - component: {fileID: 3357232569433279335}
   m_Layer: 5
-  m_Name: CooldownBraceUI
+  m_Name: CooldownBracedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5530,7 +5530,7 @@ GameObject:
   - component: {fileID: 6380195647405762634}
   - component: {fileID: 7244529909557003304}
   m_Layer: 5
-  m_Name: CooldownBraceUI
+  m_Name: CooldownBracedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5883,7 +5883,7 @@ GameObject:
   - component: {fileID: 2394861374514267214}
   - component: {fileID: 6931607997867546691}
   m_Layer: 5
-  m_Name: CooldownBraceUI
+  m_Name: CooldownBracedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6588,7 +6588,7 @@ GameObject:
   - component: {fileID: 1681202377079627024}
   - component: {fileID: 3177232076606354375}
   m_Layer: 5
-  m_Name: CooldownBraceUI
+  m_Name: CooldownBracedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
