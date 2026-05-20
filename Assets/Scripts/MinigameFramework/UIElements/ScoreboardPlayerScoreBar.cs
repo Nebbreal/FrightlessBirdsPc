@@ -23,7 +23,8 @@ namespace MinigameFramework.UIElements
         public void OnEnable()
         {
             _rectTransform = GetComponent<RectTransform>();
-            if (GameManager.Instance.PlayerManager.ActivePlayers.All(o => o.GetComponent<PlayerController>().ID != id))
+            var activePlayers = GameManager.Instance.PlayerManager.ActivePlayers;
+            if (activePlayers.All(o => o.GetComponent<PlayerController>().ID != id))
             {
                 var rect = _rectTransform.rect;
                 _rectTransform.sizeDelta = new Vector2(hidden_width, rect.height);
@@ -55,10 +56,10 @@ namespace MinigameFramework.UIElements
 
         public void UpdateWinningPlayerScore(Component sender, object[] _obj)
         {
-            ScoreboardManager scm = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
+            ScoreboardManager scoreboardMan = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
 
             start_width = _rectTransform.rect.width;
-            target_width = base_width + scm.PlayerScores[id] * scale_diff_per_win;
+            target_width = base_width + scoreboardMan.PlayerScores[id] * scale_diff_per_win;
             if (Math.Abs(start_width - target_width) < Single.Epsilon)
                 return;
             isActive = true;
