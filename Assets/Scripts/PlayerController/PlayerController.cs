@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private GameEvent onSpawnDebugPlayers;
     public GameEvent onJoin;
     public GameEvent onLeave;
+    public GameEvent onPlayerDash;
 
     private void Start()
     {
@@ -165,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.gameObject.SetActive(true);
                 _doBrace = false;
                 _doAttack = false;
+                onPlayerDash.Raise(this);
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
