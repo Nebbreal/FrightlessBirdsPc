@@ -14,10 +14,11 @@ namespace MinigameFramework.UIElements
         private float _animationTime = 0f;
         public float offsetStrength;
         public GameEvent updateText;
+        public float PanelOffset = 300f;
 
         private void OnEnable()
         {
-            transform.localPosition = new Vector3(0f, MathF.Sign(target.transform.localPosition.y)*300f, 0f);
+            transform.localPosition = new Vector3(0f, MathF.Sign(target.transform.localPosition.y)*PanelOffset, 0f);
             transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.localPosition.normalized);
             _startPosition = transform.position;
             _startRotation = transform.rotation;
