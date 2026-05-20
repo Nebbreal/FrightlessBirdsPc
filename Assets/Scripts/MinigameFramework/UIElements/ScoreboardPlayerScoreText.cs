@@ -18,7 +18,8 @@ namespace MinigameFramework.UIElements
         {
             _scoreboardPlayerScoreText = GetComponent<TMP_Text>();
             _scoreboardMan = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
-            if (GameManager.Instance.PlayerManager.ActivePlayers.All(o => o.GetComponent<PlayerController>().ID != id))
+            var activePlayers = GameManager.Instance.PlayerManager.ActivePlayers;
+            if (activePlayers.All(o => o.GetComponent<PlayerController>().ID != id))
             {
                 _scoreboardPlayerScoreText.text = " ";
             }
