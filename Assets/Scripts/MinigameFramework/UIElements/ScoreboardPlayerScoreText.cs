@@ -32,9 +32,10 @@ namespace MinigameFramework.UIElements
             }
             _animationTime += Time.deltaTime;
             float t = _animationTime / animationDuration;
+            float eased_t = Ease.InLinearOutCubic(t);
 
             // _scoreboardPlayerScoreText.fontSize = ease(t) * 128f;
-            transform.localScale = new Vector3(ease(t), ease(t), 1f);
+            transform.localScale = new Vector3(eased_t, eased_t, 1f);
             // transform.lossyScale.Set(ease(t), ease(t), ease(t));
         }
 
@@ -47,27 +48,6 @@ namespace MinigameFramework.UIElements
             }
 
             _animationTime = 0f;
-        }
-
-        private float ease_cos(float x)
-        {
-            return MathF.Pow((0.5f * MathF.Cos(x * 2f * MathF.PI)) / 16f, 0.2f) + 0.5f;
-        }
-
-        private float ease(float x)
-        {
-            x = (MathF.Min(x, 1f) - 0.5f) * 2f;
-            if (x < 0)
-            {
-                return -x;
-            }
-
-            return easeOutCubic(x);
-        }
-
-        private float easeOutCubic(float x)
-        {
-            return 1f - MathF.Pow(1f - x, 3f);
         }
     }
 }

@@ -25,7 +25,7 @@ public class ScoreboardPanel : MonoBehaviour
 
         _animationTime += Time.deltaTime;
         float t = _animationTime / animationDuration;
-        float easedT = easeInOutCubic(t);
+        float easedT = Ease.InOutCubic(t);
 
         transform.localPosition = new Vector3(-width * (1f - easedT), 0f, 0f);
 
@@ -34,10 +34,5 @@ public class ScoreboardPanel : MonoBehaviour
             onShowCrowns.Raise(this);
             transform.localPosition = new Vector3(0f, 0f, 0f);
         }
-    }
-
-    private float easeInOutCubic(float x)
-    {
-        return x < 0.5f ? 4 * Mathf.Pow(x,3) : 1 - Mathf.Pow(-2 * x + 2, 3) / 2;
     }
 }

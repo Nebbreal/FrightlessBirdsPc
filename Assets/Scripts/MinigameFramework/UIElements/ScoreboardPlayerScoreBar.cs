@@ -40,7 +40,7 @@ namespace MinigameFramework.UIElements
         {
             _animationTime += Time.deltaTime;
 
-            float t = easeInOutCubic(MathF.Min(_animationTime / animationDuration, 1f));
+            float t = Ease.InOutCubic(MathF.Min(_animationTime / animationDuration, 1f));
 
             // _scoreboardPlayerScoreText.fontSize = ease(t) * 128f;
             // transform.localScale = new Vector3(ease(t), ease(t), 1f);
@@ -71,11 +71,6 @@ namespace MinigameFramework.UIElements
                 return;
             isActive = true;
             _animationTime = 0f;
-        }
-
-        private float easeInOutCubic(float x)
-        {
-            return x < 0.5f ? 4 * x * x * x : 1 - MathF.Pow(-2 * x + 2, 3) / 2;
         }
     }
 }
