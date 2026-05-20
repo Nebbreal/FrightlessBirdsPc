@@ -107,7 +107,6 @@ namespace MinigameFramework
                 onCleanWinUI.Raise(this, null);
                 onDisableWinUI.Raise(this);
                 onEnableScoreboardUI.Raise(this);
-                // ToLobby();
                 Instance.IsWinUIActive = false;
             }
         }
