@@ -92,9 +92,9 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    public void onUpdateWinnerUIText(Component sender, object[] winnerDataObj)
+    public void OnUpdateWinnerUIText(Component sender, object[] winnerDataObj)
     {
-        if (winnerDataObj[0] is string winningPlayers && winnerDataObj[1] is Color winnerColor)
+        if (winnerDataObj[0] is string && winnerDataObj[1] is Color)
         {
             winners = winnerDataObj;
         }
