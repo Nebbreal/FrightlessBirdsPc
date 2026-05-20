@@ -12,6 +12,16 @@ public static class Ease {
         return OutCubic(x);
     }
 
+    public static float InOutCubicNegInverted(float t)
+    {
+        if (Mathf.Abs(t) < 0.5)
+        {
+            return Mathf.Sign(t) * 4f * Mathf.Pow(t, 3);
+        }
+
+        return 1 - (Mathf.Pow(-2 * Mathf.Abs(t) + 2, 3) / 2f);
+    }
+
     public static float OutCubic(float x)
     {
         return 1f - Mathf.Pow(1f - x, 3f);

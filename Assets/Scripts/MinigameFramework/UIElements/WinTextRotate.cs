@@ -14,16 +14,6 @@ public class WinTextRotate : MonoBehaviour
         }
         var t = _animationTime / animationDuration;
 
-        transform.rotation = Quaternion.AngleAxis(180f * ease(t), Vector3.forward);
-    }
-
-    private float ease(float t)
-    {
-        if (Mathf.Abs(t) < 0.5)
-        {
-            return Mathf.Sign(t) * 4f * Mathf.Pow(t, 3);
-        }
-
-        return 1 - (Mathf.Pow(-2*Mathf.Abs(t)+2, 3) / 2f);
+        transform.rotation = Quaternion.AngleAxis(180f * Ease.InOutCubicNegInverted(t), Vector3.forward);
     }
 }

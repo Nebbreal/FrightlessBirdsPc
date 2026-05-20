@@ -34,9 +34,7 @@ namespace MinigameFramework.UIElements
             float t = _animationTime / animationDuration;
             float eased_t = Ease.InLinearOutCubic(t);
 
-            // _scoreboardPlayerScoreText.fontSize = ease(t) * 128f;
             transform.localScale = new Vector3(eased_t, eased_t, 1f);
-            // transform.lossyScale.Set(ease(t), ease(t), ease(t));
         }
 
         public void UpdateWinningPlayerScore(Component sender, object[] _obj)

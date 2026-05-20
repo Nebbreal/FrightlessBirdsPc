@@ -42,9 +42,6 @@ namespace MinigameFramework.UIElements
 
             float t = Ease.InOutCubic(MathF.Min(_animationTime / animationDuration, 1f));
 
-            // _scoreboardPlayerScoreText.fontSize = ease(t) * 128f;
-            // transform.localScale = new Vector3(ease(t), ease(t), 1f);
-            // transform.lossyScale.Set(ease(t), ease(t), ease(t));
             var rect = _rectTransform.rect;
             var width = start_width + (target_width - start_width) * t;
             _rectTransform.sizeDelta = new Vector2(width, rect.height);
@@ -59,11 +56,6 @@ namespace MinigameFramework.UIElements
         public void UpdateWinningPlayerScore(Component sender, object[] _obj)
         {
             ScoreboardManager scm = GameManager.Instance.GetComponentInChildren<ScoreboardManager>();
-            // if (GameManager.Instance.PlayerManager.ActivePlayers.All(o => o.GetComponent<PlayerController>().ID != id))
-            // {
-            //     var rect = _rectTransform.rect;
-            //     _rectTransform.sizeDelta = new Vector2(hidden_width, rect.height);
-            // }
 
             start_width = _rectTransform.rect.width;
             target_width = base_width + scm.PlayerScores[id] * scale_diff_per_win;
