@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
     public float bracedReturnStunDuration = 0.3f;
-    private bool _doBrace;
+    public bool _doBrace;
     private bool _holdingBrace;
     public float _bracedCooldown;
 
