@@ -41,6 +41,15 @@ public class PlayerCooldownUI : MonoBehaviour
         {       
             cooldownDashImage.fillAmount = 1 - (playercontroller._dashCooldown / playercontroller.dashDelay);
 
+            if (playercontroller.playerState == PlayerState.Dash)
+            {
+                cooldownDashImage.color = Color.gray6;
+            }
+            else
+            {
+                cooldownDashImage.color = Color.gray8;
+            }
+
             if (playercontroller._dashCooldown <= 0 && playercontroller.playerState != PlayerState.Dash)
             {
                 dashIsCoolingDown = false;
@@ -52,6 +61,15 @@ public class PlayerCooldownUI : MonoBehaviour
         {       
             cooldownAttackImage.fillAmount = 1 - (playercontroller._attackCooldown / playercontroller.attackDelay);
 
+            if (playercontroller.playerState == PlayerState.Attack)
+            {
+                cooldownAttackImage.color = Color.gray6;
+            }
+            else
+            {
+                cooldownAttackImage.color = Color.gray8;
+            }
+
             if (playercontroller._attackCooldown <= 0 && playercontroller.playerState != PlayerState.Attack)
             {
                 attackIsCoolingDown = false;
@@ -62,6 +80,15 @@ public class PlayerCooldownUI : MonoBehaviour
         if (bracedIsCoolingDown)
         {       
             cooldownBracedImage.fillAmount = 1 - (playercontroller._bracedCooldown / playercontroller.bracedDelay);
+
+            if (playercontroller.playerState == PlayerState.Braced)
+            {
+                cooldownBracedImage.color = Color.gray6;
+            }
+            else
+            {
+                cooldownBracedImage.color = Color.gray8;
+            }
 
             if (playercontroller._bracedCooldown <= 0 && playercontroller.playerState != PlayerState.Braced)
             {
@@ -82,7 +109,7 @@ public class PlayerCooldownUI : MonoBehaviour
             dashIsCoolingDown = true;
 
             cooldownDashImage.fillAmount = 0f;
-            cooldownDashImage.color = Color.gray8;
+
         }
     }
     public void StartAttackCooldown(Component sender, object[] _obj)
@@ -94,7 +121,6 @@ public class PlayerCooldownUI : MonoBehaviour
             attackIsCoolingDown = true;
 
             cooldownAttackImage.fillAmount = 0f;
-            cooldownAttackImage.color = Color.gray8;
         }
     }
     public void StartBracedCooldown(Component sender, object[] _obj)
@@ -105,8 +131,6 @@ public class PlayerCooldownUI : MonoBehaviour
             playercontroller = pc;
             bracedIsCoolingDown = true;
 
-            cooldownBracedImage.fillAmount = 0f;
-            cooldownBracedImage.color = Color.gray8;
-        }
+            cooldownBracedImage.fillAmount = 0f;        }
     }
 }
