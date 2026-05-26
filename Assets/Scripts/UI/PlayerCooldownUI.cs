@@ -16,7 +16,7 @@ public class PlayerCooldownUI : MonoBehaviour
 
     private PlayerController playercontroller;
 
-    void Start()
+    private void Start()
     {
 
         cooldownDashImage.fillAmount = 1f;
@@ -24,7 +24,16 @@ public class PlayerCooldownUI : MonoBehaviour
         cooldownBracedImage.fillAmount = 1f;
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        var playerController = GetComponentInParent<PlayerController>();
+        if (playerController)
+        {
+            id = playerController.ID;
+        }
+    }
+
+    private void Update()
     {
 
         if (dashIsCoolingDown)
