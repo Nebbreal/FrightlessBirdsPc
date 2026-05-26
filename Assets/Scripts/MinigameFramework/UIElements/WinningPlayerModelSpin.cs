@@ -19,7 +19,7 @@ namespace MinigameFramework.UIElements
         private float _transitionDuration;
         private float _timer;
 
-        void Start()
+        private void Start()
         {
             _startDir = Random.onUnitSphere.normalized;
             _targetDir = Random.onUnitSphere.normalized;
@@ -27,7 +27,7 @@ namespace MinigameFramework.UIElements
             _timer = 0f;
         }
 
-        void Update()
+        private void Update()
         {
             if (!isSpinning) return;
             
