@@ -137,26 +137,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState is PlayerState.Dash)
         {
-            Vector3 movementInfluence;
-
-            float moveDotProduct = Vector3.Dot(_moveThisFrame, _dashDirection);
-            
-            //Straight ahead
-            if (Mathf.Approximately(moveDotProduct, 1f))
-            {
-                movementInfluence = Vector3.zero;
-            }
-            else if(Mathf.Approximately(moveDotProduct, -1f)) //Opposite direction
-            {
-                movementInfluence = -_dashDirection;
-            }
-            else
-            {
-                movementInfluence = _moveThisFrame;
-            }
-            Debug.Log(rb.linearVelocity.magnitude);
-            //Cut off movement boosting dash in the movement direction
-            rb.AddForce(movementInfluence.normalized * (acceleration * dashMoveInfluence), ForceMode.Force);
+            CheckDashMovementInfluence();
         }
 
         if (DoDash)
@@ -177,6 +158,19 @@ public class PlayerController : MonoBehaviour
         DoAttack = false;
         DoDash = false;
         _doBrace = false;
+    }
+
+    private void CheckDashMovementInfluence()
+    {
+        //Check if player is moving towards dash direction and remove the forward force if it is the case
+        Vector3 tangentDashDirection = Vector3.Cross(rb.linearVelocity.normalized, Vector3.up);
+        float movementInfluence = Vector3.Dot(_moveThisFrame, tangentDashDirection);
+            
+        Vector3 newMoveDir = movementInfluence * tangentDashDirection;
+        if (newMoveDir.sqrMagnitude > 0f)
+        {
+            rb.AddForce(newMoveDir * (acceleration * dashMoveInfluence), ForceMode.Force);
+        }
     }
 
     private void KeepRbAwake()
