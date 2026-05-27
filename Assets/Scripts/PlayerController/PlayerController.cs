@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using EventSystem;
-using UnityEditor.AdaptivePerformance.Editor;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+    private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
+    private Collider[] _hitCollidersBuffer;
+    
     [Header("Initialization Settings")] 
     public PlayerState playerState;
     public Rigidbody rb;
@@ -17,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public Transform dashHitbox;
     public Transform braceHitbox;
     public Transform stunTransform;
+    [Range(0f, 25f)]
+    [Tooltip("How many hit players the PlayerController can detect at once")]
+    public int hitCollidersBufferSize = 8;
 
     public UnityEvent<CollisionData> onAttackHit;
     public UnityEvent<CollisionData> onDashBracedHit;
@@ -52,7 +57,6 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 1f;
     public float dashEarlyEndSpeed = 10f;
     private float _dashTime;
-    private Vector3 _dashDirection;
     public float dashHitRange = 2f;
     public float dashKnockbackSpeed = 2f;
     private List<Collider> _dashCollided = new List<Collider>();
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
     }
 
     private void Update()
@@ -209,7 +214,6 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.Dash:
                 _dashTime = dashDuration;
-                _dashDirection = _moveThisFrame.normalized;
                 dashHitbox.position = transform.position + LastMoveDirection * (dashHitRange / 2f);
                 // dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
@@ -259,13 +263,13 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Movement:
                 if (newState != PlayerState.Dash)
                 {
-                    animator.SetBool("IsWalking", false);
+                    animator.SetBool(IsAnimatingWalk, false);
                 }
                 break;
             case PlayerState.Dash:
                 if (newState != PlayerState.Movement)
                 {
-                    animator.SetBool("IsWalking", false);
+                    animator.SetBool(IsAnimatingWalk, false);
                 }
                 
                 DashCooldown = dashDelay;
@@ -295,7 +299,7 @@ public class PlayerController : MonoBehaviour
                 if (MoveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
-                    animator.SetBool("IsWalking", true);
+                    animator.SetBool(IsAnimatingWalk, true);
                 }
                 
                 DampenMovement();
@@ -306,7 +310,7 @@ public class PlayerController : MonoBehaviour
                 if (MoveInput.magnitude <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
-                    animator.SetBool("IsWalking", false);
+                    animator.SetBool(IsAnimatingWalk, false);
                 }
                 
                 DampenMovement();
@@ -434,9 +438,8 @@ public class PlayerController : MonoBehaviour
     
     private void CheckIsDashing()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + LastMoveDirection * (dashHitRange / 2f),
-            dashHitRange, layerMask);
-        foreach (var hitCollider in hitColliders)
+        Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * (dashHitRange / 2f), dashHitRange, _hitCollidersBuffer, layerMask);
+        foreach (Collider hitCollider in _hitCollidersBuffer)
         {
             if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider))
             {
@@ -456,6 +459,8 @@ public class PlayerController : MonoBehaviour
                     new CollisionData(LastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
+            
+            Array.Clear(_hitCollidersBuffer, 0, hitCollidersBufferSize);
         }
 
         if (_dashTime <= 0.0f)
@@ -512,10 +517,9 @@ public class PlayerController : MonoBehaviour
         attackHitbox.position = transform.position + LastMoveDirection * attackRange;
         attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
         attackHitbox.gameObject.SetActive(true);
-        Collider[] hitColliders =
-            Physics.OverlapSphere(transform.position + LastMoveDirection * attackRange, attackRadius,
-                layerMask);
-        foreach (var hitCollider in hitColliders)
+
+        Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * attackRange, attackRadius, _hitCollidersBuffer, layerMask);
+        foreach (Collider hitCollider in _hitCollidersBuffer)
         {
             if (!hitCollider || hitCollider == col)
             {
@@ -535,6 +539,8 @@ public class PlayerController : MonoBehaviour
                 );
             }
         }
+        
+        Array.Clear(_hitCollidersBuffer, 0, hitCollidersBufferSize);
     }
 
     private void ExecuteDash()
@@ -555,32 +561,6 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, defaultDecelerationMultiplier * Time.fixedDeltaTime);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (playerState == PlayerState.Attack)
-        {
-            Gizmos.DrawSphere(transform.position + LastMoveDirection * (attackRange + 0.2f), attackRange);
-        }
-
-        if (playerState == PlayerState.Dash)
-        {
-            Gizmos.DrawSphere(transform.position + LastMoveDirection * (dashHitRange / 2f), dashHitRange);
-        }
-
-        if (playerState == PlayerState.Stunned)
-        {
-            Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
-        }
-
-
-        if (playerState == PlayerState.Braced)
-        {
-            Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
-        }
-    }
-
     public void AttackStun(CollisionData data)
     {
         if (playerState != PlayerState.Dash)
@@ -594,7 +574,7 @@ public class PlayerController : MonoBehaviour
         Stun(data, bracedReturnStunDuration);
     }
 
-    public void Stun(CollisionData data, float duration)
+    private void Stun(CollisionData data, float duration)
     {
         SetPlayerState(PlayerState.Stunned);
         _stunTimer = duration;
@@ -624,9 +604,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Knockback(CollisionData data)
+    private void Knockback(CollisionData data)
     {
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
+    }
+    
+    private void OnDrawGizmos()
+    {
+        if (playerState == PlayerState.Braced)
+        {
+            Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
+            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
+        }
     }
 }
