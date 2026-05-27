@@ -210,7 +210,6 @@ namespace MinigameFramework
         {
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
-            Debug.Log("hi");
             onDisablePlayerMovement.Raise(this);
             
             List<string> winnerNames = new List<string>();
