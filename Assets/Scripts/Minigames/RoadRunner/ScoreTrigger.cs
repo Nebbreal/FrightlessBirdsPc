@@ -10,10 +10,10 @@ public class ScoreTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (side != Manager.playerSides[other.gameObject.name])
-        {
-            onScorePoint.Raise(this, other.gameObject);
-            Manager.playerSides[other.gameObject.name] = side;
-        }
+        // if (side != Manager.playerSides[other.gameObject.name])
+        // {
+        //     onScorePoint.Raise(this, other.gameObject);
+        //     Manager.playerSides[other.gameObject.name] = side;
+        // }
     }
 }

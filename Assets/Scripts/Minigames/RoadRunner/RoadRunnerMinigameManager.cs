@@ -19,8 +19,6 @@ namespace Minigames.RoadRunner
 
         [NonSerialized] 
         private Dictionary<string, int> playerScores = new();
-        [NonSerialized] 
-        public Dictionary<string, int> playerSides = new();
 
         public GameEvent onEndMinigame;
         [SerializeField] 
@@ -53,13 +51,15 @@ namespace Minigames.RoadRunner
                 // player.AddComponent();
             }
 
-            playerSides = new();
+            foreach (TextMeshProUGUI t in _playerScoreboards)
+            {
+                t.text = "";
+            }
             foreach (GameObject player in _players)
             {
                 PlayerController p = player.GetComponent<PlayerController>();
-                bool isOnRightSideOfScreen = p.ID is > 0 and < 3;
-                playerSides.Add(player.name, isOnRightSideOfScreen ? 1 : 0);
                 playerScores.Add(player.name, 0);
+                _playerScoreboards[p.ID].text = "0";
             }
 
             timer = _gameConfig.roundLength;
@@ -89,7 +89,6 @@ namespace Minigames.RoadRunner
                 {
                     GameObject playerObject = entity;
                     PlayerController player = entity.GetComponent<PlayerController>();
-                    playerSides[player.name] = player.ID is > 0 and < 3 ? 1 : 0;
                     Rigidbody playerRigidbody = playerObject.GetComponent<Rigidbody>();
                     playerRigidbody.useGravity = true;
                     playerRigidbody.linearDamping = 1f;

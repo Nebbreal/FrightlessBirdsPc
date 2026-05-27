@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SO_RoadRunner_MG
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
-    m_SceneAsset: {fileID: 102900000, guid: 8ec113458aff1854bb2cb1c240aecc0e, type: 3}
-    m_SceneName: SC_RoadRunner_MG
+    m_SceneAsset: {fileID: 102900000, guid: 89290a91e886e0b49ae0e3e402a855fe, type: 3}
+    m_SceneName: SC_GoldenGoose_MG
   gameName: Road Runner
   gameDescription: Keep crossing the road!
   roundLength: 60

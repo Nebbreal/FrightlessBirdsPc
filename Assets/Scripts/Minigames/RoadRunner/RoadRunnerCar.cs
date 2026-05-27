@@ -1,4 +1,5 @@
 using UnityEngine;
+using EventSystem;
 
 public class RoadRunnerCar : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class RoadRunnerCar : MonoBehaviour
     public float UpStrengthMultiplier = 4f;
 
     private Rigidbody rb;
+    public GameEvent onAttacked;
 
     private void Start()
     {
@@ -31,6 +33,8 @@ public class RoadRunnerCar : MonoBehaviour
     {
         if (!collision.attachedRigidbody) return;
         PlayerController p = collision.gameObject.GetComponent<PlayerController>();
+        if (!p) return;
+        onAttacked.Raise(p);
 
         Rigidbody rb2 = collision.attachedRigidbody;
         rb2.linearVelocity = Vector3.zero;

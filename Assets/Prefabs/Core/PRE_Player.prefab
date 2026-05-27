@@ -6115,6 +6115,8 @@ MonoBehaviour:
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onDashedInto: {fileID: 11400000, guid: dada673888a25414195ff1ed3ba3b650, type: 2}
+  onAttacked: {fileID: 11400000, guid: b90d1470d294e81409d2624770af5578, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class PhysicalTimer : MonoBehaviour
     {
         timer -= Time.deltaTime;
         var t = timer/maxTime;
-        transform.position = Vector3.Lerp(startPos, endPos, 1f - t);
+        transform.localPosition = Vector3.Lerp(startPos, endPos, 1f - t);
         transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
 }
