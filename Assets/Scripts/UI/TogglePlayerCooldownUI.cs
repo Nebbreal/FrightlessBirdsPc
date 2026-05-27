@@ -8,11 +8,11 @@ public class TogglePlayerCooldownUI : MonoBehaviour
     public GameEvent EventPlayerUI;
     public GameEvent EventMenuUI;
 
-    private int SwitchPlayerUI;
+    private int SwitchCooldownUI;
 
     private void Start()
     {
-        SwitchPlayerUI = 0;
+        SwitchCooldownUI = 0;
     }
     private void Update()
     {
@@ -24,15 +24,15 @@ public class TogglePlayerCooldownUI : MonoBehaviour
     }
     public void ToggleUI()
     {
-        if (SwitchPlayerUI == 0)
+        if (SwitchCooldownUI == 0)
         {
-            SwitchPlayerUI = 1;
-            EventMenuUI.Raise(this);
-        }
-        else if (SwitchPlayerUI == 1)
-        {
-            SwitchPlayerUI = 0;        
+            SwitchCooldownUI = 1;
             EventPlayerUI.Raise(this);
+        }
+        else if (SwitchCooldownUI == 1)
+        {
+            SwitchCooldownUI = 0;        
+            EventMenuUI.Raise(this);
         }
     }
 }
