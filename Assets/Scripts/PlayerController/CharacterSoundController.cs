@@ -47,7 +47,7 @@ public class CharacterSoundController : MonoBehaviour
                 audioSource.PlayOneShot(stunSound);
                 break;
 
-            case PlayerState.Braced:
+            case PlayerState.Blocking:
                 audioSource.PlayOneShot(braceSound);
                 break;
         }

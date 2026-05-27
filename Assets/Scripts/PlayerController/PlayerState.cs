@@ -5,7 +5,7 @@ public enum PlayerState
     Idle,
     Movement,
     Dash,
-    Braced,
+    Blocking,
     Attack,
     Stunned,
     InputRestricted

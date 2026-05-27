@@ -78,13 +78,14 @@ public class PlayerController : MonoBehaviour
     public bool DoAttack;
 
     [Header("Braced Settings")] 
-    public float bracedDelay = 1f;
-    public float bracedReturnKnockbackSpeed = 2f;
-    public float bracedReturnStunDuration = 0.3f;
-    [FormerlySerializedAs("playerDecelerationMultiplier")] public float braceDecelerationMultiplier = 0.9f;
-    private bool _doBrace;
-    private bool _holdingBrace;
-    private float _bracedCooldown;
+    public float maxBlockCharge = 3f;
+    private float _blockCharge;
+    public float blockReturnKnockbackSpeed = 2f;
+    public float blockReturnStunDuration = 0.3f;
+    public float blockDecelerationMultiplier = 0.9f;
+    private bool _doBlock;
+    private bool _isHoldingBlock;
+    private bool _canBlock = true;
 
     [NonSerialized] 
     public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
+        _blockCharge = maxBlockCharge;
     }
 
     private void Update()
@@ -106,15 +108,15 @@ public class PlayerController : MonoBehaviour
         if (playerState is PlayerState.InputRestricted)
         {
             DoAttack = false;
-            _doBrace = false;
+            _doBlock = false;
             DoDash = false;
             _moveThisFrame = Vector3.zero;
             return;
         }
-        if (_holdingBrace && _bracedCooldown <= 0 && 
-            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
+        if (_isHoldingBlock && _canBlock && 
+            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Blocking)
         {
-            _doBrace = true;
+            _doBlock = true;
         }
 
         _moveThisFrame = MoveInput;
@@ -129,6 +131,11 @@ public class PlayerController : MonoBehaviour
         {
             LastMoveDirection = Vector3.Slerp(LastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(LastMoveDirection);
+        }
+
+        if (ID == 0)
+        {
+            Debug.Log(playerState);
         }
     }
     
@@ -159,10 +166,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, maxSpeedClampFactor);
         }
-
+        
+        //Manual override due to weird interaction with input actions and the state machine
         DoAttack = false;
         DoDash = false;
-        _doBrace = false;
+        _doBlock = false;
     }
 
     private void CheckDashMovementInfluence()
@@ -210,19 +218,34 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState newState)
     {
         ExitState(playerState, newState);
+        EnterPlayerState(newState);
+    }
+
+    private void EnterPlayerState(PlayerState newState)
+    {
         switch (newState)
         {
+            case PlayerState.Movement:
+                if (!animator.GetBool(IsAnimatingWalk))
+                {
+                    animator.SetBool(IsAnimatingWalk, true);
+                }
+                break;
             case PlayerState.Dash:
+                if (!animator.GetBool(IsAnimatingWalk))
+                {
+                    animator.SetBool(IsAnimatingWalk, true);
+                }
+                
                 _dashTime = dashDuration;
                 dashHitbox.position = transform.position + LastMoveDirection * (dashHitRange / 2f);
-                // dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
-                _doBrace = false;
+                _doBlock = false;
                 DoAttack = false;
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
-                _doBrace = false;
+                _doBlock = false;
                 DoDash = false;
                 break;
             case PlayerState.Stunned:
@@ -230,22 +253,29 @@ public class PlayerController : MonoBehaviour
                 stunTransform.gameObject.SetActive(true);
                 DoAttack = false;
                 DoDash = false;
-                _doBrace = false;
+                _doBlock = false;
                 break;
-            case PlayerState.Braced:
-                /*rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-                                 RigidbodyConstraints.FreezeRotationZ;*/
-                braceHitbox.position = transform.position;
-                braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                braceHitbox.gameObject.SetActive(true);
-                DoAttack = false;
-                DoDash = false;
+            case PlayerState.Blocking:
+                if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
+                {
+                    braceHitbox.position = transform.position;
+                    braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    braceHitbox.gameObject.SetActive(true);
+                    DoAttack = false;
+                    DoDash = false;
+                }
+                else
+                {
+                    SetPlayerState(PlayerState.Idle);
+                    return;
+                }
+                
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 DoAttack = false;
                 DoDash = false;
-                _doBrace = false;
+                _doBlock = false;
                 break;
         }
 
@@ -260,18 +290,7 @@ public class PlayerController : MonoBehaviour
         stunTransform.gameObject.SetActive(false);
         switch (current)
         {
-            case PlayerState.Movement:
-                if (newState != PlayerState.Dash)
-                {
-                    animator.SetBool(IsAnimatingWalk, false);
-                }
-                break;
             case PlayerState.Dash:
-                if (newState != PlayerState.Movement)
-                {
-                    animator.SetBool(IsAnimatingWalk, false);
-                }
-                
                 DashCooldown = dashDelay;
                 _dashTime = dashDuration;
                 _dashCollided.Clear();
@@ -279,15 +298,21 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Attack:
                 AttackCooldown = attackDelay;
                 break;
-            case PlayerState.Braced:
-                /*rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-                                 RigidbodyConstraints.FreezeRotationZ;
-                _bracedCooldown = bracedDelay;*/
+            case PlayerState.Blocking:
+                if (_blockCharge <= maxBlockCharge * 0.5f)
+                {
+                    _canBlock = false;
+                }
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
                 break;
+        }
+
+        if (newState != PlayerState.Movement && newState != PlayerState.Dash)
+        { 
+            animator.SetBool(IsAnimatingWalk, false);
         }
     }
 
@@ -299,7 +324,6 @@ public class PlayerController : MonoBehaviour
                 if (MoveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
-                    animator.SetBool(IsAnimatingWalk, true);
                 }
                 
                 DampenMovement();
@@ -310,7 +334,6 @@ public class PlayerController : MonoBehaviour
                 if (MoveInput.magnitude <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
-                    animator.SetBool(IsAnimatingWalk, false);
                 }
                 
                 DampenMovement();
@@ -320,8 +343,8 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Dash:
                 CheckIsDashing();
                 break;
-            case PlayerState.Braced:
-                if (!_doBrace)
+            case PlayerState.Blocking:
+                if (!_doBlock || _blockCharge <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -339,9 +362,9 @@ public class PlayerController : MonoBehaviour
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     private void IdleToState()
     {
-        if (_doBrace)
+        if (_doBlock)
         {
-            SetPlayerState(PlayerState.Braced);
+            SetPlayerState(PlayerState.Blocking);
         }
         else if (DoDash)
         {
@@ -360,11 +383,21 @@ public class PlayerController : MonoBehaviour
             DashCooldown -= Time.deltaTime;
         }
 
-        if (_bracedCooldown > 0f)
+        if (playerState == PlayerState.Blocking)
         {
-            _bracedCooldown -= Time.deltaTime;
+            _blockCharge -= Time.deltaTime;
         }
-
+        else if(_blockCharge < maxBlockCharge)
+        {
+            _blockCharge += Time.deltaTime;
+            
+            if (_blockCharge > maxBlockCharge)
+            {
+                _canBlock = true;
+                _blockCharge = maxBlockCharge;
+            }
+        }
+        
         if (AttackCooldown > 0f)
         {
             AttackCooldown -= Time.deltaTime;
@@ -409,12 +442,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            _holdingBrace = true;
+            _isHoldingBlock = true;
         }
 
         if (context.canceled)
         {
-            _holdingBrace = false;
+            _isHoldingBlock = false;
         }
     }
 
@@ -499,7 +532,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIsBraced()
     {
         _moveThisFrame = Vector3.zero;
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, braceDecelerationMultiplier * Time.fixedDeltaTime);
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
     }
 
     private void ExecuteAttack()
@@ -571,7 +604,7 @@ public class PlayerController : MonoBehaviour
 
     public void BracedReturnStun(CollisionData data)
     {
-        Stun(data, bracedReturnStunDuration);
+        Stun(data, blockReturnStunDuration);
     }
 
     private void Stun(CollisionData data, float duration)
@@ -591,7 +624,7 @@ public class PlayerController : MonoBehaviour
     public void DashKnockback(CollisionData data)
     {
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
-        if (playerState != PlayerState.Braced)
+        if (playerState != PlayerState.Blocking)
         {
             Knockback(data);
             player.onDashHasHit.Invoke();
@@ -599,7 +632,7 @@ public class PlayerController : MonoBehaviour
         else if (data.OriginCollider != null)
         {
             player.onDashBracedHit.Invoke(
-                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col)
+                new CollisionData(-data.Direction, blockReturnKnockbackSpeed, col)
             );
         }
     }
@@ -612,7 +645,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        if (playerState == PlayerState.Braced)
+        if (playerState == PlayerState.Blocking)
         {
             Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
             Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
