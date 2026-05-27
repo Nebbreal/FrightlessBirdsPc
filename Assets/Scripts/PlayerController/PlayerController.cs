@@ -521,32 +521,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (playerState == PlayerState.Attack)
-        {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange);
-        }
-
-        if (playerState == PlayerState.Dash)
-        {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f), dashHitRange);
-        }
-
-        if (playerState == PlayerState.Stunned)
-        {
-            Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
-        }
-
-
-        if (playerState == PlayerState.Braced)
-        {
-            Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
-        }
-    }
-
     public void AttackStun(CollisionData data)
     {
         if (playerState != PlayerState.Dash && !IsSameTeam(data))
