@@ -61,9 +61,10 @@ public class GoldenEgg : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (!currentOwner && _canPickUp)
+        PlayerController p = col.GetComponent<PlayerController>();
+        if (!currentOwner && _canPickUp && p)
         {
-            currentOwner = col.GetComponent<PlayerController>();
+            currentOwner = p;
             transform.SetParent(col.transform);
             _pointTimer = 0f;
         }
