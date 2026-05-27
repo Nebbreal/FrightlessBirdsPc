@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using EventSystem;
+using MinigameFramework;
 
 public class PlayerController : MonoBehaviour
 {
@@ -548,10 +549,30 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState != PlayerState.Dash)
+        if (playerState != PlayerState.Dash && !IsSameTeam(data))
         {
             Stun(data, stunTime);
         }
+    }
+
+    private bool IsSameTeam(CollisionData data)
+    {
+        var teams = GameManager.Instance.PlayerManager.Teams;
+        if (teams == null)
+        {
+            return false;
+        }
+
+        GameObject originPlayer = data.OriginCollider.gameObject;
+        foreach (var team in teams)
+        {
+            if (team.Players.Contains(gameObject) && team.Players.Contains(originPlayer))
+            {
+                return true;
+            } 
+        }
+
+        return false;
     }
 
     public void BracedReturnStun(CollisionData data)
