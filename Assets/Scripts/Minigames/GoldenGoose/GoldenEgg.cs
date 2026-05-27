@@ -12,6 +12,8 @@ public class GoldenEgg : MonoBehaviour
     public AudioSource Pling;
     public float DropDistance;
     public GameEvent onScorePoint;
+    [Range(0f, 1f)]
+    public float DashStealDelayFactor;
 
     private float _timer = 0f;
     private float _pointTimer = 0f;
@@ -37,7 +39,6 @@ public class GoldenEgg : MonoBehaviour
         if (t >= 1f)
         {
             _timer = 0f;
-            t = 0f;
             _canPickUp = true;
             transform.localPosition = new Vector3(transform.localPosition.x, 0.5f, transform.localPosition.z);
         }
@@ -73,11 +74,13 @@ public class GoldenEgg : MonoBehaviour
         if (!currentOwner) return;
         if (obj.First() is CollisionData col)
         {
-            if (sender == currentOwner)
+            if (sender == currentOwner && _canPickUp)
             {
                 currentOwner = col.OriginCollider.GetComponent<PlayerController>();
                 transform.SetParent(col.OriginCollider.transform);
                 _pointTimer = 0f;
+                _timer = AnimationTime * DashStealDelayFactor;
+                _canPickUp = false;
             }
         }
     }
@@ -95,9 +98,11 @@ public class GoldenEgg : MonoBehaviour
     {
         currentOwner = null;
         transform.SetParent(null);
-        dropStart = transform.position;
-        dropPosition = transform.position +
+        dropStart = new Vector3(transform.position.x, 0f, transform.position.z);
+        dropPosition = new Vector3(transform.position.x, 0f, transform.position.z) +
                        new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * DropDistance;
+        dropPosition.x = Mathf.Clamp(dropPosition.x, -16f, 16f);
+        dropPosition.z = Mathf.Clamp(dropPosition.z, -9f, 9f);
         _pointTimer = 0f;
         _timer = 0f;
         _canPickUp = false;
