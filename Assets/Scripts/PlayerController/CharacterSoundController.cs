@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using EventSystem;
+using UnityEngine;
 
 public class CharacterSoundController : MonoBehaviour
 {
@@ -16,19 +18,26 @@ public class CharacterSoundController : MonoBehaviour
     [SerializeField] private float minAttackPitch;
     [SerializeField] private float maxAttackPitch;
 
-    private PlayerState lastState;
+    private PlayerState _lastState;
 
     private void Update()
     {
-        if (playerController == null) return;
+        if (!playerController) return;
 
         PlayerState currentState = playerController.playerState;
 
-        if (currentState != lastState)
+        if (currentState != _lastState)
         {
             OnStateChanged(currentState);
-            lastState = currentState;
+            _lastState = currentState;
         }
+    }
+
+    public void OnPlaySoundClipOnce(Component sender, object[] clipObj)
+    {
+        if (clipObj == null || clipObj.Length <= 0 || clipObj[0] is not AudioClip clip) return;
+
+        audioSource.PlayOneShot(clip);
     }
 
     private void OnStateChanged(PlayerState state)
@@ -46,10 +55,6 @@ public class CharacterSoundController : MonoBehaviour
             case PlayerState.Stunned:
                 audioSource.PlayOneShot(stunSound);
                 break;
-
-            case PlayerState.Blocking:
-                audioSource.PlayOneShot(braceSound);
-                break;
         }
     }
     private void PlayPitchedSound(AudioClip clip, float minPitch, float maxPitch)
@@ -60,7 +65,7 @@ public class CharacterSoundController : MonoBehaviour
 
         StartCoroutine(ResetPitch(clip.length));
     }
-    private System.Collections.IEnumerator ResetPitch(float delay)
+    private IEnumerator ResetPitch(float delay)
     {
         yield return new WaitForSeconds(delay);
         audioSource.pitch = 1f;

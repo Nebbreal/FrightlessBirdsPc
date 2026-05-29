@@ -5923,6 +5923,7 @@ GameObject:
   - component: {fileID: 3318753757977760567}
   - component: {fileID: 1377396957945174431}
   - component: {fileID: 1924860270469549094}
+  - component: {fileID: 5421574184762760026}
   m_Layer: 8
   m_Name: PRE_Player
   m_TagString: Player
@@ -6116,9 +6117,11 @@ MonoBehaviour:
   blockReturnKnockbackSpeed: 20
   blockReturnStunDuration: 0.3
   blockDecelerationMultiplier: 0.9
+  shieldBreakAudioClip: {fileID: 8300000, guid: 57866b67dca053243be2986472f10b89, type: 3}
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onPlaySoundClipOnce: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6432,6 +6435,34 @@ MonoBehaviour:
   braceSound: {fileID: 8300000, guid: 93663615deb745c429975011be0d326f, type: 3}
   minAttackPitch: 0.95
   maxAttackPitch: 1.05
+--- !u!114 &5421574184762760026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632095940213447734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1924860270469549094}
+        m_TargetAssemblyTypeName: CharacterSoundController, Assembly-CSharp
+        m_MethodName: OnPlaySoundClipOnce
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7724844911593060753
 GameObject:
   m_ObjectHideFlags: 0

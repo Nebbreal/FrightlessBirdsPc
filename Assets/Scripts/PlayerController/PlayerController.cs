@@ -86,6 +86,9 @@ public class PlayerController : MonoBehaviour
     private bool _doBlock;
     private bool _isHoldingBlock;
     private bool _canBlock = true;
+    //Not sure how I'd handle putting this in CharacterSoundController
+    [SerializeField] 
+    private AudioClip shieldBreakAudioClip;
 
     [NonSerialized] 
     public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -93,8 +96,12 @@ public class PlayerController : MonoBehaviour
     [Header("Game events")]
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
+    [SerializeField]
     public GameEvent onJoin;
+    [SerializeField]
     public GameEvent onLeave;
+    [SerializeField]
+    private GameEvent onPlaySoundClipOnce;
 
     private void Start()
     {
@@ -596,10 +603,19 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState != PlayerState.Dash)
+        if (playerState == PlayerState.Dash) return;
+
+        if (playerState == PlayerState.Blocking)
         {
-            Stun(data, stunTime);
+            _blockCharge = 0;
+            _canBlock = false;
+            onPlaySoundClipOnce.Raise(this, shieldBreakAudioClip);
+            //SetPlayerState(PlayerState.Idle);
+
+            return;
         }
+        
+        Stun(data, stunTime);
     }
 
     public void BracedReturnStun(CollisionData data)
