@@ -8012,7 +8012,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1898598748}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Knockback
+        m_MethodName: DashKnockback
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8027,7 +8027,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1898598748}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Knockback
+        m_MethodName: DashKnockback
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8040,6 +8040,8 @@ MonoBehaviour:
   knockbackStrength: 3
   upStrength: 0.1
   player_id: -1
+  isBreakable: 0
+  isPushable: 1
 --- !u!4 &1898598751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}

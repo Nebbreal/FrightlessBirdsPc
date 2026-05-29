@@ -24,8 +24,9 @@ public class PlayerController : MonoBehaviour
     public int hitCollidersBufferSize = 8;
 
     public UnityEvent<CollisionData> onAttackHit;
-    public UnityEvent<CollisionData> onDashBracedHit;
+    public UnityEvent<CollisionData> onDashBlockHit;
     public UnityEvent<CollisionData> onDashHit;
+    public UnityEvent onInteractableBlock;
     public UnityEvent onDashHasHit;
     
     [Header("Player Settings")] 
@@ -63,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack Settings")] 
     public float attackRange = 1f;
-
     public float attackRadius = 1f;
     public float attackDelay = 1f;
     public float attackDuration = 1f;
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public bool DoAttack;
 
-    [Header("Braced Settings")] 
+    [Header("Block Settings")] 
     public float maxBlockCharge = 3f;
     private float _blockCharge;
     public float blockReturnKnockbackSpeed = 2f;
@@ -86,7 +86,10 @@ public class PlayerController : MonoBehaviour
     private bool _doBlock;
     private bool _isHoldingBlock;
     private bool _canBlock = true;
-    //Not sure how I'd handle putting this in CharacterSoundController
+    public float requiredInteractableVelocity = 8f;
+    [SerializeField]
+    private GameObject interactableBlockTrigger;
+    //Not sure how to handle putting this in CharacterSoundController
     [SerializeField] 
     private AudioClip shieldBreakAudioClip;
 
@@ -138,11 +141,6 @@ public class PlayerController : MonoBehaviour
         {
             LastMoveDirection = Vector3.Slerp(LastMoveDirection, facing.normalized, rotationSpeed).normalized;
             transform.rotation = Quaternion.LookRotation(LastMoveDirection);
-        }
-
-        if (ID == 0)
-        {
-            Debug.Log(playerState);
         }
     }
     
@@ -267,6 +265,7 @@ public class PlayerController : MonoBehaviour
                 {
                     braceHitbox.position = transform.position;
                     braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    interactableBlockTrigger.SetActive(true);
                     braceHitbox.gameObject.SetActive(true);
                     DoAttack = false;
                     DoDash = false;
@@ -295,6 +294,7 @@ public class PlayerController : MonoBehaviour
         dashHitbox.gameObject.SetActive(false);
         braceHitbox.gameObject.SetActive(false);
         stunTransform.gameObject.SetActive(false);
+        interactableBlockTrigger.SetActive(false);
         switch (current)
         {
             case PlayerState.Dash:
@@ -481,7 +481,7 @@ public class PlayerController : MonoBehaviour
         Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * (dashHitRange / 2f), dashHitRange, _hitCollidersBuffer, layerMask);
         foreach (Collider hitCollider in _hitCollidersBuffer)
         {
-            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider))
+            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider) || hitCollider.CompareTag("PlayerTrigger"))
             {
                 continue;
             }
@@ -610,12 +610,18 @@ public class PlayerController : MonoBehaviour
             _blockCharge = 0;
             _canBlock = false;
             onPlaySoundClipOnce.Raise(this, shieldBreakAudioClip);
-            //SetPlayerState(PlayerState.Idle);
 
             return;
         }
         
         Stun(data, stunTime);
+    }
+
+    public void OnInteractableBlock()
+    {
+        _blockCharge = 0;
+        _canBlock = false;
+        onPlaySoundClipOnce.Raise(this, shieldBreakAudioClip);
     }
 
     public void BracedReturnStun(CollisionData data)
@@ -647,7 +653,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (data.OriginCollider != null)
         {
-            player.onDashBracedHit.Invoke(
+            player.onDashBlockHit.Invoke(
                 new CollisionData(-data.Direction, blockReturnKnockbackSpeed, col)
             );
         }
