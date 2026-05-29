@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using MinigameFramework;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerCooldownUI : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class PlayerCooldownUI : MonoBehaviour
     public Image cooldownAttackImage;
     public Image cooldownBracedImage;
 
+    [Header("Player ID")]
     public int id;
     private bool dashIsCoolingDown;
     private bool attackIsCoolingDown;
     private bool bracedIsCoolingDown;
+
+    [Header("Cooldown Images Color")]
+    public Image cooldownDashBackgroundColor;
+    public Image cooldownAttackBackgroundColor;
+    public Image cooldownBracedBackgroundColor;
 
     private PlayerController playercontroller;
 
@@ -22,6 +29,8 @@ public class PlayerCooldownUI : MonoBehaviour
         cooldownDashImage.fillAmount = 1f;
         cooldownAttackImage.fillAmount = 1f;
         cooldownBracedImage.fillAmount = 1f;
+
+        SetCooldownColor();
     }
 
     private void OnEnable()
@@ -31,7 +40,19 @@ public class PlayerCooldownUI : MonoBehaviour
         {
             id = playerController.ID;
             playercontroller = playerController;
+
+
         }
+    }
+    private void SetCooldownColor()
+    {
+        PlayerManager playerManager = FindFirstObjectByType<PlayerManager>();
+
+            Color playerColor = playerManager.PlayerColors[id];
+
+            cooldownDashBackgroundColor.color = playerColor;
+            cooldownAttackBackgroundColor.color = playerColor;
+            cooldownBracedBackgroundColor.color = playerColor;
     }
 
     private void Update()

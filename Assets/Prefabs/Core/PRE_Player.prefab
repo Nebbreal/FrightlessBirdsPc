@@ -6382,7 +6382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2235620478262586757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6421,6 +6421,9 @@ MonoBehaviour:
   cooldownAttackImage: {fileID: 1510892624002938603}
   cooldownBracedImage: {fileID: 4552554382935653278}
   id: 0
+  cooldownDashBackgroundColor: {fileID: 3341311189509944742}
+  cooldownAttackBackgroundColor: {fileID: 8244528404660687039}
+  cooldownBracedBackgroundColor: {fileID: 8769895988165613874}
 --- !u!114 &2228526002310829258
 MonoBehaviour:
   m_ObjectHideFlags: 0
