@@ -43,18 +43,34 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (playercontroller.playerState == PlayerState.Dash)
             {
-                cooldownDashImage.color = Color.gray6;
+                cooldownDashImage.color = new Color(
+                    cooldownDashImage.color.r,
+                    cooldownDashImage.color.g,
+                    cooldownDashImage.color.b,
+                    0.6f
+                );
             }
             else
             {
-                cooldownDashImage.color = Color.gray8;
+                cooldownDashImage.color = new Color(
+                    cooldownDashImage.color.r,
+                    cooldownDashImage.color.g,
+                    cooldownDashImage.color.b,
+                    0.4f
+                );
             }
 
             if (playercontroller._dashCooldown <= 0 && playercontroller.playerState != PlayerState.Dash)
             {
                 dashIsCoolingDown = false;
                 cooldownDashImage.fillAmount = 1f;
-                cooldownDashImage.color = Color.white;
+
+                cooldownDashImage.color = new Color(
+                    cooldownDashImage.color.r,
+                    cooldownDashImage.color.g,
+                    cooldownDashImage.color.b,
+                    0f
+                );
             }
         }
         if (attackIsCoolingDown)
@@ -63,18 +79,34 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (playercontroller.playerState == PlayerState.Attack)
             {
-                cooldownAttackImage.color = Color.gray6;
+                cooldownAttackImage.color = new Color(
+                    cooldownAttackImage.color.r,
+                    cooldownAttackImage.color.g,
+                    cooldownAttackImage.color.b,
+                    0.6f
+                );
             }
             else
             {
-                cooldownAttackImage.color = Color.gray8;
+                cooldownAttackImage.color = new Color(
+                    cooldownAttackImage.color.r,
+                    cooldownAttackImage.color.g,
+                    cooldownAttackImage.color.b,
+                    0.4f
+                );
             }
 
             if (playercontroller._attackCooldown <= 0 && playercontroller.playerState != PlayerState.Attack)
             {
                 attackIsCoolingDown = false;
                 cooldownAttackImage.fillAmount = 1f;
-                cooldownAttackImage.color = Color.white;
+
+                cooldownAttackImage.color = new Color(
+                    cooldownAttackImage.color.r,
+                    cooldownAttackImage.color.g,
+                    cooldownAttackImage.color.b,
+                    0f
+                );
             }
         }
         if (bracedIsCoolingDown)
@@ -83,18 +115,34 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (playercontroller.playerState == PlayerState.Braced)
             {
-                cooldownBracedImage.color = Color.gray6;
+                cooldownBracedImage.color = new Color(
+                    cooldownBracedImage.color.r,
+                    cooldownBracedImage.color.g,
+                    cooldownBracedImage.color.b,
+                    0.6f
+                );
             }
             else
             {
-                cooldownBracedImage.color = Color.gray8;
+                cooldownBracedImage.color = new Color(
+                    cooldownBracedImage.color.r,
+                    cooldownBracedImage.color.g,
+                    cooldownBracedImage.color.b,
+                    0.4f
+                );
             }
 
             if (playercontroller._bracedCooldown <= 0 && playercontroller.playerState != PlayerState.Braced)
             {
                 bracedIsCoolingDown = false;
                 cooldownBracedImage.fillAmount = 1f;
-                cooldownBracedImage.color = Color.white;
+                
+                cooldownBracedImage.color = new Color(
+                    cooldownBracedImage.color.r,
+                    cooldownBracedImage.color.g,
+                    cooldownBracedImage.color.b,
+                    0f
+                );
             }
         }
 
