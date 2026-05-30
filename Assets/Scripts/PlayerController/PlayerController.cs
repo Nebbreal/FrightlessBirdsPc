@@ -481,7 +481,7 @@ public class PlayerController : MonoBehaviour
         Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * (dashHitRange / 2f), dashHitRange, _hitCollidersBuffer, layerMask);
         foreach (Collider hitCollider in _hitCollidersBuffer)
         {
-            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider) || hitCollider.CompareTag("PlayerTrigger"))
+            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider) || hitCollider.CompareTag("BlockTrigger"))
             {
                 continue;
             }
@@ -561,11 +561,11 @@ public class PlayerController : MonoBehaviour
         Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * attackRange, attackRadius, _hitCollidersBuffer, layerMask);
         foreach (Collider hitCollider in _hitCollidersBuffer)
         {
-            if (!hitCollider || hitCollider == col)
+            if (!hitCollider || hitCollider == col || hitCollider.CompareTag("BlockTrigger"))
             {
                 continue;
             }
-
+            
             if ((playerLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
             {
                 hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
