@@ -1,5 +1,5 @@
-﻿fileFormatVersion: 2
-guid: 5805094a707a4c04f8c34e66269b8c96
+fileFormatVersion: 2
+guid: 35261e7e5fb384f439f5f3d15cba9519
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: EG
     second: {fileID: 2100000, guid: 2cf44ccb6ef96e64aaff9e8ad3bfe61f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: NEST
-    second: {fileID: 2100000, guid: 1e5a346ffd5a86c4a946c14af7be8929, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: EnterBlock
-      takeName: nest|MAIN
-      internalID: 5272467808337021287
+      name: shell|EnterBlock
+      takeName: shell|EnterBlock
+      internalID: 4870193363408895981
       firstFrame: 0
-      lastFrame: 46
+      lastFrame: 4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -70,11 +65,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: EnterBlockBounce
-      takeName: shell|MAIN
-      internalID: 1307872091092282525
+      name: shell|Open
+      takeName: shell|Open
+      internalID: 2348037618883520773
       firstFrame: 0
-      lastFrame: 46
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
