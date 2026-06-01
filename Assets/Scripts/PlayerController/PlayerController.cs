@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public Collider col;
     public Transform attackHitbox;
     public Transform dashHitbox;
-    public Transform braceHitbox;
     public Transform stunTransform;
     [Range(0f, 25f)]
     [Tooltip("How many hit players the PlayerController can detect at once")]
@@ -95,6 +94,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] 
     private AudioClip shieldBreakAudioClip;
     private Animator _blockAnimator;
+    private SkinnedMeshRenderer _blockMeshRenderer;
 
     [NonSerialized] 
     public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -117,7 +117,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
-        _blockAnimator = GetComponentInChildren<EggShield>().GetComponent<Animator>();
+        GameObject eggShield = GetComponentInChildren<EggShield>().gameObject;
+        _blockMeshRenderer = eggShield.GetComponentInChildren<SkinnedMeshRenderer>();
+        _blockAnimator = eggShield.GetComponent<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
         _blockCharge = maxBlockCharge;
     }
@@ -272,13 +274,11 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Blocking:
                 if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
                 {
+                    _blockMeshRenderer.enabled = true;
                     playerAnimator.SetBool(IsAnimatingBlock, true);
                     _blockAnimator.SetBool(IsAnimatingBlock, true);
                     
-                    braceHitbox.position = transform.position;
-                    braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                     interactableBlockTrigger.SetActive(true);
-                    braceHitbox.gameObject.SetActive(true);
                     DoAttack = false;
                     DoDash = false;
                 }
@@ -304,7 +304,6 @@ public class PlayerController : MonoBehaviour
     {
         attackHitbox.gameObject.SetActive(false);
         dashHitbox.gameObject.SetActive(false);
-        braceHitbox.gameObject.SetActive(false);
         stunTransform.gameObject.SetActive(false);
         interactableBlockTrigger.SetActive(false);
         switch (current)
