@@ -277,7 +277,6 @@ public class PlayerController : MonoBehaviour
                     
                     braceHitbox.position = transform.position;
                     braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    _blockAnimator.Play("Block", 0, 1f);
                     interactableBlockTrigger.SetActive(true);
                     braceHitbox.gameObject.SetActive(true);
                     DoAttack = false;
