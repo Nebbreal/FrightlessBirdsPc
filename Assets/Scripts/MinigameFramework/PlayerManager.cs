@@ -303,6 +303,15 @@ namespace MinigameFramework
                 playerRb.linearVelocity = Vector3.zero;
             }
         }
+
+        public void ResetAllPlayerDeceleration()
+        {
+            foreach (GameObject player in Players)
+            {
+                PlayerController controller  = player.GetComponent<PlayerController>();
+                controller.ResetDecelerationMultiplierOverride();
+            }
+        }
         #endregion
         
         #region PlayerLives

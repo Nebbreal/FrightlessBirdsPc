@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using EventSystem;
+using MinigameFramework;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
-    private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
-
-    private Collider[] _hitCollidersBuffer;
+    
     
     [Header("Initialization Settings")] 
     public PlayerState playerState;
@@ -80,6 +79,7 @@ public class PlayerController : MonoBehaviour
     public bool DoAttack;
 
     [Header("Block Settings")] 
+    [Tooltip("In seconds")]
     public float maxBlockCharge = 3f;
     private float _blockCharge;
     public float blockReturnKnockbackSpeed = 2f;
@@ -109,6 +109,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameEvent onPlaySoundClipOnce;
 
+    private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
+    private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
+
+    private Collider[] _hitCollidersBuffer;
+    private float _currentMinigameDecelerationMultiplierOverride;
     private void Start()
     {
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
@@ -330,7 +335,6 @@ public class PlayerController : MonoBehaviour
 
         if (newState != PlayerState.Movement && newState != PlayerState.Dash)
         { 
-            Debug.Log("Exiting state: " + current + " to " + newState);
             playerAnimator.SetBool(IsAnimatingWalk, false);
         }
     }
@@ -610,7 +614,28 @@ public class PlayerController : MonoBehaviour
     
     private void DampenMovement()
     {
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, defaultDecelerationMultiplier * Time.fixedDeltaTime);
+        float decelerationMultiplier = _currentMinigameDecelerationMultiplierOverride != 0 ? 
+            _currentMinigameDecelerationMultiplierOverride : 
+            defaultDecelerationMultiplier;
+        
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
+    }
+
+    public void UpdateDecelerationMultiplierOverride(Component sender, object[] data)
+    {
+        float decelMultOverride = 0;
+        
+        if (GameManager.Instance.IsMinigameSceneActive)
+        {
+            decelMultOverride = GameManager.Instance.CurrentMinigame.minigameSpecificDecelerationOverride;
+        }
+        
+        _currentMinigameDecelerationMultiplierOverride = decelMultOverride;
+    }
+    
+    public void ResetDecelerationMultiplierOverride()
+    {
+        _currentMinigameDecelerationMultiplierOverride = 0;
     }
 
     public void AttackStun(CollisionData data)

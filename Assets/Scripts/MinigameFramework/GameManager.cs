@@ -171,6 +171,7 @@ namespace MinigameFramework
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
             PlayerManager.ResetAllPlayersGravity();
+            PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = true;
