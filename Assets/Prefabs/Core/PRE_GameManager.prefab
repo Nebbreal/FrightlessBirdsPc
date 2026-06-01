@@ -3246,7 +3246,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1578672787016582126}
         m_TargetAssemblyTypeName: ScoreboardManager, Assembly-CSharp
-        m_MethodName: onUpdateWinnerUIText
+        m_MethodName: OnUpdateWinnerUIText
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6086,7 +6086,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 50
+  m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -8133,7 +8133,7 @@ MonoBehaviour:
   - {fileID: 262709426275900499, guid: c8429784bf947814ea08c82343cc50f4, type: 3}
   - {fileID: 5334743558687489018, guid: 52cc4db1ba31dded8936112b65404237, type: 3}
   - {fileID: 3582455526357074162, guid: 6ac4d616eb3979910a2a86cca93e5ee1, type: 3}
-  - {fileID: 4016176274238889955, guid: a44ae079c8ba00842b422987bc8278c1, type: 3}
+  - {fileID: 7442093081578231837, guid: b0863f5b1e8cee94a93f4cc6b44ce407, type: 3}
   inactivePlayerPoint: {fileID: 2699060145278647577}
   OnEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   OnDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}

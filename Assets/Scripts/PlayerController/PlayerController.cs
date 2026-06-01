@@ -9,6 +9,8 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
+    private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
+
     private Collider[] _hitCollidersBuffer;
     
     [Header("Initialization Settings")] 
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public Vector3 MoveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
-    public Animator animator;
+    [FormerlySerializedAs("animator")] public Animator playerAnimator;
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
     //Not sure how to handle putting this in CharacterSoundController
     [SerializeField] 
     private AudioClip shieldBreakAudioClip;
+    private Animator _blockAnimator;
 
     [NonSerialized] 
     public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -108,7 +111,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
+        _blockAnimator = GetComponentInChildren<EggShield>().GetComponent<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
         _blockCharge = maxBlockCharge;
     }
@@ -231,15 +235,15 @@ public class PlayerController : MonoBehaviour
         switch (newState)
         {
             case PlayerState.Movement:
-                if (!animator.GetBool(IsAnimatingWalk))
+                if (!playerAnimator.GetBool(IsAnimatingWalk))
                 {
-                    animator.SetBool(IsAnimatingWalk, true);
+                    playerAnimator.SetBool(IsAnimatingWalk, true);
                 }
                 break;
             case PlayerState.Dash:
-                if (!animator.GetBool(IsAnimatingWalk))
+                if (!playerAnimator.GetBool(IsAnimatingWalk))
                 {
-                    animator.SetBool(IsAnimatingWalk, true);
+                    playerAnimator.SetBool(IsAnimatingWalk, true);
                 }
                 
                 _dashTime = dashDuration;
@@ -263,8 +267,12 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Blocking:
                 if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
                 {
+                    playerAnimator.SetBool(IsAnimatingBlock, true);
+                    _blockAnimator.SetBool(IsAnimatingBlock, true);
+                    
                     braceHitbox.position = transform.position;
                     braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    _blockAnimator.Play("Block", 0, 1f);
                     interactableBlockTrigger.SetActive(true);
                     braceHitbox.gameObject.SetActive(true);
                     DoAttack = false;
@@ -306,6 +314,9 @@ public class PlayerController : MonoBehaviour
                 AttackCooldown = attackDelay;
                 break;
             case PlayerState.Blocking:
+                playerAnimator.SetBool(IsAnimatingBlock, false);
+                _blockAnimator.SetBool(IsAnimatingBlock, false);
+                
                 if (_blockCharge <= maxBlockCharge * 0.5f)
                 {
                     _canBlock = false;
@@ -319,7 +330,8 @@ public class PlayerController : MonoBehaviour
 
         if (newState != PlayerState.Movement && newState != PlayerState.Dash)
         { 
-            animator.SetBool(IsAnimatingWalk, false);
+            Debug.Log("Exiting state: " + current + " to " + newState);
+            playerAnimator.SetBool(IsAnimatingWalk, false);
         }
     }
 
@@ -663,14 +675,5 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);
-    }
-    
-    private void OnDrawGizmos()
-    {
-        if (playerState == PlayerState.Blocking)
-        {
-            Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
-        }
     }
 }

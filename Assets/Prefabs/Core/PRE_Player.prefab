@@ -320,7 +320,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3874372982048277803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6232,7 +6232,7 @@ MonoBehaviour:
   maxSpeed: 45
   maxSpeedClampFactor: 0.8
   defaultDecelerationMultiplier: 1.4
-  animator: {fileID: 0}
+  playerAnimator: {fileID: 0}
   dashSpeed: 25
   dashDelay: 1
   dashMoveInfluence: 0.45
@@ -6258,6 +6258,7 @@ MonoBehaviour:
   blockReturnKnockbackSpeed: 20
   blockReturnStunDuration: 0.3
   blockDecelerationMultiplier: 0.9
+  requiredInteractableVelocity: 8
   interactableBlockTrigger: {fileID: 3874372982048277803}
   shieldBreakAudioClip: {fileID: 8300000, guid: 57866b67dca053243be2986472f10b89, type: 3}
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
