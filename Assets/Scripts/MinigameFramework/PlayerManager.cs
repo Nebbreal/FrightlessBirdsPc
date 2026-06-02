@@ -194,19 +194,16 @@ namespace MinigameFramework
         {
             if (!TryGetOutlineRenderer(player, out SkinnedMeshRenderer playerRenderer))
             {
-                Debug.LogWarning("Player " + player.name + " does not have a PlayerModel child. Skipping outline color application.");
                 return;
             }
 
             Material[] materials = playerRenderer.materials;
             if (materials == null || materials.Length < 2 || materials[1] == null)
             {
-                Debug.LogWarning("Player " + player.name + " does not have an outline material. Skipping outline color application.");
                 return;
             }
 
             Material outlineMaterial = materials[1];
-            Debug.Log("Applying outline color to player " + player.name + ": " + outlineColor);
             CacheOriginalOutlineColor(outlineMaterial);
             if (outlineMaterial.HasProperty("_OutlineColor"))
             {
