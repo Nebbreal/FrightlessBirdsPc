@@ -170,6 +170,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance._isMinigameActive = false;
+            Instance.PlayerManager.RestorePlayerOutlineColors();
             PlayerManager.ResetAllPlayersGravity();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
@@ -211,6 +212,7 @@ namespace MinigameFramework
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
             onDisablePlayerMovement.Raise(this);
+            Instance.PlayerManager.RestorePlayerOutlineColors();
             
             List<string> winnerNames = new List<string>();
             List<GameObject> winnerModels = new();
