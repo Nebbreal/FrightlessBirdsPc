@@ -60,63 +60,63 @@ public class PlayerCooldownUI : MonoBehaviour
 
         if (dashIsCoolingDown)
         {       
-            cooldownDashImage.fillAmount = 1 - (playercontroller._dashCooldown / playercontroller.dashDelay);
 
             if (playercontroller.playerState == PlayerState.Dash)
             {
-                SetAlpha(cooldownDashImage, 0.6f);
+                SetAlpha(cooldownDashImage, 0.9f);
             }
             else
             {
-                SetAlpha(cooldownDashImage, 0.4f);
+                cooldownDashImage.fillAmount = playercontroller._dashCooldown / playercontroller.dashDelay;
+                SetAlpha(cooldownDashImage, 0.85f);
             }
 
             if (playercontroller._dashCooldown <= 0 && playercontroller.playerState != PlayerState.Dash)
             {
                 dashIsCoolingDown = false;
-                cooldownDashImage.fillAmount = 1f;
+                cooldownDashImage.fillAmount = 0f;
 
                 SetAlpha(cooldownDashImage, 0f);
             }
         }
         if (attackIsCoolingDown)
         {       
-            cooldownAttackImage.fillAmount = 1 - (playercontroller._attackCooldown / playercontroller.attackDelay);
 
             if (playercontroller.playerState == PlayerState.Attack)
             {
-                SetAlpha(cooldownAttackImage, 0.6f);
+                SetAlpha(cooldownAttackImage, 0.9f);
             }
             else
             {
-                SetAlpha(cooldownAttackImage, 0.4f);
+                cooldownAttackImage.fillAmount = playercontroller._attackCooldown / playercontroller.attackDelay;
+                SetAlpha(cooldownAttackImage, 0.85f);
             }
 
             if (playercontroller._attackCooldown <= 0 && playercontroller.playerState != PlayerState.Attack)
             {
                 attackIsCoolingDown = false;
-                cooldownAttackImage.fillAmount = 1f;
+                cooldownAttackImage.fillAmount = 0f;
 
                 SetAlpha(cooldownAttackImage, 0f);
             }
         }
         if (bracedIsCoolingDown)
         {       
-            cooldownBracedImage.fillAmount = 1 - (playercontroller._bracedCooldown / playercontroller.bracedDelay);
 
             if (playercontroller.playerState == PlayerState.Braced)
             {
-                SetAlpha(cooldownBracedImage, 0.6f);
+                SetAlpha(cooldownBracedImage, 0.9f);
             }
             else
             {
-                SetAlpha(cooldownBracedImage, 0.4f);
+                cooldownBracedImage.fillAmount = playercontroller._bracedCooldown / playercontroller.bracedDelay;
+                SetAlpha(cooldownBracedImage, 0.85f);
             }
 
             if (playercontroller._bracedCooldown <= 0 && playercontroller.playerState != PlayerState.Braced)
             {
                 bracedIsCoolingDown = false;
-                cooldownBracedImage.fillAmount = 1f;
+                cooldownBracedImage.fillAmount = 0f;
                 
                 SetAlpha(cooldownBracedImage, 0f);
             }
@@ -132,7 +132,7 @@ public class PlayerCooldownUI : MonoBehaviour
             playercontroller = pc;
             dashIsCoolingDown = true;
 
-            cooldownDashImage.fillAmount = 0f;
+            cooldownDashImage.fillAmount = 1f;
 
         }
     }
@@ -144,7 +144,7 @@ public class PlayerCooldownUI : MonoBehaviour
             playercontroller = pc;
             attackIsCoolingDown = true;
 
-            cooldownAttackImage.fillAmount = 0f;
+            cooldownAttackImage.fillAmount = 1f;
         }
     }
     public void StartBracedCooldown(Component sender, object[] _obj)
@@ -155,7 +155,7 @@ public class PlayerCooldownUI : MonoBehaviour
             playercontroller = pc;
             bracedIsCoolingDown = true;
 
-            cooldownBracedImage.fillAmount = 0f;        }
+            cooldownBracedImage.fillAmount = 1f;        }
     }
     private void SetAlpha(Image image, float alpha)
     {
