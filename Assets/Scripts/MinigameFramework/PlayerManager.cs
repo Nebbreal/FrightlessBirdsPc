@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventSystem;
@@ -47,7 +47,7 @@ namespace MinigameFramework
         public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
         {
             { 0, new Color(0.08113199f, 0.8873519f, 1f)},
-            { 1, new Color(0f, 1f, 0.459039f)},
+            { 1, new Color(0f, 1f, 0,047058f)},
             { 2, new Color(1f, 0f, 0f) },
             { 3, new Color(0.9863279f, 1f, 0f) }
         };
