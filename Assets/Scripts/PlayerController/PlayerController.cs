@@ -274,7 +274,6 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Blocking:
                 if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
                 {
-                    _blockMeshRenderer.enabled = true;
                     playerAnimator.SetBool(IsAnimatingBlock, true);
                     _blockAnimator.SetBool(IsAnimatingBlock, true);
                     
