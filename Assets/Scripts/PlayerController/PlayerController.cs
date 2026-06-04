@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         KeepRbAwake();
+        FixedUpdateStates();
 
         if (playerState is not PlayerState.Dash)
         {
@@ -346,8 +347,6 @@ public class PlayerController : MonoBehaviour
                     SetPlayerState(PlayerState.Movement);
                 }
                 
-                DampenMovement();
-                
                 IdleToState();
                 break;
             case PlayerState.Movement:
@@ -356,8 +355,6 @@ public class PlayerController : MonoBehaviour
                     SetPlayerState(PlayerState.Idle);
                 }
                 
-                DampenMovement();
-
                 IdleToState();
                 break;
             case PlayerState.Dash:
@@ -375,6 +372,22 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Stunned:
                 CheckIsStunned();
+                break;
+        }
+    }
+    
+    private void FixedUpdateStates()
+    {
+        switch (playerState)
+        {
+            case PlayerState.Idle:
+                DampenMovement();
+                break;
+            case PlayerState.Movement:
+                DampenMovement();
+                break;
+            case PlayerState.Blocking:
+                CheckIsBraced();
                 break;
         }
     }

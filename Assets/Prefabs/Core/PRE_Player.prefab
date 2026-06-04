@@ -6230,7 +6230,7 @@ MonoBehaviour:
   acceleration: 51
   maxSpeed: 45
   maxSpeedClampFactor: 0.8
-  defaultDecelerationMultiplier: 1.4
+  defaultDecelerationMultiplier: 2.4
   playerAnimator: {fileID: 0}
   dashSpeed: 25
   dashDelay: 1
