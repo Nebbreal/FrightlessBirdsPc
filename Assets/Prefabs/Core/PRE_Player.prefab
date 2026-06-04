@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 3799463208147244861}
   m_Layer: 8
   m_Name: InteractableBlockTrigger
-  m_TagString: PlayerTrigger
+  m_TagString: BlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6148,7 +6148,6 @@ MonoBehaviour:
   col: {fileID: 6063094417112554454}
   attackHitbox: {fileID: 7265752309160093083}
   dashHitbox: {fileID: 9036175730131166096}
-  braceHitbox: {fileID: 0}
   stunTransform: {fileID: 6296072274662204348}
   hitCollidersBufferSize: 8
   onAttackHit:

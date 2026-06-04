@@ -8,7 +8,6 @@ TagManager:
   - UIManager
   - Ball
   - BlockTrigger
-  - PlayerTrigger
   layers:
   - Default
   - TransparentFX
