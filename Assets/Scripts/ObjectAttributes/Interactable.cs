@@ -9,9 +9,10 @@ public class Interactable : MonoBehaviour
     public bool isBreakable = false;
     public bool isPushable = false;
     public float knockbackStrength = 0.25f;
-    public float shieldKnockbackStrength = 5f;
+    public float shieldKnockbackStrength = 2;
+    public float shieldBreakKnockbackStrength = 5f;
     public float upStrength = 0.25f;
-    [FormerlySerializedAs("player_id")] public int playerID = -1;
+    public int playerID = -1;
     
     [Header("Events")]
     public UnityEvent<CollisionData> onAttackHit;

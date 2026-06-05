@@ -4,6 +4,7 @@ using UnityEngine;
 public class InteractableBlockTrigger : MonoBehaviour
 {
     private PlayerController _playerController;
+    private float _minimumVelocityThreshold = 0.5f;
     
     private void Start()
     {
@@ -13,15 +14,27 @@ public class InteractableBlockTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Interactable interactable = other.GetComponent<Interactable>();
+        
         if (!interactable) return;
         if (!interactable.isPushable) return;
         Rigidbody interactableRigidbody = interactable.GetComponent<Rigidbody>();
-        if (!interactableRigidbody || interactableRigidbody.linearVelocity.magnitude < _playerController.requiredInteractableVelocity) return;
+        if (!interactableRigidbody || interactableRigidbody.linearVelocity.magnitude < _minimumVelocityThreshold) return;
+        Debug.Log(interactableRigidbody.linearVelocity.magnitude);
         
-        float knockbackStrength = interactable.shieldKnockbackStrength;
+        if(Vector3.Dot(interactableRigidbody.linearVelocity.normalized, (transform.position - other.transform.position).normalized) <= 0) return;
+
+        bool breaksShield = interactableRigidbody.linearVelocity.magnitude >
+                            _playerController.requiredInteractableBreakVelocity;
+
+        float knockbackStrength = breaksShield ? interactable.shieldBreakKnockbackStrength : interactable.shieldKnockbackStrength;
+        
         Vector3 direction = (other.transform.position - transform.position).normalized;
-        
+        interactableRigidbody.linearVelocity = Vector3.zero;
         interactable.Knockback(direction, knockbackStrength);
-        _playerController.onInteractableBlock.Invoke();
+
+        if (breaksShield)
+        {
+            _playerController.onInteractableBlock.Invoke();
+        }
     }
 }

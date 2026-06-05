@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private bool _doBlock;
     private bool _isHoldingBlock;
     private bool _canBlock = true;
-    public float requiredInteractableVelocity = 8f;
+    public float requiredInteractableBreakVelocity = 8f;
     [SerializeField]
     private GameObject interactableBlockTrigger;
     private EggShield _eggShieldScript;
