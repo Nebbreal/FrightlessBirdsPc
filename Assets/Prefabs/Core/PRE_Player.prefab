@@ -233,7 +233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0d5ed05583c2024c9ecfe35efe6e16e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa2f4872f3ff6184a8fdee3ddbd1bbdd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6239,7 +6239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0d5ed05583c2024c9ecfe35efe6e16e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa2f4872f3ff6184a8fdee3ddbd1bbdd, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6419,9 +6419,9 @@ MonoBehaviour:
   cooldownAttackImage: {fileID: 1510892624002938603}
   cooldownBracedImage: {fileID: 4552554382935653278}
   id: 0
-  cooldownDashBackgroundColor: {fileID: 3341311189509944742}
-  cooldownAttackBackgroundColor: {fileID: 8244528404660687039}
-  cooldownBracedBackgroundColor: {fileID: 8769895988165613874}
+  cooldownDashBackgroundImage: {fileID: 3341311189509944742}
+  cooldownAttackBackgroundImage: {fileID: 8244528404660687039}
+  cooldownBracedBackgroundImage: {fileID: 8769895988165613874}
 --- !u!114 &2228526002310829258
 MonoBehaviour:
   m_ObjectHideFlags: 0
