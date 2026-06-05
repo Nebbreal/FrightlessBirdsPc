@@ -8,7 +8,7 @@ using TMPro;
 
 namespace Minigames.RoadRunner
 {
-    public class RoadRunnerMinigameManager : MonoBehaviour
+    public class GoldenGooseMinigameManager : MonoBehaviour
     {
         //General Config
         private GameObject _gameManager;

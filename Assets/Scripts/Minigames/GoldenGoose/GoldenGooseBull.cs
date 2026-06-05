@@ -1,7 +1,7 @@
 using UnityEngine;
 using EventSystem;
 
-public class RoadRunnerCar : MonoBehaviour
+public class GoldenGooseBull : MonoBehaviour
 {
     public float speed;
     public float resetLength;
