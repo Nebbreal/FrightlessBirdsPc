@@ -90,9 +90,7 @@ public class PlayerController : MonoBehaviour
     public float requiredInteractableVelocity = 8f;
     [SerializeField]
     private GameObject interactableBlockTrigger;
-    //Not sure how to handle putting this in CharacterSoundController
-    [SerializeField] 
-    private AudioClip shieldBreakAudioClip;
+    private EggShield _eggShieldScript;
     private Animator _blockAnimator;
     private SkinnedMeshRenderer _blockMeshRenderer;
 
@@ -117,9 +115,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
-        GameObject eggShield = GetComponentInChildren<EggShield>().gameObject;
-        _blockMeshRenderer = eggShield.GetComponentInChildren<SkinnedMeshRenderer>();
-        _blockAnimator = eggShield.GetComponent<Animator>();
+        _eggShieldScript = GetComponentInChildren<EggShield>();
+        GameObject eggShieldObject = _eggShieldScript.gameObject;
+        _blockMeshRenderer = eggShieldObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        _blockAnimator = eggShieldObject.GetComponent<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
         _blockCharge = maxBlockCharge;
     }
@@ -656,7 +655,7 @@ public class PlayerController : MonoBehaviour
         {
             _blockCharge = 0;
             _canBlock = false;
-            onPlaySoundClipOnce.Raise(this, shieldBreakAudioClip);
+            _eggShieldScript.PlayBreakShieldSound();
 
             return;
         }
@@ -668,7 +667,7 @@ public class PlayerController : MonoBehaviour
     {
         _blockCharge = 0;
         _canBlock = false;
-        onPlaySoundClipOnce.Raise(this, shieldBreakAudioClip);
+        _eggShieldScript.PlayBreakShieldSound();
     }
 
     public void BracedReturnStun(CollisionData data)

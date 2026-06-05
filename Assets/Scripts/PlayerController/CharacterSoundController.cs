@@ -12,7 +12,6 @@ public class CharacterSoundController : MonoBehaviour
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip stunSound;
-    [SerializeField] private AudioClip braceSound;
 
     [Header("Attack Pitch Settings")]
     [SerializeField] private float minAttackPitch;
