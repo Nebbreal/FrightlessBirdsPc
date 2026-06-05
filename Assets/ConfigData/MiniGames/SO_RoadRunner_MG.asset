@@ -15,8 +15,8 @@ MonoBehaviour:
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 89290a91e886e0b49ae0e3e402a855fe, type: 3}
     m_SceneName: SC_GoldenGoose_MG
-  gameName: Road Runner
-  gameDescription: Keep crossing the road!
+  gameName: Golden Goose
+  gameDescription: Keep the Egg Safe!
   roundLength: 60
   maxLives: 20
   respawnTime: 1

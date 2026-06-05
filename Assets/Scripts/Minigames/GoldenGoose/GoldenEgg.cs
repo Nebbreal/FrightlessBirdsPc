@@ -15,6 +15,8 @@ public class GoldenEgg : MonoBehaviour
     [Range(0f, 1f)]
     public float DashStealDelayFactor;
 
+    public LayerMask Mask;
+
     public Vector2 min;
     public Vector2 max;
 
@@ -107,6 +109,11 @@ public class GoldenEgg : MonoBehaviour
                        new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * DropDistance;
         dropPosition.x = Mathf.Clamp(dropPosition.x, min.x, max.x);
         dropPosition.z = Mathf.Clamp(dropPosition.z, min.y, max.y);
+        if (Physics.Raycast(transform.position, dropPosition - transform.position, out var hitInfo, Mask))
+        {
+            dropPosition = hitInfo.point + hitInfo.normal;
+            dropPosition.y = 0f;
+        }
         _pointTimer = 0f;
         _timer = 0f;
         _canPickUp = false;
