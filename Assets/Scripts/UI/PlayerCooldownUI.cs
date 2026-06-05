@@ -21,7 +21,7 @@ public class PlayerCooldownUI : MonoBehaviour
     public Image cooldownAttackBackgroundColor;
     public Image cooldownBracedBackgroundColor;
 
-    private PlayerController playercontroller;
+    private PlayerController _playercontroller;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class PlayerCooldownUI : MonoBehaviour
         if (playerController)
         {
             id = playerController.ID;
-            playercontroller = playerController;
+            _playercontroller = playerController;
 
 
         }
@@ -61,17 +61,17 @@ public class PlayerCooldownUI : MonoBehaviour
         if (dashIsCoolingDown)
         {       
 
-            if (playercontroller.playerState == PlayerState.Dash)
+            if (_playercontroller.playerState == PlayerState.Dash)
             {
                 SetAlpha(cooldownDashImage, 0.9f);
             }
             else
             {
-                cooldownDashImage.fillAmount = playercontroller._dashCooldown / playercontroller.dashDelay;
+                cooldownDashImage.fillAmount = _playercontroller._dashCooldown / _playercontroller.dashDelay;
                 SetAlpha(cooldownDashImage, 0.85f);
             }
 
-            if (playercontroller._dashCooldown <= 0 && playercontroller.playerState != PlayerState.Dash)
+            if (_playercontroller._dashCooldown <= 0 && _playercontroller.playerState != PlayerState.Dash)
             {
                 dashIsCoolingDown = false;
                 cooldownDashImage.fillAmount = 0f;
@@ -82,17 +82,17 @@ public class PlayerCooldownUI : MonoBehaviour
         if (attackIsCoolingDown)
         {       
 
-            if (playercontroller.playerState == PlayerState.Attack)
+            if (_playercontroller.playerState == PlayerState.Attack)
             {
                 SetAlpha(cooldownAttackImage, 0.9f);
             }
             else
             {
-                cooldownAttackImage.fillAmount = playercontroller._attackCooldown / playercontroller.attackDelay;
+                cooldownAttackImage.fillAmount = _playercontroller._attackCooldown / _playercontroller.attackDelay;
                 SetAlpha(cooldownAttackImage, 0.85f);
             }
 
-            if (playercontroller._attackCooldown <= 0 && playercontroller.playerState != PlayerState.Attack)
+            if (_playercontroller._attackCooldown <= 0 && _playercontroller.playerState != PlayerState.Attack)
             {
                 attackIsCoolingDown = false;
                 cooldownAttackImage.fillAmount = 0f;
@@ -103,17 +103,17 @@ public class PlayerCooldownUI : MonoBehaviour
         if (bracedIsCoolingDown)
         {       
 
-            if (playercontroller.playerState == PlayerState.Braced)
+            if (_playercontroller.playerState == PlayerState.Braced)
             {
                 SetAlpha(cooldownBracedImage, 0.9f);
             }
             else
             {
-                cooldownBracedImage.fillAmount = playercontroller._bracedCooldown / playercontroller.bracedDelay;
+                cooldownBracedImage.fillAmount = _playercontroller._bracedCooldown / _playercontroller.bracedDelay;
                 SetAlpha(cooldownBracedImage, 0.85f);
             }
 
-            if (playercontroller._bracedCooldown <= 0 && playercontroller.playerState != PlayerState.Braced)
+            if (_playercontroller._bracedCooldown <= 0 && _playercontroller.playerState != PlayerState.Braced)
             {
                 bracedIsCoolingDown = false;
                 cooldownBracedImage.fillAmount = 0f;
@@ -129,7 +129,7 @@ public class PlayerCooldownUI : MonoBehaviour
         PlayerController pc = sender as PlayerController;
         if (!dashIsCoolingDown && pc.ID == id)
         {
-            playercontroller = pc;
+            _playercontroller = pc;
             dashIsCoolingDown = true;
 
             cooldownDashImage.fillAmount = 1f;
@@ -141,7 +141,7 @@ public class PlayerCooldownUI : MonoBehaviour
         PlayerController pc = sender as PlayerController;
         if (!attackIsCoolingDown && pc.ID == id)
         {
-            playercontroller = pc;
+            _playercontroller = pc;
             attackIsCoolingDown = true;
 
             cooldownAttackImage.fillAmount = 1f;
@@ -152,7 +152,7 @@ public class PlayerCooldownUI : MonoBehaviour
         PlayerController pc = sender as PlayerController;
         if (!bracedIsCoolingDown && pc.ID == id)
         {
-            playercontroller = pc;
+            _playercontroller = pc;
             bracedIsCoolingDown = true;
 
             cooldownBracedImage.fillAmount = 1f;        }
