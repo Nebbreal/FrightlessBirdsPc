@@ -32,9 +32,9 @@ public class PlayerCooldownUI : MonoBehaviour
 
         SetCooldownColor();
 
-        SetAlpha(cooldownDashBackgroundImage, 0.7f);
-        SetAlpha(cooldownAttackBackgroundImage, 0.7f);
-        SetAlpha(cooldownBracedBackgroundImage, 0.7f);
+        SetAlpha(cooldownDashBackgroundImage, 0.8f);
+        SetAlpha(cooldownAttackBackgroundImage, 0.8f);
+        SetAlpha(cooldownBracedBackgroundImage, 0.8f);
     }
 
     private void OnEnable()
