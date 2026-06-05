@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6345898710956833228, guid: 049aa90fa7b41654cac597f38dda26f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 158fcdef207378c40bf3875dbd0b57eb, type: 2}
     - target: {fileID: 7371827420395527215, guid: 049aa90fa7b41654cac597f38dda26f3, type: 3}
       propertyPath: m_Name
       value: PRE_EggShield
