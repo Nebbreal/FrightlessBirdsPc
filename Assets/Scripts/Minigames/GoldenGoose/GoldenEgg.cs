@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using EventSystem;
+using System.Collections.Generic;
 
 public class GoldenEgg : MonoBehaviour
 {
@@ -26,12 +27,28 @@ public class GoldenEgg : MonoBehaviour
     private Vector3 dropStart;
     private Vector3 dropPosition;
 
+    private List<PlayerController> inside;
+
     private PlayerController currentOwner;
+
+    private void Awake()
+    {
+        inside = new List<PlayerController>();
+    }
 
     private void Update()
     {
         _timer += Time.deltaTime;
         var t = _timer / AnimationTime;
+
+        if (!currentOwner && _canPickUp && inside.Count > 0)
+        {
+            currentOwner = inside.First();
+            inside.Clear();
+            transform.SetParent(currentOwner.transform);
+            _pointTimer = 0f;
+        }
+
         if (currentOwner)
         {
             _pointTimer += Time.deltaTime;
@@ -50,7 +67,7 @@ public class GoldenEgg : MonoBehaviour
 
         if (currentOwner)
         {
-            transform.localPosition = new Vector3(0f, 2f, 0f); //.Set(0f, 2f + (t - 0.5f) * 2f, 0f);
+            transform.localPosition = new Vector3(0f, 2f, 0f);
         }
 
         var point_t = _pointTimer / PointTime;
@@ -67,11 +84,16 @@ public class GoldenEgg : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         PlayerController p = col.GetComponent<PlayerController>();
-        if (!currentOwner && _canPickUp && p)
-        {
-            currentOwner = p;
-            transform.SetParent(col.transform);
-            _pointTimer = 0f;
+        if (p){
+            inside.Add(p);
+        }
+    }
+    
+    private void OnTriggerExit(Collider col)
+    {
+        PlayerController p = col.GetComponent<PlayerController>();
+        if (inside.Contains(p)){
+            inside.Remove(p);
         }
     }
 
