@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/SC_RoadRunner_MG.unity
     guid: 8ec113458aff1854bb2cb1c240aecc0e
+  - enabled: 1
+    path: Assets/Scenes/Minigames/SC_GoldenGoose_MG.unity
+    guid: 89290a91e886e0b49ae0e3e402a855fe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
