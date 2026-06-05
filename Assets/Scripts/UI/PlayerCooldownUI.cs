@@ -17,9 +17,9 @@ public class PlayerCooldownUI : MonoBehaviour
     private bool bracedIsCoolingDown;
 
     [Header("Cooldown Images Color")]
-    public Image cooldownDashBackgroundColor;
-    public Image cooldownAttackBackgroundColor;
-    public Image cooldownBracedBackgroundColor;
+    public Image cooldownDashBackgroundImage;
+    public Image cooldownAttackBackgroundImage;
+    public Image cooldownBracedBackgroundImage;
 
     private PlayerController _playercontroller;
 
@@ -31,6 +31,8 @@ public class PlayerCooldownUI : MonoBehaviour
         cooldownBracedImage.fillAmount = 1f;
 
         SetCooldownColor();
+
+        SetAlpha(cooldownDashBackgroundImage, 0);
     }
 
     private void OnEnable()
@@ -50,9 +52,9 @@ public class PlayerCooldownUI : MonoBehaviour
 
             Color playerColor = playerManager.PlayerColors[id];
 
-            cooldownDashBackgroundColor.color = playerColor;
-            cooldownAttackBackgroundColor.color = playerColor;
-            cooldownBracedBackgroundColor.color = playerColor;
+            cooldownDashBackgroundImage.color = playerColor;
+            cooldownAttackBackgroundImage.color = playerColor;
+            cooldownBracedBackgroundImage.color = playerColor;
     }
 
     private void Update()
