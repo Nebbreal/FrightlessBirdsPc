@@ -8007,6 +8007,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe55c96c9c41048bb72875ddbef23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  isBreakable: 0
+  isPushable: 1
+  knockbackStrength: 10
+  shieldKnockbackStrength: 4
+  shieldBreakKnockbackStrength: 10
+  upStrength: 0.1
+  playerID: -1
   onAttackHit:
     m_PersistentCalls:
       m_Calls:
@@ -8037,11 +8044,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  knockbackStrength: 3
-  upStrength: 0.1
-  player_id: -1
-  isBreakable: 0
-  isPushable: 1
 --- !u!4 &1898598751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2e9e0bf4e0a3c10459fd70cc5d40dafa, type: 3}

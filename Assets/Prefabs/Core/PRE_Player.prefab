@@ -6257,7 +6257,8 @@ MonoBehaviour:
   blockReturnKnockbackSpeed: 20
   blockReturnStunDuration: 0.3
   blockDecelerationMultiplier: 1.7
-  requiredInteractableVelocity: 8
+  requiredInteractableBreakVelocity: 9.5
+  angularVelocityBreakInfluence: 0.7
   interactableBlockTrigger: {fileID: 3874372982048277803}
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
