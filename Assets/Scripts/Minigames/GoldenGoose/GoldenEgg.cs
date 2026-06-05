@@ -15,6 +15,9 @@ public class GoldenEgg : MonoBehaviour
     [Range(0f, 1f)]
     public float DashStealDelayFactor;
 
+    public Vector2 min;
+    public Vector2 max;
+
     private float _timer = 0f;
     private float _pointTimer = 0f;
     private bool _canPickUp;
@@ -102,8 +105,8 @@ public class GoldenEgg : MonoBehaviour
         dropStart = new Vector3(transform.position.x, 0f, transform.position.z);
         dropPosition = new Vector3(transform.position.x, 0f, transform.position.z) +
                        new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * DropDistance;
-        dropPosition.x = Mathf.Clamp(dropPosition.x, -16f, 16f);
-        dropPosition.z = Mathf.Clamp(dropPosition.z, -9f, 9f);
+        dropPosition.x = Mathf.Clamp(dropPosition.x, min.x, max.x);
+        dropPosition.z = Mathf.Clamp(dropPosition.z, min.y, max.y);
         _pointTimer = 0f;
         _timer = 0f;
         _canPickUp = false;

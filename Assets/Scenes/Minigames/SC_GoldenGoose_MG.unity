@@ -9823,6 +9823,8 @@ MonoBehaviour:
   DropDistance: 6
   onScorePoint: {fileID: 11400000, guid: 2be273520bc9635499c5f66a7e305c89, type: 2}
   DashStealDelayFactor: 0.5
+  min: {x: -16, y: -9}
+  max: {x: 16, y: 9}
 --- !u!135 &1044409378
 SphereCollider:
   m_ObjectHideFlags: 0
