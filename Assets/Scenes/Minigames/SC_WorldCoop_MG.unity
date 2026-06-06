@@ -8009,7 +8009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   isBreakable: 0
   isPushable: 1
-  knockbackStrength: 10
+  knockbackStrength: 5
   shieldKnockbackStrength: 4
   shieldBreakKnockbackStrength: 10
   upStrength: 0.1

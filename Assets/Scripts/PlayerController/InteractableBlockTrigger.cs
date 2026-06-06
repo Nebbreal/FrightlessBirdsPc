@@ -19,7 +19,6 @@ public class InteractableBlockTrigger : MonoBehaviour
         if (!interactable.isPushable) return;
         Rigidbody interactableRigidbody = interactable.GetComponent<Rigidbody>();
         if (!interactableRigidbody || interactableRigidbody.linearVelocity.magnitude < _minimumVelocityThreshold) return;
-        Debug.Log(interactableRigidbody.linearVelocity.magnitude);
         
         if(Vector3.Dot(interactableRigidbody.linearVelocity.normalized, (transform.position - other.transform.position).normalized) <= 0) return;
 
