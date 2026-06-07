@@ -12,18 +12,18 @@ public class EggShield : MonoBehaviour
     [SerializeField] 
     private AudioClip breakShieldSound;
     [SerializeField]
-    private SkinnedMeshRenderer shieldRendered;
+    private SkinnedMeshRenderer shieldRenderer;
     [SerializeField] 
     private GameEvent onPlaySoundClipOnce;
     
     public void ShowEggShield()
     {
-        shieldRendered.enabled = true;
+        shieldRenderer.enabled = true;
     }
 
     public void HideEggShield()
     {
-        shieldRendered.enabled = false;
+        shieldRenderer.enabled = false;
     }
 
     public void PlayEnterShieldSound()
