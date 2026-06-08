@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2796583831529826798}
   - component: {fileID: 532998508736019176}
   - component: {fileID: 443184255606843464}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: P1_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8794504838051838274}
   - component: {fileID: 1697440876675730021}
   - component: {fileID: 8769895988165613874}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownBracedBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7408769858470181612}
   - component: {fileID: 1502165834888476809}
   - component: {fileID: 6455915442845543974}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 3801786922241848357}
   - component: {fileID: 2039710792458918466}
   - component: {fileID: 873958751790097191}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownDashUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 7885269927813708689}
   - component: {fileID: 4718251066164391187}
   - component: {fileID: 4214336853426670247}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: BlinkForCalibration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 2248606175310047590}
   - component: {fileID: 4822488644359760551}
   - component: {fileID: 3341311189509944742}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownDashBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 8312721122505792431}
   - component: {fileID: 694425147800946749}
   - component: {fileID: 3977472230325006785}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PressToJoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 6726747978796628766}
   - component: {fileID: 1253035938113750941}
   - component: {fileID: 8244528404660687039}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownAttackBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5705,7 +5705,7 @@ GameObject:
   - component: {fileID: 3892524298258903637}
   - component: {fileID: 5380932565755620587}
   - component: {fileID: 2313444869641277782}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5781,7 +5781,7 @@ GameObject:
   - component: {fileID: 2103319488302611831}
   - component: {fileID: 7270239768134438405}
   - component: {fileID: 2689646872790064908}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: BlinkForCalibration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5870,7 +5870,7 @@ GameObject:
   - component: {fileID: 5446221863640233900}
   - component: {fileID: 7963623475195394378}
   - component: {fileID: 7380667984680615323}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PressToJoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6007,7 +6007,7 @@ GameObject:
   - component: {fileID: 2350491289187685296}
   - component: {fileID: 8369654417775382502}
   - component: {fileID: 1510892624002938603}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownAttackUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6083,7 +6083,7 @@ GameObject:
   - component: {fileID: 5439482639783976590}
   - component: {fileID: 488677909842930093}
   - component: {fileID: 7309753400177428979}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6185,7 +6185,7 @@ GameObject:
   - component: {fileID: 3803694071947531079}
   - component: {fileID: 5229299271540926007}
   - component: {fileID: 4552554382935653278}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownBracedUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6374,7 +6374,7 @@ GameObject:
   - component: {fileID: 2228526002310829258}
   - component: {fileID: 170949557715744242}
   - component: {fileID: 8806126378619006400}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: CooldownUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6422,6 +6422,7 @@ MonoBehaviour:
   cooldownDashBackgroundImage: {fileID: 3341311189509944742}
   cooldownAttackBackgroundImage: {fileID: 8244528404660687039}
   cooldownBracedBackgroundImage: {fileID: 8769895988165613874}
+  cooldownBackgroundAlpha: 0.8
 --- !u!114 &2228526002310829258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16870,7 +16871,7 @@ GameObject:
   - component: {fileID: 5969635578351231075}
   - component: {fileID: 564936743868059905}
   - component: {fileID: 6139215945415287503}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Player1UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
