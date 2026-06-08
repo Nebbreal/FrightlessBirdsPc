@@ -6258,11 +6258,12 @@ MonoBehaviour:
   blockReturnStunDuration: 0.3
   blockDecelerationMultiplier: 1.7
   requiredInteractableBreakVelocity: 9.5
-  angularVelocityBreakInfluence: 0.7
   interactableBlockTrigger: {fileID: 3874372982048277803}
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onDashedInto: {fileID: 11400000, guid: dada673888a25414195ff1ed3ba3b650, type: 2}
+  onAttacked: {fileID: 11400000, guid: b90d1470d294e81409d2624770af5578, type: 2}
   onPlaySoundClipOnce: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
