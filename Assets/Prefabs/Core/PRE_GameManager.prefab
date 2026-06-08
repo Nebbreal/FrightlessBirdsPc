@@ -9256,17 +9256,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617776873233189715, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}
       propertyPath: m_Cameras.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6617776873233189715, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}
       propertyPath: 'm_Cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 4533980547067689356}
+    - target: {fileID: 6617776873233189715, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}
+      propertyPath: 'm_Cameras.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1232225812236050712}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}
+--- !u!20 &1232225812236050712 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7667172261898274228, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}
+  m_PrefabInstance: {fileID: 8898825153543759020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7443202258652285970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2032648802348017854, guid: ef27cba3428e5b74dacf2930b438bba0, type: 3}

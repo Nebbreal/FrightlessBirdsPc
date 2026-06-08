@@ -21,7 +21,7 @@ TagManager:
   - Environment
   - Interactable
   - PlayerOnlyCollisions
-  - 
+  - PlayerUI
   - 
   - 
   - 
