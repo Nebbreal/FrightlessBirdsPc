@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
     private GameEvent onSpawnDebugPlayers;
     public GameEvent onJoin;
     public GameEvent onLeave;
+    public GameEvent onDashedInto;
+    public GameEvent onAttacked;
 
     private void Start()
     {
@@ -551,6 +553,7 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.Dash)
         {
             Stun(data, stunTime);
+            onAttacked.Raise(this, data);
         }
     }
 
@@ -580,6 +583,7 @@ public class PlayerController : MonoBehaviour
         {
             Knockback(data);
             player.onDashHasHit.Invoke();
+            onDashedInto.Raise(this, data);
         }
         else if (data.OriginCollider != null)
         {
