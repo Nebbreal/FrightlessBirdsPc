@@ -74,9 +74,11 @@ public class PlayerController : MonoBehaviour
     public float bracedDelay = 1f;
     public float bracedReturnKnockbackSpeed = 2f;
     public float bracedReturnStunDuration = 0.3f;
-    public bool _doBrace;
+    [NonSerialized]
+    public bool DoBrace;
     private bool _holdingBrace;
-    public float _bracedCooldown;
+    [NonSerialized]
+    public float BracedCooldown;
 
     [NonSerialized] 
     public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -100,15 +102,15 @@ public class PlayerController : MonoBehaviour
         if (playerState is PlayerState.InputRestricted)
         {
             _doAttack = false;
-            _doBrace = false;
+            DoBrace = false;
             _doDash = false;
             _moveThisFrame = Vector3.zero;
             return;
         }
-        if (_holdingBrace && _bracedCooldown <= 0 && 
+        if (_holdingBrace && BracedCooldown <= 0 && 
             playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
         {
-            _doBrace = true;
+            DoBrace = true;
         }
 
         _moveThisFrame = _moveInput;
@@ -166,13 +168,13 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
                 // dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
                 dashHitbox.gameObject.SetActive(true);
-                _doBrace = false;
+                DoBrace = false;
                 _doAttack = false;
                 onPlayerDash.Raise(this);
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
-                _doBrace = false;
+                DoBrace = false;
                 _doDash = false;
                 onPlayerAttack.Raise(this);
                 break;
@@ -181,7 +183,7 @@ public class PlayerController : MonoBehaviour
                 stunTransform.gameObject.SetActive(true);
                 _doAttack = false;
                 _doDash = false;
-                _doBrace = false;
+                DoBrace = false;
                 break;
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -197,7 +199,7 @@ public class PlayerController : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 _doAttack = false;
                 _doDash = false;
-                _doBrace = false;
+                DoBrace = false;
                 break;
         }
 
@@ -234,7 +236,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Braced:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
-                _bracedCooldown = bracedDelay;
+                BracedCooldown = bracedDelay;
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -269,7 +271,7 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Braced:
-                if (!_doBrace)
+                if (!DoBrace)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -287,7 +289,7 @@ public class PlayerController : MonoBehaviour
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     private void IdleToState()
     {
-        if (_doBrace)
+        if (DoBrace)
         {
             SetPlayerState(PlayerState.Braced);
         }
@@ -308,9 +310,9 @@ public class PlayerController : MonoBehaviour
             _dashCooldown -= Time.deltaTime;
         }
 
-        if (_bracedCooldown > 0f)
+        if (BracedCooldown > 0f)
         {
-            _bracedCooldown -= Time.deltaTime;
+            BracedCooldown -= Time.deltaTime;
         }
 
         if (_attackCooldown > 0f)
@@ -470,7 +472,7 @@ public class PlayerController : MonoBehaviour
 
         _doAttack = false;
         _doDash = false;
-        _doBrace = false;
+        DoBrace = false;
     }
 
     private void ExecuteAttack()

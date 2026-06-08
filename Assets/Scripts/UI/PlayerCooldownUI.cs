@@ -76,7 +76,7 @@ public class PlayerCooldownUI : MonoBehaviour
     _bracedIsCoolingDown = UpdateCooldown(
         _bracedIsCoolingDown,
         cooldownBracedImage,
-        _playercontroller._bracedCooldown,
+        _playercontroller.BracedCooldown,
         _playercontroller.bracedDelay,
         PlayerState.Braced);
     }
