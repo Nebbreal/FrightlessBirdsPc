@@ -1,28 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using EventSystem;
+using MinigameFramework;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    
     [Header("Initialization Settings")] 
     public PlayerState playerState;
     public Rigidbody rb;
     public Collider col;
     public Transform attackHitbox;
     public Transform dashHitbox;
-    public Transform braceHitbox;
     public Transform stunTransform;
+    [Range(0f, 25f)]
+    [Tooltip("How many hit players the PlayerController can detect at once")]
+    public int hitCollidersBufferSize = 8;
 
     public UnityEvent<CollisionData> onAttackHit;
-    public UnityEvent<CollisionData> onDashBracedHit;
+    public UnityEvent<CollisionData> onDashBlockHit;
     public UnityEvent<CollisionData> onDashHit;
+    public UnityEvent onInteractableBlock;
     public UnityEvent onDashHasHit;
-
     
-
     [Header("Player Settings")] 
     public float stunTime = 1f;
     public float rotationSpeed = 0.15f;
@@ -31,22 +37,24 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool IsActive = false;
     [NonSerialized] public int ID = -1;
 
-    [Header("Walk Settings")] 
-    public float walkSpeed = 20f;
+    [FormerlySerializedAs("walkSpeed")] [Header("Walk Settings")] 
+    public float acceleration = 20f;
     public float maxSpeed = 60f;
     public float maxSpeedClampFactor = 0.8f;
+    public float defaultDecelerationMultiplier = 1.4f;
     [NonSerialized] 
-    public Vector3 _moveInput = new Vector3(0f, 0f, 0f);
+    public Vector3 MoveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
-    public Animator animator;
+    [FormerlySerializedAs("animator")] public Animator playerAnimator;
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
     public float dashDelay = 1f;
+    public float dashMoveInfluence = 0.7f;
     [NonSerialized]
-    public float _dashCooldown;
+    public float DashCooldown;
     [NonSerialized]
-    public bool _doDash;
+    public bool DoDash;
     public float dashDuration = 1f;
     public float dashEarlyEndSpeed = 10f;
     private float _dashTime;
@@ -56,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack Settings")] 
     public float attackRange = 1f;
-
     public float attackRadius = 1f;
     public float attackDelay = 1f;
     public float attackDuration = 1f;
@@ -65,64 +72,136 @@ public class PlayerController : MonoBehaviour
     public LayerMask playerLayerMask;
     public LayerMask interactableLayerMask;
     [NonSerialized] 
-    public float _attackCooldown;
+    public float AttackCooldown;
     private float _attackTime;
     [NonSerialized] 
-    public bool _doAttack;
+    public bool DoAttack;
 
-    [Header("Braced Settings")] 
-    public float bracedDelay = 1f;
-    public float bracedReturnKnockbackSpeed = 2f;
-    public float bracedReturnStunDuration = 0.3f;
-    private bool _doBrace;
-    private bool _holdingBrace;
-    private float _bracedCooldown;
+    [Header("Block Settings")] 
+    [Tooltip("In seconds")]
+    public float maxBlockCharge = 3f;
+    private float _blockCharge;
+    public float blockReturnKnockbackSpeed = 2f;
+    public float blockReturnStunDuration = 0.3f;
+    public float blockDecelerationMultiplier = 0.9f;
+    private bool _doBlock;
+    private bool _isHoldingBlock;
+    private bool _canBlock = true;
+    public float requiredInteractableBreakVelocity = 8f;
+    [SerializeField]
+    private GameObject interactableBlockTrigger;
+    private EggShield _eggShieldScript;
+    private Animator _blockAnimator;
+    private SkinnedMeshRenderer _blockMeshRenderer;
 
     [NonSerialized] 
-    public Vector3 _lastMoveDirection = new Vector3(1f, 0f, 0f);
+    public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
 
     [Header("Game events")]
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
+    [SerializeField]
     public GameEvent onJoin;
+    [SerializeField]
     public GameEvent onLeave;
     public GameEvent onDashedInto;
     public GameEvent onAttacked;
+    [SerializeField]
+    private GameEvent onPlaySoundClipOnce;
 
+    private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
+    private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
+    
+
+    private Collider[] _hitCollidersBuffer;
+    private float _currentMinigameDecelerationMultiplierOverride;
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
+        _eggShieldScript = GetComponentInChildren<EggShield>();
+        GameObject eggShieldObject = _eggShieldScript.gameObject;
+        _blockMeshRenderer = eggShieldObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        _blockAnimator = eggShieldObject.GetComponent<Animator>();
+        _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
+        _blockCharge = maxBlockCharge;
     }
 
     private void Update()
     {
         if (playerState is PlayerState.InputRestricted)
         {
-            _doAttack = false;
-            _doBrace = false;
-            _doDash = false;
+            DoAttack = false;
+            _doBlock = false;
+            DoDash = false;
             _moveThisFrame = Vector3.zero;
             return;
         }
-        if (_holdingBrace && _bracedCooldown <= 0 && 
-            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Braced)
+        if (_isHoldingBlock && _canBlock && 
+            playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Blocking)
         {
-            _doBrace = true;
+            _doBlock = true;
         }
 
-        _moveThisFrame = _moveInput;
+        _moveThisFrame = MoveInput;
         UpdateCooldowns();
         UpdateActiveTimer();
 
         UpdateStates();
 
-
         var facing = rb.linearVelocity;
         facing.y = 0f;
         if (facing.normalized.magnitude > 0.1)
         {
-            _lastMoveDirection = Vector3.Slerp(_lastMoveDirection, facing.normalized, rotationSpeed).normalized;
-            transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+            LastMoveDirection = Vector3.Slerp(LastMoveDirection, facing.normalized, rotationSpeed).normalized;
+            transform.rotation = Quaternion.LookRotation(LastMoveDirection);
+        }
+    }
+    
+    private void FixedUpdate()
+    {
+        KeepRbAwake();
+        FixedUpdateStates();
+
+        if (playerState is not PlayerState.Dash)
+        {
+            rb.AddForce(_moveThisFrame * acceleration, ForceMode.Force);
+        }
+        else if (playerState is PlayerState.Dash)
+        {
+            CheckDashMovementInfluence();
+        }
+
+        if (DoDash)
+        {
+            ExecuteDash();
+        }
+
+        if (DoAttack)
+        {
+            ExecuteAttack();
+        }
+
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, maxSpeedClampFactor);
+        }
+        
+        //Manual override due to weird interaction with input actions and the state machine
+        DoAttack = false;
+        DoDash = false;
+        _doBlock = false;
+    }
+
+    private void CheckDashMovementInfluence()
+    {
+        //Check if player is moving towards dash direction and remove the forward force if it is the case
+        Vector3 tangentDashDirection = Vector3.Cross(rb.linearVelocity.normalized, Vector3.up);
+        float movementInfluence = Vector3.Dot(_moveThisFrame, tangentDashDirection);
+            
+        Vector3 newMoveDir = movementInfluence * tangentDashDirection;
+        if (newMoveDir.sqrMagnitude > 0f)
+        {
+            rb.AddForce(newMoveDir * (acceleration * dashMoveInfluence), ForceMode.Force);
         }
     }
 
@@ -158,42 +237,65 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState newState)
     {
         ExitState(playerState, newState);
+        EnterPlayerState(newState);
+    }
+
+    private void EnterPlayerState(PlayerState newState)
+    {
         switch (newState)
         {
+            case PlayerState.Movement:
+                if (!playerAnimator.GetBool(IsAnimatingWalk))
+                {
+                    playerAnimator.SetBool(IsAnimatingWalk, true);
+                }
+                break;
             case PlayerState.Dash:
+                if (!playerAnimator.GetBool(IsAnimatingWalk))
+                {
+                    playerAnimator.SetBool(IsAnimatingWalk, true);
+                }
+                
                 _dashTime = dashDuration;
-                dashHitbox.position = transform.position + _lastMoveDirection * (dashHitRange / 2f);
-                // dashHitbox.localScale = new Vector3(dashHitRange * 2f, dashHitRange * 2f, dashHitRange * 2f);
+                dashHitbox.position = transform.position + LastMoveDirection * (dashHitRange / 2f);
                 dashHitbox.gameObject.SetActive(true);
-                _doBrace = false;
-                _doAttack = false;
+                _doBlock = false;
+                DoAttack = false;
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
-                _doBrace = false;
-                _doDash = false;
+                _doBlock = false;
+                DoDash = false;
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
                 stunTransform.gameObject.SetActive(true);
-                _doAttack = false;
-                _doDash = false;
-                _doBrace = false;
+                DoAttack = false;
+                DoDash = false;
+                _doBlock = false;
                 break;
-            case PlayerState.Braced:
-                rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-                                 RigidbodyConstraints.FreezeRotationZ;
-                braceHitbox.position = transform.position;
-                braceHitbox.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                braceHitbox.gameObject.SetActive(true);
-                _doAttack = false;
-                _doDash = false;
+            case PlayerState.Blocking:
+                if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
+                {
+                    playerAnimator.SetBool(IsAnimatingBlock, true);
+                    _blockAnimator.SetBool(IsAnimatingBlock, true);
+                    
+                    interactableBlockTrigger.SetActive(true);
+                    DoAttack = false;
+                    DoDash = false;
+                }
+                else
+                {
+                    SetPlayerState(PlayerState.Idle);
+                    return;
+                }
+                
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeAll;
-                _doAttack = false;
-                _doDash = false;
-                _doBrace = false;
+                DoAttack = false;
+                DoDash = false;
+                _doBlock = false;
                 break;
         }
 
@@ -204,38 +306,36 @@ public class PlayerController : MonoBehaviour
     {
         attackHitbox.gameObject.SetActive(false);
         dashHitbox.gameObject.SetActive(false);
-        braceHitbox.gameObject.SetActive(false);
         stunTransform.gameObject.SetActive(false);
+        interactableBlockTrigger.SetActive(false);
         switch (current)
         {
-            case PlayerState.Movement:
-                if (newState != PlayerState.Dash)
-                {
-                    animator.SetBool("IsWalking", false);
-                }
-                break;
             case PlayerState.Dash:
-                if (newState != PlayerState.Movement)
-                {
-                    animator.SetBool("IsWalking", false);
-                }
-                
-                _dashCooldown = dashDelay;
+                DashCooldown = dashDelay;
                 _dashTime = dashDuration;
                 _dashCollided.Clear();
                 break;
             case PlayerState.Attack:
-                _attackCooldown = attackDelay;
+                AttackCooldown = attackDelay;
                 break;
-            case PlayerState.Braced:
-                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-                                 RigidbodyConstraints.FreezeRotationZ;
-                _bracedCooldown = bracedDelay;
+            case PlayerState.Blocking:
+                playerAnimator.SetBool(IsAnimatingBlock, false);
+                _blockAnimator.SetBool(IsAnimatingBlock, false);
+                
+                if (_blockCharge <= maxBlockCharge * 0.5f)
+                {
+                    _canBlock = false;
+                }
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
                 break;
+        }
+
+        if (newState != PlayerState.Movement && newState != PlayerState.Dash)
+        { 
+            playerAnimator.SetBool(IsAnimatingWalk, false);
         }
     }
 
@@ -244,28 +344,26 @@ public class PlayerController : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.Idle:
-                if (_moveInput.magnitude > 0f)
+                if (MoveInput.magnitude > 0f)
                 {
                     SetPlayerState(PlayerState.Movement);
-                    animator.SetBool("IsWalking", true);
                 }
-
+                
                 IdleToState();
                 break;
             case PlayerState.Movement:
-                if (_moveInput.magnitude <= 0f)
+                if (MoveInput.magnitude <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
-                    animator.SetBool("IsWalking", false);
                 }
-
+                
                 IdleToState();
                 break;
             case PlayerState.Dash:
                 CheckIsDashing();
                 break;
-            case PlayerState.Braced:
-                if (!_doBrace)
+            case PlayerState.Blocking:
+                if (!_doBlock || _blockCharge <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
@@ -279,19 +377,35 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    
+    private void FixedUpdateStates()
+    {
+        switch (playerState)
+        {
+            case PlayerState.Idle:
+                DampenMovement();
+                break;
+            case PlayerState.Movement:
+                DampenMovement();
+                break;
+            case PlayerState.Blocking:
+                CheckIsBraced();
+                break;
+        }
+    }
 
     // Go from an Idle state (Idle/Movement) to actual state based on player inputs
     private void IdleToState()
     {
-        if (_doBrace)
+        if (_doBlock)
         {
-            SetPlayerState(PlayerState.Braced);
+            SetPlayerState(PlayerState.Blocking);
         }
-        else if (_doDash)
+        else if (DoDash)
         {
             SetPlayerState(PlayerState.Dash);
         }
-        else if (_doAttack)
+        else if (DoAttack)
         {
             SetPlayerState(PlayerState.Attack);
         }
@@ -299,19 +413,29 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateCooldowns()
     {
-        if (_dashCooldown > 0f)
+        if (DashCooldown > 0f)
         {
-            _dashCooldown -= Time.deltaTime;
+            DashCooldown -= Time.deltaTime;
         }
 
-        if (_bracedCooldown > 0f)
+        if (playerState == PlayerState.Blocking)
         {
-            _bracedCooldown -= Time.deltaTime;
+            _blockCharge -= Time.deltaTime;
         }
-
-        if (_attackCooldown > 0f)
+        else if(_blockCharge < maxBlockCharge)
         {
-            _attackCooldown -= Time.deltaTime;
+            _blockCharge += Time.deltaTime;
+            
+            if (_blockCharge > maxBlockCharge)
+            {
+                _canBlock = true;
+                _blockCharge = maxBlockCharge;
+            }
+        }
+        
+        if (AttackCooldown > 0f)
+        {
+            AttackCooldown -= Time.deltaTime;
         }
     }
 
@@ -345,47 +469,47 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
-        _moveInput = move;
+        
+        MoveInput = move;
     }
 
     public void InputBraced(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            _holdingBrace = true;
+            _isHoldingBlock = true;
         }
 
         if (context.canceled)
         {
-            _holdingBrace = false;
+            _isHoldingBlock = false;
         }
     }
 
     public void InputDash(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && _dashCooldown <= 0 &&
+        if (context.action.IsPressed() && DashCooldown <= 0 &&
             playerState is PlayerState.Idle or PlayerState.Movement)
         {
-            _doDash = true;
+            DoDash = true;
         }
     }
 
     public void InputAttack(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed() && _attackCooldown <= 0 && 
+        if (context.action.IsPressed() && AttackCooldown <= 0 && 
             playerState is PlayerState.Idle or PlayerState.Movement)
         {
-            _doAttack = true;
+            DoAttack = true;
         }
     }
-
+    
     private void CheckIsDashing()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f),
-            dashHitRange, layerMask);
-        foreach (var hitCollider in hitColliders)
+        Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * (dashHitRange / 2f), dashHitRange, _hitCollidersBuffer, layerMask);
+        foreach (Collider hitCollider in _hitCollidersBuffer)
         {
-            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider))
+            if (!hitCollider || hitCollider == col || _dashCollided.Contains(hitCollider) || hitCollider.CompareTag("BlockTrigger"))
             {
                 continue;
             }
@@ -400,9 +524,11 @@ public class PlayerController : MonoBehaviour
             else if ((interactableLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
             {
                 hitCollider.GetComponent<Interactable>().onDashHit.Invoke(
-                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                    new CollisionData(LastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
+            
+            Array.Clear(_hitCollidersBuffer, 0, hitCollidersBufferSize);
         }
 
         if (_dashTime <= 0.0f)
@@ -441,128 +567,119 @@ public class PlayerController : MonoBehaviour
     private void CheckIsBraced()
     {
         _moveThisFrame = Vector3.zero;
-    }
-
-    private void FixedUpdate()
-    {
-        KeepRbAwake();
-        
-        rb.AddForce(_moveThisFrame * walkSpeed, ForceMode.Force);
-
-        if (_doDash)
-        {
-            ExecuteDash();
-        }
-
-        if (_doAttack)
-        {
-            ExecuteAttack();
-        }
-
-        if (rb.linearVelocity.magnitude > maxSpeed)
-        {
-            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * maxSpeed, maxSpeedClampFactor);
-        }
-
-        _doAttack = false;
-        _doDash = false;
-        _doBrace = false;
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
     }
 
     private void ExecuteAttack()
     {
-        var dir = _lastMoveDirection;
-        if (_moveInput.magnitude > 0f)
+        var dir = LastMoveDirection;
+        if (MoveInput.magnitude > 0f)
         {
-            dir = _moveInput;
+            dir = MoveInput;
         }
 
         rb.linearVelocity = dir * rb.linearVelocity.magnitude;
-        _lastMoveDirection = dir;
-        transform.rotation = Quaternion.LookRotation(_lastMoveDirection);
+        LastMoveDirection = dir;
+        transform.rotation = Quaternion.LookRotation(LastMoveDirection);
 
-        attackHitbox.position = transform.position + _lastMoveDirection * attackRange;
+        attackHitbox.position = transform.position + LastMoveDirection * attackRange;
         attackHitbox.localScale = new Vector3(attackRadius, attackRadius, attackRadius) * 2f;
         attackHitbox.gameObject.SetActive(true);
-        Collider[] hitColliders =
-            Physics.OverlapSphere(transform.position + _lastMoveDirection * attackRange, attackRadius,
-                layerMask);
-        foreach (var hitCollider in hitColliders)
+
+        Physics.OverlapSphereNonAlloc(transform.position + LastMoveDirection * attackRange, attackRadius, _hitCollidersBuffer, layerMask);
+        foreach (Collider hitCollider in _hitCollidersBuffer)
         {
-            if (!hitCollider || hitCollider == col)
+            if (!hitCollider || hitCollider == col || hitCollider.CompareTag("BlockTrigger"))
             {
                 continue;
             }
-
+            
             if ((playerLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
             {
                 hitCollider.GetComponent<PlayerController>().onAttackHit.Invoke(
-                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                    new CollisionData(LastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
             else if ((interactableLayerMask & (1 << hitCollider.gameObject.layer)) != 0)
             {
                 hitCollider.GetComponent<Interactable>().onAttackHit.Invoke(
-                    new CollisionData(_lastMoveDirection, attackKnockbackSpeed, col)
+                    new CollisionData(LastMoveDirection, attackKnockbackSpeed, col)
                 );
             }
         }
+        
+        Array.Clear(_hitCollidersBuffer, 0, hitCollidersBufferSize);
     }
 
     private void ExecuteDash()
     {
-        var dir = _lastMoveDirection;
+        var dir = LastMoveDirection;
         if (_moveThisFrame.magnitude > 0f)
         {
             dir = _moveThisFrame;
         }
 
         rb.linearVelocity = Vector3.zero;
-        _lastMoveDirection = dir;
+        LastMoveDirection = dir;
         rb.AddForce(dir * dashSpeed, ForceMode.Impulse);
     }
-
-    private void OnDrawGizmos()
+    
+    private void DampenMovement()
     {
-        if (playerState == PlayerState.Attack)
-        {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (attackRange + 0.2f), attackRange);
-        }
+        float decelerationMultiplier = _currentMinigameDecelerationMultiplierOverride != 0 ? 
+            _currentMinigameDecelerationMultiplierOverride : 
+            defaultDecelerationMultiplier;
+        
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
+    }
 
-        if (playerState == PlayerState.Dash)
+    public void UpdateDecelerationMultiplierOverride(Component sender, object[] data)
+    {
+        float decelMultOverride = 0;
+        
+        if (GameManager.Instance.IsMinigameSceneActive)
         {
-            Gizmos.DrawSphere(transform.position + _lastMoveDirection * (dashHitRange / 2f), dashHitRange);
+            decelMultOverride = GameManager.Instance.CurrentMinigame.minigameSpecificDecelerationOverride;
         }
-
-        if (playerState == PlayerState.Stunned)
-        {
-            Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 1.0f);
-        }
-
-
-        if (playerState == PlayerState.Braced)
-        {
-            Gizmos.color = new Color(0.0f, 0.75f, 0.0f, 0.75f);
-            Gizmos.DrawSphere(transform.position + new Vector3(0f, 1f, 0f), 2.0f);
-        }
+        
+        _currentMinigameDecelerationMultiplierOverride = decelMultOverride;
+    }
+    
+    public void ResetDecelerationMultiplierOverride()
+    {
+        _currentMinigameDecelerationMultiplierOverride = 0;
     }
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState != PlayerState.Dash)
+        if (playerState == PlayerState.Dash) return;
+
+        if (playerState == PlayerState.Blocking)
         {
-            Stun(data, stunTime);
-            onAttacked.Raise(this, data);
+            _blockCharge = 0;
+            _canBlock = false;
+            _eggShieldScript.PlayBreakShieldSound();
+
+            return;
         }
+        
+        Stun(data, stunTime);
+        onAttacked.Raise(this, data);
+    }
+
+    public void OnInteractableBlock()
+    {
+        _blockCharge = 0;
+        _canBlock = false;
+        _eggShieldScript.PlayBreakShieldSound();
     }
 
     public void BracedReturnStun(CollisionData data)
     {
-        Stun(data, bracedReturnStunDuration);
+        Stun(data, blockReturnStunDuration);
     }
 
-    public void Stun(CollisionData data, float duration)
+    private void Stun(CollisionData data, float duration)
     {
         SetPlayerState(PlayerState.Stunned);
         _stunTimer = duration;
@@ -572,14 +689,14 @@ public class PlayerController : MonoBehaviour
     public void HasHitWithDash()
     {
         rb.linearVelocity = Vector3.zero;
-        _doDash = false;
+        DoDash = false;
         SetPlayerState(PlayerState.Idle);
     }
 
     public void DashKnockback(CollisionData data)
     {
         PlayerController player = data.OriginCollider.GetComponent<PlayerController>();
-        if (playerState != PlayerState.Braced)
+        if (playerState != PlayerState.Blocking)
         {
             Knockback(data);
             player.onDashHasHit.Invoke();
@@ -587,13 +704,13 @@ public class PlayerController : MonoBehaviour
         }
         else if (data.OriginCollider != null)
         {
-            player.onDashBracedHit.Invoke(
-                new CollisionData(-data.Direction, bracedReturnKnockbackSpeed, col)
+            player.onDashBlockHit.Invoke(
+                new CollisionData(-data.Direction, blockReturnKnockbackSpeed, col)
             );
         }
     }
 
-    public void Knockback(CollisionData data)
+    private void Knockback(CollisionData data)
     {
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(data.Direction * data.Speed, ForceMode.Impulse);

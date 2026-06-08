@@ -2064,12 +2064,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe55c96c9c41048bb72875ddbef23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  isBreakable: 0
+  isPushable: 1
+  knockbackStrength: 1.5
+  upStrength: 0.25
+  playerID: -1
   onAttackHit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 748660795}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Knockback
+        m_MethodName: DashKnockback
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2084,7 +2089,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 748660795}
         m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Knockback
+        m_MethodName: DashKnockback
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2094,9 +2099,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  knockbackStrength: 1.5
-  upStrength: 0.25
-  player_id: -1
 --- !u!1001 &766093878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2366,7 +2368,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: playerID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: player_id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: isPushable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: isBreakable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6922938242330348133, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
@@ -2747,8 +2761,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: playerID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: player_id
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: isBreakable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6922938242330348133, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: m_LocalScale.x
@@ -3245,8 +3267,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: playerID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: player_id
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: isBreakable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6922938242330348133, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: m_LocalScale.x
@@ -6600,8 +6630,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: playerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: player_id
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358053329073086899, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
+      propertyPath: isBreakable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6922938242330348133, guid: aa10c6e692668cf43bf8d1948e31325b, type: 3}
       propertyPath: m_LocalPosition.x

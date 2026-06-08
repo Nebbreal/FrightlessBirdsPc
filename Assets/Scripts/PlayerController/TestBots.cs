@@ -7,15 +7,15 @@ public class TestBots : MonoBehaviour
 
     void LateUpdate()
     {
-        player._moveInput = Vector3.zero;
+        player.MoveInput = Vector3.zero;
         // Target state is the state that a bot tries to keep
         if (targetState != PlayerState.Idle && player.playerState is PlayerState.Idle or PlayerState.Movement)
         {
             if (targetState is PlayerState.Attack)
             {
-                if (player._attackCooldown <= 0f)
+                if (player.AttackCooldown <= 0f)
                 {
-                    player._doAttack = true;
+                    player.DoAttack = true;
                 }
                 else
                 {
@@ -24,18 +24,18 @@ public class TestBots : MonoBehaviour
             }
             else if (targetState is PlayerState.Dash)
             {
-                if (player._dashCooldown <= 0f)
+                if (player.DashCooldown <= 0f)
                 {
-                    if (player._lastMoveDirection.x == 1f)
+                    if (player.LastMoveDirection.x == 1f)
                     {
-                        player._lastMoveDirection = Vector3.left;
+                        player.LastMoveDirection = Vector3.left;
                     }
                     else
                     {
-                        player._lastMoveDirection = Vector3.right;
+                        player.LastMoveDirection = Vector3.right;
                     }
 
-                    player._doDash = true;
+                    player.DoDash = true;
                 }
                 else
                 {
