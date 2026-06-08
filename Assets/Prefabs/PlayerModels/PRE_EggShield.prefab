@@ -129,7 +129,7 @@ MonoBehaviour:
   shieldAudioSource: {fileID: 6929396364988150719}
   enterShieldSound: {fileID: 8300000, guid: eeb6fed7d38f42f43a81fc8f49768ac2, type: 3}
   breakShieldSound: {fileID: 8300000, guid: 57866b67dca053243be2986472f10b89, type: 3}
-  shieldRendered: {fileID: 6345898710956833228}
+  shieldRenderer: {fileID: 6345898710956833228}
   onPlaySoundClipOnce: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
 --- !u!82 &6929396364988150719
 AudioSource:
