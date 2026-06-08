@@ -104,11 +104,14 @@ public class PlayerController : MonoBehaviour
     public GameEvent onJoin;
     [SerializeField]
     public GameEvent onLeave;
+    public GameEvent onDashedInto;
+    public GameEvent onAttacked;
     [SerializeField]
     private GameEvent onPlaySoundClipOnce;
 
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
+    
 
     private Collider[] _hitCollidersBuffer;
     private float _currentMinigameDecelerationMultiplierOverride;
@@ -661,6 +664,7 @@ public class PlayerController : MonoBehaviour
         }
         
         Stun(data, stunTime);
+        onAttacked.Raise(this, data);
     }
 
     public void OnInteractableBlock()
@@ -696,6 +700,7 @@ public class PlayerController : MonoBehaviour
         {
             Knockback(data);
             player.onDashHasHit.Invoke();
+            onDashedInto.Raise(this, data);
         }
         else if (data.OriginCollider != null)
         {

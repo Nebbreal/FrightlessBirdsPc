@@ -19,9 +19,12 @@ public class PhysicalTimer : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        var t = timer/maxTime;
-        transform.position = Vector3.Lerp(startPos, endPos, 1f - t);
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        if (GameManager.Instance.IsMinigameActive && !GameManager.Instance._hasMinigameEnded)
+        {
+            timer -= Time.deltaTime;
+            var t = timer / maxTime;
+            transform.localPosition = Vector3.Lerp(startPos, endPos, 1f - t);
+            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        }
     }
 }

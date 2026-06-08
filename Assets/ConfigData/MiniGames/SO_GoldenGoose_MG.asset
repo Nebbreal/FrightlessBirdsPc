@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef12ddb145f6774a96c8bb289eb7866, type: 3}
-  m_Name: SO_RoadRunner_MG
+  m_Name: SO_GoldenGoose_MG
   m_EditorClassIdentifier: Assembly-CSharp::Minigames.Minigame
   sceneToLoad:
-    m_SceneAsset: {fileID: 102900000, guid: 8ec113458aff1854bb2cb1c240aecc0e, type: 3}
-    m_SceneName: SC_RoadRunner_MG
-  gameName: Road Runner
-  gameDescription: Keep crossing the road!
-  roundLength: 10
+    m_SceneAsset: {fileID: 102900000, guid: 89290a91e886e0b49ae0e3e402a855fe, type: 3}
+    m_SceneName: SC_GoldenGoose_MG
+  gameName: Golden Goose
+  gameDescription: Keep the Egg Safe!
+  roundLength: 60
   maxLives: 20
   respawnTime: 1
   intendedPlayerCounts: 020000000300000004000000
