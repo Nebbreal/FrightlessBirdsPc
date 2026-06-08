@@ -20,5 +20,6 @@ namespace Minigames
         public List<int> intendedPlayerCounts;
         [Range(1, 4)] 
         public List<int> teamSizes;
+        public List<Color> teamOutlineColors;
     }
 }

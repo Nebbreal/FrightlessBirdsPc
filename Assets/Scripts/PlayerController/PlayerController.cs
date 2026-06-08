@@ -655,7 +655,7 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState == PlayerState.Dash) return;
+        if (playerState == PlayerState.Dash && !IsSameTeam(data)) return;
 
         if (playerState == PlayerState.Blocking)
         {
@@ -675,6 +675,46 @@ public class PlayerController : MonoBehaviour
         BlockCharge = 0;
         CanBlock = false;
         _eggShieldScript.PlayBreakShieldSound();
+    }
+
+    private bool IsSameTeam(CollisionData data)
+    {
+        var teams = GameManager.Instance.PlayerManager.Teams;
+        if (teams == null)
+        {
+            return false;
+        }
+
+        GameObject originPlayer = data.OriginCollider.gameObject;
+        foreach (var team in teams)
+        {
+            if (team.Players.Contains(gameObject) && team.Players.Contains(originPlayer))
+            {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
+    private bool IsSameTeam(CollisionData data)
+    {
+        var teams = GameManager.Instance.PlayerManager.Teams;
+        if (teams == null)
+        {
+            return false;
+        }
+
+        GameObject originPlayer = data.OriginCollider.gameObject;
+        foreach (var team in teams)
+        {
+            if (team.Players.Contains(gameObject) && team.Players.Contains(originPlayer))
+            {
+                return true;
+            } 
+        }
+
+        return false;
     }
 
     public void BlockingReturnStun(CollisionData data)
