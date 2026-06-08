@@ -6214,6 +6214,7 @@ MonoBehaviour:
   cooldownAttackBackgroundImage: {fileID: 8244528404660687039}
   cooldownBlockingBackgroundImage: {fileID: 8769895988165613874}
   cooldownBackgroundAlpha: 0.7
+  cooldownBlockInUseColor: 0.6
 --- !u!114 &2228526002310829258
 MonoBehaviour:
   m_ObjectHideFlags: 0

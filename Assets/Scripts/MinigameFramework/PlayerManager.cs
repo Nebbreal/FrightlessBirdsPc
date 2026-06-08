@@ -42,17 +42,17 @@ namespace MinigameFramework
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
         {
             { 0, "Blue" },
-            { 1, "Green" },
             { 2, "Red" },
-            { 3, "Yellow" }
+            { 1, "Purple" },
+            { 3, "Green" }
         };
         [NonSerialized] 
         public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
         {
             { 0, new Color(0.08113199f, 0.8873519f, 1f)},
-            { 1, new Color(0f, 1f, 0.047058f)},
-            { 2, new Color(1f, 0f, 0f) },
-            { 3, new Color(0.9863279f, 1f, 0f) }
+            { 1, new Color(1f, 0f, 0f) },
+            { 2, new Color(0.4980392f, 0.3019608f, 0.6980392f) },
+            { 3, new Color(0f, 1f, 0.047058f)},
         };
         
         #region PlayerInit
