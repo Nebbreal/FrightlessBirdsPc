@@ -172,7 +172,7 @@ namespace MinigameFramework
         {
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
-            Instance._isMinigameActive = false;
+            Instance.IsMinigameActive = false;
             if (onRestorePlayerOutlineColors != null)
             {
                 onRestorePlayerOutlineColors.Raise(this);
