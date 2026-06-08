@@ -12,29 +12,29 @@ public class PlayerCooldownUI : MonoBehaviour
 
     [Header("Player ID")]
     public int id;
-    private bool dashIsCoolingDown;
-    private bool attackIsCoolingDown;
-    private bool bracedIsCoolingDown;
+    private bool _dashIsCoolingDown;
+    private bool _attackIsCoolingDown;
+    private bool _bracedIsCoolingDown;
 
     [Header("Cooldown Background Images")]
     public Image cooldownDashBackgroundImage;
     public Image cooldownAttackBackgroundImage;
     public Image cooldownBracedBackgroundImage;
+    public float cooldownBackgroundAlpha = 0.8f;
 
     private PlayerController _playercontroller;
 
     private void Start()
     {
-
         cooldownDashImage.fillAmount = 1f;
         cooldownAttackImage.fillAmount = 1f;
         cooldownBracedImage.fillAmount = 1f;
 
         SetCooldownColor();
 
-        SetAlpha(cooldownDashBackgroundImage, 0.8f);
-        SetAlpha(cooldownAttackBackgroundImage, 0.8f);
-        SetAlpha(cooldownBracedBackgroundImage, 0.8f);
+        SetAlpha(cooldownDashBackgroundImage, cooldownBackgroundAlpha);
+        SetAlpha(cooldownAttackBackgroundImage, cooldownBackgroundAlpha);
+        SetAlpha(cooldownBracedBackgroundImage, cooldownBackgroundAlpha);
     }
 
     private void OnEnable()
@@ -44,27 +44,23 @@ public class PlayerCooldownUI : MonoBehaviour
         {
             id = playerController.ID;
             _playercontroller = playerController;
-
-
         }
     }
     private void SetCooldownColor()
     {
         PlayerManager playerManager = FindFirstObjectByType<PlayerManager>();
 
-            Color playerColor = playerManager.PlayerColors[id];
+        Color playerColor = playerManager.PlayerColors[id];
 
-            cooldownDashBackgroundImage.color = playerColor;
-            cooldownAttackBackgroundImage.color = playerColor;
-            cooldownBracedBackgroundImage.color = playerColor;
+        cooldownDashBackgroundImage.color = playerColor;
+        cooldownAttackBackgroundImage.color = playerColor;
+        cooldownBracedBackgroundImage.color = playerColor;
     }
 
     private void Update()
     {
-
-        if (dashIsCoolingDown)
+        if (_dashIsCoolingDown)
         {       
-
             if (_playercontroller.playerState == PlayerState.Dash)
             {
                 SetAlpha(cooldownDashImage, 0.9f);
@@ -77,15 +73,14 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (_playercontroller._dashCooldown <= 0 && _playercontroller.playerState != PlayerState.Dash)
             {
-                dashIsCoolingDown = false;
+                _dashIsCoolingDown = false;
                 cooldownDashImage.fillAmount = 0f;
 
                 SetAlpha(cooldownDashImage, 0f);
             }
         }
-        if (attackIsCoolingDown)
+        if (_attackIsCoolingDown)
         {       
-
             if (_playercontroller.playerState == PlayerState.Attack)
             {
                 SetAlpha(cooldownAttackImage, 0.9f);
@@ -98,15 +93,14 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (_playercontroller._attackCooldown <= 0 && _playercontroller.playerState != PlayerState.Attack)
             {
-                attackIsCoolingDown = false;
+                _attackIsCoolingDown = false;
                 cooldownAttackImage.fillAmount = 0f;
 
                 SetAlpha(cooldownAttackImage, 0f);
             }
         }
-        if (bracedIsCoolingDown)
+        if (_bracedIsCoolingDown)
         {       
-
             if (_playercontroller.playerState == PlayerState.Braced)
             {
                 SetAlpha(cooldownBracedImage, 0.9f);
@@ -119,22 +113,21 @@ public class PlayerCooldownUI : MonoBehaviour
 
             if (_playercontroller._bracedCooldown <= 0 && _playercontroller.playerState != PlayerState.Braced)
             {
-                bracedIsCoolingDown = false;
+                _bracedIsCoolingDown = false;
                 cooldownBracedImage.fillAmount = 0f;
                 
                 SetAlpha(cooldownBracedImage, 0f);
             }
         }
-
     }
 
     public void StartDashCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!dashIsCoolingDown && pc.ID == id)
+        if (!_dashIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
-            dashIsCoolingDown = true;
+            _dashIsCoolingDown = true;
 
             cooldownDashImage.fillAmount = 1f;
 
@@ -143,10 +136,10 @@ public class PlayerCooldownUI : MonoBehaviour
     public void StartAttackCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!attackIsCoolingDown && pc.ID == id)
+        if (!_attackIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
-            attackIsCoolingDown = true;
+            _attackIsCoolingDown = true;
 
             cooldownAttackImage.fillAmount = 1f;
         }
@@ -154,10 +147,10 @@ public class PlayerCooldownUI : MonoBehaviour
     public void StartBracedCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!bracedIsCoolingDown && pc.ID == id)
+        if (!_bracedIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
-            bracedIsCoolingDown = true;
+            _bracedIsCoolingDown = true;
 
             cooldownBracedImage.fillAmount = 1f;        }
     }
