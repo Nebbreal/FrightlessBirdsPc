@@ -1781,37 +1781,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6301022301037605097, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: endDelay
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191676235343108907, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnUpdateWinnerUIText
-      objectReference: {fileID: 0}
-    - target: {fileID: 7822805750636397890, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 96
-      objectReference: {fileID: 0}
-    - target: {fileID: 7822805750636397890, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8366700970240171129, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_Spacing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8366700970240171129, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_ChildControlHeight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9124293357730806944, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: endDelay
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,6 +14,8 @@ namespace Minigames
         public int maxLives;
         [Range(1, 120)] 
         public int respawnTime;
+        [Tooltip("0 is disabled")]
+        public float minigameSpecificDecelerationOverride = 0;
         [Range(2, 4)] 
         public List<int> intendedPlayerCounts;
         [Range(1, 4)] 
