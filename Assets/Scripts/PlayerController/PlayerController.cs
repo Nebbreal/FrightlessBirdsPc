@@ -80,13 +80,15 @@ public class PlayerController : MonoBehaviour
     [Header("Block Settings")] 
     [Tooltip("In seconds")]
     public float maxBlockCharge = 3f;
-    private float _blockCharge;
+    [NonSerialized]
+    public float BlockCharge;
     public float blockReturnKnockbackSpeed = 2f;
     public float blockReturnStunDuration = 0.3f;
     public float blockDecelerationMultiplier = 0.9f;
     private bool _doBlock;
     private bool _isHoldingBlock;
-    private bool _canBlock = true;
+    [NonSerialized]
+    public bool CanBlock = true;
     public float requiredInteractableBreakVelocity = 8f;
     [SerializeField]
     private GameObject interactableBlockTrigger;
@@ -114,7 +116,10 @@ public class PlayerController : MonoBehaviour
     
 
     private Collider[] _hitCollidersBuffer;
-    private float _currentMinigameDecelerationMultiplierOverride;
+    private float _currentMinigameDecelerationMultiplierOverride;    public GameEvent onPlayerDash;
+    public GameEvent onPlayerAttack;
+    public GameEvent onPlayerBrace;
+
     private void Start()
     {
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
@@ -123,7 +128,7 @@ public class PlayerController : MonoBehaviour
         _blockMeshRenderer = eggShieldObject.GetComponentInChildren<SkinnedMeshRenderer>();
         _blockAnimator = eggShieldObject.GetComponent<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
-        _blockCharge = maxBlockCharge;
+        BlockCharge = maxBlockCharge;
     }
 
     private void Update()
@@ -136,7 +141,7 @@ public class PlayerController : MonoBehaviour
             _moveThisFrame = Vector3.zero;
             return;
         }
-        if (_isHoldingBlock && _canBlock && 
+        if (_isHoldingBlock && CanBlock && 
             playerState is PlayerState.Idle or PlayerState.Movement or PlayerState.Blocking)
         {
             _doBlock = true;
@@ -261,11 +266,13 @@ public class PlayerController : MonoBehaviour
                 dashHitbox.gameObject.SetActive(true);
                 _doBlock = false;
                 DoAttack = false;
+                onPlayerDash.Raise(this);
                 break;
             case PlayerState.Attack:
                 _attackTime = attackDuration;
                 _doBlock = false;
                 DoDash = false;
+                onPlayerAttack.Raise(this);
                 break;
             case PlayerState.Stunned:
                 _stunTimer = stunTime;
@@ -275,7 +282,7 @@ public class PlayerController : MonoBehaviour
                 _doBlock = false;
                 break;
             case PlayerState.Blocking:
-                if (_canBlock && _blockCharge >= maxBlockCharge * 0.5)
+                if (CanBlock && BlockCharge >= maxBlockCharge * 0.5)
                 {
                     playerAnimator.SetBool(IsAnimatingBlock, true);
                     _blockAnimator.SetBool(IsAnimatingBlock, true);
@@ -283,6 +290,7 @@ public class PlayerController : MonoBehaviour
                     interactableBlockTrigger.SetActive(true);
                     DoAttack = false;
                     DoDash = false;
+                    onPlayerBrace.Raise(this);
                 }
                 else
                 {
@@ -321,11 +329,6 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Blocking:
                 playerAnimator.SetBool(IsAnimatingBlock, false);
                 _blockAnimator.SetBool(IsAnimatingBlock, false);
-                
-                if (_blockCharge <= maxBlockCharge * 0.5f)
-                {
-                    _canBlock = false;
-                }
                 break;
             case PlayerState.InputRestricted:
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -363,11 +366,11 @@ public class PlayerController : MonoBehaviour
                 CheckIsDashing();
                 break;
             case PlayerState.Blocking:
-                if (!_doBlock || _blockCharge <= 0f)
+                if (!_doBlock || BlockCharge <= 0f)
                 {
                     SetPlayerState(PlayerState.Idle);
                 }
-                CheckIsBraced();
+                CheckIsBlocking();
                 break;
             case PlayerState.Attack:
                 CheckIsAttacking();
@@ -389,7 +392,7 @@ public class PlayerController : MonoBehaviour
                 DampenMovement();
                 break;
             case PlayerState.Blocking:
-                CheckIsBraced();
+                CheckIsBlocking();
                 break;
         }
     }
@@ -420,16 +423,16 @@ public class PlayerController : MonoBehaviour
 
         if (playerState == PlayerState.Blocking)
         {
-            _blockCharge -= Time.deltaTime;
+            BlockCharge -= Time.deltaTime;
         }
-        else if(_blockCharge < maxBlockCharge)
+        else if(BlockCharge < maxBlockCharge)
         {
-            _blockCharge += Time.deltaTime;
+            BlockCharge += Time.deltaTime;
             
-            if (_blockCharge > maxBlockCharge)
+            if (BlockCharge > maxBlockCharge)
             {
-                _canBlock = true;
-                _blockCharge = maxBlockCharge;
+                CanBlock = true;
+                BlockCharge = maxBlockCharge;
             }
         }
         
@@ -473,7 +476,7 @@ public class PlayerController : MonoBehaviour
         MoveInput = move;
     }
 
-    public void InputBraced(InputAction.CallbackContext context)
+    public void InputBlocking(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -564,7 +567,7 @@ public class PlayerController : MonoBehaviour
         _moveThisFrame = Vector3.zero;
     }
 
-    private void CheckIsBraced()
+    private void CheckIsBlocking()
     {
         _moveThisFrame = Vector3.zero;
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
@@ -652,12 +655,12 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState == PlayerState.Dash) return;
+        if (playerState == PlayerState.Dash && !IsSameTeam(data)) return;
 
         if (playerState == PlayerState.Blocking)
         {
-            _blockCharge = 0;
-            _canBlock = false;
+            BlockCharge = 0;
+            CanBlock = false;
             _eggShieldScript.PlayBreakShieldSound();
 
             return;
@@ -669,12 +672,32 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteractableBlock()
     {
-        _blockCharge = 0;
-        _canBlock = false;
+        BlockCharge = 0;
+        CanBlock = false;
         _eggShieldScript.PlayBreakShieldSound();
     }
 
-    public void BracedReturnStun(CollisionData data)
+    private bool IsSameTeam(CollisionData data)
+    {
+        var teams = GameManager.Instance.PlayerManager.Teams;
+        if (teams == null)
+        {
+            return false;
+        }
+
+        GameObject originPlayer = data.OriginCollider.gameObject;
+        foreach (var team in teams)
+        {
+            if (team.Players.Contains(gameObject) && team.Players.Contains(originPlayer))
+            {
+                return true;
+            } 
+        }
+
+        return false;
+    }
+
+    public void BlockingReturnStun(CollisionData data)
     {
         Stun(data, blockReturnStunDuration);
     }

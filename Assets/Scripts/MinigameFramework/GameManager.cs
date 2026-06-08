@@ -61,6 +61,7 @@ namespace MinigameFramework
         public GameEvent onEnableLobbyUI;
         public GameEvent onDisableLobbyUI;
         public GameEvent onEnableScoreboardUI;
+        public GameEvent onRestorePlayerOutlineColors;
 
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -171,6 +172,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance.IsMinigameActive = false;
+            onRestorePlayerOutlineColors.Raise(this);
             PlayerManager.ResetAllPlayersGravity();
             PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
@@ -213,6 +215,7 @@ namespace MinigameFramework
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
             onDisablePlayerMovement.Raise(this);
+            Instance.PlayerManager.RestorePlayerOutlineColors();
             
             List<string> winnerNames = new List<string>();
             List<GameObject> winnerModels = new();

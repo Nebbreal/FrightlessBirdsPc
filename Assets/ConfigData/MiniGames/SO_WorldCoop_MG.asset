@@ -22,3 +22,6 @@ MonoBehaviour:
   respawnTime: 1
   intendedPlayerCounts: 04000000
   teamSizes: 0200000002000000
+  teamOutlineColors:
+  - {r: 0.08235294, g: 0.8862746, b: 0.9921569, a: 0}
+  - {r: 0.9921569, g: 0, b: 0, a: 0}
