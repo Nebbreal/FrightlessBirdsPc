@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class PlayerCooldownUI : MonoBehaviour
 {
     [Header("Cooldown Images Overlay")]
-    public Image cooldownDashImage;
-    public Image cooldownAttackImage;
-    public Image cooldownBlockingImage;
+    public Image CooldownDashImage;
+    public Image CooldownAttackImage;
+    public Image CooldownBlockingImage;
     
     [Header("Cooldown Images Overlay Transparency")]
     public float inAction = 0.9f;
@@ -31,9 +31,9 @@ public class PlayerCooldownUI : MonoBehaviour
 
     private void Start()
     {
-        cooldownDashImage.fillAmount = 1f;
-        cooldownAttackImage.fillAmount = 1f;
-        cooldownBlockingImage.fillAmount = 1f;
+        CooldownDashImage.fillAmount = 1f;
+        CooldownAttackImage.fillAmount = 1f;
+        CooldownBlockingImage.fillAmount = 1f;
 
         SetCooldownColor();
 
@@ -66,21 +66,21 @@ public class PlayerCooldownUI : MonoBehaviour
     {
     _dashIsCoolingDown = UpdateCooldown(
         _dashIsCoolingDown,
-        cooldownDashImage,
+        CooldownDashImage,
         _playercontroller.DashCooldown,
         _playercontroller.dashDelay,
         PlayerState.Dash);
 
     _attackIsCoolingDown = UpdateCooldown(
         _attackIsCoolingDown,
-        cooldownAttackImage,
+        CooldownAttackImage,
         _playercontroller.AttackCooldown,
         _playercontroller.attackDelay,
         PlayerState.Attack);
 
     _BlockingIsCoolingDown = UpdateCooldownBlock(
         _BlockingIsCoolingDown,
-        cooldownBlockingImage,
+        CooldownBlockingImage,
         _playercontroller.BlockCharge,
         _playercontroller.maxBlockCharge,
         PlayerState.Blocking);
@@ -94,7 +94,7 @@ public class PlayerCooldownUI : MonoBehaviour
             _playercontroller = pc;
             _dashIsCoolingDown = true;
 
-            cooldownDashImage.fillAmount = 1f;
+            CooldownDashImage.fillAmount = 1f;
         }
     }
     
@@ -106,7 +106,7 @@ public class PlayerCooldownUI : MonoBehaviour
             _playercontroller = pc;
             _attackIsCoolingDown = true;
 
-            cooldownAttackImage.fillAmount = 1f;
+            CooldownAttackImage.fillAmount = 1f;
         }
     }
     public void StartBlockingCooldown(Component sender, object[] _obj)

@@ -6540,9 +6540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07418cd7c1a499e409a050734c51fac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCooldownUI
-  cooldownDashImage: {fileID: 873958751790097191}
-  cooldownAttackImage: {fileID: 1510892624002938603}
-  cooldownBlockingImage: {fileID: 4552554382935653278}
+  CooldownDashImage: {fileID: 873958751790097191}
+  CooldownAttackImage: {fileID: 1510892624002938603}
+  CooldownBlockingImage: {fileID: 4552554382935653278}
   inAction: 0.95
   coolingDown: 0.85
   canUseCooldown: 0.65
