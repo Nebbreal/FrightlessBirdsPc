@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerCooldownUI : MonoBehaviour
 {
-    [Header("Cooldown Images")]
+    [Header("Cooldown Images Overlay")]
     public Image cooldownDashImage;
     public Image cooldownAttackImage;
     public Image cooldownBracedImage;
+    
+    [Header("Cooldown Images Overlay Transparency")]
+    public float inAction = 0.9f;
+    public float coolingDown = 0.85f;
+    public float cooledDown = 0f;
 
     [Header("Player ID")]
     public int id;
@@ -122,18 +127,18 @@ public class PlayerCooldownUI : MonoBehaviour
 
         if (_playercontroller.playerState == state)
         {
-            SetAlpha(cooldownImage, 0.9f);
+            SetAlpha(cooldownImage, inAction);
         }
         else
         {
             cooldownImage.fillAmount = currentCooldown / maxCooldown;
-            SetAlpha(cooldownImage, 0.85f);
+            SetAlpha(cooldownImage, coolingDown);
         }
 
         if (currentCooldown <= 0 && _playercontroller.playerState != state)
         {
             cooldownImage.fillAmount = 0f;
-            SetAlpha(cooldownImage, 0f);
+            SetAlpha(cooldownImage, cooledDown);
 
             return false;
         }

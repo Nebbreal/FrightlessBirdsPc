@@ -6418,6 +6418,9 @@ MonoBehaviour:
   cooldownDashImage: {fileID: 873958751790097191}
   cooldownAttackImage: {fileID: 1510892624002938603}
   cooldownBracedImage: {fileID: 4552554382935653278}
+  inAction: 0.9
+  coolingDown: 0.85
+  cooledDown: 0
   id: 0
   cooldownDashBackgroundImage: {fileID: 3341311189509944742}
   cooldownAttackBackgroundImage: {fileID: 8244528404660687039}
@@ -6711,8 +6714,6 @@ MonoBehaviour:
   bracedDelay: 0.6
   bracedReturnKnockbackSpeed: 20
   bracedReturnStunDuration: 0.3
-  _doBrace: 0
-  _bracedCooldown: 0
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
   onJoin: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onLeave: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
