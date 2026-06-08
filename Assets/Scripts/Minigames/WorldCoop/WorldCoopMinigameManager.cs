@@ -16,11 +16,11 @@ namespace Minigames.WorldCoop
         private PlayerManager _playerManager;
         private List<GameObject> _players;
 
-        private int scoreTeam1 = 0;
-        private int scoreTeam2 = 0;
-        private bool overtimeActive = false;
+        private int _scoreTeam1 = 0;
+        private int _scoreTeam2 = 0;
+        private bool _overtimeActive = false;
 
-        private float timer = 12f;
+        private float _timer = 12f;
 
         public GameEvent onEndMinigame;
         
@@ -58,7 +58,7 @@ namespace Minigames.WorldCoop
                 // player.AddComponent();
             }
             
-            timer = _gameConfig.roundLength;
+            _timer = _gameConfig.roundLength;
 
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
 
@@ -83,21 +83,21 @@ namespace Minigames.WorldCoop
         {
             if (data == null || data.Length == 0 || data[0] is not int scoringTeam) return;
 
-            if (overtimeActive)
+            if (_overtimeActive)
             {
                 OnWin(scoringTeam);
                 return;
             }
 
-            if (scoringTeam == 1 && scoreTeam1 < team1ScoreBalls.Count)
+            if (scoringTeam == 1 && _scoreTeam1 < team1ScoreBalls.Count)
             {
-                StartCoroutine(FadeInBall(team1ScoreBalls[scoreTeam1]));
-                scoreTeam1++;
+                StartCoroutine(FadeInBall(team1ScoreBalls[_scoreTeam1]));
+                _scoreTeam1++;
             } 
-            else if (scoringTeam == 2 && scoreTeam2 < team2ScoreBalls.Count)
+            else if (scoringTeam == 2 && _scoreTeam2 < team2ScoreBalls.Count)
             {
-                StartCoroutine(FadeInBall(team2ScoreBalls[scoreTeam2]));
-                scoreTeam2++;
+                StartCoroutine(FadeInBall(team2ScoreBalls[_scoreTeam2]));
+                _scoreTeam2++;
             }
             ResetRound();
         }
@@ -140,13 +140,13 @@ namespace Minigames.WorldCoop
                 playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
             }
 
-            if (scoreTeam1 >= scoreToWin || scoreTeam2 >= scoreToWin)
+            if (_scoreTeam1 >= scoreToWin || _scoreTeam2 >= scoreToWin)
             {
-                if (scoreTeam1 > scoreTeam2)
+                if (_scoreTeam1 > _scoreTeam2)
                 {
                     OnWin(1);
                 }
-                else if (scoreTeam2 > scoreTeam1)
+                else if (_scoreTeam2 > _scoreTeam1)
                 {
                     OnWin(2);
                 }
@@ -155,24 +155,23 @@ namespace Minigames.WorldCoop
 
         public void Update()
         {
-            if (GameManager.Instance._hasMinigameEnded || overtimeActive)
+            if (GameManager.Instance._hasMinigameEnded || _overtimeActive)
             {
                 return;
             }
 
+            _timer -= Time.deltaTime;
 
-            timer -= Time.deltaTime;
-
-            if (timer < 0f && !GameManager.Instance._hasMinigameEnded)
+            if (_timer < 0f && !GameManager.Instance._hasMinigameEnded)
             {
-                if (scoreTeam1 == scoreTeam2)
+                if (_scoreTeam1 == _scoreTeam2)
                 {
-                    overtimeActive = true;
+                    _overtimeActive = true;
                     ResetRound();
                 }
                 else
                 {
-                    OnWin(scoreTeam1 > scoreTeam2 ? 1 : 2);
+                    OnWin(_scoreTeam1 > _scoreTeam2 ? 1 : 2);
                 }
             }
         }

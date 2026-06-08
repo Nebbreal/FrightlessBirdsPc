@@ -6,24 +6,24 @@ public class PhysicalTimer2 : MonoBehaviour
     public Vector3 startPos;
     public Vector3 endPos;
 
-    private float elapsedTime;
-    private float maxTime;
-    private Quaternion startRotation;
+    private float _elapsedTime;
+    private float _maxTime;
+    private Quaternion _startRotation;
 
     void Start()
     {
-        var _gameConfig = GameManager.Instance.CurrentMinigame;
-        maxTime = _gameConfig.roundLength;
-        startRotation = transform.localRotation;
-        elapsedTime = 0f;
+        var gameConfig = GameManager.Instance.CurrentMinigame;
+        _maxTime = gameConfig.roundLength;
+        _startRotation = transform.localRotation;
+        _elapsedTime = 0f;
     }
 
     void Update()
     {
-        elapsedTime += Time.deltaTime;
+        _elapsedTime += Time.deltaTime;
 
-        var t = maxTime > 0f ? Mathf.Clamp01(elapsedTime / maxTime) : 1f;
+        var t = _maxTime > 0f ? Mathf.Clamp01(_elapsedTime / _maxTime) : 1f;
         transform.localPosition = Vector3.Lerp(startPos, endPos, t);
-        transform.localRotation = startRotation * Quaternion.Euler(0f, 360f * t, 0f);
+        transform.localRotation = _startRotation * Quaternion.Euler(0f, 360f * t, 0f);
     }
 }
