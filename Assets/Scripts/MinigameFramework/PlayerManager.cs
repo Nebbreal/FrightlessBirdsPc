@@ -27,6 +27,7 @@ namespace MinigameFramework
 
         [NonSerialized] public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] public List<GameObject> AlivePlayers;
+        private static int _outlineColor = Shader.PropertyToID("_OutlineColor");
 
         public GameEvent OnEnablePlayerUI;
         public GameEvent OnDisablePlayerUI;
@@ -205,9 +206,9 @@ namespace MinigameFramework
 
             Material outlineMaterial = materials[1];
             CacheOriginalOutlineColor(outlineMaterial);
-            if (outlineMaterial.HasProperty("_OutlineColor"))
+            if (outlineMaterial.HasProperty(_outlineColor))
             {
-                outlineMaterial.SetColor("_OutlineColor", outlineColor);
+                outlineMaterial.SetColor(_outlineColor, outlineColor);
             }
 
             playerRenderer.materials = materials;
@@ -240,9 +241,9 @@ namespace MinigameFramework
             }
 
             Material outlineMaterial = materials[1];
-            if (OriginalOutlineColors.TryGetValue(outlineMaterial, out Color originalColor) && outlineMaterial.HasProperty("_OutlineColor"))
+            if (OriginalOutlineColors.TryGetValue(outlineMaterial, out Color originalColor) && outlineMaterial.HasProperty(_outlineColor))
             {
-                outlineMaterial.SetColor("_OutlineColor", originalColor);
+                outlineMaterial.SetColor(_outlineColor, originalColor);
             }
 
             playerRenderer.materials = materials;
@@ -250,12 +251,12 @@ namespace MinigameFramework
 
         private static void CacheOriginalOutlineColor(Material outlineMaterial)
         {
-            if (outlineMaterial == null || OriginalOutlineColors.ContainsKey(outlineMaterial) || !outlineMaterial.HasProperty("_OutlineColor"))
+            if (outlineMaterial == null || OriginalOutlineColors.ContainsKey(outlineMaterial) || !outlineMaterial.HasProperty(_outlineColor))
             {
                 return;
             }
 
-            OriginalOutlineColors.Add(outlineMaterial, outlineMaterial.GetColor("_OutlineColor"));
+            OriginalOutlineColors.Add(outlineMaterial, outlineMaterial.GetColor(_outlineColor));
         }
 
         private static bool TryGetOutlineRenderer(GameObject player, out SkinnedMeshRenderer playerRenderer)
