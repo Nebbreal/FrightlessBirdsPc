@@ -59,72 +59,32 @@ public class PlayerCooldownUI : MonoBehaviour
 
     private void Update()
     {
-        if (_dashIsCoolingDown)
-        {       
-            if (_playercontroller.playerState == PlayerState.Dash)
-            {
-                SetAlpha(cooldownDashImage, 0.9f);
-            }
-            else
-            {
-                cooldownDashImage.fillAmount = _playercontroller._dashCooldown / _playercontroller.dashDelay;
-                SetAlpha(cooldownDashImage, 0.85f);
-            }
+    _dashIsCoolingDown = UpdateCooldown(
+        _dashIsCoolingDown,
+        cooldownDashImage,
+        _playercontroller._dashCooldown,
+        _playercontroller.dashDelay,
+        PlayerState.Dash);
 
-            if (_playercontroller._dashCooldown <= 0 && _playercontroller.playerState != PlayerState.Dash)
-            {
-                _dashIsCoolingDown = false;
-                cooldownDashImage.fillAmount = 0f;
+    _attackIsCoolingDown = UpdateCooldown(
+        _attackIsCoolingDown,
+        cooldownAttackImage,
+        _playercontroller._attackCooldown,
+        _playercontroller.attackDelay,
+        PlayerState.Attack);
 
-                SetAlpha(cooldownDashImage, 0f);
-            }
-        }
-        if (_attackIsCoolingDown)
-        {       
-            if (_playercontroller.playerState == PlayerState.Attack)
-            {
-                SetAlpha(cooldownAttackImage, 0.9f);
-            }
-            else
-            {
-                cooldownAttackImage.fillAmount = _playercontroller._attackCooldown / _playercontroller.attackDelay;
-                SetAlpha(cooldownAttackImage, 0.85f);
-            }
-
-            if (_playercontroller._attackCooldown <= 0 && _playercontroller.playerState != PlayerState.Attack)
-            {
-                _attackIsCoolingDown = false;
-                cooldownAttackImage.fillAmount = 0f;
-
-                SetAlpha(cooldownAttackImage, 0f);
-            }
-        }
-        if (_bracedIsCoolingDown)
-        {       
-            if (_playercontroller.playerState == PlayerState.Braced)
-            {
-                SetAlpha(cooldownBracedImage, 0.9f);
-            }
-            else
-            {
-                cooldownBracedImage.fillAmount = _playercontroller._bracedCooldown / _playercontroller.bracedDelay;
-                SetAlpha(cooldownBracedImage, 0.85f);
-            }
-
-            if (_playercontroller._bracedCooldown <= 0 && _playercontroller.playerState != PlayerState.Braced)
-            {
-                _bracedIsCoolingDown = false;
-                cooldownBracedImage.fillAmount = 0f;
-                
-                SetAlpha(cooldownBracedImage, 0f);
-            }
-        }
+    _bracedIsCoolingDown = UpdateCooldown(
+        _bracedIsCoolingDown,
+        cooldownBracedImage,
+        _playercontroller._bracedCooldown,
+        _playercontroller.bracedDelay,
+        PlayerState.Braced);
     }
 
     public void StartDashCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!_dashIsCoolingDown && pc.ID == id)
+        if (pc != null && !_dashIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
             _dashIsCoolingDown = true;
@@ -132,10 +92,11 @@ public class PlayerCooldownUI : MonoBehaviour
             cooldownDashImage.fillAmount = 1f;
         }
     }
+    
     public void StartAttackCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!_attackIsCoolingDown && pc.ID == id)
+        if (pc != null && !_attackIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
             _attackIsCoolingDown = true;
@@ -146,12 +107,38 @@ public class PlayerCooldownUI : MonoBehaviour
     public void StartBracedCooldown(Component sender, object[] _obj)
     {
         PlayerController pc = sender as PlayerController;
-        if (!_bracedIsCoolingDown && pc.ID == id)
+        if (pc != null && !_bracedIsCoolingDown && pc.ID == id)
         {
             _playercontroller = pc;
             _bracedIsCoolingDown = true;
 
-            cooldownBracedImage.fillAmount = 1f;        }
+            cooldownBracedImage.fillAmount = 1f;        
+        }
+    }
+    private bool UpdateCooldown(bool isCoolingDown,Image cooldownImage,float currentCooldown,float maxCooldown,PlayerState state)
+    {
+        if (!isCoolingDown)
+            return false;
+
+        if (_playercontroller.playerState == state)
+        {
+            SetAlpha(cooldownImage, 0.9f);
+        }
+        else
+        {
+            cooldownImage.fillAmount = currentCooldown / maxCooldown;
+            SetAlpha(cooldownImage, 0.85f);
+        }
+
+        if (currentCooldown <= 0 && _playercontroller.playerState != state)
+        {
+            cooldownImage.fillAmount = 0f;
+            SetAlpha(cooldownImage, 0f);
+
+            return false;
+        }
+
+        return true;
     }
     private void SetAlpha(Image image, float alpha)
     {
