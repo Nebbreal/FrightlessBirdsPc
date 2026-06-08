@@ -1741,6 +1741,10 @@ PrefabInstance:
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: bb81c9c87daf14548931c961351a30a4, type: 2}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1893460639640252992, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1773,6 +1777,26 @@ PrefabInstance:
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: bb81c9c87daf14548931c961351a30a4, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: minigames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'minigames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'minigames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: 'minigames.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onRestorePlayerOutlineColors
+      value: 
+      objectReference: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
     - target: {fileID: 3497002996675575136, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1780,6 +1804,10 @@ PrefabInstance:
     - target: {fileID: 3497002996675575136, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3842084716390550859, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3930959570903199477, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_fontAsset
@@ -1833,30 +1861,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: minigames.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'minigames.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
-    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: onRestorePlayerOutlineColors
-      value: 
-      objectReference: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1978,7 +1982,11 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3555629639643112776, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+    - {fileID: 6786968555213144746, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+    - {fileID: 8053667338352750861, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+    - {fileID: 1685491877617757943, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
