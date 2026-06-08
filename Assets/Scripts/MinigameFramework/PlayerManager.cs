@@ -400,6 +400,12 @@ namespace MinigameFramework
             }
         }
 
+        // Bridge method so `onRestorePlayerOutlineColors` GameEvent can call into this class
+        public void OnRestorePlayerOutlineColors(Component sender, object[] data)
+        {
+            RestorePlayerOutlineColors();
+        }
+
         public void ResetAllPlayersGravity()
         {
             foreach (Rigidbody playerRb in PlayerRigidbodies)
