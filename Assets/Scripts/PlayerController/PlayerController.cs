@@ -697,26 +697,6 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private bool IsSameTeam(CollisionData data)
-    {
-        var teams = GameManager.Instance.PlayerManager.Teams;
-        if (teams == null)
-        {
-            return false;
-        }
-
-        GameObject originPlayer = data.OriginCollider.gameObject;
-        foreach (var team in teams)
-        {
-            if (team.Players.Contains(gameObject) && team.Players.Contains(originPlayer))
-            {
-                return true;
-            } 
-        }
-
-        return false;
-    }
-
     public void BlockingReturnStun(CollisionData data)
     {
         Stun(data, blockReturnStunDuration);
