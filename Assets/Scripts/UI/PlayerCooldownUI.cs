@@ -130,7 +130,6 @@ public class PlayerCooldownUI : MonoBehaviour
             _dashIsCoolingDown = true;
 
             cooldownDashImage.fillAmount = 1f;
-
         }
     }
     public void StartAttackCooldown(Component sender, object[] _obj)
