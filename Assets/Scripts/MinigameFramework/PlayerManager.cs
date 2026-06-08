@@ -11,6 +11,8 @@ namespace MinigameFramework
 {
     public class PlayerManager : MonoBehaviour
     {
+        private static readonly Dictionary<Material, Color> OriginalOutlineColors = new();
+
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
         [NonSerialized] public List<GameObject> ActivePlayers;
@@ -25,6 +27,7 @@ namespace MinigameFramework
 
         [NonSerialized] public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] public List<GameObject> AlivePlayers;
+        private static int _outlineColor = Shader.PropertyToID("_OutlineColor");
 
         public GameEvent OnEnablePlayerUI;
         public GameEvent OnDisablePlayerUI;
@@ -165,6 +168,109 @@ namespace MinigameFramework
             {
                 HandlePlayerOverflow(unassignedPlayers, teamsToFill);
             }
+
+            RestorePlayerOutlineColors();
+            ApplyTeamOutlineColors(minigameConfig);
+        }
+
+        private void ApplyTeamOutlineColors(Minigame minigameConfig)
+        {
+            if (minigameConfig.teamOutlineColors == null || minigameConfig.teamOutlineColors.Count == 0)
+            {
+                Debug.LogWarning("No team outline colors defined in the minigame config. Skipping outline color application.");
+                return;
+            }
+
+            for (int teamIndex = 0; teamIndex < Teams.Count && teamIndex < minigameConfig.teamOutlineColors.Count; teamIndex++)
+            {
+                Color teamColor = minigameConfig.teamOutlineColors[teamIndex];
+                foreach (GameObject player in Teams[teamIndex].Players)
+                {
+                    ApplyOutlineColor(player, teamColor);
+                }
+            }
+        }
+
+        private void ApplyOutlineColor(GameObject player, Color outlineColor)
+        {
+            if (!TryGetOutlineRenderer(player, out SkinnedMeshRenderer playerRenderer))
+            {
+                return;
+            }
+
+            Material[] materials = playerRenderer.materials;
+            if (materials == null || materials.Length < 2 || materials[1] == null)
+            {
+                return;
+            }
+
+            Material outlineMaterial = materials[1];
+            CacheOriginalOutlineColor(outlineMaterial);
+            if (outlineMaterial.HasProperty(_outlineColor))
+            {
+                outlineMaterial.SetColor(_outlineColor, outlineColor);
+            }
+
+            playerRenderer.materials = materials;
+        }
+
+        public void RestorePlayerOutlineColors()
+        {
+            if (Players == null)
+            {
+                return;
+            }
+
+            foreach (GameObject player in Players)
+            {
+                RestoreOutlineColor(player);
+            }
+        }
+
+        private void RestoreOutlineColor(GameObject player)
+        {
+            if (!TryGetOutlineRenderer(player, out SkinnedMeshRenderer playerRenderer))
+            {
+                return;
+            }
+
+            Material[] materials = playerRenderer.materials;
+            if (materials == null || materials.Length < 2 || materials[1] == null)
+            {
+                return;
+            }
+
+            Material outlineMaterial = materials[1];
+            if (OriginalOutlineColors.TryGetValue(outlineMaterial, out Color originalColor) && outlineMaterial.HasProperty(_outlineColor))
+            {
+                outlineMaterial.SetColor(_outlineColor, originalColor);
+            }
+
+            playerRenderer.materials = materials;
+        }
+
+        private static void CacheOriginalOutlineColor(Material outlineMaterial)
+        {
+            if (outlineMaterial == null || OriginalOutlineColors.ContainsKey(outlineMaterial) || !outlineMaterial.HasProperty(_outlineColor))
+            {
+                return;
+            }
+
+            OriginalOutlineColors.Add(outlineMaterial, outlineMaterial.GetColor(_outlineColor));
+        }
+
+        private static bool TryGetOutlineRenderer(GameObject player, out SkinnedMeshRenderer playerRenderer)
+        {
+            playerRenderer = null;
+
+            PlayerModel playerModel = player.GetComponentInChildren<PlayerModel>(true);
+            if (playerModel == null)
+            {
+                return false;
+            }
+
+            playerRenderer = playerModel.GetComponentInChildren<SkinnedMeshRenderer>(true);
+            return playerRenderer != null;
         }
 
         private void HandlePlayerOverflow(List<GameObject> unassignedPlayers, List<Team> teamsToFill)
@@ -238,6 +344,7 @@ namespace MinigameFramework
         #region PlayerStates
         public void ResetPlayerStates()
         {
+            RestorePlayerOutlineColors();
             foreach (var player in Players)
             {
                 player.GetComponent<PlayerController>().SetPlayerState(PlayerState.InputRestricted);
@@ -292,6 +399,12 @@ namespace MinigameFramework
                 PlayerController controller  = player.GetComponent<PlayerController>();
                 controller.SetPlayerState(PlayerState.InputRestricted);
             }
+        }
+
+        // Bridge method so `onRestorePlayerOutlineColors` GameEvent can call into this class
+        public void OnRestorePlayerOutlineColors(Component sender, object[] data)
+        {
+            RestorePlayerOutlineColors();
         }
 
         public void ResetAllPlayersGravity()
