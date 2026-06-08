@@ -346,6 +346,81 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3225254649062379468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3801786922241848357}
+  - component: {fileID: 2039710792458918466}
+  - component: {fileID: 873958751790097191}
+  m_Layer: 12
+  m_Name: CooldownDashUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3801786922241848357
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225254649062379468}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2248606175310047590}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2039710792458918466
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225254649062379468}
+  m_CullTransparentMesh: 1
+--- !u!114 &873958751790097191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225254649062379468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3d3a1de7dffdf7b4ba883f07b45f3d64, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 1
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3874372982048277803
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,81 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57be18f83b710534597f089a598bd5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableBlockTrigger
---- !u!1 &3225254649062379468
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3801786922241848357}
-  - component: {fileID: 2039710792458918466}
-  - component: {fileID: 873958751790097191}
-  m_Layer: 12
-  m_Name: CooldownDashUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3801786922241848357
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225254649062379468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2248606175310047590}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2039710792458918466
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225254649062379468}
-  m_CullTransparentMesh: 1
---- !u!114 &873958751790097191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3225254649062379468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3d3a1de7dffdf7b4ba883f07b45f3d64, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 1
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 1
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4346121058754503712
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,14 +6542,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCooldownUI
   cooldownDashImage: {fileID: 873958751790097191}
   cooldownAttackImage: {fileID: 1510892624002938603}
-  cooldownBracedImage: {fileID: 4552554382935653278}
+  cooldownBlockingImage: {fileID: 4552554382935653278}
   inAction: 0.95
   coolingDown: 0.85
-  cooledDown: 0
+  canUseCooldown: 0.65
   id: 0
   cooldownDashBackgroundImage: {fileID: 3341311189509944742}
   cooldownAttackBackgroundImage: {fileID: 8244528404660687039}
-  cooldownBracedBackgroundImage: {fileID: 8769895988165613874}
+  cooldownBlockingBackgroundImage: {fileID: 8769895988165613874}
   cooldownBackgroundAlpha: 0.7
 --- !u!114 &2228526002310829258
 MonoBehaviour:
@@ -6625,7 +6625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3514722297143833493}
         m_TargetAssemblyTypeName: PlayerCooldownUI, Assembly-CSharp
-        m_MethodName: StartBracedCooldown
+        m_MethodName: StartBlockingCooldown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6772,7 +6772,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 809311008639500745}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: BracedReturnStun
+        m_MethodName: BlockingReturnStun
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6931,7 +6931,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 809311008639500745}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: InputBraced
+        m_MethodName: InputBlocking
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
