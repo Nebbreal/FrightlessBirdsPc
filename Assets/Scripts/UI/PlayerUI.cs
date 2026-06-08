@@ -42,7 +42,7 @@ public class PlayerUI : MonoBehaviour
             attack.SetActive(false);
             block.SetActive(true);
         }
-        else if (parent.playerState == PlayerState.Braced && block.activeSelf)
+        else if (parent.playerState == PlayerState.Blocking && block.activeSelf)
         {
             dash.SetActive(false);
             attack.SetActive(false);
