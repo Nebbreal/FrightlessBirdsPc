@@ -11,7 +11,7 @@ namespace EventSystem
         public void Raise(Component sender, params object[] data)
         {
             //Trigger all listeners
-            foreach (GameEventListener listener in listeners)
+            foreach (GameEventListener listener in listeners.ToArray())
             {
                 listener.OnEventRaised(sender, data);
             }

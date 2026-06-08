@@ -31,7 +31,8 @@ namespace MinigameFramework
         private SceneField lobbyScene;
         [NonSerialized]
         public bool IsMinigameSceneActive;
-        private bool _isMinigameActive;
+        [NonSerialized]
+        public bool IsMinigameActive;
         public bool _hasMinigameEnded;
         [NonSerialized]
         public bool IsWinUIActive;
@@ -126,12 +127,12 @@ namespace MinigameFramework
             {
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
-            else if (!Instance._isMinigameActive && !Instance._hasMinigameEnded)
+            else if (!Instance.IsMinigameActive && !Instance._hasMinigameEnded)
             {
                 onEnablePlayerMovement.Raise(this);
                 onDisableCountdownUI.Raise(this);
                 onStartMinigame.Raise(this);
-                Instance._isMinigameActive = true;
+                Instance.IsMinigameActive = true;
             }
         }
 
@@ -169,8 +170,9 @@ namespace MinigameFramework
         {
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
-            Instance._isMinigameActive = false;
+            Instance.IsMinigameActive = false;
             PlayerManager.ResetAllPlayersGravity();
+            PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = true;
@@ -178,7 +180,7 @@ namespace MinigameFramework
     
         public void StartGame(InputAction.CallbackContext context)
         {
-            if (!context.started || Instance._isMinigameActive && !Instance._hasMinigameEnded || Instance._countdownTime > 0) return;
+            if (!context.started || Instance.IsMinigameActive && !Instance._hasMinigameEnded || Instance._countdownTime > 0) return;
         
             if (!Instance.IsMinigameSceneActive)
             {
@@ -250,7 +252,7 @@ namespace MinigameFramework
             Instance.IsWinUIActive = true;
 
             Instance._hasMinigameEnded = true;
-            Instance._isMinigameActive = false;
+            Instance.IsMinigameActive = false;
         }
 
 
