@@ -61,7 +61,6 @@ namespace MinigameFramework
         public GameEvent onEnableLobbyUI;
         public GameEvent onDisableLobbyUI;
         public GameEvent onEnableScoreboardUI;
-        // Raised when player outline colors should be restored (previously called directly)
         public GameEvent onRestorePlayerOutlineColors;
 
         [SerializeField]
@@ -173,10 +172,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance.IsMinigameActive = false;
-            if (onRestorePlayerOutlineColors != null)
-            {
-                onRestorePlayerOutlineColors.Raise(this);
-            }
+            onRestorePlayerOutlineColors.Raise(this);
             PlayerManager.ResetAllPlayersGravity();
             PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
