@@ -28,7 +28,7 @@ public class PlayerCooldownUI : MonoBehaviour
     public float cooldownBackgroundAlpha = 0.8f;
     public float cooldownBlockInUseColor = 0.4f;
 
-    private PlayerController _playercontroller;
+    private PlayerController _playerController;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class PlayerCooldownUI : MonoBehaviour
         if (playerController)
         {
             id = playerController.ID;
-            _playercontroller = playerController;
+            _playerController = playerController;
         }
     }
     private void SetCooldownColor()
@@ -77,54 +77,54 @@ public class PlayerCooldownUI : MonoBehaviour
     _dashIsCoolingDown = UpdateCooldown(
         _dashIsCoolingDown,
         CooldownDashImage,
-        _playercontroller.DashCooldown,
-        _playercontroller.dashDelay,
+        _playerController.DashCooldown,
+        _playerController.dashDelay,
         PlayerState.Dash);
 
     _attackIsCoolingDown = UpdateCooldown(
         _attackIsCoolingDown,
         CooldownAttackImage,
-        _playercontroller.AttackCooldown,
-        _playercontroller.attackDelay,
+        _playerController.AttackCooldown,
+        _playerController.attackDelay,
         PlayerState.Attack);
 
     _BlockingIsCoolingDown = UpdateCooldownBlock(
         _BlockingIsCoolingDown,
         CooldownBlockingImage,
-        _playercontroller.BlockCharge,
-        _playercontroller.maxBlockCharge,
+        _playerController.BlockCharge,
+        _playerController.maxBlockCharge,
         PlayerState.Blocking);
     }
 
-    public void StartDashCooldown(Component sender, object[] _obj)
+    public void StartDashCooldown(Component sender, object[] obj)
     {
         PlayerController pc = sender as PlayerController;
         if (pc != null && !_dashIsCoolingDown && pc.ID == id)
         {
-            _playercontroller = pc;
+            _playerController = pc;
             _dashIsCoolingDown = true;
 
             CooldownDashImage.fillAmount = 1f;
         }
     }
     
-    public void StartAttackCooldown(Component sender, object[] _obj)
+    public void StartAttackCooldown(Component sender, object[] obj)
     {
         PlayerController pc = sender as PlayerController;
         if (pc != null && !_attackIsCoolingDown && pc.ID == id)
         {
-            _playercontroller = pc;
+            _playerController = pc;
             _attackIsCoolingDown = true;
 
             CooldownAttackImage.fillAmount = 1f;
         }
     }
-    public void StartBlockingCooldown(Component sender, object[] _obj)
+    public void StartBlockingCooldown(Component sender, object[] obj)
     {
         PlayerController pc = sender as PlayerController;
         if (pc != null && !_BlockingIsCoolingDown && pc.ID == id)
         {
-            _playercontroller = pc;
+            _playerController = pc;
             _BlockingIsCoolingDown = true;
     
         }
@@ -134,7 +134,7 @@ public class PlayerCooldownUI : MonoBehaviour
         if (!isCoolingDown)
             return false;
 
-        if (_playercontroller.playerState == state)
+        if (_playerController.playerState == state)
         {
             cooldownImage.fillAmount = 1f - (currentCooldown / maxCooldown);
             SetBlockCooldownColor(cooldownBlockInUseColor);
@@ -147,12 +147,12 @@ public class PlayerCooldownUI : MonoBehaviour
             SetAlpha(cooldownImage, coolingDown);
         }
 
-        if (_playercontroller.CanBlock && currentCooldown >= maxCooldown && _playercontroller.playerState != state)
+        if (_playerController.CanBlock && currentCooldown >= maxCooldown && _playerController.playerState != state)
         {
             cooldownImage.fillAmount = 0f;
 
             return false;
-        } else if (_playercontroller.CanBlock && currentCooldown >= maxCooldown * 0.5f && _playercontroller.playerState != state)
+        } else if (_playerController.CanBlock && currentCooldown >= maxCooldown * 0.5f && _playerController.playerState != state)
         {
             cooldownImage.fillAmount = 1f - (currentCooldown / maxCooldown);
             SetAlpha(cooldownImage, canUseCooldown);
@@ -165,7 +165,7 @@ public class PlayerCooldownUI : MonoBehaviour
         if (!isCoolingDown)
             return false;
 
-        if (_playercontroller.playerState == state)
+        if (_playerController.playerState == state)
         {
             SetAlpha(cooldownImage, inAction);
         }
@@ -175,7 +175,7 @@ public class PlayerCooldownUI : MonoBehaviour
             SetAlpha(cooldownImage, coolingDown);
         }
 
-        if (currentCooldown <= 0 && _playercontroller.playerState != state)
+        if (currentCooldown <= 0 && _playerController.playerState != state)
         {
             cooldownImage.fillAmount = 0f;
 
