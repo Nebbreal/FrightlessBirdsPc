@@ -3,6 +3,54 @@
     "name": "Arcade_InputSystem",
     "maps": [
         {
+            "name": "Operator",
+            "id": "1590f516-0f16-43c1-925a-382cadc60521",
+            "actions": [
+                {
+                    "name": "ActivateMenu",
+                    "type": "Button",
+                    "id": "bda0a7c9-8020-4231-b3f4-1bf6ac72ad86",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "4c1127de-734b-4aab-b19e-7e97b9bb8184",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f7ed98a6-7893-410e-a9ff-16ece1641ec4",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10a1594c-c791-4fa9-8cd6-d940222d8240",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Player",
             "id": "ab98ba92-1eee-45df-9da7-e87135d34265",
             "actions": [

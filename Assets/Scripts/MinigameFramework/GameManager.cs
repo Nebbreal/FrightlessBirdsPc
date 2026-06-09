@@ -68,6 +68,8 @@ namespace MinigameFramework
         public GameEvent onDisableLobbyUI;
         public GameEvent onEnableScoreboardUI;
         public GameEvent onRestorePlayerOutlineColors;
+        public GameEvent onEnableOperatorMenu;
+        public GameEvent onDisableOperatorMenu;
 
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -107,6 +109,7 @@ namespace MinigameFramework
                 CheckWinUITime();
             }
         }
+
 
         private void CheckWinUITime()
         {
@@ -331,5 +334,14 @@ namespace MinigameFramework
                 }
             }
         }
+
+        private void EnableOperatorMenu(InputAction.CallbackContext ctx)
+        {
+            if(ctx.performed)
+            {
+                onEnableOperatorMenu.Raise(this);
+            }
+        }
+
     }
 }
