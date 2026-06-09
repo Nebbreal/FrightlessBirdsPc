@@ -41,6 +41,7 @@ namespace MinigameFramework
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
         public GameEvent onStartMusic;
+        public GameEvent onClearTeams;
         
         [Header("Player Events")]
         public GameEvent onResetCalibration;
@@ -254,6 +255,7 @@ namespace MinigameFramework
             Instance._winUITime = Instance._gameConfig.winScreenLength;
             Instance.IsWinUIActive = true;
 
+            onClearTeams.Raise(this);
             Instance._hasMinigameEnded = true;
             Instance.IsMinigameActive = false;
         }

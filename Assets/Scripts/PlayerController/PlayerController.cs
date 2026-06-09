@@ -655,7 +655,7 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStun(CollisionData data)
     {
-        if (playerState == PlayerState.Dash && !IsSameTeam(data)) return;
+        if (playerState == PlayerState.Dash || IsSameTeam(data)) return;
 
         if (playerState == PlayerState.Blocking)
         {
