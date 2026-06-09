@@ -5,6 +5,7 @@ using EventSystem;
 using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -29,14 +30,15 @@ namespace MinigameFramework
         [NonSerialized] public List<GameObject> AlivePlayers;
         private static int _outlineColor = Shader.PropertyToID("_OutlineColor");
 
-        public GameEvent OnEnablePlayerUI;
-        public GameEvent OnDisablePlayerUI;
 
         [SerializeField]
         private GameConfig gameConfig;
         [SerializeField]
         private GameObject playerPrefab;
 
+        [Header("GameEvents")]
+        public GameEvent onEnablePlayerUI;
+        public GameEvent onDisablePlayerUI;
         //Temporary solution until the scriptable object method is implemented
         [NonSerialized] 
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
@@ -106,7 +108,7 @@ namespace MinigameFramework
             player.IsActive = true;
             ActivePlayers.Add(sender.gameObject);
 
-            OnEnablePlayerUI.Raise(this, player.ID);
+            onEnablePlayerUI.Raise(this, player.ID);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
@@ -127,7 +129,7 @@ namespace MinigameFramework
             player.IsActive = false;
             ActivePlayers.Remove(sender.gameObject);
 
-            OnDisablePlayerUI.Raise(this, player.ID);
+            onDisablePlayerUI.Raise(this, player.ID);
         }
         #endregion
 
@@ -171,6 +173,11 @@ namespace MinigameFramework
 
             RestorePlayerOutlineColors();
             ApplyTeamOutlineColors(minigameConfig);
+        }
+
+        public void ClearTeams(Component sender, object[] data)
+        {
+            Teams.Clear();
         }
 
         private void ApplyTeamOutlineColors(Minigame minigameConfig)
