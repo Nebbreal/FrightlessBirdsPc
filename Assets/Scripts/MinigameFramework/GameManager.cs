@@ -289,9 +289,7 @@ namespace MinigameFramework
 
         public void OnWinGame(Component sender, object[] winnerObjs)
         {
-            Debug.Log(winnerObjs.First());
             if (winnerObjs.First() is not GameObject winnerObj) return;
-            Debug.Log(winnerObj.name);
             PlayerController winner = winnerObj.GetComponent<PlayerController>();
             var winningColor = Instance.PlayerManager.PlayerColors[winner.ID];
             object[] winnerData = { winner.name, winningColor };
@@ -303,7 +301,6 @@ namespace MinigameFramework
             Instance._winUITime = Instance._gameConfig.winScreenLength;
             Instance.IsWinUIActive = true;
             Instance._isGameEnding = true;
-            Instance.CanLeaveOverride = false;
         }
 
 

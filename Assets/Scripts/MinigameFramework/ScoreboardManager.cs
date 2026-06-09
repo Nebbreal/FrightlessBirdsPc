@@ -86,7 +86,6 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
 
-        Debug.Log(winningPlayers.Count);
         if (winningPlayers.Count > 1)
         {
             GameManager.Instance.CanLeaveOverride = true;
@@ -100,7 +99,7 @@ public class ScoreboardManager : MonoBehaviour
         }
         else if (winningPlayers.Count == 1)
         {
-            onWinGame.Raise(this, winningPlayers);
+            onWinGame.Raise(this, winningPlayers.Cast<object>().ToArray());
             ResetPlayerScores();
         }
         else
