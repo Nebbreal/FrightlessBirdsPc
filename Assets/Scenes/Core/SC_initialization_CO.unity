@@ -1703,7 +1703,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1578672787016582126, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: ScoreToWin
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1690358537828402848, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: 'BlinkForCalibrations.Array.data[0]'
