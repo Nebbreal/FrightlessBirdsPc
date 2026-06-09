@@ -120,7 +120,7 @@ namespace MinigameFramework
 
         public void OnPlayerLeaveLobby(Component sender, object[] objects)
         {
-            if (!CanJoin) return;
+            if (!CanJoin && !GameManager.Instance.CanLeaveOverride) return;
             sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
             PlayerController player = sender.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.InputRestricted);

@@ -20,6 +20,8 @@ namespace MinigameFramework
 
         [NonSerialized]
         private float _countdownTime;
+
+        [NonSerialized]
         private float _winUITime;
     
         [Header("Game manager config")]
@@ -36,6 +38,9 @@ namespace MinigameFramework
         public bool _hasMinigameEnded;
         [NonSerialized]
         public bool IsWinUIActive;
+        private bool _isGameEnding;
+        [NonSerialized]
+        public bool CanLeaveOverride;
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -104,12 +109,19 @@ namespace MinigameFramework
 
         private void CheckWinUITime()
         {
-            if(Instance._winUITime <= 0)
+            if(Instance._winUITime <= 0 && !Instance._isGameEnding)
             {
                 onCleanWinUI.Raise(this, null);
                 onDisableWinUI.Raise(this);
                 onEnableScoreboardUI.Raise(this);
                 Instance.IsWinUIActive = false;
+            } else if (Instance._winUITime <= 0 && Instance._isGameEnding)
+            {
+                onCleanWinUI.Raise(this, null);
+                onDisableWinUI.Raise(this);
+                Instance.IsWinUIActive = false;
+                Instance._isGameEnding = false;
+                Instance.ToLobby();
             }
         }
 
@@ -137,18 +149,19 @@ namespace MinigameFramework
             }
         }
 
-        public void OnLoadMinigame()
+        public void OnLoadMinigame(Component sender, object[] minigame)
         {
             if (Instance.PlayerManager.ActivePlayers.Count < 2) return;
+
             Minigame selectedMinigame;
-            int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
-            List<Minigame> validMinigames = minigames.Where(m=> m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
-            do
+            if (minigame != null && minigame.First() is Minigame m)
             {
-                int rnd = Random.Range(0, validMinigames.Count);
-                
-                selectedMinigame = validMinigames[rnd];
-            } while (!selectedMinigame || selectedMinigame == Instance.CurrentMinigame && validMinigames.Count != 1);
+                selectedMinigame = m;
+            }
+            else
+            {
+                selectedMinigame = SelectRandomMinigame();
+            }
         
             Instance.CurrentMinigame = selectedMinigame;
           
@@ -165,6 +178,22 @@ namespace MinigameFramework
             onDisableLobbyUI.Raise(this);
             Instance.PlayerManager.CanJoin = false;
             onStartMusic.Raise(this);
+        }
+
+        private Minigame SelectRandomMinigame()
+        {
+            Minigame selectedMinigame;
+            int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
+            List<Minigame> validMinigames =
+                minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
+            do
+            {
+                int rnd = Random.Range(0, validMinigames.Count);
+
+                selectedMinigame = validMinigames[rnd];
+            } while (!selectedMinigame || selectedMinigame == Instance.CurrentMinigame && validMinigames.Count != 1);
+
+            return selectedMinigame;
         }
 
         public void ToLobby()
@@ -256,6 +285,25 @@ namespace MinigameFramework
 
             Instance._hasMinigameEnded = true;
             Instance.IsMinigameActive = false;
+        }
+
+        public void OnWinGame(Component sender, object[] winnerObjs)
+        {
+            Debug.Log(winnerObjs.First());
+            if (winnerObjs.First() is not GameObject winnerObj) return;
+            Debug.Log(winnerObj.name);
+            PlayerController winner = winnerObj.GetComponent<PlayerController>();
+            var winningColor = Instance.PlayerManager.PlayerColors[winner.ID];
+            object[] winnerData = { winner.name, winningColor };
+            GameObject playerModel = winner.GetComponentInChildren<PlayerModel>().gameObject;
+
+            onEnableWinUI.Raise(this);
+            onUpdateWinUIModel.Raise(this, new { playerModel });
+            onUpdateWinnerUIText.Raise(this, winnerData);
+            Instance._winUITime = Instance._gameConfig.winScreenLength;
+            Instance.IsWinUIActive = true;
+            Instance._isGameEnding = true;
+            Instance.CanLeaveOverride = false;
         }
 
 

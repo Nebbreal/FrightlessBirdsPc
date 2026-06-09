@@ -21,9 +21,13 @@ public class ScoreboardManager : MonoBehaviour
     private object[] winners;
     private bool isActive;
 
+    public Minigame TieBreakerMinigame;
+
     //Event
     public GameEvent onUpdateWinUIText;
     public GameEvent onWinGame;
+    public GameEvent onPlayerLeaveLobby;
+    public GameEvent onLoadMinigame;
 
     private List<GameObject> _instantiatedCrowns = new List<GameObject>();
 
@@ -68,20 +72,41 @@ public class ScoreboardManager : MonoBehaviour
         _instantiatedCrowns.Clear();
 
         List<GameObject> winningPlayers = new();
+        var highestScore = ScoreToWin;
         foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers)
         {
             PlayerController p = player.GetComponent<PlayerController>();
-            if (PlayerScores[p.ID] >= ScoreToWin)
+            if (PlayerScores[p.ID] == highestScore)
             {
                 winningPlayers.Add(player);
+            } else if (PlayerScores[p.ID] > highestScore)
+            {
+                highestScore = PlayerScores[p.ID];
+                winningPlayers = new List<GameObject> { player };
             }
         }
 
-        if (winningPlayers.Count > 0)
+        Debug.Log(winningPlayers.Count);
+        if (winningPlayers.Count > 1)
+        {
+            GameManager.Instance.CanLeaveOverride = true;
+            foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers.Where(p => !winningPlayers.Contains(p)).ToArray())
+            {
+                onPlayerLeaveLobby.Raise(player.GetComponent<PlayerController>(), null);
+            }
+            GameManager.Instance.CanLeaveOverride = false;
+
+            onLoadMinigame.Raise(this, TieBreakerMinigame);
+        }
+        else if (winningPlayers.Count == 1)
         {
             onWinGame.Raise(this, winningPlayers);
+            ResetPlayerScores();
         }
-        GameManager.Instance.ToLobby();
+        else
+        {
+            GameManager.Instance.ToLobby();
+        }
     }
 
     public void OnShowCrowns(Component sender, object[] modelsObj)
