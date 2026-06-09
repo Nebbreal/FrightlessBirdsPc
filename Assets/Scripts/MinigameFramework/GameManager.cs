@@ -291,8 +291,9 @@ namespace MinigameFramework
         {
             if (winnerObjs.First() is not GameObject winnerObj) return;
             PlayerController winner = winnerObj.GetComponent<PlayerController>();
+            var winnerName = PlayerManager.PlayerNames[winner.ID];
             var winningColor = Instance.PlayerManager.PlayerColors[winner.ID];
-            object[] winnerData = { winner.name, winningColor };
+            object[] winnerData = { winnerName, winningColor };
             GameObject playerModel = winner.GetComponentInChildren<PlayerModel>().gameObject;
 
             onEnableWinUI.Raise(this);
