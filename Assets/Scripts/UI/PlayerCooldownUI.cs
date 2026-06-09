@@ -26,6 +26,7 @@ public class PlayerCooldownUI : MonoBehaviour
     public Image cooldownAttackBackgroundImage;
     public Image cooldownBlockingBackgroundImage;
     public float cooldownBackgroundAlpha = 0.8f;
+    public float cooldownBlockInUseColor = 0.4f;
 
     private PlayerController _playerController;
 
@@ -60,6 +61,15 @@ public class PlayerCooldownUI : MonoBehaviour
         cooldownDashBackgroundImage.color = playerColor;
         cooldownAttackBackgroundImage.color = playerColor;
         cooldownBlockingBackgroundImage.color = playerColor;
+    }
+
+    private void SetBlockCooldownColor(float strength)
+    {
+        PlayerManager playerManager = FindFirstObjectByType<PlayerManager>();
+
+        Color playerColor = playerManager.PlayerColors[id];
+
+        cooldownBlockingBackgroundImage.color = playerColor * strength;
     }
 
     private void Update()
@@ -127,11 +137,13 @@ public class PlayerCooldownUI : MonoBehaviour
         if (_playerController.playerState == state)
         {
             cooldownImage.fillAmount = 1f - (currentCooldown / maxCooldown);
+            SetBlockCooldownColor(cooldownBlockInUseColor);
             SetAlpha(cooldownImage, inAction);
         }
         else
         {
             cooldownImage.fillAmount = 1f - (currentCooldown / maxCooldown);
+            SetBlockCooldownColor(1f);
             SetAlpha(cooldownImage, coolingDown);
         }
 

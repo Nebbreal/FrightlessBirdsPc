@@ -12,4 +12,16 @@ public class LobbyManager : MonoBehaviour
         playerSpawns[id].gameObject.GetComponentInChildren<Interactable>().Reset();
         sender.transform.position = playerSpawns[id].transform.position;
     }
+
+    public void Awake()
+    {
+        foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers)
+        {
+            PlayerController p = player.GetComponent<PlayerController>();
+            if (p.IsActive)
+            {
+                player.transform.position = playerSpawns[p.ID].transform.position;
+            }
+        }
+    }
 }

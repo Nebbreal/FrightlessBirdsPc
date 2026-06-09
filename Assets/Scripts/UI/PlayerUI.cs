@@ -5,10 +5,10 @@ public class PlayerUI : MonoBehaviour
 {
     public GameObject dash;
     public GameObject attack;
+    public GameObject block;
     public GameObject controller;
     public GameObject isReady;
     private PlayerController parent;
-    private bool isFlipped = false;
 
     void Start()
     {
@@ -16,7 +16,6 @@ public class PlayerUI : MonoBehaviour
         parent = player;
         if (player.ID > 1)
         {
-            isFlipped = true;
             transform.localScale = new Vector3(-transform.localScale.x,-transform.localScale.y,transform.localScale.z);
         }
     }
@@ -35,17 +34,27 @@ public class PlayerUI : MonoBehaviour
             controller.SetActive(true);
             dash.SetActive(false);
             attack.SetActive(true);
+            block.SetActive(false);
         }
         else if (parent.playerState == PlayerState.Attack && attack.activeSelf)
         {
-            controller.SetActive(false);
+            controller.SetActive(true);
             attack.SetActive(false);
+            block.SetActive(true);
+        }
+        else if (parent.playerState == PlayerState.Blocking && block.activeSelf)
+        {
+            dash.SetActive(false);
+            attack.SetActive(false);
+            block.SetActive(false);
+            controller.SetActive(false);
         }
         else if (!parent.IsActive)
         {
             controller.SetActive(true);
             dash.SetActive(true);
             attack.SetActive(false);
+            block.SetActive(false);
         }
     }
 

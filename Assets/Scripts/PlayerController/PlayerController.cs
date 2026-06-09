@@ -113,7 +113,6 @@ public class PlayerController : MonoBehaviour
 
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
-    
 
     private Collider[] _hitCollidersBuffer;
     private float _currentMinigameDecelerationMultiplierOverride;    public GameEvent onPlayerDash;

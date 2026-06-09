@@ -44,17 +44,17 @@ namespace MinigameFramework
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
         {
             { 0, "Blue" },
-            { 1, "Green" },
             { 2, "Red" },
-            { 3, "Yellow" }
+            { 1, "Purple" },
+            { 3, "Green" }
         };
         [NonSerialized] 
         public Dictionary<int, Color> PlayerColors = new Dictionary<int, Color>
         {
             { 0, new Color(0.08113199f, 0.8873519f, 1f)},
-            { 1, new Color(0f, 1f, 0.047058f)},
-            { 2, new Color(1f, 0f, 0f) },
-            { 3, new Color(0.9863279f, 1f, 0f) }
+            { 1, new Color(1f, 0f, 0f) },
+            { 2, new Color(0.4980392f, 0.3019608f, 0.6980392f) },
+            { 3, new Color(0f, 1f, 0.047058f)},
         };
         
         #region PlayerInit
@@ -122,7 +122,7 @@ namespace MinigameFramework
 
         public void OnPlayerLeaveLobby(Component sender, object[] objects)
         {
-            if (!CanJoin) return;
+            if (!CanJoin && !GameManager.Instance.CanLeaveOverride) return;
             sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
             PlayerController player = sender.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.InputRestricted);
@@ -378,7 +378,7 @@ namespace MinigameFramework
         {
             foreach (GameObject player in ActivePlayers)
             {
-                player.transform.position = new Vector3(0, 3, 0);
+                player.transform.position = new Vector3(0f, 3f, 0f);
             }
         }
 
