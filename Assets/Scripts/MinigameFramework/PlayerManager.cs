@@ -371,7 +371,7 @@ namespace MinigameFramework
         {
             foreach (GameObject player in ActivePlayers)
             {
-                player.transform.position = new Vector3(0, 3, 0);
+                player.transform.position = new Vector3(0f, 3f, 0f);
             }
         }
 

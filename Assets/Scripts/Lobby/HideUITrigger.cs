@@ -6,28 +6,43 @@ using UnityEngine.UI;
 
 public class HideUITrigger : MonoBehaviour
 {
-    public float HiddenUIOpacity;
+    public float hiddenUIOpacity;
     public List<Image> images;
-    private List<GameObject> areInside;
-    private bool isHidden;
+    private List<GameObject> _areInside;
+    private bool _isHidden;
 
     private void Awake()
     {
-        areInside = new List<GameObject>();
-        isHidden = false;
+        _areInside = new List<GameObject>();
+        _isHidden = false;
     }
 
-    private void Update(){
-        if (areInside.Count > 0 && !isHidden) {
-            foreach(Image img in images)
+    private void OnTriggerEnter(Collider other)
+    {
+        PlayerController p = other.GetComponent<PlayerController>();
+        if (!p) return;
+        _areInside.Add(other.gameObject);
+
+        if (_areInside.Count > 0 && !_isHidden)
+        {
+            foreach (Image img in images)
             {
                 Color c = img.color;
-                c.a = HiddenUIOpacity;
+                c.a = hiddenUIOpacity;
                 img.color = c;
             }
-            isHidden = true;
+
+            _isHidden = true;
         }
-        else if (areInside.Count == 0 && isHidden)
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerController p = other.GetComponent<PlayerController>();
+        if (!p) return;
+        _areInside.Remove(other.gameObject);
+
+        if (_areInside.Count == 0 && _isHidden)
         {
             foreach (Image img in images)
             {
@@ -35,21 +50,8 @@ public class HideUITrigger : MonoBehaviour
                 c.a = 1f;
                 img.color = c;
             }
-            isHidden = false;
+
+            _isHidden = false;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        PlayerController p = other.GetComponent<PlayerController>();
-        if (!p) return;
-        areInside.Add(other.gameObject);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        PlayerController p = other.GetComponent<PlayerController>();
-        if (!p) return;
-        areInside.Remove(other.gameObject);
     }
 }
