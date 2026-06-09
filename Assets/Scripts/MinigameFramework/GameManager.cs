@@ -294,10 +294,10 @@ namespace MinigameFramework
             var winnerName = PlayerManager.PlayerNames[winner.ID];
             var winningColor = Instance.PlayerManager.PlayerColors[winner.ID];
             object[] winnerData = { winnerName, winningColor };
-            GameObject playerModel = winner.GetComponentInChildren<PlayerModel>().gameObject;
+            GameObject playerModel = winnerObj.GetComponentInChildren<PlayerModel>().gameObject;
 
             onEnableWinUI.Raise(this);
-            onUpdateWinUIModel.Raise(this, new { playerModel });
+            onUpdateWinUIModel.Raise(this, new List<GameObject>{ playerModel });
             onUpdateWinnerUIText.Raise(this, winnerData);
             Instance._winUITime = Instance._gameConfig.winScreenLength;
             Instance.IsWinUIActive = true;

@@ -3021,7 +3021,7 @@ MonoBehaviour:
   - {fileID: 146666656586875434}
   - {fileID: 3573591660342560372}
   - {fileID: 7275400505664998790}
-  ScoreToWin: 1
+  ScoreToWin: 3
   elements: {fileID: 7667056086394416819}
   crownUI: {fileID: 7026486451958048907, guid: a141c1e2c822bea40b577c15eca74fc9, type: 3}
   outwardDistance: 0.5
@@ -9421,6 +9421,7 @@ GameObject:
   - component: {fileID: 2829976537248166007}
   - component: {fileID: 2194438222066439326}
   - component: {fileID: -2727598369002935675}
+  - component: {fileID: 2318957386543404869}
   m_Layer: 0
   m_Name: PRE_GameManager
   m_TagString: GameManager
@@ -9554,6 +9555,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2829976537248166007}
         m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
         m_MethodName: OnEndMinigame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2318957386543404869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657201635695876032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 4c90473dc833a514ebf62e6c3c3cf5bc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2829976537248166007}
+        m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
+        m_MethodName: OnWinGame
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
