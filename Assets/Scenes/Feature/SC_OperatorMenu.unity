@@ -461,6 +461,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onEnableOperatorMenu
+      value: 
+      objectReference: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
+    - target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onDisableOperatorMenu
+      value: 
+      objectReference: {fileID: 11400000, guid: dd67a86b114bf764aa536919116884a8, type: 2}
     - target: {fileID: 5305457046575087748, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_IsActive
       value: 0
