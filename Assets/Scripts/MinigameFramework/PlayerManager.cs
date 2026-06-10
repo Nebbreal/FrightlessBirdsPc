@@ -44,8 +44,8 @@ namespace MinigameFramework
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
         {
             { 0, "Blue" },
-            { 2, "Red" },
-            { 1, "Purple" },
+            { 1, "Red" },
+            { 2, "Purple" },
             { 3, "Green" }
         };
         [NonSerialized] 
