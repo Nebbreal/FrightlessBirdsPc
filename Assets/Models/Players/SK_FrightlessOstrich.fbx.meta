@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 9cec75ebe7a14b64ba1d6084a8fe4e5f
+guid: a17b0dc30d237e14e8b4267e42766ce2
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Ostrich
+    second: {fileID: 2100000, guid: f8504508f8d79ab4ebaeb2fc26c6c5d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outline
+    second: {fileID: 2100000, guid: 96470d5397742114e95ec1c7f57892ac, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -14,7 +24,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
+    removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -31,9 +41,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: OstrichWalk
-      takeName: OstrichWalk
-      internalID: -4913781595919326557
+      name: Ostrich_V2|OstrichIdle
+      takeName: Ostrich_V2|OstrichIdle
+      internalID: -4529602685701914785
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -60,9 +70,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: OstrichIdle
-      takeName: OstrichIdle
-      internalID: -6977967271725208581
+      name: Ostrich_V2|OstrichWalk
+      takeName: Ostrich_V2|OstrichWalk
+      internalID: 4315594324243361404
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
