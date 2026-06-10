@@ -432,6 +432,7 @@ namespace MinigameFramework
                 controller.ResetDecelerationMultiplierOverride();
             }
         }
+
         #endregion
         
         #region PlayerLives

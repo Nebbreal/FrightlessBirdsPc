@@ -110,7 +110,6 @@ public class PlayerController : MonoBehaviour
     public GameEvent onAttacked;
     [SerializeField]
     private GameEvent onPlaySoundClipOnce;
-
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
 
@@ -118,6 +117,7 @@ public class PlayerController : MonoBehaviour
     private float _currentMinigameDecelerationMultiplierOverride;    public GameEvent onPlayerDash;
     public GameEvent onPlayerAttack;
     public GameEvent onPlayerBrace;
+
 
     private void Start()
     {

@@ -41,6 +41,9 @@ namespace MinigameFramework
         private bool _isGameEnding;
         [NonSerialized]
         public bool CanLeaveOverride;
+        [NonSerialized]
+        private PlayerInput playerInput;
+
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -75,6 +78,8 @@ namespace MinigameFramework
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
         {
+            playerInput = GetComponent<PlayerInput>();
+
             if (Instance == null)
             {
                 Instance = this;
@@ -110,6 +115,18 @@ namespace MinigameFramework
             }
         }
 
+        public void OpenOperatorMenu(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                onEnableOperatorMenu.Raise(this);
+            }
+        }
+
+        public void CloseOperatorMenu()
+        {
+            onDisableOperatorMenu.Raise(this);
+        }
 
         private void CheckWinUITime()
         {
@@ -332,14 +349,6 @@ namespace MinigameFramework
                     onEnableLobbyUI.Raise(this);
                     Instance.PlayerManager.CanJoin = true;
                 }
-            }
-        }
-
-        private void EnableOperatorMenu(InputAction.CallbackContext ctx)
-        {
-            if(ctx.performed)
-            {
-                onEnableOperatorMenu.Raise(this);
             }
         }
 
