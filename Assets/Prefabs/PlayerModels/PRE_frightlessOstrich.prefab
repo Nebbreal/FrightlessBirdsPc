@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bb4e06b9c0b394086ba0007ffe6e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerModel
+  outlineColorShaderVariableName: _OutlineColor
 --- !u!95 &6232026452777443033
 Animator:
   serializedVersion: 7

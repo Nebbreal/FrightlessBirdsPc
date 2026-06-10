@@ -76,7 +76,11 @@ namespace MinigameFramework
             playerController.ID = Players.Count - 1;
 
             player.gameObject.name = "Player" + Players.Count;
-            Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
+            GameObject instantiatedPlayer = Instantiate(playerModels[playerController.ID], playerObj.transform, true);
+            
+            PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
+            playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
+            
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
