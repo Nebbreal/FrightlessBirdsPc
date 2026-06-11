@@ -9537,7 +9537,7 @@ MonoBehaviour:
   onDisableLobbyUI: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
   onEnableScoreboardUI: {fileID: 11400000, guid: 602938e8aa9b36a4fb6448599e75757d, type: 2}
   onRestorePlayerOutlineColors: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
-  defaultColor: {r: 0.6609668, g: 0.4029, b: 0.79, a: 1}
+  defaultColor: {r: 0.9010377, g: 0.9339623, b: 0.18062477, a: 1}
 --- !u!114 &2194438222066439326
 MonoBehaviour:
   m_ObjectHideFlags: 0
