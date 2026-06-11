@@ -155,14 +155,14 @@ namespace Minigames.WorldCoop
 
         public void Update()
         {
-            if (GameManager.Instance._hasMinigameEnded || _overtimeActive)
+            if (GameManager.Instance.HasMinigameEnded || _overtimeActive)
             {
                 return;
             }
 
             _timer -= Time.deltaTime;
 
-            if (_timer < 0f && !GameManager.Instance._hasMinigameEnded)
+            if (_timer < 0f && !GameManager.Instance.HasMinigameEnded)
             {
                 if (_scoreTeam1 == _scoreTeam2)
                 {
