@@ -51,10 +51,23 @@ namespace MinigameFramework.UIElements
             pivot.transform.localPosition = new Vector3(xPos, 0f, 0f);
             GameObject spinningModel = Instantiate(winnerModelObject, pivot.transform);
 
-            PlayerModel winnerModel = spinningModel.GetComponent<PlayerModel>();
-            PlayerManager playerManager = GameManager.Instance.PlayerManager;
-            int playerID = winnerModelObject.GetComponentInParent<PlayerController>().ID;
-            winnerModel.ChangeOutlineColor(playerManager.PlayerColors[playerID]);
+            PlayerModel spinningModelScript = spinningModel.GetComponent<PlayerModel>();
+            GameObject winnerObject =  winnerModelObject.GetComponentInParent<PlayerController>().gameObject;
+            GameManager gameManager = GameManager.Instance;
+            PlayerManager playerManager = gameManager.PlayerManager;
+            if (playerManager.Teams.Count > 0)
+            {
+                List<Team> teams = playerManager.Teams;
+                Team playerTeam = teams.FirstOrDefault(team => team.Players.Contains(winnerObject));
+                int playerTeamIndex = teams.IndexOf(playerTeam);
+                Color playerColor = gameManager.CurrentMinigame.teamOutlineColors[playerTeamIndex];
+                spinningModelScript.ChangeOutlineColor(playerColor);
+            }
+            else
+            {
+                int playerID = winnerModelObject.GetComponentInParent<PlayerController>().ID;
+                spinningModelScript.ChangeOutlineColor(playerManager.PlayerColors[playerID]);
+            }
             
             _instantiatedPivots.Add(pivot);
             spinningModel.transform.localPosition = modelPivotOffset;
