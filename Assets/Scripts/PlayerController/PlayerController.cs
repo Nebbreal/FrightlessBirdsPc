@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,8 +9,6 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
     [Header("Initialization Settings")] 
     public PlayerState playerState;
     public Rigidbody rb;
@@ -569,7 +566,8 @@ public class PlayerController : MonoBehaviour
     private void CheckIsBlocking()
     {
         _moveThisFrame = Vector3.zero;
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
+        Vector3 newLinearVelocity =  Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
+        rb.linearVelocity = new Vector3(newLinearVelocity.x, rb.linearVelocity.y, newLinearVelocity.z);
     }
 
     private void ExecuteAttack()
@@ -632,7 +630,8 @@ public class PlayerController : MonoBehaviour
             _currentMinigameDecelerationMultiplierOverride : 
             defaultDecelerationMultiplier;
         
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
+        Vector3 newLinearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
+        rb.linearVelocity = new Vector3(newLinearVelocity.x, 0, newLinearVelocity.z);
     }
 
     public void UpdateDecelerationMultiplierOverride(Component sender, object[] data)
