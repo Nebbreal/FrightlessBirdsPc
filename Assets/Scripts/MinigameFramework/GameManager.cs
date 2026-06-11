@@ -245,8 +245,6 @@ namespace MinigameFramework
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
             onDisablePlayerMovement.Raise(this);
-            Instance.PlayerManager.RestorePlayerOutlineColors();
-            
             List<string> winnerNames = new List<string>();
             List<GameObject> winnerModels = new();
             Color winnerColor = defaultColor;
@@ -283,7 +281,8 @@ namespace MinigameFramework
             onUpdateWinnerUIText.Raise(this, winnerData);
             Instance._winUITime = Instance._gameConfig.winScreenLength;
             Instance.IsWinUIActive = true;
-
+            
+            Instance.PlayerManager.RestorePlayerOutlineColors();
             onClearTeams.Raise(this);
             Instance._hasMinigameEnded = true;
             Instance.IsMinigameActive = false;

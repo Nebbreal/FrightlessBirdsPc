@@ -29,6 +29,7 @@ namespace Minigames.WorldCoop
 
         [SerializeField] private int scoreToWin = 3;
         [SerializeField] private GameObject ballObject;
+        private Rigidbody _ballRb;
         [SerializeField] private Vector3 initialBallSpawn;
 
         [Header("Scoreboard Visuals")]
@@ -46,6 +47,8 @@ namespace Minigames.WorldCoop
                 _players = _playerManager.ActivePlayers;
             #endregion
             
+            _ballRb = ballObject.GetComponent<Rigidbody>();
+            
             foreach (GameObject player in _players)
             {
                 Rigidbody playerBody = player.GetComponent<Rigidbody>();
@@ -54,8 +57,6 @@ namespace Minigames.WorldCoop
                 playerBody.linearVelocity = Vector3.zero;
                 playerTransform.position = initialSpawnPoints[p.ID].transform.position;
                 playerTransform.rotation = Quaternion.LookRotation(-initialSpawnPoints[p.ID].transform.position);
-
-                // player.AddComponent();
             }
             
             _timer = _gameConfig.roundLength;
@@ -122,11 +123,10 @@ namespace Minigames.WorldCoop
 
         private void ResetRound()
         {
-            if (ballObject != null)
+            if (ballObject)
             {
-                Rigidbody ballRb = ballObject.GetComponent<Rigidbody>();
-                ballRb.linearVelocity = Vector3.zero;
-                ballRb.angularVelocity = Vector3.zero;
+                _ballRb.linearVelocity = Vector3.zero;
+                _ballRb.angularVelocity = Vector3.zero;
                 ballObject.transform.position = initialBallSpawn;
             }
 
