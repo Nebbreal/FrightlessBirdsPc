@@ -102,10 +102,10 @@ public class PlayerController : MonoBehaviour
     [Header("Game events")]
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
-    [SerializeField]
-    public GameEvent onJoin;
-    [SerializeField]
-    public GameEvent onLeave;
+    [FormerlySerializedAs("onJoin")] [SerializeField]
+    public GameEvent onPlayerJoinLobby;
+    [FormerlySerializedAs("onLeave")] [SerializeField]
+    public GameEvent onPlayerLeaveLobby;
     public GameEvent onDashedInto;
     public GameEvent onAttacked;
     [SerializeField]
@@ -223,11 +223,11 @@ public class PlayerController : MonoBehaviour
         {
             if (IsActive)
             {
-                onLeave.Raise(this);
+                onPlayerLeaveLobby.Raise(this, gameObject);
             }
             else
             {
-                onJoin.Raise(this);
+                onPlayerJoinLobby.Raise(this, gameObject);
             }
         }
     }

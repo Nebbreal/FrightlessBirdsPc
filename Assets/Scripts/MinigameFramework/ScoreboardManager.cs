@@ -91,7 +91,7 @@ public class ScoreboardManager : MonoBehaviour
             GameManager.Instance.CanLeaveOverride = true;
             foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers.Where(p => !winningPlayers.Contains(p)).ToArray())
             {
-                onPlayerLeaveLobby.Raise(player.GetComponent<PlayerController>(), null);
+                onPlayerLeaveLobby.Raise(this, player);
             }
             GameManager.Instance.CanLeaveOverride = false;
 

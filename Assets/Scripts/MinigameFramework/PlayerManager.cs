@@ -103,35 +103,38 @@ namespace MinigameFramework
             #endif
         }
         
-        public void OnPlayerJoinLobby(Component sender, object[] objects)
+        public void OnPlayerJoinLobby(Component sender, object[] playerObj)
         {
             if (!CanJoin) return;
-            sender.gameObject.transform.position = new Vector3(0, 3, 0);
-            PlayerController player = sender.GetComponent<PlayerController>();
+            if (playerObj.First() is not GameObject playerObject) return;
+            
+            playerObject.transform.position = new Vector3(0, 3, 0);
+            PlayerController player = playerObject.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.Idle);
             player.IsActive = true;
-            ActivePlayers.Add(sender.gameObject);
+            ActivePlayers.Add(playerObject);
 
             onEnablePlayerUI.Raise(this, player.ID);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
-            GameObject playerObj = player.gameObject;
-            if (DebugPlayers.Contains(playerObj))
+            if (DebugPlayers.Contains(playerObject))
             {
-                playerObj.GetComponent<PlayerInput>().enabled = false;
+                playerObject.GetComponent<PlayerInput>().enabled = false;
             }
             #endif
         }
 
-        public void OnPlayerLeaveLobby(Component sender, object[] objects)
+        public void OnPlayerLeaveLobby(Component sender, object[] playerObj)
         {
             if (!CanJoin && !GameManager.Instance.CanLeaveOverride) return;
-            sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
-            PlayerController player = sender.GetComponent<PlayerController>();
+            if (playerObj.First() is not GameObject playerObject) return;
+            
+            playerObject.transform.position = inactivePlayerPoint.transform.position;
+            PlayerController player = playerObject.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.InputRestricted);
             player.IsActive = false;
-            ActivePlayers.Remove(sender.gameObject);
+            ActivePlayers.Remove(playerObject);
 
             onDisablePlayerUI.Raise(this, player.ID);
         }
