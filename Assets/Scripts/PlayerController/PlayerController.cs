@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool IsActive = false;
     [NonSerialized] public int ID = -1;
 
-    [FormerlySerializedAs("walkSpeed")] [Header("Walk Settings")] 
+    [Header("Walk Settings")] 
     public float acceleration = 20f;
     public float maxSpeed = 60f;
     public float maxSpeedClampFactor = 0.8f;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public Vector3 MoveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
-    [FormerlySerializedAs("animator")] public Animator playerAnimator;
+    public Animator playerAnimator;
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
