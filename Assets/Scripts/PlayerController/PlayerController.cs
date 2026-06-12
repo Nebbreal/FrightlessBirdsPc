@@ -630,8 +630,7 @@ public class PlayerController : MonoBehaviour
             _currentMinigameDecelerationMultiplierOverride : 
             defaultDecelerationMultiplier;
         
-        Vector3 newLinearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
-        rb.linearVelocity = new Vector3(newLinearVelocity.x, 0, newLinearVelocity.z);
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, decelerationMultiplier * Time.fixedDeltaTime);
     }
 
     public void UpdateDecelerationMultiplierOverride(Component sender, object[] data)
