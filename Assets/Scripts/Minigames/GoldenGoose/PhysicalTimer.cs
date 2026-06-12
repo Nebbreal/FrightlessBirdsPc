@@ -19,7 +19,7 @@ public class PhysicalTimer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsMinigameActive && !GameManager.Instance._hasMinigameEnded)
+        if (GameManager.Instance.IsMinigameActive && !GameManager.Instance.HasMinigameEnded)
         {
             timer -= Time.deltaTime;
             var t = timer / maxTime;

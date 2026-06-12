@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,8 +9,6 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
     [Header("Initialization Settings")] 
     public PlayerState playerState;
     public Rigidbody rb;
@@ -37,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool IsActive = false;
     [NonSerialized] public int ID = -1;
 
-    [FormerlySerializedAs("walkSpeed")] [Header("Walk Settings")] 
+    [Header("Walk Settings")] 
     public float acceleration = 20f;
     public float maxSpeed = 60f;
     public float maxSpeedClampFactor = 0.8f;
@@ -45,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] 
     public Vector3 MoveInput = new Vector3(0f, 0f, 0f);
     private Vector3 _moveThisFrame = new Vector3(0f, 0f, 0f);
-    [FormerlySerializedAs("animator")] public Animator playerAnimator;
+    public Animator playerAnimator;
 
     [Header("Dash Settings")] 
     public float dashSpeed = 1f;
@@ -102,10 +99,10 @@ public class PlayerController : MonoBehaviour
     [Header("Game events")]
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
-    [SerializeField]
-    public GameEvent onJoin;
-    [SerializeField]
-    public GameEvent onLeave;
+    [FormerlySerializedAs("onJoin")] [SerializeField]
+    public GameEvent onPlayerJoinLobby;
+    [FormerlySerializedAs("onLeave")] [SerializeField]
+    public GameEvent onPlayerLeaveLobby;
     public GameEvent onDashedInto;
     public GameEvent onAttacked;
     [SerializeField]
@@ -223,11 +220,11 @@ public class PlayerController : MonoBehaviour
         {
             if (IsActive)
             {
-                onLeave.Raise(this);
+                onPlayerLeaveLobby.Raise(this, gameObject);
             }
             else
             {
-                onJoin.Raise(this);
+                onPlayerJoinLobby.Raise(this, gameObject);
             }
         }
     }
@@ -569,7 +566,8 @@ public class PlayerController : MonoBehaviour
     private void CheckIsBlocking()
     {
         _moveThisFrame = Vector3.zero;
-        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
+        Vector3 newLinearVelocity =  Vector3.Lerp(rb.linearVelocity, Vector3.zero, blockDecelerationMultiplier * Time.fixedDeltaTime);
+        rb.linearVelocity = new Vector3(newLinearVelocity.x, rb.linearVelocity.y, newLinearVelocity.z);
     }
 
     private void ExecuteAttack()

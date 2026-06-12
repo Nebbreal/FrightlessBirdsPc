@@ -71,7 +71,7 @@ namespace Minigames.RoadRunner
         {
             timer -= Time.deltaTime;
 
-            if (timer < 0f && !GameManager.Instance._hasMinigameEnded)
+            if (timer < 0f && !GameManager.Instance.HasMinigameEnded)
             {
                 OnWin();
             }

@@ -3016,16 +3016,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac750fb456b3f994d8ae073bc4e5a115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreboardManager
-  PlayerScoreTexts:
+  playerScoreTexts:
   - {fileID: 6112654219800858390}
   - {fileID: 146666656586875434}
   - {fileID: 3573591660342560372}
   - {fileID: 7275400505664998790}
-  ScoreToWin: 3
   elements: {fileID: 7667056086394416819}
   crownUI: {fileID: 7026486451958048907, guid: a141c1e2c822bea40b577c15eca74fc9, type: 3}
   outwardDistance: 0.5
-  TieBreakerMinigame: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
   onUpdateWinUIText: {fileID: 11400000, guid: eb32f0f8902b8c04b9f0a283a23cce5e, type: 2}
   onWinGame: {fileID: 11400000, guid: 4c90473dc833a514ebf62e6c3c3cf5bc, type: 2}
   onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
@@ -9512,10 +9510,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
   - {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
   - {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
+  tieBreakerMinigame: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
   lobbyScene:
     m_SceneAsset: {fileID: 102900000, guid: 5984e344666c36f439f39c3fc52f9999, type: 3}
     m_SceneName: SC_Lobby_CO
-  _hasMinigameEnded: 0
+  scoreToWin: 3
   onLoadMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
   onStartMinigame: {fileID: 11400000, guid: d833516471e2c9c3daa60d106a51cce2, type: 2}
   onStartMusic: {fileID: 11400000, guid: 813dfa074f01d794480c008880d7bb5b, type: 2}
@@ -9537,7 +9536,7 @@ MonoBehaviour:
   onDisableLobbyUI: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
   onEnableScoreboardUI: {fileID: 11400000, guid: 602938e8aa9b36a4fb6448599e75757d, type: 2}
   onRestorePlayerOutlineColors: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
-  defaultColor: {r: 0.6609668, g: 0.4029, b: 0.79, a: 1}
+  defaultColor: {r: 0.9010377, g: 0.9339623, b: 0.18062477, a: 1}
 --- !u!114 &2194438222066439326
 MonoBehaviour:
   m_ObjectHideFlags: 0
