@@ -15,12 +15,20 @@ public class OperatorMenu : MonoBehaviour
     public GameEvent onDisableMinigameSettings;
     public GameEvent onEnableVolumeSettings;
     public GameEvent onDisableVolumeSettings;
+
     public GameEvent onEnableApplyConfirm;
     public GameEvent onDisableApplyConfirm;
     public GameEvent onEnableExitConfirm;
     public GameEvent onDisableExitConfirm;
     public GameEvent onEnableRestoreDefaultsConfirm;
     public GameEvent onDisableRestoreDefaultsConfirm;
+
+    public GameEvent onEnableFrozenfeathersSettings;
+    public GameEvent onDisableFrozenfeathersSettings;
+    public GameEvent onEnableWorldcoopSettings;
+    public GameEvent onDisableWorldcoopSettings;
+    public GameEvent onEnableGoldengooseSettings;
+    public GameEvent onDisableGoldengooseSettings;
 
     [Header("Setting variables")]
     [SerializeField]
@@ -43,7 +51,36 @@ public class OperatorMenu : MonoBehaviour
         CleanupActiveMenus();
         onEnableVolumeSettings.Raise((this));
     }
-    
+
+    public void OpenApplyConfirm()
+    {
+        onEnableApplyConfirm.Raise(this);
+    }
+    public void OpenExitConfirm()
+    {
+        onEnableExitConfirm.Raise(this);
+    }
+    public void OpenRestoreDefaultsConfirm()
+    {
+        onEnableRestoreDefaultsConfirm.Raise(this);
+    }   
+
+    public void OpenFrozenfeathersSettings()    
+    {
+        CleanupActiveMinigameMenus();
+        onEnableFrozenfeathersSettings.Raise((this));
+    }
+    public void OpenWorldcoopSettings()
+    {
+        CleanupActiveMinigameMenus();
+        onEnableWorldcoopSettings.Raise((this));
+    }
+    public void OpenGoldengooseSettings()
+    {
+        CleanupActiveMinigameMenus();
+        onEnableGoldengooseSettings.Raise((this));
+    }
+
     public void CloseMinigameSettings()
     {
         onDisableMinigameSettings.Raise((this));
@@ -60,29 +97,7 @@ public class OperatorMenu : MonoBehaviour
     {
         onDisableOperatorMenuStart.Raise((this));
     }
-
-    public void CleanupActiveMenus()
-    {
-        CloseGeneralSettings();
-        CloseMinigameSettings();
-        CloseVolumeSettings();
-        CloseOperatorMenuStartSettings();
-        CloseExitConfirm();
-    }
-
-    public void OpenApplyConfirm()
-    {
-        onEnableApplyConfirm.Raise(this);
-    }
-    public void OpenExitConfirm()
-    {
-        onEnableExitConfirm.Raise(this);
-    }
-    public void OpenRestoreDefaultsConfirm()
-    {
-        onEnableRestoreDefaultsConfirm.Raise(this);
-    }
-
+    
     public void CloseApplyConfirm()
     {
         onDisableApplyConfirm.Raise(this);
@@ -94,6 +109,35 @@ public class OperatorMenu : MonoBehaviour
     public void CloseRestoreDefaultsConfirm()
     {
         onDisableRestoreDefaultsConfirm.Raise(this);
+    }
+
+    public void CloseFrozenfeathersSettings()
+    {
+        onDisableFrozenfeathersSettings.Raise((this));
+    }
+    public void CloseWorldcoopSettings()
+    {
+        onDisableWorldcoopSettings.Raise((this));
+    }
+    public void CloseGoldengooseSettings()
+    {
+        onDisableGoldengooseSettings.Raise((this));
+    }
+
+    public void CleanupActiveMenus()
+    {
+        CloseGeneralSettings();
+        CloseMinigameSettings();
+        CloseVolumeSettings();
+        CloseOperatorMenuStartSettings();
+        CloseExitConfirm();
+    }
+
+    public void CleanupActiveMinigameMenus()
+    {
+        CloseFrozenfeathersSettings();
+        CloseWorldcoopSettings();
+        CloseGoldengooseSettings();
     }
     #endregion
 

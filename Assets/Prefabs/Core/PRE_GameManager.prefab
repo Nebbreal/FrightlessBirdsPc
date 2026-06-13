@@ -8382,7 +8382,7 @@ GameObject:
   - component: {fileID: 1591997559140807639}
   - component: {fileID: 9191289975756064848}
   m_Layer: 0
-  m_Name: Minigames
+  m_Name: Worldcoop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8492,7 +8492,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenMinigameSettings
+        m_MethodName: OpenWorldcoopSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16818,7 +16818,7 @@ GameObject:
   - component: {fileID: 1185318300478579130}
   - component: {fileID: 8153402440942118964}
   m_Layer: 0
-  m_Name: General
+  m_Name: Frozenfeathers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16928,7 +16928,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenGeneralSettings
+        m_MethodName: OpenFrozenfeathersSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18592,6 +18592,12 @@ GameObject:
   - component: {fileID: 7686168464410565397}
   - component: {fileID: 7890999376059450449}
   - component: {fileID: 6796207578842058590}
+  - component: {fileID: 118460201539060517}
+  - component: {fileID: 1553431266087343952}
+  - component: {fileID: 1359436348359289202}
+  - component: {fileID: 1340099931917598237}
+  - component: {fileID: 559706303066267800}
+  - component: {fileID: 3201173455622303785}
   m_Layer: 0
   m_Name: OperatorUI
   m_TagString: Untagged
@@ -18717,6 +18723,12 @@ MonoBehaviour:
   onDisableExitConfirm: {fileID: 11400000, guid: 012557d70fcc2af49a805df0bcc9ebb5, type: 2}
   onEnableRestoreDefaultsConfirm: {fileID: 11400000, guid: 4ae3790b60be34c49b5b3e27774aaebc, type: 2}
   onDisableRestoreDefaultsConfirm: {fileID: 11400000, guid: 94177ef719f6cc24ba62ab01ee2b221b, type: 2}
+  onEnableFrozenfeathersSettings: {fileID: 11400000, guid: e20a7d2ddf4c0ca43b1ae8ecc29ce264, type: 2}
+  onDisableFrozenfeathersSettings: {fileID: 11400000, guid: 1bf0a46be6fe0fc4db699dbcac2e6ef6, type: 2}
+  onEnableWorldcoopSettings: {fileID: 11400000, guid: 7df3fd2bb0016314aa4d273067d51fcd, type: 2}
+  onDisableWorldcoopSettings: {fileID: 11400000, guid: 3ad32b9345d930a458d6a0ce0405d652, type: 2}
+  onEnableGoldengooseSettings: {fileID: 11400000, guid: 730524166a28c6e4ebe689a2d65d8a1d, type: 2}
+  onDisableGoldengooseSettings: {fileID: 11400000, guid: 9ea03f6e48b78ee4e93b0ac7113ffc65, type: 2}
   DashCooldown: {fileID: 1225039308330752852}
   DashCooldownText: {fileID: 8999359386912736511}
 --- !u!114 &2445759995433139709
@@ -19100,6 +19112,174 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5098651078960662736}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &118460201539060517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: e20a7d2ddf4c0ca43b1ae8ecc29ce264, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1666009516679875260}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1553431266087343952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 1bf0a46be6fe0fc4db699dbcac2e6ef6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1666009516679875260}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1359436348359289202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 7df3fd2bb0016314aa4d273067d51fcd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5043144684957823786}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1340099931917598237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 3ad32b9345d930a458d6a0ce0405d652, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5043144684957823786}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &559706303066267800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 730524166a28c6e4ebe689a2d65d8a1d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7205785732771893240}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &3201173455622303785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5839762619553998170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 9ea03f6e48b78ee4e93b0ac7113ffc65, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7205785732771893240}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -24344,7 +24524,7 @@ GameObject:
   - component: {fileID: 2755519037821198931}
   - component: {fileID: 2256418858464784296}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24454,7 +24634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenExitConfirm
+        m_MethodName: CleanupActiveMinigameMenus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30778,7 +30958,7 @@ GameObject:
   - component: {fileID: 7684869319742688379}
   - component: {fileID: 1407201677789033505}
   m_Layer: 0
-  m_Name: Volume
+  m_Name: Goldengoose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30888,7 +31068,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenVolumeSettings
+        m_MethodName: OpenGoldengooseSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
