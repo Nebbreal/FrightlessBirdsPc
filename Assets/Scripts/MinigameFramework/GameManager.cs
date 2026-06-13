@@ -58,7 +58,7 @@ namespace MinigameFramework
         public GameEvent onEnablePlayerMovement;
         public GameEvent onInitializeTeams;
         
-        [Header("UI Events")]
+        [Header("Player UI Events")]
         public GameEvent onUpdateCountdownTimer;
         public GameEvent onEnableCountdownUI;
         public GameEvent onDisableCountdownUI;
@@ -71,8 +71,11 @@ namespace MinigameFramework
         public GameEvent onDisableLobbyUI;
         public GameEvent onEnableScoreboardUI;
         public GameEvent onRestorePlayerOutlineColors;
-        public GameEvent onEnableOperatorMenu;
-        public GameEvent onDisableOperatorMenu;
+
+        [Header("Operator UI Events")] 
+        public GameEvent onEnableOperatorMenuStart;
+        public GameEvent onDisableOperatorMenuStart;
+        public GameEvent onEnableGeneralSettings;
 
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -115,17 +118,23 @@ namespace MinigameFramework
             }
         }
 
-        public void OpenOperatorMenu(InputAction.CallbackContext context)
+        public void OpenOperatorMenuStart(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                onEnableOperatorMenu.Raise(this);
+                onEnableOperatorMenuStart.Raise(this);
             }
         }
 
-        public void CloseOperatorMenu()
+        public void CloseOperatorMenuStart()
         {
-            onDisableOperatorMenu.Raise(this);
+            onDisableOperatorMenuStart.Raise(this);
+        }
+
+        public void OpenGeneralSettings()
+        {
+            onDisableOperatorMenuStart.Raise(this);
+            onEnableGeneralSettings.Raise((this));
         }
 
         private void CheckWinUITime()

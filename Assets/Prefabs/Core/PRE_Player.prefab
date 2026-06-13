@@ -6531,8 +6531,6 @@ MonoBehaviour:
   onDashedInto: {fileID: 11400000, guid: dada673888a25414195ff1ed3ba3b650, type: 2}
   onAttacked: {fileID: 11400000, guid: b90d1470d294e81409d2624770af5578, type: 2}
   onPlaySoundClipOnce: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
-  onEnableOperatorMenu: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
-  onDisableOperatorMenu: {fileID: 11400000, guid: dd67a86b114bf764aa536919116884a8, type: 2}
   onPlayerDash: {fileID: 11400000, guid: 83b92bd602625b442ad201ebc67dd0a9, type: 2}
   onPlayerAttack: {fileID: 11400000, guid: 4691f109b647ffe47985baa72769be5f, type: 2}
   onPlayerBrace: {fileID: 11400000, guid: 865453e718616d149805bc2350ca2420, type: 2}
@@ -6729,26 +6727,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Any[/Keyboard/v,/Keyboard/c,/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bda0a7c9-8020-4231-b3f4-1bf6ac72ad86
-    m_ActionName: 'Operator/ActivateMenu2[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4c1127de-734b-4aab-b19e-7e97b9bb8184
-    m_ActionName: 'Operator/Select[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: f6a555ff-09f0-468c-80c7-6521f611cf16
     m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
   m_NeverAutoSwitchControlSchemes: 0
