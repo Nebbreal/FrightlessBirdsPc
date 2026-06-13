@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: d3751af44eff4a14e990da47be09c124
+guid: af3458d51c84e164a81c8bbb5aea1daa
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Chicken
+    second: {fileID: 2100000, guid: 36f9fbf80e5d1df4f949de94aee53c65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outline
+    second: {fileID: 2100000, guid: 4ca013b6c827cf8459f24c42994c12a0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,9 +41,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ChickenWalk
-      takeName: ChickenWalk
-      internalID: 2408918526573620785
+      name: Armature|ChickenIdle
+      takeName: Armature|ChickenIdle
+      internalID: -7125887872412182405
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -60,9 +70,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ChickenIdle
-      takeName: ChickenIdle
-      internalID: -173482849990790845
+      name: Armature|ChickenWalk
+      takeName: Armature|ChickenWalk
+      internalID: 2982376558223698854
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0

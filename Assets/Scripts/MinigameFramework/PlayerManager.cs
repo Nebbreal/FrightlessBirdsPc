@@ -39,13 +39,13 @@ namespace MinigameFramework
         [Header("GameEvents")]
         public GameEvent onEnablePlayerUI;
         public GameEvent onDisablePlayerUI;
-        //Temporary solution until the scriptable object method is implemented
+        //TODO: Use a scriptable object linked to the player's to contain this data (Probably not able to be completed before handover)
         [NonSerialized] 
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
         {
             { 0, "Blue" },
-            { 2, "Red" },
-            { 1, "Purple" },
+            { 1, "Red" },
+            { 2, "Purple" },
             { 3, "Green" }
         };
         [NonSerialized] 
@@ -76,7 +76,11 @@ namespace MinigameFramework
             playerController.ID = Players.Count - 1;
 
             player.gameObject.name = "Player" + Players.Count;
-            Instantiate(playerModels[Players.Count - 1], player.gameObject.transform, true);
+            GameObject instantiatedPlayer = Instantiate(playerModels[playerController.ID], playerObj.transform, true);
+            
+            PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
+            playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
+            
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
@@ -99,35 +103,38 @@ namespace MinigameFramework
             #endif
         }
         
-        public void OnPlayerJoinLobby(Component sender, object[] objects)
+        public void OnPlayerJoinLobby(Component sender, object[] playerObj)
         {
             if (!CanJoin) return;
-            sender.gameObject.transform.position = new Vector3(0, 3, 0);
-            PlayerController player = sender.GetComponent<PlayerController>();
+            if (playerObj.First() is not GameObject playerObject) return;
+            
+            playerObject.transform.position = new Vector3(0, 3, 0);
+            PlayerController player = playerObject.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.Idle);
             player.IsActive = true;
-            ActivePlayers.Add(sender.gameObject);
+            ActivePlayers.Add(playerObject);
 
             onEnablePlayerUI.Raise(this, player.ID);
 
             #if UNITY_EDITOR
             //Disable input of initiated debug players
-            GameObject playerObj = player.gameObject;
-            if (DebugPlayers.Contains(playerObj))
+            if (DebugPlayers.Contains(playerObject))
             {
-                playerObj.GetComponent<PlayerInput>().enabled = false;
+                playerObject.GetComponent<PlayerInput>().enabled = false;
             }
             #endif
         }
 
-        public void OnPlayerLeaveLobby(Component sender, object[] objects)
+        public void OnPlayerLeaveLobby(Component sender, object[] playerObj)
         {
             if (!CanJoin && !GameManager.Instance.CanLeaveOverride) return;
-            sender.gameObject.transform.position = inactivePlayerPoint.transform.position;
-            PlayerController player = sender.GetComponent<PlayerController>();
+            if (playerObj.First() is not GameObject playerObject) return;
+            
+            playerObject.transform.position = inactivePlayerPoint.transform.position;
+            PlayerController player = playerObject.GetComponent<PlayerController>();
             player.SetPlayerState(PlayerState.InputRestricted);
             player.IsActive = false;
-            ActivePlayers.Remove(sender.gameObject);
+            ActivePlayers.Remove(playerObject);
 
             onDisablePlayerUI.Raise(this, player.ID);
         }
@@ -193,32 +200,10 @@ namespace MinigameFramework
                 Color teamColor = minigameConfig.teamOutlineColors[teamIndex];
                 foreach (GameObject player in Teams[teamIndex].Players)
                 {
-                    ApplyOutlineColor(player, teamColor);
+                    PlayerModel playerModel = player.GetComponentInChildren<PlayerModel>();
+                    playerModel.ChangeOutlineColor(teamColor);
                 }
             }
-        }
-
-        private void ApplyOutlineColor(GameObject player, Color outlineColor)
-        {
-            if (!TryGetOutlineRenderer(player, out SkinnedMeshRenderer playerRenderer))
-            {
-                return;
-            }
-
-            Material[] materials = playerRenderer.materials;
-            if (materials == null || materials.Length < 2 || materials[1] == null)
-            {
-                return;
-            }
-
-            Material outlineMaterial = materials[1];
-            CacheOriginalOutlineColor(outlineMaterial);
-            if (outlineMaterial.HasProperty(_outlineColor))
-            {
-                outlineMaterial.SetColor(_outlineColor, outlineColor);
-            }
-
-            playerRenderer.materials = materials;
         }
 
         public void RestorePlayerOutlineColors()
@@ -230,54 +215,10 @@ namespace MinigameFramework
 
             foreach (GameObject player in Players)
             {
-                RestoreOutlineColor(player);
+                int playerID = player.GetComponent<PlayerController>().ID;
+                PlayerModel playerModel = player.GetComponentInChildren<PlayerModel>();
+                playerModel.ChangeOutlineColor(PlayerColors[playerID]);
             }
-        }
-
-        private void RestoreOutlineColor(GameObject player)
-        {
-            if (!TryGetOutlineRenderer(player, out SkinnedMeshRenderer playerRenderer))
-            {
-                return;
-            }
-
-            Material[] materials = playerRenderer.materials;
-            if (materials == null || materials.Length < 2 || materials[1] == null)
-            {
-                return;
-            }
-
-            Material outlineMaterial = materials[1];
-            if (OriginalOutlineColors.TryGetValue(outlineMaterial, out Color originalColor) && outlineMaterial.HasProperty(_outlineColor))
-            {
-                outlineMaterial.SetColor(_outlineColor, originalColor);
-            }
-
-            playerRenderer.materials = materials;
-        }
-
-        private static void CacheOriginalOutlineColor(Material outlineMaterial)
-        {
-            if (outlineMaterial == null || OriginalOutlineColors.ContainsKey(outlineMaterial) || !outlineMaterial.HasProperty(_outlineColor))
-            {
-                return;
-            }
-
-            OriginalOutlineColors.Add(outlineMaterial, outlineMaterial.GetColor(_outlineColor));
-        }
-
-        private static bool TryGetOutlineRenderer(GameObject player, out SkinnedMeshRenderer playerRenderer)
-        {
-            playerRenderer = null;
-
-            PlayerModel playerModel = player.GetComponentInChildren<PlayerModel>(true);
-            if (playerModel == null)
-            {
-                return false;
-            }
-
-            playerRenderer = playerModel.GetComponentInChildren<SkinnedMeshRenderer>(true);
-            return playerRenderer != null;
         }
 
         private void HandlePlayerOverflow(List<GameObject> unassignedPlayers, List<Team> teamsToFill)

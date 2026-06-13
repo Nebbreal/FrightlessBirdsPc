@@ -4,25 +4,20 @@ using System.Linq;
 using EventSystem;
 using MinigameFramework;
 using MinigameFramework.UIElements;
-using Minigames;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class ScoreboardManager : MonoBehaviour
 {
     [NonSerialized] public List<int> PlayerScores = new();
-    public List<GameObject> PlayerScoreTexts = new();
-    public int ScoreToWin = 3;
+    public List<GameObject> playerScoreTexts = new();
 
     public GameObject elements;
     public GameObject crownUI;
     public float outwardDistance;
-    private object[] winners;
-    private bool isActive;
-
-    public Minigame TieBreakerMinigame;
-
+    private object[] _winners;
+    private bool _isActive;
+    
     //Event
     public GameEvent onUpdateWinUIText;
     public GameEvent onWinGame;
@@ -52,18 +47,18 @@ public class ScoreboardManager : MonoBehaviour
             crown.transform.rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward);
             crown.transform.position += crown.transform.up * outwardDistance;
             ScoreboardCrown c = crown.GetComponent<ScoreboardCrown>();
-            c.target = PlayerScoreTexts[p.ID].gameObject;
+            c.target = playerScoreTexts[p.ID].gameObject;
             _instantiatedCrowns.Add(crown);
         }
     }
 
     public void OnCleanScoreboardUI(Component sender, object[] data)
     {
-        if (!isActive)
+        if (!_isActive)
         {
             return;
         }
-        isActive = false;
+        _isActive = false;
         
         foreach (GameObject crown in _instantiatedCrowns)
         {
@@ -72,7 +67,7 @@ public class ScoreboardManager : MonoBehaviour
         _instantiatedCrowns.Clear();
 
         List<GameObject> winningPlayers = new();
-        var highestScore = ScoreToWin;
+        var highestScore = GameManager.Instance.scoreToWin;
         foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers)
         {
             PlayerController p = player.GetComponent<PlayerController>();
@@ -91,11 +86,11 @@ public class ScoreboardManager : MonoBehaviour
             GameManager.Instance.CanLeaveOverride = true;
             foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers.Where(p => !winningPlayers.Contains(p)).ToArray())
             {
-                onPlayerLeaveLobby.Raise(player.GetComponent<PlayerController>(), null);
+                onPlayerLeaveLobby.Raise(this, player);
             }
             GameManager.Instance.CanLeaveOverride = false;
 
-            onLoadMinigame.Raise(this, TieBreakerMinigame);
+            onLoadMinigame.Raise(this, GameManager.Instance.tieBreakerMinigame);
         }
         else if (winningPlayers.Count == 1)
         {
@@ -120,17 +115,17 @@ public class ScoreboardManager : MonoBehaviour
     {
         if (winnerDataObj[0] is string && winnerDataObj[1] is Color)
         {
-            winners = winnerDataObj;
+            _winners = winnerDataObj;
         }
     }
 
     public void ReCallUpdateWinner()
     {
-        onUpdateWinUIText.Raise(this, winners);
+        onUpdateWinUIText.Raise(this, _winners);
     }
 
     public void SetIsActive(bool active)
     {
-        isActive = active;
+        _isActive = active;
     }
 }

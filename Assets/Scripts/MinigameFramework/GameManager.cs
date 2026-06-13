@@ -27,15 +27,18 @@ namespace MinigameFramework
         [Header("Game manager config")]
         [SerializeField]
         private List<Minigame> minigames;
-        [NonSerialized]
-        public Minigame CurrentMinigame;
+        public Minigame tieBreakerMinigame;
         [SerializeField]
         private SceneField lobbyScene;
+        public int scoreToWin = 3;
+        [NonSerialized]
+        public Minigame CurrentMinigame;
         [NonSerialized]
         public bool IsMinigameSceneActive;
         [NonSerialized]
         public bool IsMinigameActive;
-        public bool _hasMinigameEnded;
+        [NonSerialized]
+        public bool HasMinigameEnded;
         [NonSerialized]
         public bool IsWinUIActive;
         private bool _isGameEnding;
@@ -170,7 +173,7 @@ namespace MinigameFramework
             {
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
-            else if (!Instance.IsMinigameActive && !Instance._hasMinigameEnded)
+            else if (!Instance.IsMinigameActive && !Instance.HasMinigameEnded)
             {
                 onEnablePlayerMovement.Raise(this);
                 onDisableCountdownUI.Raise(this);
@@ -199,7 +202,7 @@ namespace MinigameFramework
         
             onInitializeTeams.Raise(this, Instance.CurrentMinigame);
             onEnableCountdownUI.Raise(this);
-            Instance._hasMinigameEnded = false;
+            Instance.HasMinigameEnded = false;
             Instance._countdownTime = Instance._gameConfig.countdownLength;
 
             Instance.LoadScene(selectedMinigame.sceneToLoad);
@@ -216,6 +219,13 @@ namespace MinigameFramework
             int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
             List<Minigame> validMinigames =
                 minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
+            
+            if (validMinigames.Count == 0)
+            {
+                Debug.LogError("No valid minigames for playercount: " + currentPlayerCount + "! Defaulting to tiebreaker minigame");
+                return tieBreakerMinigame;
+            }
+            
             do
             {
                 int rnd = Random.Range(0, validMinigames.Count);
@@ -241,7 +251,7 @@ namespace MinigameFramework
     
         public void StartGame(InputAction.CallbackContext context)
         {
-            if (!context.started || Instance.IsMinigameActive && !Instance._hasMinigameEnded || Instance._countdownTime > 0) return;
+            if (!context.started || Instance.IsMinigameActive && !Instance.HasMinigameEnded || Instance._countdownTime > 0) return;
         
             if (!Instance.IsMinigameSceneActive)
             {
@@ -274,8 +284,6 @@ namespace MinigameFramework
             if (winnerObjs == null || winnerObjs.Length == 0) return;
 
             onDisablePlayerMovement.Raise(this);
-            Instance.PlayerManager.RestorePlayerOutlineColors();
-            
             List<string> winnerNames = new List<string>();
             List<GameObject> winnerModels = new();
             Color winnerColor = defaultColor;
@@ -312,9 +320,10 @@ namespace MinigameFramework
             onUpdateWinnerUIText.Raise(this, winnerData);
             Instance._winUITime = Instance._gameConfig.winScreenLength;
             Instance.IsWinUIActive = true;
-
+            
+            Instance.PlayerManager.RestorePlayerOutlineColors();
             onClearTeams.Raise(this);
-            Instance._hasMinigameEnded = true;
+            Instance.HasMinigameEnded = true;
             Instance.IsMinigameActive = false;
         }
 

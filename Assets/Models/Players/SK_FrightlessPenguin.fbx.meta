@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 0b15ee4d858967b8f9caab8c8acbf5d1
+guid: 6d4b1612ab8f23344a9f455ba3cf9e22
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outline
+    second: {fileID: 2100000, guid: 4ca013b6c827cf8459f24c42994c12a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Penguin
+    second: {fileID: 2100000, guid: f0587ccdb0bd5774db5719c2925c41dc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,9 +41,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: PenguinIdle
-      takeName: PenguinIdle
-      internalID: 3161828429093405531
+      name: Penguin_V3|PenguinIdle
+      takeName: Penguin_V3|PenguinIdle
+      internalID: -528637020985185940
       firstFrame: 0
       lastFrame: 119
       wrapMode: 0
@@ -60,9 +70,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: PenguinWalk
-      takeName: PenguinWalk
-      internalID: 4986944613800309599
+      name: Penguin_V3|PenguinWalk
+      takeName: Penguin_V3|PenguinWalk
+      internalID: 7212030154690985327
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
