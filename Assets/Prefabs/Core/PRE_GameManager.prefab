@@ -1588,7 +1588,7 @@ GameObject:
   - component: {fileID: 9190933964029802249}
   - component: {fileID: 3836741977499150531}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1698,7 +1698,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3080,7 +3080,7 @@ GameObject:
   - component: {fileID: 803652084576997949}
   - component: {fileID: 6245298573965139580}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,7 +3190,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3213,7 +3213,7 @@ GameObject:
   - component: {fileID: 4733611452615340676}
   - component: {fileID: 4916144096288617214}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3323,7 +3323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7809,7 +7809,6 @@ RectTransform:
   - {fileID: 5085061903170332720}
   - {fileID: 7287965843335413223}
   - {fileID: 1275158147296750203}
-  - {fileID: 3162130917464317466}
   - {fileID: 2932791240704110479}
   - {fileID: 8617369418993718483}
   m_Father: {fileID: 4037423240271477151}
@@ -16012,7 +16011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -16768,14 +16767,14 @@ RectTransform:
   m_GameObject: {fileID: 3613591893713570610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75255483, y: 0.8016493, z: 0.75255483}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8681016044939621687}
+  m_Father: {fileID: 946817713985831168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 174.83115}
+  m_AnchoredPosition: {x: 0, y: -64.00006}
   m_SizeDelta: {x: 1807.5793, y: 172.5746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4763072921092053055
@@ -18886,6 +18885,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 549158234275113102}
+  - {fileID: 9183343848972677196}
   m_Father: {fileID: 8681016044939621687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -19319,7 +19319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply changes?
+  m_text: Save changes?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -22781,7 +22781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -24397,7 +24397,7 @@ GameObject:
   - component: {fileID: 1183090510121129512}
   - component: {fileID: 524829722971338560}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24507,7 +24507,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26389,14 +26389,14 @@ RectTransform:
   m_GameObject: {fileID: 5502708053592885570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.0652298, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4518583742507556636}
+  m_Father: {fileID: 1275158147296750203}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 354.5712}
+  m_AnchoredPosition: {x: 0.000061035156, y: -64.001495}
   m_SizeDelta: {x: 1807.5793, y: 172.5746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8367270702047956039
@@ -27574,8 +27574,8 @@ MonoBehaviour:
   onDisableMinigameSettings: {fileID: 11400000, guid: b93aa55b0e05c4142b8ffac53c47d68f, type: 2}
   onEnableVolumeSettings: {fileID: 11400000, guid: 9c59c5c8020e1c34ea573f734a474df5, type: 2}
   onDisableVolumeSettings: {fileID: 11400000, guid: 8acacb75cbc0be64ea91c4e8072a5de4, type: 2}
-  onEnableApplyConfirm: {fileID: 11400000, guid: ae89deccdbae6c54cb1606f547fedfda, type: 2}
-  onDisableApplyConfirm: {fileID: 11400000, guid: 6df35c6ea60758043ae196e84effe86c, type: 2}
+  onEnableSaveConfirm: {fileID: 11400000, guid: ae89deccdbae6c54cb1606f547fedfda, type: 2}
+  onDisableSaveConfirm: {fileID: 11400000, guid: 6df35c6ea60758043ae196e84effe86c, type: 2}
   onEnableExitConfirm: {fileID: 11400000, guid: 07986af3d5b009b4f9e44b39b2465a4d, type: 2}
   onDisableExitConfirm: {fileID: 11400000, guid: 012557d70fcc2af49a805df0bcc9ebb5, type: 2}
   onEnableRestoreDefaultsConfirm: {fileID: 11400000, guid: 4ae3790b60be34c49b5b3e27774aaebc, type: 2}
@@ -28740,7 +28740,7 @@ GameObject:
   - component: {fileID: 938232491418969091}
   - component: {fileID: 2967182159261528980}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28850,7 +28850,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31892,7 +31892,7 @@ GameObject:
   - component: {fileID: 5449763419822315539}
   - component: {fileID: 8386468564844886778}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32002,7 +32002,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: ApplySettings
+        m_MethodName: SaveSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32863,7 +32863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -35198,7 +35198,6 @@ RectTransform:
   - {fileID: 3829280504733999316}
   - {fileID: 282305284875148189}
   - {fileID: 946817713985831168}
-  - {fileID: 9183343848972677196}
   - {fileID: 7252949629696142697}
   - {fileID: 7088341062805166101}
   m_Father: {fileID: 4037423240271477151}
@@ -36210,7 +36209,7 @@ GameObject:
   - component: {fileID: 6515587591716831985}
   - component: {fileID: 5524592296319933557}
   m_Layer: 0
-  m_Name: Apply
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36320,7 +36319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: OpenApplyConfirm
+        m_MethodName: OpenSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40804,7 +40803,7 @@ GameObject:
   - component: {fileID: 4303843321202804801}
   - component: {fileID: 8830089508839733022}
   m_Layer: 0
-  m_Name: ConfirmApply
+  m_Name: ConfirmSave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41023,6 +41022,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 698592276149753263}
+  - {fileID: 3162130917464317466}
   m_Father: {fileID: 4518583742507556636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -41336,7 +41336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -42990,6 +42990,9 @@ MonoBehaviour:
   onDisableLobbyUI: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
   onEnableScoreboardUI: {fileID: 11400000, guid: 602938e8aa9b36a4fb6448599e75757d, type: 2}
   onRestorePlayerOutlineColors: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
+  onEnableOperatorMenuStart: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
+  onDisableOperatorMenuStart: {fileID: 11400000, guid: dd67a86b114bf764aa536919116884a8, type: 2}
+  onEnableGeneralSettings: {fileID: 11400000, guid: f49d70e65b9318744a6e28d5c7097098, type: 2}
   defaultColor: {r: 0.9010377, g: 0.9339623, b: 0.18062477, a: 1}
 --- !u!114 &2194438222066439326
 MonoBehaviour:
@@ -44753,7 +44756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -45200,7 +45203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -45631,7 +45634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}

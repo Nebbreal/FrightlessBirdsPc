@@ -16,8 +16,8 @@ public class OperatorMenu : MonoBehaviour
     public GameEvent onEnableVolumeSettings;
     public GameEvent onDisableVolumeSettings;
 
-    public GameEvent onEnableApplyConfirm;
-    public GameEvent onDisableApplyConfirm;
+    public GameEvent onEnableSaveConfirm;
+    public GameEvent onDisableSaveConfirm;
     public GameEvent onEnableExitConfirm;
     public GameEvent onDisableExitConfirm;
     public GameEvent onEnableRestoreDefaultsConfirm;
@@ -52,9 +52,9 @@ public class OperatorMenu : MonoBehaviour
         onEnableVolumeSettings.Raise((this));
     }
 
-    public void OpenApplyConfirm()
+    public void OpenSaveConfirm()
     {
-        onEnableApplyConfirm.Raise(this);
+        onEnableSaveConfirm.Raise(this);
     }
     public void OpenExitConfirm()
     {
@@ -98,9 +98,9 @@ public class OperatorMenu : MonoBehaviour
         onDisableOperatorMenuStart.Raise((this));
     }
     
-    public void CloseApplyConfirm()
+    public void CloseSaveConfirm()
     {
-        onDisableApplyConfirm.Raise(this);
+        onDisableSaveConfirm.Raise(this);
     }
     public void CloseExitConfirm()
     {
@@ -143,10 +143,10 @@ public class OperatorMenu : MonoBehaviour
 
     #region Saving
 
-    public void ApplySettings()
+    public void SaveSettings()
     {
-        Debug.Log("Settings Applied");
-        onDisableApplyConfirm.Raise(this);
+        Debug.Log("Settings Saved");
+        onDisableSaveConfirm.Raise(this);
     }
 
     public void RestoreDefaults()
