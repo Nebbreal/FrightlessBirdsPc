@@ -139,6 +139,7 @@ public class OperatorMenu : MonoBehaviour
         CloseWorldcoopSettings();
         CloseGoldengooseSettings();
     }
+
     #endregion
 
     #region Saving
