@@ -504,7 +504,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &163305698
 Transform:
@@ -602,6 +602,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
       propertyPath: m_Name
       value: Wheat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1097,7 +1101,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &270486968
 Transform:
@@ -1266,6 +1270,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6417,6 +6425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPlane (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
       value: 
@@ -6448,7 +6460,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &395723874
 Transform:
@@ -6609,6 +6621,10 @@ PrefabInstance:
     - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: m_Name
       value: DeathPlane (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
@@ -6815,6 +6831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheat (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6841,7 +6861,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &467433748
 MeshRenderer:
@@ -6850,7 +6870,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467433747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7406,6 +7426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_GoldenGooseFloor
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 955bdee67f8d54142a63fc9404e8acab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7467,6 +7491,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
       propertyPath: m_Name
       value: Wheat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7862,6 +7890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPlane (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
       value: 
@@ -8104,7 +8136,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &640542421
 RectTransform:
@@ -8426,7 +8458,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &724588448
 Transform:
@@ -8677,7 +8709,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &826790225
 Transform:
@@ -8776,6 +8808,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9057,7 +9093,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &932613376
 MeshRenderer:
@@ -9182,6 +9218,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
       propertyPath: m_Name
       value: Wheat (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9319,7 +9359,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &960130181
 Transform:
@@ -9613,7 +9653,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &1031497514
 MeshCollider:
@@ -10254,6 +10294,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 882ab42b040154c4e97524af997c03bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10356,6 +10400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_Dead_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26fa8f8db82af2b4ba71e2b81a6280b5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10380,7 +10428,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1170279125
 Transform:
@@ -10474,6 +10522,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b73b6c3f8de173d40a093cdf86f41896, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b73b6c3f8de173d40a093cdf86f41896, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10632,6 +10684,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 882ab42b040154c4e97524af997c03bc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10705,6 +10761,10 @@ PrefabInstance:
     - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: m_Name
       value: DeathPlane (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
@@ -10837,7 +10897,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1223395552
 Transform:
@@ -10875,7 +10935,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1225277357
 Transform:
@@ -11057,6 +11117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheat (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11084,7 +11148,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1304509688
 Transform:
@@ -11196,7 +11260,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1322923654
 Transform:
@@ -11382,6 +11446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPlane (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
       value: 
@@ -11412,7 +11480,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1340134253
 RectTransform:
@@ -11550,7 +11618,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1340450787
 Transform:
@@ -11698,6 +11766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheat (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11724,7 +11796,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1351041098
 RectTransform:
@@ -11861,7 +11933,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1354229783
 Transform:
@@ -11924,7 +11996,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1364138251
 MeshRenderer:
@@ -12014,7 +12086,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &1367602605
 MeshRenderer:
@@ -12263,6 +12335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_Dead_2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26fa8f8db82af2b4ba71e2b81a6280b5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12290,7 +12366,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1417536844
 Transform:
@@ -12439,6 +12515,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
       propertyPath: m_Name
       value: Wheat (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12796,6 +12876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 900b9c9ec2acc6d40b4a0ba24b26958e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12934,7 +13018,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1534084261
 Transform:
@@ -13156,7 +13240,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1592195165
 MonoBehaviour:
@@ -13429,6 +13513,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b73b6c3f8de173d40a093cdf86f41896, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b73b6c3f8de173d40a093cdf86f41896, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13925,6 +14013,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1246320629910466501, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7055924099076972185, guid: da981bed8e2af8a4cb65d98606b5271c, type: 3}
       propertyPath: OnEliminatePlayer
       value: 
@@ -13965,7 +14057,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1753649618
 RectTransform:
@@ -14307,7 +14399,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1818067495
 Transform:
@@ -14472,6 +14564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_Dead_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26fa8f8db82af2b4ba71e2b81a6280b5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14612,7 +14708,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1859978074
 Transform:
@@ -20285,6 +20381,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce5282ae690f70444a1a11d337a46d07, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
