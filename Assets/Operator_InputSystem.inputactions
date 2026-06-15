@@ -7,7 +7,7 @@
             "id": "2beadd7c-92e8-45e2-b506-cf40fbcae72d",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "OpenMenu",
                     "type": "Button",
                     "id": "982dd0eb-aa12-4d6f-a27a-52613fde8385",
                     "expectedControlType": "",
@@ -21,10 +21,10 @@
                     "name": "",
                     "id": "220d3cdc-019d-4639-b656-1cae966aa810",
                     "path": "<Mouse>/middleButton",
-                    "interactions": "",
+                    "interactions": "MultiTap",
                     "processors": "",
                     "groups": ";Operator",
-                    "action": "New action",
+                    "action": "OpenMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
