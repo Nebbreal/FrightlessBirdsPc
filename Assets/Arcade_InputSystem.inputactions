@@ -606,17 +606,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Operator",
-            "bindingGroup": "Operator",
-            "devices": [
-                {
-                    "devicePath": "<Mouse>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        }
-    ]
+    "controlSchemes": []
 }

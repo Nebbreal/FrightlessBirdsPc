@@ -9,6 +9,11 @@ public class CalibrationManager : MonoBehaviour
 
     public void OnCalibration(PlayerInput playerInput)
     {
+        if (playerInput.currentActionMap.name == "Operator")
+        {
+            Debug.Log("found operator");
+            return;
+        }
         BlinkForCalibrations[controllerCount].SetActive(false);
         controllerCount++;
         if (controllerCount >= BlinkForCalibrations.Length)

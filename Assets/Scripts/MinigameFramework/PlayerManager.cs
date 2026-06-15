@@ -61,6 +61,11 @@ namespace MinigameFramework
         public void RegisterPlayer(PlayerInput player)
         {
             if(GameManager.Instance.IsMinigameSceneActive) return;
+            if (player.currentActionMap.name == "Operator")
+            {
+                Debug.Log("found operator");
+                return;
+            }
      
             if (Players == null || Players.Count == 0)
             {
