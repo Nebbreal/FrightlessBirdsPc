@@ -1,5 +1,6 @@
-# Enversed arcade
-The Enversed Arcade project is a game made for the arcade table located in the Enversed game cafe.
+# Frightless Birds
+The FrightlessBirds project is a 2-4 player party game made for the arcade table located in the Enversed game cafe.
+The game is intended to be played with the generic arcade controllers provided by Enversed.
 
 # Contributors
 ## Iteration 1 (Spring 2026)
