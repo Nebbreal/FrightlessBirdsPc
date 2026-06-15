@@ -15,7 +15,7 @@ public class SettingsManager : MonoBehaviour
     {
         //LOAD SETTINGS
         //LoadSettings(DefaultPath);
-        Instance = this;
+        if(!Instance) Instance = this;
     }
 
     private void Update()

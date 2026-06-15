@@ -62,6 +62,17 @@ namespace Minigames.FrozenFeathers
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
         }
 
+        public void LoadFromSettings()
+        {
+            shrinkingPlatformTargetScale = SettingsManager.Instance.Settings.FFPlatformEndSize;
+            onSetAllPlayerLives.Raise(this, SettingsManager.Instance.Settings.FFLives);
+        }
+
+        private void Awake()
+        {
+            LoadFromSettings();
+        }
+
         public void Update()
         {
             if (_hasMinigameStarted && _roundTimer > 0 && !GameManager.Instance.IsWinUIActive)

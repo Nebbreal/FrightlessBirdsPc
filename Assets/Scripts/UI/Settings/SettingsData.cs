@@ -31,7 +31,7 @@ public class SettingsData : ScriptableObject
 
     #region WorldCoop
     public float WCGameLength;
-    public float WCGoalsToWin;
+    public int WCGoalsToWin;
     #endregion
 
     #region GoldenGoose

@@ -66,6 +66,17 @@ namespace Minigames.WorldCoop
             InitializeScoreboardBalls(team1ScoreBalls);
             InitializeScoreboardBalls(team2ScoreBalls);
         }
+        
+        public void LoadFromSettings()
+        {
+            _timer = SettingsManager.Instance.Settings.WCGameLength;
+            scoreToWin = SettingsManager.Instance.Settings.WCGoalsToWin;
+        }
+
+        private void Awake()
+        {
+            LoadFromSettings();
+        }
 
         private void InitializeScoreboardBalls(List<MeshRenderer> balls)
         {
