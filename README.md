@@ -61,7 +61,22 @@ In most cases animations are kept inside the FBX of the model however there migh
 
 # Custom features
 ## Game Event System
+The FrightLess Birds project contains a custom event system to handle communication between diffrent parts of the project.
+This system consists of 2 parts: a GameEvent(ScriptableObject) and GameEventListener.cs
+### Game Event (ScriptableObjects)
+This object is created by opening Unity's context menu and using ``Create->EventSystem->GameEvent``, 
+these GameEvents should be stored in ``ConfigData/Events``.
+
+In scripts you can use a GameEvent SerializedField to call the event with ``gameEvent.Raise(sender, objects)``
+where ``sender`` is a ``component``(usually ``this``) 
+and objects is an ``object[]`` of data the listener should recieve. Validation is done on the method listening.
+### GameEventListener.cs
+This script can be attached to objects containing scripts that need to listen to events. 
+In the Listener you need to specify which event it needs to listen to and which method it needs to call.
 ## Minigame Framework
+The Framework used to manage the game, inside of PRE_GameManager you can find the config fields related to the game logic.
+New Minigames can be added by expanding the Minigames list with a new Minigame(``Create->MinigameFramework->Minigame``).
+Minigame specific configs or overrides are kept withing the Minigame scriptable objects.
 
 # Conventions
 ## Commit messages
