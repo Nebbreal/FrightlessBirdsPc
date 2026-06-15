@@ -6729,13 +6729,9 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f6a555ff-09f0-468c-80c7-6521f611cf16
     m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 982dd0eb-aa12-4d6f-a27a-52613fde8385
-    m_ActionName: 'Operator/New action[/Mouse/middleButton]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Operator
-  m_DefaultActionMap: Calibration
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 90fe706b-323f-47f7-9f1a-e80e781b4dfe
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!82 &1377396957945174431

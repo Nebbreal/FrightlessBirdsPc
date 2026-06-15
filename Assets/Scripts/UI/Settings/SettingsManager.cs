@@ -1,3 +1,5 @@
+using System.IO;
+using System.Text;
 using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
@@ -15,6 +17,13 @@ public class SettingsManager : MonoBehaviour
 
     public void LoadSettings(string path)
     {
-        Settings = Resources.Load<SettingsData>(path);
+        var jsonTextFile = File.ReadAllText(DefaultPath);
+        Settings = JsonUtility.FromJson<SettingsData>(jsonTextFile);
+    }
+
+    public void SaveSettings()
+    {
+        string json = JsonUtility.ToJson(Settings, true);
+        File.WriteAllText(DefaultPath, json, new UTF8Encoding());
     }
 }
