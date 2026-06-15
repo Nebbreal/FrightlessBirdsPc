@@ -85,5 +85,20 @@ Minigame specific configs or overrides are kept withing the Minigame scriptable 
 
 ## Naming conventions
 
-## How to build
+## Versioning
+The version on the game(which is set in Player Settings in the build menu) corresponds to the year of the build, 
+month of the build and version of the build. 
+A optional minor version number for things such as bugfixes is also allowed.
 
+This would look like
+``26.6.2.3``
+- Where ``26`` is the year 2026
+- 6 is the 6th month of the year (June)
+- 2 means the second release this month
+- 3 means the third minor patch of the release
+
+## How to build
+Every build of the Frightless Birds project **must** contain ``Scenes/Core/SC_initialization_CO`` 
+as it's first entry in the scenes list. ``SC_Core/SC_Lobby_CO`` is also required for the game to function.
+
+Any minigames included in the gamemanager also need to be added to the scene list.
