@@ -167,10 +167,8 @@ public class OperatorMenu : MonoBehaviour
         DashCooldown.value = 7.5f;
     }
 
-    public GraphicRaycaster raycaster;
     public void Update()
     {
-        raycaster.Raycast()
         DashCooldownText.text = DashCooldown.value.ToString("0.0");
     }
     #endregion
