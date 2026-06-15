@@ -7137,7 +7137,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2185468050244946302}
+        m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
+        m_MethodName: OnMasterVolumeChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1596547224142095604
 GameObject:
   m_ObjectHideFlags: 0
@@ -37220,7 +37232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6134760248524989174}
-  - component: {fileID: 8363358249964999691}
+  - component: {fileID: 8176363573019111558}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -37243,7 +37255,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6261225260295015777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8363358249964999691
+--- !u!114 &8176363573019111558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37256,7 +37268,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Settings: {fileID: 0}
-  DefaultPath: aaaaah
+  DefaultPath: 
+  SavePath: 
+  SaveToFile: 0
 --- !u!1 &7528556788135966545
 GameObject:
   m_ObjectHideFlags: 0
