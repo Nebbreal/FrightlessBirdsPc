@@ -20,7 +20,7 @@ namespace EventSystem
                 }
                 catch (Exception ex)
                 {
-                    Exception exceptionToThrow = new Exception("GameEvent: " + this.name + " threw exception with message: " + ex.Message, ex);
+                    Exception exceptionToThrow = new Exception($"GameEvent '{this.name}' called by '{sender.name}' threw exception with message: " + ex.Message, ex);
                     Debug.LogException(exceptionToThrow);
                 }
             }
