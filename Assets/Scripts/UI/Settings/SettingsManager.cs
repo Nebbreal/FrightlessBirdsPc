@@ -1,6 +1,10 @@
 using System.IO;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using MinigameFramework;
+using Minigames;
+using EventSystem;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -9,13 +13,26 @@ public class SettingsManager : MonoBehaviour
     public string DefaultPath;
     public string SavePath;
 
+    public Minigame FF;
+    public Minigame WC;
+    public Minigame GG;
+
+    public GameEvent RestoreDefaults;
+
     public bool SaveToFile = false;
 
     private void Start()
     {
         //LOAD SETTINGS
-        //LoadSettings(DefaultPath);
         if(!Instance) Instance = this;
+        LoadSettings(SavePath);
+        
+        var minigames = new List<Minigame>();
+        if (Instance.Settings.FFActive) minigames.Add(FF);
+        if (Instance.Settings.WCActive) minigames.Add(WC);
+        if (Instance.Settings.GGActive) minigames.Add(GG);
+
+        GameManager.Instance.Minigames = minigames;
     }
 
     private void Update()
@@ -27,15 +44,21 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void LoadDefault(){
+        
+        LoadSettings(DefaultPath);
+        RestoreDefaults.Raise(this);
+    }
+
     public void LoadSettings(string path)
     {
         var jsonTextFile = File.ReadAllText(path);
-        Settings = JsonUtility.FromJson<SettingsData>(jsonTextFile);
+        JsonUtility.FromJsonOverwrite(jsonTextFile, Instance.Settings);
     }
 
     public void SaveSettings()
     {
-        string json = JsonUtility.ToJson(Settings, true);
+        string json = JsonUtility.ToJson(Instance.Settings, true);
         File.WriteAllText(SavePath, json, new UTF8Encoding());
     }
 }
