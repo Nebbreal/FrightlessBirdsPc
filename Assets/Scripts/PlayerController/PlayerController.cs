@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
     public GameEvent onAttacked;
     [SerializeField]
     private GameEvent onPlaySoundClipOnce;
-    public GameEvent onSpeedUpWinUI;
+    public GameEvent onSkipWinUI;
 
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
@@ -234,14 +234,13 @@ public class PlayerController : MonoBehaviour
         onSpawnDebugPlayers.Raise(this);
     }
 
-    public void SpeedUpWinUI(InputAction.CallbackContext context)
+    public void SkipWinUI(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        Debug.Log("Speed up win UI");
-        if (GameManager.Instance.IsWinUIActive)
-        {
-            Debug.Log("Raising speed up win UI event");
-            onSpeedUpWinUI.Raise(this);
+        Debug.Log("Raising skip win UI event with host id: " + ID);
+        if (GameManager.Instance.IsWinUIActive && ID == 0) //Allow only host to skip win UI
+        {  
+            onSkipWinUI.Raise(this);
         }
     }
     
