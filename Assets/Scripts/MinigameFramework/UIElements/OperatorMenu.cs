@@ -148,12 +148,14 @@ public class OperatorMenu : MonoBehaviour
     {
         Debug.Log("Settings Saved");
         onDisableSaveConfirm.Raise(this);
+        SettingsManager.Instance.SaveSettings();
     }
 
     public void RestoreDefaults()
     {
         Debug.Log("Defaults Restored");
         onDisableRestoreDefaultsConfirm.Raise(this);
+        SettingsManager.Instance.LoadDefault();
     }
     #endregion
 

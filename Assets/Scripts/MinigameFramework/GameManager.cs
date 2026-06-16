@@ -26,7 +26,7 @@ namespace MinigameFramework
     
         [Header("Game manager config")]
         [SerializeField]
-        private List<Minigame> minigames;
+        public List<Minigame> Minigames;
         public Minigame tieBreakerMinigame;
         [SerializeField]
         private SceneField lobbyScene;
@@ -218,7 +218,7 @@ namespace MinigameFramework
             Minigame selectedMinigame;
             int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
             List<Minigame> validMinigames =
-                minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
+                Minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
             
             if (validMinigames.Count == 0)
             {
