@@ -233,6 +233,17 @@ public class PlayerController : MonoBehaviour
         if (!context.started) return;
         onSpawnDebugPlayers.Raise(this);
     }
+
+    public void SpeedUpWinUI(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+        Debug.Log("Speed up win UI");
+        if (GameManager.Instance.IsWinUIActive)
+        {
+            Debug.Log("Raising speed up win UI event");
+            onSpeedUpWinUI.Raise(this);
+        }
+    }
     
     public void SetPlayerState(PlayerState newState)
     {

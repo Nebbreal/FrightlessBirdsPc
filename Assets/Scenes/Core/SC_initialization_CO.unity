@@ -1717,6 +1717,10 @@ PrefabInstance:
       propertyPath: 'BlinkForCalibrations.Array.data[3]'
       value: 
       objectReference: {fileID: 1438193729}
+    - target: {fileID: 3897508759123251652, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: winScreenLength
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
