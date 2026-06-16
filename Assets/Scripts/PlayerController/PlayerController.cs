@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
     private GameObject interactableBlockTrigger;
     private EggShield _eggShieldScript;
     private Animator _blockAnimator;
-    private SkinnedMeshRenderer _blockMeshRenderer;
 
     [NonSerialized] 
     public Vector3 LastMoveDirection = new Vector3(1f, 0f, 0f);
@@ -99,14 +98,15 @@ public class PlayerController : MonoBehaviour
     [Header("Game events")]
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
-    [FormerlySerializedAs("onJoin")] [SerializeField]
+    [SerializeField]
     public GameEvent onPlayerJoinLobby;
-    [FormerlySerializedAs("onLeave")] [SerializeField]
+    [SerializeField]
     public GameEvent onPlayerLeaveLobby;
     public GameEvent onDashedInto;
     public GameEvent onAttacked;
     [SerializeField]
     private GameEvent onPlaySoundClipOnce;
+    public GameEvent onSpeedUpWinUI;
 
     private static readonly int IsAnimatingWalk = Animator.StringToHash("IsWalking");
     private static readonly int IsAnimatingBlock = Animator.StringToHash("IsBlocking");
@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
         _eggShieldScript = GetComponentInChildren<EggShield>();
         GameObject eggShieldObject = _eggShieldScript.gameObject;
-        _blockMeshRenderer = eggShieldObject.GetComponentInChildren<SkinnedMeshRenderer>();
         _blockAnimator = eggShieldObject.GetComponent<Animator>();
         _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
         BlockCharge = maxBlockCharge;
