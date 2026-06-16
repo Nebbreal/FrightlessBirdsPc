@@ -1,9 +1,10 @@
 # Frightless Birds
-The FrightlessBirds project is a 2-4 player party game made for the arcade table located in the Enversed game cafe.
+The FrightlessBirds project is a 2-4 player party game made in Unity for the arcade table located in the Enversed game cafe.
 The game is intended to be played with the generic arcade controllers provided by Enversed.
 
 # Content
 - [Contributors](#contributors)  
+- [Engine Version](#engine-version)
 - [Project Structure](#project-structure)
   - [Animations/](#animations)
   - [Audio/](#audio)
@@ -40,13 +41,16 @@ The game is intended to be played with the generic arcade controllers provided b
   - [How to test in the Unity editor](#how-to-test-in-the-unity-editor)
 
 # Contributors
-## Sugar Glider Studios (Iteration 1 Spring 2026)
+## Sugar Glider Studios (Iteration 1 Spring 2026, Final version 26.6.3)
 Demiën van Laarhoven | Programming Lead, Game designer  
 Mick Sieben | Art Lead, Team Lead, Game Designer  
 Cas Bouwmans | Music/SFX Lead, Game designer  
 Max van der Spek | Programmer, Game designer  
 Jesper Boersma | Creative Lead, Programmer, Game designer  
 Flore van Buul | Artist
+
+# Engine Version
+Frightless Birds is developed in version ``6000.3.9f1``
 
 # Project structure
 The Enversed Arcade project has the following ``Assets/`` folder structure, 
