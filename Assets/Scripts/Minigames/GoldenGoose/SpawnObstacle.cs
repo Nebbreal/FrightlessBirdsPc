@@ -18,6 +18,17 @@ public class SpawnObstacle : MonoBehaviour
         timer = Random.Range(minWaitTime, maxWaitTime);
     }
 
+    public void LoadFromSettings()
+    {
+        minWaitTime = SettingsManager.Instance.Settings.GGMinBisonUptime;
+        maxWaitTime = SettingsManager.Instance.Settings.GGMaxBisonUptime;
+    }
+
+    private void Awake()
+    {
+        LoadFromSettings();
+    }
+
     void Update()
     {
         timer -= Time.deltaTime;

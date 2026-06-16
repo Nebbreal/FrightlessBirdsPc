@@ -7,23 +7,35 @@ public class SettingsManager : MonoBehaviour
     public SettingsData Settings;
     public static SettingsManager Instance;
     public string DefaultPath;
+    public string SavePath;
+
+    public bool SaveToFile = false;
 
     private void Start()
     {
         //LOAD SETTINGS
         //LoadSettings(DefaultPath);
-        Instance = this;
+        if(!Instance) Instance = this;
+    }
+
+    private void Update()
+    {
+        if (SaveToFile)
+        {
+            SaveToFile = false;
+            SaveSettings();
+        }
     }
 
     public void LoadSettings(string path)
     {
-        var jsonTextFile = File.ReadAllText(DefaultPath);
+        var jsonTextFile = File.ReadAllText(path);
         Settings = JsonUtility.FromJson<SettingsData>(jsonTextFile);
     }
 
     public void SaveSettings()
     {
         string json = JsonUtility.ToJson(Settings, true);
-        File.WriteAllText(DefaultPath, json, new UTF8Encoding());
+        File.WriteAllText(SavePath, json, new UTF8Encoding());
     }
 }

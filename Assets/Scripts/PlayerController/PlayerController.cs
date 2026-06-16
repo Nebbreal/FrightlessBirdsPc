@@ -115,6 +115,18 @@ public class PlayerController : MonoBehaviour
     public GameEvent onPlayerAttack;
     public GameEvent onPlayerBrace;
 
+    public void LoadFromSettings()
+    {
+        attackDelay = SettingsManager.Instance.Settings.AttackCooldown;
+        dashDelay = SettingsManager.Instance.Settings.DashCooldown;
+        maxBlockCharge = SettingsManager.Instance.Settings.BlockCooldown;
+        acceleration = SettingsManager.Instance.Settings.PlayerMovementSpeed;
+    }
+
+    private void Awake()
+    {
+        LoadFromSettings();
+    }
 
     private void Start()
     {

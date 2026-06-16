@@ -31,10 +31,18 @@ public class GoldenEgg : MonoBehaviour
 
     private PlayerController currentOwner;
 
+    public void LoadFromSettings()
+    {
+        AnimationTime = SettingsManager.Instance.Settings.GGPickUpDelay;
+        PointTime = SettingsManager.Instance.Settings.GGSecondsPerPoint;
+    }
+
     private void Awake()
     {
         inside = new List<PlayerController>();
+        LoadFromSettings();
     }
+    
 
     private void Update()
     {

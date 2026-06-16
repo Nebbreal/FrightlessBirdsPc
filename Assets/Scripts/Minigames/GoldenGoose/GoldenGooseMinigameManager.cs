@@ -67,6 +67,17 @@ namespace Minigames.RoadRunner
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
         }
 
+
+        public void LoadFromSettings()
+        {
+            timer = SettingsManager.Instance.Settings.GGGameLength;
+        }
+
+        private void Awake()
+        {
+            LoadFromSettings();
+        }
+
         public void Update()
         {
             timer -= Time.deltaTime;
