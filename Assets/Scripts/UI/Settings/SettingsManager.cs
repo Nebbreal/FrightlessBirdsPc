@@ -19,6 +19,8 @@ public class SettingsManager : MonoBehaviour
 
     public GameEvent RestoreDefaults;
 
+    public OperatorVolumeChange OnVolumeChange;
+
     public bool SaveToFile = false;
 
     private void Start()
@@ -33,6 +35,17 @@ public class SettingsManager : MonoBehaviour
         if (Instance.Settings.GGActive) minigames.Add(GG);
 
         GameManager.Instance.Minigames = minigames;
+
+        //INITIALIZE VOLUME SLIDERS
+        OnVolumeChange.MasterMixer.SetFloat("MasterVolumeParam", SettingsManager.Instance.Settings.MasterVolume);
+        OnVolumeChange.MasterMixer.SetFloat("MusicVolumeParam", SettingsManager.Instance.Settings.MusicVolume);
+        OnVolumeChange.MasterMixer.SetFloat("SFXVolumeParam", SettingsManager.Instance.Settings.SfxVolume);
+        OnVolumeChange.MasterVolumeSlider.value = SettingsManager.Instance.Settings.MasterVolume;
+        OnVolumeChange.MusicVolumeSlider.value = SettingsManager.Instance.Settings.MusicVolume;
+        OnVolumeChange.SFXVolumeSlider.value = SettingsManager.Instance.Settings.SfxVolume;
+        OnVolumeChange.MasterText.text = OnVolumeChange.MasterVolumeSlider.value.ToString("0");
+        OnVolumeChange.MusicText.text = OnVolumeChange.MusicVolumeSlider.value.ToString("0");
+        OnVolumeChange.SFXText.text = OnVolumeChange.SFXVolumeSlider.value.ToString("0");
     }
 
     private void Update()

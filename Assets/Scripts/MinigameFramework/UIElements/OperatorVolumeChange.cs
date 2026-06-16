@@ -28,6 +28,7 @@ public class OperatorVolumeChange : MonoBehaviour
         SFXText.text = SFXVolumeSlider.value.ToString("0");
     }
 
+
     public void OnMasterVolumeChanged(float value)
     {
         MasterText.text = MasterVolumeSlider.value.ToString("0");
