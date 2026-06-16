@@ -19,7 +19,9 @@ public class SettingsManager : MonoBehaviour
 
     public GameEvent RestoreDefaults;
 
+    public OperatorGeneralChange OnGeneralChange;
     public OperatorVolumeChange OnVolumeChange;
+
 
     public bool SaveToFile = false;
 
@@ -46,6 +48,16 @@ public class SettingsManager : MonoBehaviour
         OnVolumeChange.MasterText.text = OnVolumeChange.MasterVolumeSlider.value.ToString("0");
         OnVolumeChange.MusicText.text = OnVolumeChange.MusicVolumeSlider.value.ToString("0");
         OnVolumeChange.SFXText.text = OnVolumeChange.SFXVolumeSlider.value.ToString("0");
+
+
+        OnGeneralChange.DashCooldownSlider.value = SettingsManager.Instance.Settings.DashCooldown;
+        OnGeneralChange.AttackCooldownSlider.value = SettingsManager.Instance.Settings.AttackCooldown;
+        OnGeneralChange.BlockDurationSlider.value = SettingsManager.Instance.Settings.BlockCooldown;
+        OnGeneralChange.PlayerAccelerationSlider.value = SettingsManager.Instance.Settings.PlayerMovementSpeed;
+        OnGeneralChange.DashCooldownText.text = OnGeneralChange.DashCooldownSlider.value.ToString("0" + "s");
+        OnGeneralChange.AttackCooldownText.text = OnGeneralChange.AttackCooldownSlider.value.ToString("0" + "s");
+        OnGeneralChange.BlockDurationText.text = OnGeneralChange.BlockDurationSlider.value.ToString("0" + "s");
+        OnGeneralChange.PlayerAccelerationText.text = OnGeneralChange.PlayerAccelerationSlider.value.ToString("0" + "s");
     }
 
     private void Update()

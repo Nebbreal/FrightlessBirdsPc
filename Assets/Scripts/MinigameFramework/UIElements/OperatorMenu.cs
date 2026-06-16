@@ -30,11 +30,6 @@ public class OperatorMenu : MonoBehaviour
     public GameEvent onEnableGoldengooseSettings;
     public GameEvent onDisableGoldengooseSettings;
 
-    [Header("Setting variables")]
-    [SerializeField]
-    public Slider DashCooldown;
-    public TextMeshProUGUI DashCooldownText;
-
     #region Navigation
     public void OpenGeneralSettings()
     {
@@ -156,22 +151,6 @@ public class OperatorMenu : MonoBehaviour
         Debug.Log("Defaults Restored");
         onDisableRestoreDefaultsConfirm.Raise(this);
         SettingsManager.Instance.LoadDefault();
-    }
-    #endregion
-
-    #region Changing settings
-
-    public void Start()
-    {
-        //Slider value assigning
-        DashCooldown.minValue = 5f;
-        DashCooldown.maxValue = 10f;
-        DashCooldown.value = 7.5f;
-    }
-
-    public void Update()
-    {
-        DashCooldownText.text = DashCooldown.value.ToString("0.0");
     }
     #endregion
 }
