@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 4525372839733470118}
   - component: {fileID: 8931641547096617175}
   m_Layer: 0
-  m_Name: Slider (1)
+  m_Name: Shrink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4357937728094564890}
+        m_TargetAssemblyTypeName: OperatorFrozenfeathersChange, Assembly-CSharp
+        m_MethodName: OnPlatformShrinkTargetChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &45415000773500259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2089,7 @@ GameObject:
   - component: {fileID: 1931532614432535577}
   - component: {fileID: 2203996006184707656}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: GameLength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2150,12 +2162,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2551335077798936033}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MaxValue: 200
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8364204340915832464}
+        m_TargetAssemblyTypeName: OperatorGoldengooseChange, Assembly-CSharp
+        m_MethodName: OnGameLengthChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &436914331684785632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,7 +2700,7 @@ GameObject:
   - component: {fileID: 2873405931065844659}
   - component: {fileID: 4233630005396353250}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: Lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2748,13 +2772,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 3455541022271394549}
   m_HandleRect: {fileID: 3103374086462131595}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MinValue: 1
+  m_MaxValue: 10
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4357937728094564890}
+        m_TargetAssemblyTypeName: OperatorFrozenfeathersChange, Assembly-CSharp
+        m_MethodName: OnLivesChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &626898607197400849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,7 +3685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -7458,7 +7494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -7541,7 +7577,7 @@ GameObject:
   - component: {fileID: 8960026458210071165}
   - component: {fileID: 5881824389042011985}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: MaxBisonUptime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7613,13 +7649,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 4629967821655082295}
   m_HandleRect: {fileID: 5334334457929984797}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MinValue: 1
+  m_MaxValue: 20
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8364204340915832464}
+        m_TargetAssemblyTypeName: OperatorGoldengooseChange, Assembly-CSharp
+        m_MethodName: OnMaxBisonUptimeChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1637150042832015288
 GameObject:
   m_ObjectHideFlags: 0
@@ -7988,6 +8036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4518583742507556636}
   - component: {fileID: 5597174109940433169}
+  - component: {fileID: 4357937728094564890}
   m_Layer: 0
   m_Name: FrozenfeathersSettings
   m_TagString: Untagged
@@ -8027,6 +8076,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666009516679875260}
   m_CullTransparentMesh: 1
+--- !u!114 &4357937728094564890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666009516679875260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5167da5e8c6820458c091ba55085b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OperatorFrozenfeathersChange
+  PlatformShrinkTargetSlider: {fileID: 8931641547096617175}
+  LivesSlider: {fileID: 4233630005396353250}
+  PlatformShrinkTargetText: {fileID: 5426503003400386129}
+  LivesText: {fileID: 6187518770106705601}
 --- !u!1 &1693147936903067031
 GameObject:
   m_ObjectHideFlags: 0
@@ -8651,7 +8716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -15005,7 +15070,7 @@ GameObject:
   - component: {fileID: 8425160656081371325}
   - component: {fileID: 5894993538167923912}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: MinBisonUptime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15077,13 +15142,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 7647234857144628772}
   m_HandleRect: {fileID: 836627462406709840}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MinValue: 1
+  m_MaxValue: 20
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8364204340915832464}
+        m_TargetAssemblyTypeName: OperatorGoldengooseChange, Assembly-CSharp
+        m_MethodName: OnMinBisonUptimeChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3267295361003799411
 GameObject:
   m_ObjectHideFlags: 0
@@ -17083,7 +17160,7 @@ GameObject:
   - component: {fileID: 1187216513593795526}
   - component: {fileID: 8590688207294289845}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: SecondsPerPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17156,12 +17233,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4963483949122168324}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8364204340915832464}
+        m_TargetAssemblyTypeName: OperatorGoldengooseChange, Assembly-CSharp
+        m_MethodName: OnSecondsPerPointChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3630653576561932514
 GameObject:
   m_ObjectHideFlags: 0
@@ -17831,7 +17920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Platform shrink rate
+  m_text: Platform shrink target
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -20413,7 +20502,7 @@ GameObject:
   - component: {fileID: 395394767573634137}
   - component: {fileID: 5977252642341929343}
   m_Layer: 0
-  m_Name: Slider (1)
+  m_Name: GameLength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20485,13 +20574,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 284161523012425490}
   m_HandleRect: {fileID: 7926000103258394257}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MinValue: 1
+  m_MaxValue: 300
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5297336264855530316}
+        m_TargetAssemblyTypeName: OperatorWorldcoopChange, Assembly-CSharp
+        m_MethodName: OnGameLengthChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4104766226855062450
 GameObject:
   m_ObjectHideFlags: 0
@@ -20694,7 +20795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -22382,7 +22483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -23854,7 +23955,7 @@ GameObject:
   - component: {fileID: 663453903841721081}
   - component: {fileID: 8910796280568084453}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: PickUpDelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23927,12 +24028,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2503888568716478481}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8364204340915832464}
+        m_TargetAssemblyTypeName: OperatorGoldengooseChange, Assembly-CSharp
+        m_MethodName: OnPickUpDelayChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4766433284908176441
 GameObject:
   m_ObjectHideFlags: 0
@@ -25143,6 +25256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6769656717231449670}
   - component: {fileID: 7710136197818581075}
+  - component: {fileID: 5297336264855530316}
   m_Layer: 0
   m_Name: WorldcoopSettings
   m_TagString: Untagged
@@ -25182,6 +25296,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5043144684957823786}
   m_CullTransparentMesh: 1
+--- !u!114 &5297336264855530316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043144684957823786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ff681a6be48fd4aa142daa3832c5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OperatorWorldcoopChange
+  GameLengthSlider: {fileID: 5977252642341929343}
+  GoalsToWinSlider: {fileID: 4974071264390169144}
+  GameLengthText: {fileID: 5427136602680670279}
+  GoalsToWinText: {fileID: 3552219445102093057}
 --- !u!1 &5059402459555823080
 GameObject:
   m_ObjectHideFlags: 0
@@ -25960,7 +26090,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -28658,7 +28788,7 @@ GameObject:
   - component: {fileID: 5714282176857660771}
   - component: {fileID: 4974071264390169144}
   m_Layer: 0
-  m_Name: Slider
+  m_Name: GoalsToWin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28731,12 +28861,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3344139049177186270}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_MaxValue: 10
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5297336264855530316}
+        m_TargetAssemblyTypeName: OperatorWorldcoopChange, Assembly-CSharp
+        m_MethodName: OnGoalsToWinChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5925950272566703686
 GameObject:
   m_ObjectHideFlags: 0
@@ -30537,7 +30679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -35150,7 +35292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -35401,6 +35543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681016044939621687}
   - component: {fileID: 3768535697550611390}
+  - component: {fileID: 8364204340915832464}
   m_Layer: 0
   m_Name: GoldengooseSettings
   m_TagString: Untagged
@@ -35440,6 +35583,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7205785732771893240}
   m_CullTransparentMesh: 1
+--- !u!114 &8364204340915832464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205785732771893240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42431ab19e08d24bb51300caa2dc5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OperatorGoldengooseChange
+  GameLengthSlider: {fileID: 2203996006184707656}
+  SecondsPerPointSlider: {fileID: 8590688207294289845}
+  PickUpDelaySlider: {fileID: 8910796280568084453}
+  MinBisonUptimeSlider: {fileID: 5894993538167923912}
+  MaxBisonUptimeSlider: {fileID: 5881824389042011985}
+  GameLengthText: {fileID: 1749231970990495830}
+  SecondsPerPointText: {fileID: 2009113520717223500}
+  PickUpDelayText: {fileID: 1320469986865469203}
+  MinBisonUptimeText: {fileID: 7220094073924052035}
+  MaxBisonUptimeText: {fileID: 1180673975337207702}
 --- !u!1 &7219331110361248041
 GameObject:
   m_ObjectHideFlags: 0
@@ -37427,8 +37592,11 @@ MonoBehaviour:
   WC: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
   GG: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
   RestoreDefaults: {fileID: 11400000, guid: 32cad42be8175054b9e0efcbe4c882a1, type: 2}
-  OnGeneralChange: {fileID: 0}
+  OnGeneralChange: {fileID: 815940358708892607}
   OnVolumeChange: {fileID: 7847634274173316613}
+  OnFrozenfeathersChange: {fileID: 4357937728094564890}
+  OnWorldcoopChange: {fileID: 5297336264855530316}
+  OnGoldengooseChange: {fileID: 8364204340915832464}
   SaveToFile: 0
 --- !u!114 &9075476283713710661
 MonoBehaviour:
@@ -46185,7 +46353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}

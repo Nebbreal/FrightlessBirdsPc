@@ -21,7 +21,9 @@ public class SettingsManager : MonoBehaviour
 
     public OperatorGeneralChange OnGeneralChange;
     public OperatorVolumeChange OnVolumeChange;
-
+    public OperatorFrozenfeathersChange OnFrozenfeathersChange;
+    public OperatorWorldcoopChange OnWorldcoopChange;
+    public OperatorGoldengooseChange OnGoldengooseChange;
 
     public bool SaveToFile = false;
 
@@ -49,7 +51,7 @@ public class SettingsManager : MonoBehaviour
         OnVolumeChange.MusicText.text = OnVolumeChange.MusicVolumeSlider.value.ToString("0");
         OnVolumeChange.SFXText.text = OnVolumeChange.SFXVolumeSlider.value.ToString("0");
 
-
+        //INITIALIZE GENERAL SLIDERS
         OnGeneralChange.DashCooldownSlider.value = SettingsManager.Instance.Settings.DashCooldown;
         OnGeneralChange.AttackCooldownSlider.value = SettingsManager.Instance.Settings.AttackCooldown;
         OnGeneralChange.BlockDurationSlider.value = SettingsManager.Instance.Settings.BlockCooldown;
@@ -58,6 +60,30 @@ public class SettingsManager : MonoBehaviour
         OnGeneralChange.AttackCooldownText.text = OnGeneralChange.AttackCooldownSlider.value.ToString("0" + "s");
         OnGeneralChange.BlockDurationText.text = OnGeneralChange.BlockDurationSlider.value.ToString("0" + "s");
         OnGeneralChange.PlayerAccelerationText.text = OnGeneralChange.PlayerAccelerationSlider.value.ToString("0" + "s");
+
+        //INITIALIZE FROZEN FEATHERS SLIDERS
+        OnFrozenfeathersChange.PlatformShrinkTargetSlider.value = SettingsManager.Instance.Settings.FFPlatformEndSize;
+        OnFrozenfeathersChange.LivesSlider.value = SettingsManager.Instance.Settings.FFLives;
+        OnFrozenfeathersChange.PlatformShrinkTargetText.text = OnFrozenfeathersChange.PlatformShrinkTargetSlider.value.ToString("0");
+        OnFrozenfeathersChange.LivesText.text = OnFrozenfeathersChange.LivesSlider.value.ToString("0");
+
+        //INITIALIZE WORLD COOP SLIDERS
+        OnWorldcoopChange.GameLengthSlider.value = SettingsManager.Instance.Settings.WCGameLength;
+        OnWorldcoopChange.GoalsToWinSlider.value = SettingsManager.Instance.Settings.WCGoalsToWin;
+        OnWorldcoopChange.GameLengthText.text = OnWorldcoopChange.GameLengthSlider.value.ToString("0" + "s");
+        OnWorldcoopChange.GoalsToWinText.text = OnWorldcoopChange.GoalsToWinSlider.value.ToString("0");
+
+        //INITIALIZE GOLDEN GOOSE SLIDERS
+        OnGoldengooseChange.GameLengthSlider.value = SettingsManager.Instance.Settings.GGGameLength;
+        OnGoldengooseChange.SecondsPerPointSlider.value = SettingsManager.Instance.Settings.GGSecondsPerPoint;
+        OnGoldengooseChange.PickUpDelaySlider.value = SettingsManager.Instance.Settings.GGPickUpDelay;
+        OnGoldengooseChange.MinBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMinBisonUptime;
+        OnGoldengooseChange.MaxBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMaxBisonUptime;
+        OnGoldengooseChange.GameLengthText.text = OnGoldengooseChange.GameLengthSlider.value.ToString("0" + "s");
+        OnGoldengooseChange.SecondsPerPointText.text = OnGoldengooseChange.SecondsPerPointSlider.value.ToString("0" + "s");
+        OnGoldengooseChange.PickUpDelayText.text = OnGoldengooseChange.PickUpDelaySlider.value.ToString("0" + "s");
+        OnGoldengooseChange.MinBisonUptimeText.text = OnGoldengooseChange.MinBisonUptimeSlider.value.ToString("0" + "s");
+        OnGoldengooseChange.MaxBisonUptimeText.text = OnGoldengooseChange.MaxBisonUptimeSlider.value.ToString("0" + "s");
     }
 
     private void Update()
