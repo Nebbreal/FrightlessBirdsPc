@@ -1227,9 +1227,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8757338357105471274}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -7189,14 +7189,14 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6570011034459026728}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2185468050244946302}
-        m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
+      - m_Target: {fileID: 7847634274173316613}
+        m_TargetAssemblyTypeName: OperatorVolumeChange, Assembly-CSharp
         m_MethodName: OnMasterVolumeChanged
         m_Mode: 0
         m_Arguments:
@@ -11225,7 +11225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1341748401162627674
 Transform:
   m_ObjectHideFlags: 0
@@ -15680,7 +15680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -16372,9 +16372,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8724676421146648993}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -21190,7 +21190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -25450,6 +25450,9 @@ MonoBehaviour:
   MusicVolumeSlider: {fileID: 8441401890512659679}
   SFXVolumeSlider: {fileID: 8685522064679016133}
   MasterMixer: {fileID: 24100000, guid: 54f203a2134a9584fb4581cccab510e2, type: 2}
+  MasterText: {fileID: 562413993488888140}
+  MusicText: {fileID: 7496413647921532001}
+  SFXText: {fileID: 5229291469782679463}
 --- !u!1 &5094819979097698537
 GameObject:
   m_ObjectHideFlags: 0
@@ -32171,8 +32174,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2185468050244946302}
-        m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
+      - m_Target: {fileID: 8176363573019111558}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SaveSettings
         m_Mode: 1
         m_Arguments:
@@ -32743,7 +32746,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2185468050244946302}
         m_TargetAssemblyTypeName: OperatorMenu, Assembly-CSharp
-        m_MethodName: CloseApplyConfirm
+        m_MethodName: CloseSaveConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44563,7 +44566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -45249,6 +45252,7 @@ GameObject:
   - component: {fileID: 8601202276506637522}
   - component: {fileID: 1052723915768139978}
   - component: {fileID: 9111385929011031330}
+  - component: {fileID: 5597587926631799086}
   m_Layer: 0
   m_Name: CooldownValueDisplay (1)
   m_TagString: Untagged
@@ -45375,6 +45379,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5597587926631799086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946908911164890064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a792dfb47fd0516479c94219b3d8012b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OperatorGeneralChange
 --- !u!1 &8965679116784707930
 GameObject:
   m_ObjectHideFlags: 0
