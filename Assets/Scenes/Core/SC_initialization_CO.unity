@@ -1690,9 +1690,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176363573019111558, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: OnVolumeChange
+      propertyPath: RestoreDefaults
       value: 
-      objectReference: {fileID: 388805487}
+      objectReference: {fileID: 11400000, guid: 32cad42be8175054b9e0efcbe4c882a1, type: 2}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: GameManager
