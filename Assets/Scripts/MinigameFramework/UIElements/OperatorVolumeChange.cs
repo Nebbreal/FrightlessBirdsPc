@@ -13,28 +13,28 @@ public class OperatorVolumeChange : MonoBehaviour
 
     void Awake()
     {
-        
-        MasterVolumeSlider.value = SettingsManager.Instance.Settings.Volume.masterVolume;
-        MusicVolumeSlider.value = SettingsManager.Instance.Settings.Volume.musicVolume;
-        SFXVolumeSlider.value = SettingsManager.Instance.Settings.Volume.sfxVolume;
+
+        MasterVolumeSlider.value = SettingsManager.Instance.Settings.MasterVolume;
+        MusicVolumeSlider.value = SettingsManager.Instance.Settings.MusicVolume;
+        SFXVolumeSlider.value = SettingsManager.Instance.Settings.SfxVolume;
     }
 
 
     public void OnMasterVolumeChanged(float value)
     {
         MasterMixer.SetFloat("MasterVolumeParam", -40f*(1f-value));
-        SettingsManager.Instance.Settings.Volume.masterVolume = value;
+        SettingsManager.Instance.Settings.MasterVolume = value;
     }
 
     public void OnMusicVolumeChanged(float value)
     {
         MasterMixer.SetFloat("MusicVolumeParam", -40f * (1f - value));
-        SettingsManager.Instance.Settings.Volume.musicVolume = value;
+        SettingsManager.Instance.Settings.MusicVolume = value;
     }
 
     public void OnSFXVolumeChanged(float value)
     {
         MasterMixer.SetFloat("SFXVolumeParam", -40f * (1f - value));
-        SettingsManager.Instance.Settings.Volume.sfxVolume = value;
+        SettingsManager.Instance.Settings.SfxVolume = value;
     }
 }
