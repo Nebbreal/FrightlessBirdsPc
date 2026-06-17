@@ -72,7 +72,6 @@ namespace MinigameFramework
         public GameEvent onEnableScoreboardUI;
         public GameEvent onRestorePlayerOutlineColors;
 
-
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
@@ -135,7 +134,6 @@ namespace MinigameFramework
             //TODO remove && "Instance._gameConfig.winScreenLength - Instance._winUITime > 0.5f" when scene transitions get added
             if (Instance._winUITime > 0 && Instance._gameConfig.winScreenLength - Instance._winUITime > 0.5f)
             {
-                Debug.Log("Skipping win UI");
                 Instance._winUITime -= Instance._gameConfig.winScreenLength;
             }
         }
