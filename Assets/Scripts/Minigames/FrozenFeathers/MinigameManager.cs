@@ -65,6 +65,7 @@ namespace Minigames.FrozenFeathers
 
         public void LoadFromSettings()
         {
+            _roundTimer = SettingsManager.Instance.Settings.FFPlatformShrinkTime;
             shrinkingPlatformTargetScale = SettingsManager.Instance.Settings.FFPlatformEndSize;
             onSetAllPlayerLives.Raise(this, (int)SettingsManager.Instance.Settings.FFLives);
         }

@@ -11,6 +11,7 @@
     "SfxVolume": 100.0,
     "FFPlatformEndSize": 1.0,
     "FFLives": 1.0,
+    "FFPlatformShrinkTime": 60.0,
     "WCGameLength": 120.0,
     "WCGoalsToWin": 3.0,
     "GGGameLength": 60.0,

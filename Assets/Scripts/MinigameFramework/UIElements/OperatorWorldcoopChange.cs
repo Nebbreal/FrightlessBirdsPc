@@ -9,12 +9,13 @@ public class OperatorWorldcoopChange : MonoBehaviour
     public Slider GoalsToWinSlider;
     public TextMeshProUGUI GameLengthText;
     public TextMeshProUGUI GoalsToWinText;
+
     void Awake()
     {
         GameLengthSlider.value = SettingsManager.Instance.Settings.WCGameLength;
         GoalsToWinSlider.value = SettingsManager.Instance.Settings.WCGoalsToWin;
         GameLengthText.text = GameLengthSlider.value.ToString("0" + "s");
-        GoalsToWinText.text = GoalsToWinSlider.value.ToString("0" + "goals");
+        GoalsToWinText.text = GoalsToWinSlider.value.ToString("0");
     }
 
     public void OnGameLengthChanged(float value)
@@ -26,7 +27,7 @@ public class OperatorWorldcoopChange : MonoBehaviour
     public void OnGoalsToWinChanged(float value)
     {
         SettingsManager.Instance.Settings.WCGoalsToWin = (int)value;
-        GoalsToWinText.text = GoalsToWinSlider.value.ToString("0" + "goals");
+        GoalsToWinText.text = GoalsToWinSlider.value.ToString("0");
 
     }
 }

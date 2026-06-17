@@ -17,9 +17,9 @@ public class OperatorVolumeChange : MonoBehaviour
 
     public void Awake()
     {
-        MasterMixer.SetFloat("MasterVolumeParam", SettingsManager.Instance.Settings.MasterVolume);
-        MasterMixer.SetFloat("MusicVolumeParam", SettingsManager.Instance.Settings.MusicVolume);
-        MasterMixer.SetFloat("SFXVolumeParam", SettingsManager.Instance.Settings.SfxVolume);
+        MasterMixer.SetFloat("MasterVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.MasterVolume / 100f));
+        MasterMixer.SetFloat("MusicVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.MusicVolume / 100f));
+        MasterMixer.SetFloat("SFXVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.SfxVolume / 100f));
         MasterVolumeSlider.value = SettingsManager.Instance.Settings.MasterVolume;
         MusicVolumeSlider.value = SettingsManager.Instance.Settings.MusicVolume;
         SFXVolumeSlider.value = SettingsManager.Instance.Settings.SfxVolume;

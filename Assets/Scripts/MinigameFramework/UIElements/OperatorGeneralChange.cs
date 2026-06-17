@@ -26,12 +26,7 @@ public class OperatorGeneralChange : MonoBehaviour
         DashCooldownText.text = DashCooldownSlider.value.ToString("0" + "s");
         AttackCooldownText.text = AttackCooldownSlider.value.ToString("0" + "s");
         BlockDurationText.text = BlockDurationSlider.value.ToString("0" + "s");
-        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0" + "s");
-    }
-
-    public void OnActiveSceneChanged()
-    {
-
+        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0");
     }
 
     public void OnDashCooldownChanged(float value)
@@ -55,6 +50,6 @@ public class OperatorGeneralChange : MonoBehaviour
     public void OnPlayerMovementSpeedChanged(float value)
     {
         SettingsManager.Instance.Settings.PlayerMovementSpeed = value;
-        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0" + "s");
+        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0");
     }
 }

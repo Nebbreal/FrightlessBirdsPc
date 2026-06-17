@@ -50,9 +50,9 @@ public class SettingsManager : MonoBehaviour
         OnMinigameChange.GGToggle.isOn = SettingsManager.Instance.Settings.GGActive;
 
         //INITIALIZE VOLUME SLIDERS
-        OnVolumeChange.MasterMixer.SetFloat("MasterVolumeParam", SettingsManager.Instance.Settings.MasterVolume);
-        OnVolumeChange.MasterMixer.SetFloat("MusicVolumeParam", SettingsManager.Instance.Settings.MusicVolume);
-        OnVolumeChange.MasterMixer.SetFloat("SFXVolumeParam", SettingsManager.Instance.Settings.SfxVolume);
+        OnVolumeChange.MasterMixer.SetFloat("MasterVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.MasterVolume / 100f));
+        OnVolumeChange.MasterMixer.SetFloat("MusicVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.MusicVolume / 100f));
+        OnVolumeChange.MasterMixer.SetFloat("SFXVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.SfxVolume / 100f));
         OnVolumeChange.MasterVolumeSlider.value = SettingsManager.Instance.Settings.MasterVolume;
         OnVolumeChange.MusicVolumeSlider.value = SettingsManager.Instance.Settings.MusicVolume;
         OnVolumeChange.SFXVolumeSlider.value = SettingsManager.Instance.Settings.SfxVolume;
@@ -68,13 +68,15 @@ public class SettingsManager : MonoBehaviour
         OnGeneralChange.DashCooldownText.text = OnGeneralChange.DashCooldownSlider.value.ToString("0" + "s");
         OnGeneralChange.AttackCooldownText.text = OnGeneralChange.AttackCooldownSlider.value.ToString("0" + "s");
         OnGeneralChange.BlockDurationText.text = OnGeneralChange.BlockDurationSlider.value.ToString("0" + "s");
-        OnGeneralChange.PlayerAccelerationText.text = OnGeneralChange.PlayerAccelerationSlider.value.ToString("0" + "s");
+        OnGeneralChange.PlayerAccelerationText.text = OnGeneralChange.PlayerAccelerationSlider.value.ToString("0");
 
         //INITIALIZE FROZEN FEATHERS SLIDERS
         OnFrozenfeathersChange.PlatformShrinkTargetSlider.value = SettingsManager.Instance.Settings.FFPlatformEndSize;
         OnFrozenfeathersChange.LivesSlider.value = SettingsManager.Instance.Settings.FFLives;
+        OnFrozenfeathersChange.PlatformShrinkTimeSlider.value = SettingsManager.Instance.Settings.FFPlatformShrinkTime;
         OnFrozenfeathersChange.PlatformShrinkTargetText.text = OnFrozenfeathersChange.PlatformShrinkTargetSlider.value.ToString("0");
         OnFrozenfeathersChange.LivesText.text = OnFrozenfeathersChange.LivesSlider.value.ToString("0");
+        OnFrozenfeathersChange.PlatformShrinkTimeText.text = OnFrozenfeathersChange.PlatformShrinkTimeSlider.value.ToString("0" + "s");
 
         //INITIALIZE WORLD COOP SLIDERS
         OnWorldcoopChange.GameLengthSlider.value = SettingsManager.Instance.Settings.WCGameLength;

@@ -31,6 +31,7 @@ public class SettingsData : ScriptableObject
     [Header("Frozen Feathers Settings")]
     public float FFPlatformEndSize;
     public float FFLives;
+    public float FFPlatformShrinkTime;
     #endregion
 
     #region WorldCoop
