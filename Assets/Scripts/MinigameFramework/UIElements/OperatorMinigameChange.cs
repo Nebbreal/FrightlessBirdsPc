@@ -10,7 +10,7 @@ public class OperatorMinigameChange : MonoBehaviour
     public Toggle WCToggle;
     public Toggle GGToggle;
 
-    public void Awake()
+    public void OnEnable()
     {
         FFToggle.isOn = SettingsManager.Instance.Settings.FFActive;
         WCToggle.isOn = SettingsManager.Instance.Settings.WCActive;

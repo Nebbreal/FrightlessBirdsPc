@@ -18,6 +18,7 @@ public class SettingsManager : MonoBehaviour
     public Minigame GG;
 
     public GameEvent RestoreDefaults;
+    public GameEvent OnSaveSettings;
 
     public OperatorGeneralChange OnGeneralChange;
     public OperatorVolumeChange OnVolumeChange;
@@ -30,9 +31,12 @@ public class SettingsManager : MonoBehaviour
     private void Start()
     {
         //LOAD SETTINGS
-        if(!Instance) Instance = this;
+        if (!Instance) Instance = this;
         LoadSettings(SavePath);
-        
+        ReloadSettings();
+    }
+    public void ReloadSettings()
+    {
         var minigames = new List<Minigame>();
         if (Instance.Settings.FFActive) minigames.Add(FF);
         if (Instance.Settings.WCActive) minigames.Add(WC);
@@ -111,5 +115,6 @@ public class SettingsManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(Instance.Settings, true);
         File.WriteAllText(SavePath, json, new UTF8Encoding());
+        OnSaveSettings.Raise(this);
     }
 }

@@ -65,17 +65,14 @@ namespace Minigames.WorldCoop
 
             InitializeScoreboardBalls(team1ScoreBalls);
             InitializeScoreboardBalls(team2ScoreBalls);
+
+            LoadFromSettings();
         }
         
         public void LoadFromSettings()
         {
             _timer = SettingsManager.Instance.Settings.WCGameLength;
             scoreToWin = SettingsManager.Instance.Settings.WCGoalsToWin;
-        }
-
-        private void Awake()
-        {
-            LoadFromSettings();
         }
 
         private void InitializeScoreboardBalls(List<MeshRenderer> balls)
@@ -101,14 +98,21 @@ namespace Minigames.WorldCoop
                 return;
             }
 
-            if (scoringTeam == 1 && _scoreTeam1 < team1ScoreBalls.Count)
+            if (scoringTeam == 1 &&_scoreTeam1 < team1ScoreBalls.Count)
             {
                 StartCoroutine(FadeInBall(team1ScoreBalls[_scoreTeam1]));
-                _scoreTeam1++;
             } 
             else if (scoringTeam == 2 && _scoreTeam2 < team2ScoreBalls.Count)
             {
                 StartCoroutine(FadeInBall(team2ScoreBalls[_scoreTeam2]));
+            }
+
+            if (scoringTeam == 1)
+            {
+                _scoreTeam1++;
+            }
+            else if (scoringTeam == 2)
+            {
                 _scoreTeam2++;
             }
             ResetRound();
