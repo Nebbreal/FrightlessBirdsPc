@@ -4,7 +4,7 @@
     "BlockCooldown": 3.0,
     "PlayerMovementSpeed": 51.0,
     "FFActive": false,
-    "WCActive": true,
+    "WCActive": false,
     "GGActive": false,
     "MasterVolume": 1.0,
     "MusicVolume": 1.0,
