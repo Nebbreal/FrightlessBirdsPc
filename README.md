@@ -1,5 +1,5 @@
 # Frightless Birds
-The FrightlessBirds project is a 2-4 player party game made in Unity for the arcade table located in the Enversed game cafe.
+The FrightlessBirds project is a 2-4 player party game made in Unity for the arcade table located in the Enversed Experience Center.
 The game is intended to be played with the generic arcade controllers provided by Enversed.
 
 # Content
