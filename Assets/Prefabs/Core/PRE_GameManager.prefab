@@ -36280,6 +36280,7 @@ MonoBehaviour:
   RestoreDefaults: {fileID: 11400000, guid: 32cad42be8175054b9e0efcbe4c882a1, type: 2}
   OnSaveSettings: {fileID: 11400000, guid: ca3ab0bd8a82c8e42b0e871d89fe8fa3, type: 2}
   OnGeneralChange: {fileID: 815940358708892607}
+  OnMinigameChange: {fileID: 1128328324078837203}
   OnVolumeChange: {fileID: 7847634274173316613}
   OnFrozenfeathersChange: {fileID: 4357937728094564890}
   OnWorldcoopChange: {fileID: 5297336264855530316}

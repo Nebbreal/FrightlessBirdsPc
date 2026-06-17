@@ -21,6 +21,7 @@ public class SettingsManager : MonoBehaviour
     public GameEvent OnSaveSettings;
 
     public OperatorGeneralChange OnGeneralChange;
+    public OperatorMinigameChange OnMinigameChange;
     public OperatorVolumeChange OnVolumeChange;
     public OperatorFrozenfeathersChange OnFrozenfeathersChange;
     public OperatorWorldcoopChange OnWorldcoopChange;
@@ -43,6 +44,10 @@ public class SettingsManager : MonoBehaviour
         if (Instance.Settings.GGActive) minigames.Add(GG);
 
         GameManager.Instance.Minigames = minigames;
+
+        OnMinigameChange.FFToggle.isOn = SettingsManager.Instance.Settings.FFActive;
+        OnMinigameChange.WCToggle.isOn = SettingsManager.Instance.Settings.WCActive;
+        OnMinigameChange.GGToggle.isOn = SettingsManager.Instance.Settings.GGActive;
 
         //INITIALIZE VOLUME SLIDERS
         OnVolumeChange.MasterMixer.SetFloat("MasterVolumeParam", SettingsManager.Instance.Settings.MasterVolume);

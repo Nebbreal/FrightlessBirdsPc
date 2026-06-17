@@ -19,9 +19,9 @@ MonoBehaviour:
   FFActive: 1
   WCActive: 1
   GGActive: 1
-  MasterVolume: 1
-  MusicVolume: 1
-  SfxVolume: 1
+  MasterVolume: 80
+  MusicVolume: 100
+  SfxVolume: 100
   FFPlatformEndSize: 1
   FFLives: 1
   WCGameLength: 120

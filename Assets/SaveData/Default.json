@@ -1,4 +1,4 @@
-{
+﻿{
     "DashCooldown": 1.0,
     "AttackCooldown": 1.0,
     "BlockCooldown": 3.0,
@@ -6,9 +6,9 @@
     "FFActive": true,
     "WCActive": true,
     "GGActive": true,
-    "MasterVolume": 1.0,
-    "MusicVolume": 1.0,
-    "SfxVolume": 1.0,
+    "MasterVolume": 80.0,
+    "MusicVolume": 100.0,
+    "SfxVolume": 100.0,
     "FFPlatformEndSize": 1.0,
     "FFLives": 1.0,
     "WCGameLength": 120.0,
