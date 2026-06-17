@@ -129,12 +129,12 @@ namespace MinigameFramework
             }
         }
 
-        public void SpeedUpWinUI()
+        public void OnSkipWinUI()
         {
             //TODO remove && "Instance._gameConfig.winScreenLength - Instance._winUITime > 0.5f" when scene transitions get added
             if (Instance._winUITime > 0 && Instance._gameConfig.winScreenLength - Instance._winUITime > 0.5f)
             {
-                Instance._winUITime -= Instance._gameConfig.winScreenLength / Instance.PlayerManager.ActivePlayers.Count;
+                Instance._winUITime -= Instance._gameConfig.winScreenLength;
             }
         }
 
