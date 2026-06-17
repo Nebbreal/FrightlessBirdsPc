@@ -237,7 +237,6 @@ public class PlayerController : MonoBehaviour
     public void SkipWinUI(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        Debug.Log("Raising skip win UI event with host id: " + ID);
         if (GameManager.Instance.IsWinUIActive && ID == 0) //Allow only host to skip win UI
         {  
             onSkipWinUI.Raise(this);
