@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EventSystem
@@ -13,7 +14,15 @@ namespace EventSystem
             //Trigger all listeners
             foreach (GameEventListener listener in listeners.ToArray())
             {
-                listener.OnEventRaised(sender, data);
+                try
+                {
+                    listener.OnEventRaised(sender, data);
+                }
+                catch (Exception ex)
+                {
+                    Exception exceptionToThrow = new Exception($"GameEvent '{this.name}' called by '{sender.name}' threw exception with message: " + ex.Message, ex);
+                    Debug.LogException(exceptionToThrow);
+                }
             }
         }
 

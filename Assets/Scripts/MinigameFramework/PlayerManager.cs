@@ -335,7 +335,6 @@ namespace MinigameFramework
                 if (!DebugPlayers.Contains(player))
                 {
                     playerInput.enabled = true;
-
                 }
             }
         }
