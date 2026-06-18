@@ -24,6 +24,7 @@ The game is intended to be played with the generic arcade controllers provided b
     - [Game Event (ScriptableObjects)](#game-event-scriptableobjects)
     - [GameEventListener.cs](#gameeventlistenercs)
   - [Minigame Framework](#minigame-framework)
+  - [Operator Menu](#operator-menu)
 - [Conventions](#conventions)
   - [Commit messages](#commit-messages)
   - [Branching strategy](#branching-strategy)
@@ -118,6 +119,28 @@ In the Listener you need to specify which event it needs to listen to and which 
 The Framework used to manage the game, inside of PRE_GameManager you can find the config fields related to the game logic.
 New Minigames can be added by expanding the Minigames list with a new Minigame(``Create->MinigameFramework->Minigame``).
 Minigame specific configs or overrides are kept withing the Minigame scriptable objects.
+
+## Operator menu
+A hidden menu in the PRE_GameManager designed to tweak the gameplay on the fly without having to change values in the inspector. This menu can help with playesting the game to optimize the experience. 
+Saved- and default settings are stored in external JSON files named Save.Json & Defaults.Json.
+
+### Using the menu
+The menu is made to be navigated by only a mouse.
+The menu is activated by pressing  `[Middle mouse + Middle mouse]`.
+Changed settings must be saved before exiting the menu, otherwise they will not be changed in the game. The same goes for settings that have been returned to defaults.
+
+
+### Adding more settings
+New settings can be added with these steps:
+* Add UI boxes in required menu page.
+* Add reference to setting in SettingsData.cs.
+* Connect the setting’s variable to the SettingsManager object in the LoadFromSettings function.
+* Add references for the setting changer and value indicator text to the settings page’s script, for example OnGeneralChanged.cs, and drag the changer and the text into the references in the inspector.
+* Connect the slider’s value to the setting you made in step 2 in SettingsData.cs, also connect the text to the slider’s value.
+* Do the same in SettingsManger.cs's ReloadSettings function.
+* Make a function in the required setting page’s script to update the setting’s value and connect the function to the slider’s OnValueChanged() in the inspector.
+
+
 
 # Conventions
 ## Commit messages
