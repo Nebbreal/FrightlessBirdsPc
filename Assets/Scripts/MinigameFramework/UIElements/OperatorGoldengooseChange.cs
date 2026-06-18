@@ -26,9 +26,9 @@ public class OperatorGoldengooseChange : MonoBehaviour
         PickUpDelaySlider.value = SettingsManager.Instance.Settings.GGPickUpDelay;
         MinBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMinBisonUptime;
         MaxBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMaxBisonUptime;
-        GameLengthText.text = GameLengthSlider.value.ToString("0" + "s");
+        GameLengthText.text = GameLengthSlider.value.ToString("0.0" + "s");
         SecondsPerPointText.text = SecondsPerPointSlider.value.ToString("0" + "s");
-        PickUpDelayText.text = PickUpDelaySlider.value.ToString("0" + "s");
+        PickUpDelayText.text = PickUpDelaySlider.value.ToString("0.0" + "s");
         MinBisonUptimeText.text = MinBisonUptimeSlider.value.ToString("0" + "s");
         MaxBisonUptimeText.text = MaxBisonUptimeSlider.value.ToString("0" + "s");
     }
@@ -41,12 +41,12 @@ public class OperatorGoldengooseChange : MonoBehaviour
     public void OnSecondsPerPointChanged(float value)
     {
         SettingsManager.Instance.Settings.GGSecondsPerPoint = value;
-        SecondsPerPointText.text = SecondsPerPointSlider.value.ToString("0" + "s");
+        SecondsPerPointText.text = SecondsPerPointSlider.value.ToString("0.0" + "s");
     }
     public void OnPickUpDelayChanged(float value)
     {
         SettingsManager.Instance.Settings.GGPickUpDelay = value;
-        PickUpDelayText.text = PickUpDelaySlider.value.ToString("0" + "s");
+        PickUpDelayText.text = PickUpDelaySlider.value.ToString("0.0" + "s");
     }
     public void OnMinBisonUptimeChanged(float value)
     {
