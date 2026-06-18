@@ -123,6 +123,11 @@ public class PlayerController : MonoBehaviour
         acceleration = SettingsManager.Instance.Settings.PlayerMovementSpeed;
     }
 
+    public void RestoreDefaultSettings()
+    {
+        SettingsManager.Instance.ReloadSettings();
+    }
+
     private void Awake()
     {
         LoadFromSettings();
