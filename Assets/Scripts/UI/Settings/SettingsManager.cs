@@ -33,7 +33,27 @@ public class SettingsManager : MonoBehaviour
     {
         //LOAD SETTINGS
         if (!Instance) Instance = this;
-        LoadSettings(SavePath);
+
+        SavePath = Path.Combine(Application.persistentDataPath, "Save.json");
+        // DefaultPath = Path.Combine(Application.streamingAssetsPath, "Default.json");
+        // Resore defaults still has to be fixed for the build.
+
+        var saveDirectory = Path.GetDirectoryName(SavePath);
+        if (!string.IsNullOrEmpty(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
+
+        if (File.Exists(SavePath))
+        {
+            LoadSettings(SavePath);
+        }
+        else
+        {
+            Debug.Log("Save file not found, loading defaults");
+            LoadSettings(DefaultPath);
+        }
+
         ReloadSettings();
     }
     public void ReloadSettings()
