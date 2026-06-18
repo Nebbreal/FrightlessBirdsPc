@@ -77,8 +77,7 @@ namespace MinigameFramework
 
         [Header("Operator UI Events")] 
         public GameEvent onEnableOperatorMenuStart;
-        public GameEvent onDisableOperatorMenuStart;
-        public GameEvent onEnableGeneralSettings;
+
 
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -127,17 +126,6 @@ namespace MinigameFramework
             {
                 onEnableOperatorMenuStart.Raise(this);
             }
-        }
-
-        public void CloseOperatorMenuStart()
-        {
-            onDisableOperatorMenuStart.Raise(this);
-        }
-
-        public void OpenGeneralSettings()
-        {
-            onDisableOperatorMenuStart.Raise(this);
-            onEnableGeneralSettings.Raise((this));
         }
 
         private void CheckWinUITime()

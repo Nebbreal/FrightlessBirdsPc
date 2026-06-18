@@ -91,7 +91,7 @@ public class SettingsManager : MonoBehaviour
         OnGoldengooseChange.MinBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMinBisonUptime;
         OnGoldengooseChange.MaxBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMaxBisonUptime;
         OnGoldengooseChange.GameLengthText.text = OnGoldengooseChange.GameLengthSlider.value.ToString("0" + "s");
-        OnGoldengooseChange.SecondsPerPointText.text = OnGoldengooseChange.SecondsPerPointSlider.value.ToString("0.0" + "s");
+        OnGoldengooseChange.SecondsPerPointText.text = OnGoldengooseChange.SecondsPerPointSlider.value.ToString("0" + "s");
         OnGoldengooseChange.PickUpDelayText.text = OnGoldengooseChange.PickUpDelaySlider.value.ToString("0.0" + "s");
         OnGoldengooseChange.MinBisonUptimeText.text = OnGoldengooseChange.MinBisonUptimeSlider.value.ToString("0" + "s");
         OnGoldengooseChange.MaxBisonUptimeText.text = OnGoldengooseChange.MaxBisonUptimeSlider.value.ToString("0" + "s");
@@ -120,6 +120,7 @@ public class SettingsManager : MonoBehaviour
 
     public void SaveSettings()
     {
+        Debug.Log("Saving Settings");
         string json = JsonUtility.ToJson(Instance.Settings, true);
         File.WriteAllText(SavePath, json, new UTF8Encoding());
         OnSaveSettings.Raise(this);

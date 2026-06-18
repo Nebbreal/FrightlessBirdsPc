@@ -26,7 +26,7 @@ public class OperatorGoldengooseChange : MonoBehaviour
         PickUpDelaySlider.value = SettingsManager.Instance.Settings.GGPickUpDelay;
         MinBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMinBisonUptime;
         MaxBisonUptimeSlider.value = SettingsManager.Instance.Settings.GGMaxBisonUptime;
-        GameLengthText.text = GameLengthSlider.value.ToString("0.0" + "s");
+        GameLengthText.text = GameLengthSlider.value.ToString("0" + "s");
         SecondsPerPointText.text = SecondsPerPointSlider.value.ToString("0" + "s");
         PickUpDelayText.text = PickUpDelaySlider.value.ToString("0.0" + "s");
         MinBisonUptimeText.text = MinBisonUptimeSlider.value.ToString("0" + "s");

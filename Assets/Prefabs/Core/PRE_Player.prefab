@@ -6920,7 +6920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
-  gameEvent: {fileID: 11400000, guid: ca3ab0bd8a82c8e42b0e871d89fe8fa3, type: 2}
+  gameEvent: {fileID: 11400000, guid: 931fa342d9c8b3f41bdf5f70a422839b, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
