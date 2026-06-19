@@ -357,6 +357,5 @@ namespace MinigameFramework
                 }
             }
         }
-
     }
 }

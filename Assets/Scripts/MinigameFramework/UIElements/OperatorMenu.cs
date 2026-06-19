@@ -57,13 +57,11 @@ public class OperatorMenu : MonoBehaviour
 
     public void SaveSettings()
     {
-        Debug.Log("Settings Saved");
         SettingsManager.Instance.SaveSettings();
     }
 
     public void RestoreDefaults()
     {
-        Debug.Log("Defaults Restored");
         SettingsManager.Instance.LoadDefault();
     }
     #endregion

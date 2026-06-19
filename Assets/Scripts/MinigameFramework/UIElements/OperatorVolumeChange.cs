@@ -14,7 +14,6 @@ public class OperatorVolumeChange : MonoBehaviour
     public TextMeshProUGUI MusicText;
     public TextMeshProUGUI SFXText;
 
-
     public void Awake()
     {
         MasterMixer.SetFloat("MasterVolumeParam", -40f*(1f-SettingsManager.Instance.Settings.MasterVolume / 100f));
@@ -27,7 +26,6 @@ public class OperatorVolumeChange : MonoBehaviour
         MusicText.text = MusicVolumeSlider.value.ToString("0");
         SFXText.text = SFXVolumeSlider.value.ToString("0");
     }
-
 
     public void OnMasterVolumeChanged(float value)
     {

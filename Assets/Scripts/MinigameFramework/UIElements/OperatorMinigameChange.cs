@@ -25,8 +25,7 @@ public class OperatorMinigameChange : MonoBehaviour
         if (SettingsManager.Instance.Settings.GGActive) minigames.Add(SettingsManager.Instance.GG);
 
         GameManager.Instance.Minigames = minigames;
-
-
+        
         FFToggle.isOn = SettingsManager.Instance.Settings.FFActive;
         WCToggle.isOn = SettingsManager.Instance.Settings.WCActive;
         GGToggle.isOn = SettingsManager.Instance.Settings.GGActive;

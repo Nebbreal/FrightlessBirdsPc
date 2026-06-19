@@ -86,7 +86,7 @@ namespace Minigames.FrozenFeathers
 
         private void ShrinkPlatform()
         {
-            float currentPlatRadius = shrinkingPlatformTargetScale + (_startScale - shrinkingPlatformTargetScale) * (_roundTimer / _gameConfig.roundLength);
+            float currentPlatRadius = shrinkingPlatformTargetScale + (_startScale - shrinkingPlatformTargetScale) * (_roundTimer / SettingsManager.Instance.Settings.FFPlatformShrinkTime);
             shrinkingPlatform.transform.localScale = new Vector3(currentPlatRadius,  shrinkingPlatform.transform.transform.localScale.y, currentPlatRadius);
         }
 

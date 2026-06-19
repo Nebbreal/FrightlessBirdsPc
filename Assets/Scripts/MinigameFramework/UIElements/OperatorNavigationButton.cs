@@ -7,8 +7,6 @@ public class OperatorNavigationButton : MonoBehaviour
     [SerializeField] private GameEvent _onEnableSettingsCategory;
     [SerializeField] private GameEvent _onCloseAllSettingsFields;
 
-    
-
     public void HandleOnClick()
     {
         _onEnableSettingsCategory.Raise((this), _uiElement);

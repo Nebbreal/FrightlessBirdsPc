@@ -43,7 +43,6 @@ public class GoldenEgg : MonoBehaviour
         LoadFromSettings();
     }
     
-
     private void Update()
     {
         _timer += Time.deltaTime;
