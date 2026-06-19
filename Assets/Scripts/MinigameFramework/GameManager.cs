@@ -6,6 +6,7 @@ using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -24,9 +25,10 @@ namespace MinigameFramework
         [NonSerialized]
         private float _winUITime;
     
+        [FormerlySerializedAs("Minigames")]
         [Header("Game manager config")]
         [SerializeField]
-        private List<Minigame> minigames;
+        public List<Minigame> minigames;
         public Minigame tieBreakerMinigame;
         [SerializeField]
         private SceneField lobbyScene;
@@ -44,6 +46,9 @@ namespace MinigameFramework
         private bool _isGameEnding;
         [NonSerialized]
         public bool CanLeaveOverride;
+        [NonSerialized]
+        private PlayerInput _playerInput;
+
 
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -58,7 +63,7 @@ namespace MinigameFramework
         public GameEvent onEnablePlayerMovement;
         public GameEvent onInitializeTeams;
         
-        [Header("UI Events")]
+        [Header("Player UI Events")]
         public GameEvent onUpdateCountdownTimer;
         public GameEvent onEnableCountdownUI;
         public GameEvent onDisableCountdownUI;
@@ -72,10 +77,16 @@ namespace MinigameFramework
         public GameEvent onEnableScoreboardUI;
         public GameEvent onRestorePlayerOutlineColors;
 
+        [Header("Operator UI Events")] 
+        public GameEvent onEnableOperatorMenuStart;
+
+
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
         {
+            _playerInput = GetComponent<PlayerInput>();
+
             if (Instance == null)
             {
                 Instance = this;
@@ -108,6 +119,14 @@ namespace MinigameFramework
             if (Instance.IsWinUIActive)
             {
                 CheckWinUITime();
+            }
+        }
+
+        public void OpenOperatorMenuStart(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                onEnableOperatorMenuStart.Raise(this);
             }
         }
 

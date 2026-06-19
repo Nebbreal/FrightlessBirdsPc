@@ -5,6 +5,7 @@ using MinigameFramework;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace Minigames.RoadRunner
 {
@@ -15,16 +16,16 @@ namespace Minigames.RoadRunner
         private Minigame _gameConfig;
         private PlayerManager _playerManager;
         private List<GameObject> _players;
-        public List<TextMeshProUGUI> _playerScoreboards;
+        [FormerlySerializedAs("_playerScoreboards")] public List<TextMeshProUGUI> playerScoreboards;
 
         [NonSerialized] 
-        private Dictionary<string, int> playerScores = new();
+        private Dictionary<string, int> _playerScores = new();
 
         public GameEvent onEndMinigame;
         [SerializeField] 
         private GameObject deathPoint;
 
-        private float timer = 12f;
+        private float _timer = 12f;
         
         [SerializeField] 
         private List<GameObject> initialSpawnPoints;
@@ -51,27 +52,35 @@ namespace Minigames.RoadRunner
                 // player.AddComponent();
             }
 
-            foreach (TextMeshProUGUI t in _playerScoreboards)
+            foreach (TextMeshProUGUI t in playerScoreboards)
             {
                 t.text = "";
             }
             foreach (GameObject player in _players)
             {
                 PlayerController p = player.GetComponent<PlayerController>();
-                playerScores.Add(player.name, 0);
-                _playerScoreboards[p.ID].text = "0";
+                _playerScores.Add(player.name, 0);
+                playerScoreboards[p.ID].text = "0";
             }
 
-            timer = _gameConfig.roundLength;
+            _timer = _gameConfig.roundLength;
             
             onSetAllPlayerLives.Raise(this, _gameConfig.maxLives);
+            LoadFromSettings();
         }
+
+
+        public void LoadFromSettings()
+        {
+            _timer = SettingsManager.Instance.settings.goldenGooseGameLength;
+        }
+
 
         public void Update()
         {
-            timer -= Time.deltaTime;
+            _timer -= Time.deltaTime;
 
-            if (timer < 0f && !GameManager.Instance.HasMinigameEnded)
+            if (_timer < 0f && !GameManager.Instance.HasMinigameEnded)
             {
                 OnWin();
             }
@@ -118,10 +127,10 @@ namespace Minigames.RoadRunner
         {
             var highestScore = _players.Max(p =>
             (
-                playerScores[p.name]
+                _playerScores[p.name]
             ));
 
-            object[] winners = _players.Where(p => playerScores[p.name] == highestScore).ToArray<object>();
+            object[] winners = _players.Where(p => _playerScores[p.name] == highestScore).ToArray<object>();
 
             onEndMinigame.Raise(this, winners);
         }
@@ -133,10 +142,10 @@ namespace Minigames.RoadRunner
                 if (!_players.Contains(entity)) return;
 
                 PlayerController player = entity.GetComponent<PlayerController>();
-                int newScore = playerScores[player.name] + 1;
-                playerScores[player.name] = newScore;
+                int newScore = _playerScores[player.name] + 1;
+                _playerScores[player.name] = newScore;
 
-                _playerScoreboards[player.ID].text = newScore.ToString();
+                playerScoreboards[player.ID].text = newScore.ToString();
             }
         }
     }

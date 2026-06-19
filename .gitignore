@@ -3,6 +3,14 @@
 *.slnx
 UpgradeLog.htm
 .vsconfig
+PerformanceTestRunInfo.json
+PerformanceTestRunSettings.json
+Default.json
+Save.json
+Default.json.meta
+Save.json.meta
+
+
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #

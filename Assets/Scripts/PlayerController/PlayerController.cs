@@ -116,6 +116,24 @@ public class PlayerController : MonoBehaviour
     public GameEvent onPlayerAttack;
     public GameEvent onPlayerBrace;
 
+    public void LoadFromSettings()
+    {
+        attackDelay = SettingsManager.Instance.settings.attackCooldown;
+        dashDelay = SettingsManager.Instance.settings.dashCooldown;
+        maxBlockCharge = SettingsManager.Instance.settings.blockCooldown;
+        acceleration = SettingsManager.Instance.settings.playerMovementSpeed;
+    }
+
+    public void RestoreDefaultSettings()
+    {
+        SettingsManager.Instance.ReloadSettings();
+    }
+
+    private void Awake()
+    {
+        LoadFromSettings();
+    }
+
     private void Start()
     {
         playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();

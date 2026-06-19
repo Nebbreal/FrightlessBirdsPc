@@ -5,15 +5,12 @@ using EventSystem;
 using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
 {
     public class PlayerManager : MonoBehaviour
     {
-        private static readonly Dictionary<Material, Color> OriginalOutlineColors = new();
-
         [NonSerialized] public List<GameObject> Players;
         [NonSerialized] public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
         [NonSerialized] public List<GameObject> ActivePlayers;
@@ -28,7 +25,6 @@ namespace MinigameFramework
 
         [NonSerialized] public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] public List<GameObject> AlivePlayers;
-        private static int _outlineColor = Shader.PropertyToID("_OutlineColor");
 
 
         [SerializeField]
@@ -60,7 +56,7 @@ namespace MinigameFramework
         #region PlayerInit
         public void RegisterPlayer(PlayerInput player)
         {
-            if(GameManager.Instance.IsMinigameSceneActive) return;
+            if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
      
             if (Players == null || Players.Count == 0)
             {
@@ -372,6 +368,7 @@ namespace MinigameFramework
                 controller.ResetDecelerationMultiplierOverride();
             }
         }
+
         #endregion
         
         #region PlayerLives

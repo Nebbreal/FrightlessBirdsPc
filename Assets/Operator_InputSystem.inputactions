@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Operator_InputSystem",
+    "maps": [
+        {
+            "name": "Operator",
+            "id": "2beadd7c-92e8-45e2-b506-cf40fbcae72d",
+            "actions": [
+                {
+                    "name": "OpenMenu",
+                    "type": "Button",
+                    "id": "982dd0eb-aa12-4d6f-a27a-52613fde8385",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "220d3cdc-019d-4639-b656-1cae966aa810",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": ";Operator",
+                    "action": "OpenMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

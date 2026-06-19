@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateMenu",
+                    "type": "Button",
+                    "id": "f6a555ff-09f0-468c-80c7-6521f611cf16",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -420,6 +429,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Any",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6731b4cd-36d4-49a0-8aae-8e0d9507a030",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

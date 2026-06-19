@@ -1,26 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class CalibrationManager : MonoBehaviour
 {
-    public GameObject[] BlinkForCalibrations;
-    private int controllerCount = 0;
+    [FormerlySerializedAs("BlinkForCalibrations")] public GameObject[] blinkForCalibrations;
+    private int _controllerCount = 0;
 
     public void OnCalibration(PlayerInput playerInput)
     {
-        BlinkForCalibrations[controllerCount].SetActive(false);
-        controllerCount++;
-        if (controllerCount >= BlinkForCalibrations.Length)
+        if (playerInput.currentActionMap.name == "Operator") return;
+        blinkForCalibrations[_controllerCount].SetActive(false);
+        _controllerCount++;
+        if (_controllerCount >= blinkForCalibrations.Length)
         {
             return;
         }
-        BlinkForCalibrations[controllerCount].SetActive(true);
+        blinkForCalibrations[_controllerCount].SetActive(true);
     }
 
     public bool ConfirmCalibration()
     {
-        if (controllerCount < BlinkForCalibrations.Length - 1)
+        if (_controllerCount < blinkForCalibrations.Length - 1)
         {
             return false;
         }
@@ -30,11 +32,11 @@ public class CalibrationManager : MonoBehaviour
 
     public void OnResetCalibration()
     {
-        controllerCount = 0;
-        foreach (var blink in BlinkForCalibrations)
+        _controllerCount = 0;
+        foreach (var blink in blinkForCalibrations)
         {
             blink.SetActive(false);
         }
-        BlinkForCalibrations[controllerCount].SetActive(true);
+        blinkForCalibrations[_controllerCount].SetActive(true);
     }
 }
