@@ -33,6 +33,7 @@ public class SettingsManager : MonoBehaviour
     {
         //LOAD SETTINGS
         if (!Instance) Instance = this;
+        CopySettings();
 
         SavePath = Application.dataPath + "/StreamingAssets/Save.json";
         DefaultPath = Application.dataPath + "/StreamingAssets/Default.json";
@@ -49,6 +50,33 @@ public class SettingsManager : MonoBehaviour
         }
 
         ReloadSettings();
+    }
+
+    public void CopySettings()
+    {
+        var settings = ScriptableObject.CreateInstance<SettingsData>();
+        settings.AttackCooldown = Instance.Settings.AttackCooldown;
+        settings.BlockCooldown = Instance.Settings.BlockCooldown;
+        settings.DashCooldown = Instance.Settings.DashCooldown;
+        settings.PlayerMovementSpeed = Instance.Settings.PlayerMovementSpeed;
+        settings.FFActive = Instance.Settings.FFActive;
+        settings.FFLives = Instance.Settings.FFLives;
+        settings.FFPlatformEndSize = Instance.Settings.FFPlatformEndSize;
+        settings.FFPlatformShrinkTime = Instance.Settings.FFPlatformShrinkTime;
+        settings.WCGameLength = Instance.Settings.WCGameLength;
+        settings.WCActive = Instance.Settings.WCActive;
+        settings.WCGoalsToWin = Instance.Settings.WCGoalsToWin;
+        settings.GGGameLength = Instance.Settings.GGGameLength;
+        settings.GGMaxBisonUptime = Instance.Settings.GGMaxBisonUptime;
+        settings.GGMinBisonUptime = Instance.Settings.GGPickUpDelay;
+        settings.GGPickUpDelay = Instance.Settings.GGPickUpDelay;
+        settings.GGSecondsPerPoint = Instance.Settings.GGSecondsPerPoint;
+        settings.GGActive = Instance.Settings.GGActive;
+        settings.MasterVolume = Instance.Settings.MasterVolume;
+        settings.MusicVolume = Instance.Settings.MusicVolume;
+        settings.SfxVolume = Instance.Settings.SfxVolume;
+
+        Instance.Settings = settings;
     }
     
     public void ReloadSettings()
