@@ -34,16 +34,19 @@ public class SettingsManager : MonoBehaviour
         //LOAD SETTINGS
         if (!Instance) Instance = this;
 
-        SavePath = Path.Combine(Application.persistentDataPath, "Save.json");
+        SavePath = Application.dataPath + "/StreamingAssets/Save.json";
+        DefaultPath = Application.dataPath + "/StreamingAssets/Default.json";
+        // SavePath = Path.Combine(Application.persistentDataPath, "Save.json");
         // DefaultPath = Path.Combine(Application.streamingAssetsPath, "Default.json");
         // Resore defaults still has to be fixed for the build.
 
-        var saveDirectory = Path.GetDirectoryName(SavePath);
-        if (!string.IsNullOrEmpty(saveDirectory))
-        {
-            Directory.CreateDirectory(saveDirectory);
-        }
+        // var saveDirectory = Path.GetDirectoryName(SavePath);
+        // if (!string.IsNullOrEmpty(saveDirectory))
+        // {
+        //     Directory.CreateDirectory(saveDirectory);
+        // }
 
+        SaveDefaultSettings();
         if (File.Exists(SavePath))
         {
             LoadSettings(SavePath);
@@ -143,6 +146,14 @@ public class SettingsManager : MonoBehaviour
         Debug.Log("Saving Settings");
         string json = JsonUtility.ToJson(Instance.Settings, true);
         File.WriteAllText(SavePath, json, new UTF8Encoding());
+        OnSaveSettings.Raise(this);
+    }
+
+    public void SaveDefaultSettings()
+    {
+        Debug.Log("Saving Default Settings");
+        string json = JsonUtility.ToJson(Instance.Settings, true);
+        File.WriteAllText(DefaultPath, json, new UTF8Encoding());
         OnSaveSettings.Raise(this);
     }
 }
