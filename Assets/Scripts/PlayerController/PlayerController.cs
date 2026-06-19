@@ -118,10 +118,10 @@ public class PlayerController : MonoBehaviour
 
     public void LoadFromSettings()
     {
-        attackDelay = SettingsManager.Instance.Settings.AttackCooldown;
-        dashDelay = SettingsManager.Instance.Settings.DashCooldown;
-        maxBlockCharge = SettingsManager.Instance.Settings.BlockCooldown;
-        acceleration = SettingsManager.Instance.Settings.PlayerMovementSpeed;
+        attackDelay = SettingsManager.Instance.settings.attackCooldown;
+        dashDelay = SettingsManager.Instance.settings.dashCooldown;
+        maxBlockCharge = SettingsManager.Instance.settings.blockCooldown;
+        acceleration = SettingsManager.Instance.settings.playerMovementSpeed;
     }
 
     public void RestoreDefaultSettings()

@@ -6,6 +6,7 @@ using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -24,9 +25,10 @@ namespace MinigameFramework
         [NonSerialized]
         private float _winUITime;
     
+        [FormerlySerializedAs("Minigames")]
         [Header("Game manager config")]
         [SerializeField]
-        public List<Minigame> Minigames;
+        public List<Minigame> minigames;
         public Minigame tieBreakerMinigame;
         [SerializeField]
         private SceneField lobbyScene;
@@ -45,7 +47,7 @@ namespace MinigameFramework
         [NonSerialized]
         public bool CanLeaveOverride;
         [NonSerialized]
-        private PlayerInput playerInput;
+        private PlayerInput _playerInput;
 
 
         [Header("Game Events")] 
@@ -83,7 +85,7 @@ namespace MinigameFramework
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
         {
-            playerInput = GetComponent<PlayerInput>();
+            _playerInput = GetComponent<PlayerInput>();
 
             if (Instance == null)
             {
@@ -206,7 +208,7 @@ namespace MinigameFramework
             Minigame selectedMinigame;
             int currentPlayerCount = Instance.PlayerManager.ActivePlayers.Count;
             List<Minigame> validMinigames =
-                Minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
+                minigames.Where(m => m.intendedPlayerCounts.Contains(currentPlayerCount)).ToList();
             
             if (validMinigames.Count == 0)
             {

@@ -1,19 +1,20 @@
 using UnityEngine;
-using EventSystem; 
+using EventSystem;
+using UnityEngine.Serialization;
 
 public class OperatorNavigationButton : MonoBehaviour
 {
-    [SerializeField] private GameObject _uiElement;
-    [SerializeField] private GameEvent _onEnableSettingsCategory;
-    [SerializeField] private GameEvent _onCloseAllSettingsFields;
+    [FormerlySerializedAs("_uiElement")] [SerializeField] private GameObject uiElement;
+    [FormerlySerializedAs("_onEnableSettingsCategory")] [SerializeField] private GameEvent onEnableSettingsCategory;
+    [FormerlySerializedAs("_onCloseAllSettingsFields")] [SerializeField] private GameEvent onCloseAllSettingsFields;
 
     public void HandleOnClick()
     {
-        _onEnableSettingsCategory.Raise((this), _uiElement);
+        onEnableSettingsCategory.Raise((this), uiElement);
     }
 
     public void HandleCloseAllSettings()
     {
-        _onCloseAllSettingsFields.Raise(this, null);
+        onCloseAllSettingsFields.Raise(this, null);
     }
 }

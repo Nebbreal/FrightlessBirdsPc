@@ -1,55 +1,55 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class OperatorGeneralChange : MonoBehaviour
 {
-    [SerializeField]
-    public Slider DashCooldownSlider;
-    public Slider AttackCooldownSlider;
-    public Slider BlockDurationSlider;
-    public Slider PlayerAccelerationSlider;
+    [FormerlySerializedAs("DashCooldownSlider")] [SerializeField]
+    public Slider dashCooldownSlider;
+    [FormerlySerializedAs("AttackCooldownSlider")] public Slider attackCooldownSlider;
+    [FormerlySerializedAs("BlockDurationSlider")] public Slider blockDurationSlider;
+    [FormerlySerializedAs("PlayerAccelerationSlider")] public Slider playerAccelerationSlider;
 
-    public TextMeshProUGUI DashCooldownText;
-    public TextMeshProUGUI AttackCooldownText;
-    public TextMeshProUGUI BlockDurationText;
-    public TextMeshProUGUI PlayerAccelerationText;
+    [FormerlySerializedAs("DashCooldownText")] public TextMeshProUGUI dashCooldownText;
+    [FormerlySerializedAs("AttackCooldownText")] public TextMeshProUGUI attackCooldownText;
+    [FormerlySerializedAs("BlockDurationText")] public TextMeshProUGUI blockDurationText;
+    [FormerlySerializedAs("PlayerAccelerationText")] public TextMeshProUGUI playerAccelerationText;
 
 
     void Awake()
     {
-        DashCooldownSlider.value = SettingsManager.Instance.Settings.DashCooldown;
-        AttackCooldownSlider.value = SettingsManager.Instance.Settings.AttackCooldown;
-        BlockDurationSlider.value = SettingsManager.Instance.Settings.BlockCooldown;
-        PlayerAccelerationSlider.value = SettingsManager.Instance.Settings.PlayerMovementSpeed;
-        DashCooldownText.text = DashCooldownSlider.value.ToString("0" + "s");
-        AttackCooldownText.text = AttackCooldownSlider.value.ToString("0" + "s");
-        BlockDurationText.text = BlockDurationSlider.value.ToString("0" + "s");
-        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0");
+        dashCooldownSlider.value = SettingsManager.Instance.settings.dashCooldown;
+        attackCooldownSlider.value = SettingsManager.Instance.settings.attackCooldown;
+        blockDurationSlider.value = SettingsManager.Instance.settings.blockCooldown;
+        playerAccelerationSlider.value = SettingsManager.Instance.settings.playerMovementSpeed;
+        dashCooldownText.text = dashCooldownSlider.value.ToString("0" + "s");
+        attackCooldownText.text = attackCooldownSlider.value.ToString("0" + "s");
+        blockDurationText.text = blockDurationSlider.value.ToString("0" + "s");
+        playerAccelerationText.text = playerAccelerationSlider.value.ToString("0");
     }
 
     public void OnDashCooldownChanged(float value)
     {
-        SettingsManager.Instance.Settings.DashCooldown = value;
-        DashCooldownText.text = DashCooldownSlider.value.ToString("0" + "s");
+        SettingsManager.Instance.settings.dashCooldown = value;
+        dashCooldownText.text = dashCooldownSlider.value.ToString("0" + "s");
     }
 
     public void OnAttackCooldownChanged(float value)
     {
-        SettingsManager.Instance.Settings.AttackCooldown = value;
-        AttackCooldownText.text = AttackCooldownSlider.value.ToString("0" + "s");
+        SettingsManager.Instance.settings.attackCooldown = value;
+        attackCooldownText.text = attackCooldownSlider.value.ToString("0" + "s");
     }
 
     public void OnMaxBlockDurationChanged(float value)
     {
-        SettingsManager.Instance.Settings.BlockCooldown = value;
-        BlockDurationText.text = BlockDurationSlider.value.ToString("0" + "s");
+        SettingsManager.Instance.settings.blockCooldown = value;
+        blockDurationText.text = blockDurationSlider.value.ToString("0" + "s");
     }
 
     public void OnPlayerMovementSpeedChanged(float value)
     {
-        SettingsManager.Instance.Settings.PlayerMovementSpeed = value;
-        PlayerAccelerationText.text = PlayerAccelerationSlider.value.ToString("0");
+        SettingsManager.Instance.settings.playerMovementSpeed = value;
+        playerAccelerationText.text = playerAccelerationSlider.value.ToString("0");
     }
 }

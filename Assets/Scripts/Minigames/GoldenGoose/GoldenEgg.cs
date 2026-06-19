@@ -3,20 +3,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using EventSystem;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class GoldenEgg : MonoBehaviour
 {
-    public float AnimationTime;
-    public float PointTime;
-    public ParticleSystem GivePointsParticles;
-    public Image PointCooldownImage;
-    public AudioSource Pling;
-    public float DropDistance;
+    [FormerlySerializedAs("AnimationTime")] public float animationTime;
+    [FormerlySerializedAs("PointTime")] public float pointTime;
+    [FormerlySerializedAs("GivePointsParticles")] public ParticleSystem givePointsParticles;
+    [FormerlySerializedAs("PointCooldownImage")] public Image pointCooldownImage;
+    [FormerlySerializedAs("Pling")] public AudioSource pling;
+    [FormerlySerializedAs("DropDistance")] public float dropDistance;
     public GameEvent onScorePoint;
-    [Range(0f, 1f)]
-    public float DashStealDelayFactor;
+    [FormerlySerializedAs("DashStealDelayFactor")] [Range(0f, 1f)]
+    public float dashStealDelayFactor;
 
-    public LayerMask Mask;
+    [FormerlySerializedAs("Mask")] public LayerMask mask;
 
     public Vector2 min;
     public Vector2 max;
@@ -24,45 +25,45 @@ public class GoldenEgg : MonoBehaviour
     private float _timer = 0f;
     private float _pointTimer = 0f;
     private bool _canPickUp;
-    private Vector3 dropStart;
-    private Vector3 dropPosition;
+    private Vector3 _dropStart;
+    private Vector3 _dropPosition;
 
-    private List<PlayerController> inside;
+    private List<PlayerController> _inside;
 
-    private PlayerController currentOwner;
+    private PlayerController _currentOwner;
 
     public void LoadFromSettings()
     {
-        AnimationTime = SettingsManager.Instance.Settings.GGPickUpDelay;
-        PointTime = SettingsManager.Instance.Settings.GGSecondsPerPoint;
+        animationTime = SettingsManager.Instance.settings.goldenGoosePickUpDelay;
+        pointTime = SettingsManager.Instance.settings.goldenGooseSecondsPerPoint;
     }
 
     private void Awake()
     {
-        inside = new List<PlayerController>();
+        _inside = new List<PlayerController>();
         LoadFromSettings();
     }
     
     private void Update()
     {
         _timer += Time.deltaTime;
-        var t = _timer / AnimationTime;
+        var t = _timer / animationTime;
 
-        if (!currentOwner && _canPickUp && inside.Count > 0)
+        if (!_currentOwner && _canPickUp && _inside.Count > 0)
         {
-            currentOwner = inside.First();
-            inside.Clear();
-            transform.SetParent(currentOwner.transform);
+            _currentOwner = _inside.First();
+            _inside.Clear();
+            transform.SetParent(_currentOwner.transform);
             _pointTimer = 0f;
         }
 
-        if (currentOwner)
+        if (_currentOwner)
         {
             _pointTimer += Time.deltaTime;
         }
         else if (!_canPickUp)
         {
-            transform.position = Vector3.Lerp(dropStart, dropPosition, t) + Vector3.up * (0.5f - Mathf.Abs(t - 0.5f)) * 2f;
+            transform.position = Vector3.Lerp(_dropStart, _dropPosition, t) + Vector3.up * (0.5f - Mathf.Abs(t - 0.5f)) * 2f;
         }
 
         if (t >= 1f)
@@ -72,18 +73,18 @@ public class GoldenEgg : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, 0.5f, transform.localPosition.z);
         }
 
-        if (currentOwner)
+        if (_currentOwner)
         {
             transform.localPosition = new Vector3(0f, 2f, 0f);
         }
 
-        var point_t = _pointTimer / PointTime;
-        PointCooldownImage.fillAmount = point_t;
-        if (point_t >= 1f && currentOwner)
+        var point_t = _pointTimer / pointTime;
+        pointCooldownImage.fillAmount = point_t;
+        if (point_t >= 1f && _currentOwner)
         {
-            onScorePoint.Raise(this, currentOwner.gameObject);
-            GivePointsParticles.Play();
-            Pling.Play();
+            onScorePoint.Raise(this, _currentOwner.gameObject);
+            givePointsParticles.Play();
+            pling.Play();
             _pointTimer = 0f;
         }
     }
@@ -92,29 +93,29 @@ public class GoldenEgg : MonoBehaviour
     {
         PlayerController p = col.GetComponent<PlayerController>();
         if (p){
-            inside.Add(p);
+            _inside.Add(p);
         }
     }
     
     private void OnTriggerExit(Collider col)
     {
         PlayerController p = col.GetComponent<PlayerController>();
-        if (inside.Contains(p)){
-            inside.Remove(p);
+        if (_inside.Contains(p)){
+            _inside.Remove(p);
         }
     }
 
     public void OnDashInto(Component sender, object[] obj)
     {
-        if (!currentOwner) return;
+        if (!_currentOwner) return;
         if (obj.First() is CollisionData col)
         {
-            if (sender == currentOwner && _canPickUp)
+            if (sender == _currentOwner && _canPickUp)
             {
-                currentOwner = col.OriginCollider.GetComponent<PlayerController>();
+                _currentOwner = col.OriginCollider.GetComponent<PlayerController>();
                 transform.SetParent(col.OriginCollider.transform);
                 _pointTimer = 0f;
-                _timer = AnimationTime * DashStealDelayFactor;
+                _timer = animationTime * dashStealDelayFactor;
                 _canPickUp = false;
             }
         }
@@ -122,8 +123,8 @@ public class GoldenEgg : MonoBehaviour
 
     public void OnAttacked(Component sender, object[] _obj)
     {
-        if (!currentOwner) return;
-        if (sender == currentOwner)
+        if (!_currentOwner) return;
+        if (sender == _currentOwner)
         {
             Drop();
         }
@@ -131,17 +132,17 @@ public class GoldenEgg : MonoBehaviour
 
     public void Drop()
     {
-        currentOwner = null;
+        _currentOwner = null;
         transform.SetParent(null);
-        dropStart = new Vector3(transform.position.x, 0f, transform.position.z);
-        dropPosition = new Vector3(transform.position.x, 0f, transform.position.z) +
-                       new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * DropDistance;
-        dropPosition.x = Mathf.Clamp(dropPosition.x, min.x, max.x);
-        dropPosition.z = Mathf.Clamp(dropPosition.z, min.y, max.y);
-        if (Physics.Raycast(transform.position, dropPosition - transform.position, out var hitInfo, Mask))
+        _dropStart = new Vector3(transform.position.x, 0f, transform.position.z);
+        _dropPosition = new Vector3(transform.position.x, 0f, transform.position.z) +
+                       new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * dropDistance;
+        _dropPosition.x = Mathf.Clamp(_dropPosition.x, min.x, max.x);
+        _dropPosition.z = Mathf.Clamp(_dropPosition.z, min.y, max.y);
+        if (Physics.Raycast(transform.position, _dropPosition - transform.position, out var hitInfo, mask))
         {
-            dropPosition = hitInfo.point + hitInfo.normal;
-            dropPosition.y = 0f;
+            _dropPosition = hitInfo.point + hitInfo.normal;
+            _dropPosition.y = 0f;
         }
         _pointTimer = 0f;
         _timer = 0f;

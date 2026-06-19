@@ -11,17 +11,17 @@ public class SpawnObstacle : MonoBehaviour
     public List<GameObject> dangerIndicators;
 
     public float showDangerBelowTime = 0.5f;
-    private int currentPos;
-    private float timer = 0f;
+    private int _currentPos;
+    private float _timer = 0f;
     void Start()
     {
-        timer = Random.Range(minWaitTime, maxWaitTime);
+        _timer = Random.Range(minWaitTime, maxWaitTime);
     }
 
     public void LoadFromSettings()
     {
-        minWaitTime = SettingsManager.Instance.Settings.GGMinBisonUptime;
-        maxWaitTime = SettingsManager.Instance.Settings.GGMaxBisonUptime;
+        minWaitTime = SettingsManager.Instance.settings.goldenGooseMinBisonUptime;
+        maxWaitTime = SettingsManager.Instance.settings.goldenGooseMaxBisonUptime;
     }
 
     private void Awake()
@@ -31,18 +31,18 @@ public class SpawnObstacle : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= showDangerBelowTime && !dangerIndicators[currentPos].activeSelf) {
-            dangerIndicators[currentPos].SetActive(true);
+        _timer -= Time.deltaTime;
+        if (_timer <= showDangerBelowTime && !dangerIndicators[_currentPos].activeSelf) {
+            dangerIndicators[_currentPos].SetActive(true);
         }
-        if (timer <= 0f)
+        if (_timer <= 0f)
         {
-            timer = Random.Range(minWaitTime, maxWaitTime);
+            _timer = Random.Range(minWaitTime, maxWaitTime);
             GameObject obst = Instantiate(obstacles[Random.Range(0, obstacles.Count)]);
-            obst.transform.position = possibleSpawnPositions[currentPos].transform.position;
-            obst.transform.rotation = possibleSpawnPositions[currentPos].transform.rotation;
-            dangerIndicators[currentPos].SetActive(false);
-            currentPos = Random.Range(0, possibleSpawnPositions.Count);
+            obst.transform.position = possibleSpawnPositions[_currentPos].transform.position;
+            obst.transform.rotation = possibleSpawnPositions[_currentPos].transform.rotation;
+            dangerIndicators[_currentPos].SetActive(false);
+            _currentPos = Random.Range(0, possibleSpawnPositions.Count);
         }
     }
 }

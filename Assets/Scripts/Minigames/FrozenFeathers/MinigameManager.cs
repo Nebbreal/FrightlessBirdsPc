@@ -2,9 +2,7 @@
 using System.Linq;
 using EventSystem;
 using MinigameFramework;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Minigames.FrozenFeathers
 {
@@ -65,9 +63,9 @@ namespace Minigames.FrozenFeathers
 
         public void LoadFromSettings()
         {
-            _roundTimer = SettingsManager.Instance.Settings.FFPlatformShrinkTime;
-            shrinkingPlatformTargetScale = SettingsManager.Instance.Settings.FFPlatformEndSize;
-            onSetAllPlayerLives.Raise(this, (int)SettingsManager.Instance.Settings.FFLives);
+            _roundTimer = SettingsManager.Instance.settings.frozenFeathersPlatformShrinkTime;
+            shrinkingPlatformTargetScale = SettingsManager.Instance.settings.frozenFeathersPlatformEndSize;
+            onSetAllPlayerLives.Raise(this, (int)SettingsManager.Instance.settings.frozenFeathersLives);
         }
 
         public void Update()
@@ -86,7 +84,7 @@ namespace Minigames.FrozenFeathers
 
         private void ShrinkPlatform()
         {
-            float currentPlatRadius = shrinkingPlatformTargetScale + (_startScale - shrinkingPlatformTargetScale) * (_roundTimer / SettingsManager.Instance.Settings.FFPlatformShrinkTime);
+            float currentPlatRadius = shrinkingPlatformTargetScale + (_startScale - shrinkingPlatformTargetScale) * (_roundTimer / SettingsManager.Instance.settings.frozenFeathersPlatformShrinkTime);
             shrinkingPlatform.transform.localScale = new Vector3(currentPlatRadius,  shrinkingPlatform.transform.transform.localScale.y, currentPlatRadius);
         }
 

@@ -1,43 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class OperatorFrozenfeathersChange : MonoBehaviour
 {
-    [SerializeField] 
-    public Slider PlatformShrinkTargetSlider;
-    public Slider LivesSlider;
-    public Slider PlatformShrinkTimeSlider;
+    [FormerlySerializedAs("PlatformShrinkTargetSlider")] [SerializeField] 
+    public Slider platformShrinkTargetSlider;
+    [FormerlySerializedAs("LivesSlider")] public Slider livesSlider;
+    [FormerlySerializedAs("PlatformShrinkTimeSlider")] public Slider platformShrinkTimeSlider;
 
-    public TextMeshProUGUI PlatformShrinkTargetText;
-    public TextMeshProUGUI LivesText;
-    public TextMeshProUGUI PlatformShrinkTimeText;
+    [FormerlySerializedAs("PlatformShrinkTargetText")] public TextMeshProUGUI platformShrinkTargetText;
+    [FormerlySerializedAs("LivesText")] public TextMeshProUGUI livesText;
+    [FormerlySerializedAs("PlatformShrinkTimeText")] public TextMeshProUGUI platformShrinkTimeText;
 
     void Awake()
     {
-        PlatformShrinkTargetSlider.value = SettingsManager.Instance.Settings.FFPlatformEndSize;
-        LivesSlider.value = SettingsManager.Instance.Settings.FFLives;
-        PlatformShrinkTimeSlider.value = SettingsManager.Instance.Settings.FFPlatformShrinkTime;
-        PlatformShrinkTargetText.text = PlatformShrinkTargetSlider.value.ToString("0");
-        LivesText.text = LivesSlider.value.ToString("0");
-        PlatformShrinkTimeText.text = PlatformShrinkTimeSlider.value.ToString("0"+"s");
+        platformShrinkTargetSlider.value = SettingsManager.Instance.settings.frozenFeathersPlatformEndSize;
+        livesSlider.value = SettingsManager.Instance.settings.frozenFeathersLives;
+        platformShrinkTimeSlider.value = SettingsManager.Instance.settings.frozenFeathersPlatformShrinkTime;
+        platformShrinkTargetText.text = platformShrinkTargetSlider.value.ToString("0");
+        livesText.text = livesSlider.value.ToString("0");
+        platformShrinkTimeText.text = platformShrinkTimeSlider.value.ToString("0"+"s");
     }
 
     public void OnPlatformShrinkTargetChanged(float value)
     {
-        SettingsManager.Instance.Settings.FFPlatformEndSize = value;
-        PlatformShrinkTargetText.text = PlatformShrinkTargetSlider.value.ToString("0");
+        SettingsManager.Instance.settings.frozenFeathersPlatformEndSize = value;
+        platformShrinkTargetText.text = platformShrinkTargetSlider.value.ToString("0");
     }
 
     public void OnLivesChanged(float value)
     {
-        SettingsManager.Instance.Settings.FFLives = (int)value;
-        LivesText.text = LivesSlider.value.ToString("0");
+        SettingsManager.Instance.settings.frozenFeathersLives = (int)value;
+        livesText.text = livesSlider.value.ToString("0");
     }
 
     public void OnPlatformShrinkTimeChanged(float value)
     {
-        SettingsManager.Instance.Settings.FFPlatformShrinkTime = value;
-        PlatformShrinkTimeText.text = PlatformShrinkTimeSlider.value.ToString("0" + "s");
+        SettingsManager.Instance.settings.frozenFeathersPlatformShrinkTime = value;
+        platformShrinkTimeText.text = platformShrinkTimeSlider.value.ToString("0" + "s");
     }
 }

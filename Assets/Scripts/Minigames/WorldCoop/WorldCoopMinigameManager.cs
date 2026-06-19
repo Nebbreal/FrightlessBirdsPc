@@ -71,8 +71,8 @@ namespace Minigames.WorldCoop
         
         public void LoadFromSettings()
         {
-            _timer = SettingsManager.Instance.Settings.WCGameLength;
-            scoreToWin = SettingsManager.Instance.Settings.WCGoalsToWin;
+            _timer = SettingsManager.Instance.settings.worldCoopGameLength;
+            scoreToWin = SettingsManager.Instance.settings.worldCoopGoalsToWin;
         }
 
         private void InitializeScoreboardBalls(List<MeshRenderer> balls)
