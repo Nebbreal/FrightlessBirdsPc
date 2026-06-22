@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &31240600782115951
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,9 +632,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f992a5e1784a6494eb710789a7f3bf7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  FFToggle: {fileID: 549707029720862782}
-  WCToggle: {fileID: 1606506305084039800}
-  GGToggle: {fileID: 8805986921639591370}
+  frozenFeathersToggle: {fileID: 549707029720862782}
+  worldCoopToggle: {fileID: 1606506305084039800}
+  goldenGooseToggle: {fileID: 8805986921639591370}
 --- !u!114 &8742013602951582639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,9 +717,9 @@ RectTransform:
   - {fileID: 8146562034716277815}
   m_Father: {fileID: 6783969390000997970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -330.28976}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7920268300873062170
@@ -2050,10 +2050,10 @@ RectTransform:
   - {fileID: 4539234729209845192}
   m_Father: {fileID: 2932791240704110479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.2162, y: -194.17386}
-  m_SizeDelta: {x: 652.4324, y: 388.34772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5844936726245828278
 MonoBehaviour:
@@ -3161,9 +3161,9 @@ RectTransform:
   - {fileID: 3296420310011322574}
   m_Father: {fileID: 7875412020548452189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -194.17386}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4612931895238192557
@@ -3239,9 +3239,9 @@ RectTransform:
   - {fileID: 7300605345847088841}
   m_Father: {fileID: 7311459356799849632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2687087882972754892
@@ -3350,9 +3350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &758585941834225790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,9 +3388,9 @@ RectTransform:
   - {fileID: 4319906094161557176}
   m_Father: {fileID: 7030545872854717870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &810659907348578906
@@ -3499,9 +3499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &768051113033143165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,9 +3938,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 1666009516679875260}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 1666009516679875260}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &852906981956486187
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,9 +4223,9 @@ RectTransform:
   - {fileID: 7703319819314339248}
   m_Father: {fileID: 1535197339766518552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -330.28976}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3283815422957692914
@@ -4467,9 +4467,9 @@ RectTransform:
   - {fileID: 944822769148390209}
   m_Father: {fileID: 8909559537300068722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -177.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &744804801355620285
@@ -4578,9 +4578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5091694086026048263}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5091694086026048263}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &1048244068506872025
 GameObject:
   m_ObjectHideFlags: 0
@@ -5222,10 +5222,10 @@ RectTransform:
   - {fileID: 7342580474125909264}
   m_Father: {fileID: 4076936005157063525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 978.64856, y: -194.17386}
-  m_SizeDelta: {x: 652.4324, y: 388.34772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027562429544637808
 MonoBehaviour:
@@ -5399,9 +5399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7726043439105561874}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7726043439105561874}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &1214812109342585037
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,9 +5437,9 @@ RectTransform:
   - {fileID: 5499520636332956337}
   m_Father: {fileID: 5755364313975134286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -177.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8861868754225027684
@@ -5548,9 +5548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5091694086026048263}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5091694086026048263}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &1223369001019531785
 GameObject:
   m_ObjectHideFlags: 0
@@ -5846,10 +5846,10 @@ RectTransform:
   - {fileID: 6019916690670497287}
   m_Father: {fileID: 8594241504605287038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
-  m_SizeDelta: {x: 406.19006, y: 211}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5463378220047520314
 MonoBehaviour:
@@ -5974,9 +5974,9 @@ RectTransform:
   - {fileID: 7879756602937759278}
   m_Father: {fileID: 4245792050126634857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -494.41534}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5416772031731921462
@@ -6053,10 +6053,10 @@ RectTransform:
   - {fileID: 4686150832746847774}
   m_Father: {fileID: 7252949629696142697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.2162, y: -330.28976}
-  m_SizeDelta: {x: 652.4324, y: 660.5795}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453644016212399317
 MonoBehaviour:
@@ -6673,10 +6673,10 @@ RectTransform:
   - {fileID: 2081974675922121466}
   m_Father: {fileID: 4076936005157063525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.2162, y: -194.17386}
-  m_SizeDelta: {x: 652.4324, y: 388.34772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1956196429999232605
 MonoBehaviour:
@@ -7333,12 +7333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5167da5e8c6820458c091ba55085b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorFrozenfeathersChange
-  PlatformShrinkTargetSlider: {fileID: 8931641547096617175}
-  LivesSlider: {fileID: 4233630005396353250}
-  PlatformShrinkTimeSlider: {fileID: 5183389706727952187}
-  PlatformShrinkTargetText: {fileID: 5426503003400386129}
-  LivesText: {fileID: 6187518770106705601}
-  PlatformShrinkTimeText: {fileID: 6001975804011959443}
+  platformShrinkTargetSlider: {fileID: 8931641547096617175}
+  livesSlider: {fileID: 4233630005396353250}
+  platformShrinkTimeSlider: {fileID: 5183389706727952187}
+  platformShrinkTargetText: {fileID: 5426503003400386129}
+  livesText: {fileID: 6187518770106705601}
+  platformShrinkTimeText: {fileID: 6001975804011959443}
 --- !u!114 &4574001792015984391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7386,9 +7386,9 @@ RectTransform:
   - {fileID: 7777901628566853589}
   m_Father: {fileID: 3684055008607085105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4894932529153112212
@@ -7497,9 +7497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 3747592820534303773}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 3747592820534303773}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &1766865451134890910
 GameObject:
   m_ObjectHideFlags: 0
@@ -7844,9 +7844,9 @@ RectTransform:
   - {fileID: 4442718009553326705}
   m_Father: {fileID: 5700919700656330931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -194.17386}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1227279695513015481
@@ -8360,9 +8360,9 @@ RectTransform:
   - {fileID: 1609747037669312033}
   m_Father: {fileID: 8891281065697100841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -466.40567}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7494607439330996022
@@ -8611,9 +8611,9 @@ RectTransform:
   - {fileID: 1723273993933654423}
   m_Father: {fileID: 7311459356799849632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -177.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6438937222176372712
@@ -8722,9 +8722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2075872109498081211
 GameObject:
   m_ObjectHideFlags: 0
@@ -8987,10 +8987,10 @@ RectTransform:
   - {fileID: 8138153903252359933}
   m_Father: {fileID: 7278782298131115040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
-  m_SizeDelta: {x: 406.19006, y: 211}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5840957749043629120
 MonoBehaviour:
@@ -9545,9 +9545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2262906417296289554
 GameObject:
   m_ObjectHideFlags: 0
@@ -10255,9 +10255,9 @@ RectTransform:
   - {fileID: 4722491080065496895}
   m_Father: {fileID: 8724950851728331772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3093020433705380918
@@ -10366,9 +10366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 85351397962160624}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 85351397962160624}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2401570208965225794
 GameObject:
   m_ObjectHideFlags: 0
@@ -10404,7 +10404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.101}
   m_AnchorMax: {x: 0.27010414, y: 0.7798148}
-  m_AnchoredPosition: {x: 84.00003, y: 132.7586}
+  m_AnchoredPosition: {x: 84.00012, y: 132.7586}
   m_SizeDelta: {x: -112.40991, y: -485.5172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7782687449194965951
@@ -10944,7 +10944,7 @@ RectTransform:
   m_Father: {fileID: 867607014532431770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11098,9 +11098,9 @@ RectTransform:
   - {fileID: 820765068262384143}
   m_Father: {fileID: 4248477600503436550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8060756764744375897
@@ -11209,9 +11209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2509078238701218571
 GameObject:
   m_ObjectHideFlags: 0
@@ -11247,9 +11247,9 @@ RectTransform:
   - {fileID: 7340771074956194305}
   m_Father: {fileID: 3464633504630847267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3150692655630851721
@@ -11358,9 +11358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 1666009516679875260}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 1666009516679875260}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2522748474183001879
 GameObject:
   m_ObjectHideFlags: 0
@@ -11813,10 +11813,10 @@ RectTransform:
   - {fileID: 4935419719804572544}
   m_Father: {fileID: 7252949629696142697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 978.64856, y: -330.28976}
-  m_SizeDelta: {x: 652.4324, y: 660.5795}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5430221371185733455
 MonoBehaviour:
@@ -12105,10 +12105,10 @@ RectTransform:
   - {fileID: 1489440003771252123}
   m_Father: {fileID: 2932791240704110479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 978.64856, y: -194.17386}
-  m_SizeDelta: {x: 652.4324, y: 388.34772}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2650376232702895926
 MonoBehaviour:
@@ -12359,9 +12359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5043144684957823786}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5043144684957823786}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2750558516505062774
 GameObject:
   m_ObjectHideFlags: 0
@@ -13228,9 +13228,9 @@ RectTransform:
   - {fileID: 4145146834791278108}
   m_Father: {fileID: 7030545872854717870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &76983507974209639
@@ -13339,9 +13339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 3747592820534303773}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 3747592820534303773}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2944884347855066479
 GameObject:
   m_ObjectHideFlags: 0
@@ -13600,9 +13600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 3747592820534303773}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 3747592820534303773}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &2990382704296794466
 GameObject:
   m_ObjectHideFlags: 0
@@ -13773,9 +13773,9 @@ RectTransform:
   - {fileID: 950085046377057481}
   m_Father: {fileID: 7893159721519287233}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -58.05795}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7632464022726504717
@@ -13849,7 +13849,7 @@ RectTransform:
   m_Father: {fileID: 3397101382844925187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14037,9 +14037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7726043439105561874}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7726043439105561874}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &3211066912211473167
 GameObject:
   m_ObjectHideFlags: 0
@@ -14073,7 +14073,7 @@ RectTransform:
   m_Father: {fileID: 5700989315058802767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15102,9 +15102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7205785732771893240}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7205785732771893240}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &3365552856002840297
 GameObject:
   m_ObjectHideFlags: 0
@@ -15138,7 +15138,7 @@ RectTransform:
   m_Father: {fileID: 7614387410569708872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15898,9 +15898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &3514149470771450246
 GameObject:
   m_ObjectHideFlags: 0
@@ -15936,7 +15936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.101}
   m_AnchorMax: {x: 0.27010414, y: 0.7798148}
-  m_AnchoredPosition: {x: 84.00003, y: 132.7587}
+  m_AnchoredPosition: {x: 84.00012, y: 132.7587}
   m_SizeDelta: {x: -112.40991, y: -485.5172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7591072831633436041
@@ -16213,9 +16213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &3554481664767061444
 GameObject:
   m_ObjectHideFlags: 0
@@ -17257,7 +17257,7 @@ RectTransform:
   m_Father: {fileID: 633484072429961395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17984,7 +17984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.101}
   m_AnchorMax: {x: 0.27010414, y: 0.7798148}
-  m_AnchoredPosition: {x: 236.59618, y: 23.829128}
+  m_AnchoredPosition: {x: 236.59619, y: 23.829102}
   m_SizeDelta: {x: -112.40991, y: -485.5172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6806611312915023604
@@ -18597,10 +18597,10 @@ RectTransform:
   - {fileID: 7814726300108844574}
   m_Father: {fileID: 8617369418993718483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -366.5}
-  m_SizeDelta: {x: 406.19006, y: 211}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922892986885782037
 MonoBehaviour:
@@ -19238,7 +19238,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &3503063911286458038
@@ -20645,9 +20645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &4155164821094602875
 GameObject:
   m_ObjectHideFlags: 0
@@ -20683,7 +20683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.101}
   m_AnchorMax: {x: 0.27010414, y: 0.7798148}
-  m_AnchoredPosition: {x: 84.00003, y: 132.7587}
+  m_AnchoredPosition: {x: 84.00012, y: 132.7587}
   m_SizeDelta: {x: -112.40991, y: -485.5172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5929824968883989142
@@ -21673,9 +21673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7205785732771893240}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7205785732771893240}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &4372313169465886703
 GameObject:
   m_ObjectHideFlags: 0
@@ -21709,7 +21709,7 @@ RectTransform:
   m_Father: {fileID: 4505359085372994060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22221,9 +22221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 6459925714199040918}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 6459925714199040918}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &4426954603994159693
 GameObject:
   m_ObjectHideFlags: 0
@@ -22882,9 +22882,9 @@ RectTransform:
   - {fileID: 4717624566339487484}
   m_Father: {fileID: 3884526029978890457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.2162, y: -630.5312}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4027908696673129620
@@ -22993,9 +22993,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7205785732771893240}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7205785732771893240}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &4601023802417256521
 GameObject:
   m_ObjectHideFlags: 0
@@ -23029,7 +23029,7 @@ RectTransform:
   m_Father: {fileID: 3658399653406676766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23241,9 +23241,9 @@ RectTransform:
   - {fileID: 5643109108341751070}
   m_Father: {fileID: 68392726348039087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -194.17386}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8811217683789257145
@@ -23556,7 +23556,7 @@ RectTransform:
   m_Father: {fileID: 2341981782962494894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23757,10 +23757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadf15da0e38dad4caea8051d6d5eb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorConfirmClose
-  _generalSettingsElement: {fileID: 7726043439105561874}
-  _confirmCloseElement: {fileID: 6459925714199040918}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onDisableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  generalSettingsElement: {fileID: 7726043439105561874}
+  confirmCloseElement: {fileID: 6459925714199040918}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onDisableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
 --- !u!1 &4816278052192952047
 GameObject:
   m_ObjectHideFlags: 0
@@ -24233,10 +24233,10 @@ RectTransform:
   - {fileID: 2354856814008757640}
   m_Father: {fileID: 8594241504605287038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -366.5}
-  m_SizeDelta: {x: 406.19006, y: 211}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8939078951307501922
 MonoBehaviour:
@@ -24297,7 +24297,7 @@ RectTransform:
   m_Father: {fileID: 4047882874411257393}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24485,9 +24485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 1666009516679875260}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 1666009516679875260}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &4952814765079890797
 GameObject:
   m_ObjectHideFlags: 0
@@ -24521,9 +24521,9 @@ RectTransform:
   - {fileID: 277934079796286223}
   m_Father: {fileID: 9145214963738130731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -330.28976}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4194759351090716079
@@ -24627,10 +24627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ff681a6be48fd4aa142daa3832c5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorWorldcoopChange
-  GameLengthSlider: {fileID: 5977252642341929343}
-  GoalsToWinSlider: {fileID: 4974071264390169144}
-  GameLengthText: {fileID: 5427136602680670279}
-  GoalsToWinText: {fileID: 3552219445102093057}
+  gameLengthSlider: {fileID: 5977252642341929343}
+  goalsToWinSlider: {fileID: 4974071264390169144}
+  gameLengthText: {fileID: 5427136602680670279}
+  goalsToWinText: {fileID: 3552219445102093057}
 --- !u!114 &124166862545001842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24886,13 +24886,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc5a6a567a56ad44a5e9814b326db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorVolumeChange
-  MasterVolumeSlider: {fileID: 6818603181839184043}
-  MusicVolumeSlider: {fileID: 8441401890512659679}
-  SFXVolumeSlider: {fileID: 8685522064679016133}
-  MasterMixer: {fileID: 24100000, guid: 54f203a2134a9584fb4581cccab510e2, type: 2}
-  MasterText: {fileID: 562413993488888140}
-  MusicText: {fileID: 7496413647921532001}
-  SFXText: {fileID: 5229291469782679463}
+  masterVolumeSlider: {fileID: 6818603181839184043}
+  musicVolumeSlider: {fileID: 8441401890512659679}
+  sfxVolumeSlider: {fileID: 8685522064679016133}
+  masterMixer: {fileID: 24100000, guid: 54f203a2134a9584fb4581cccab510e2, type: 2}
+  masterText: {fileID: 562413993488888140}
+  musicText: {fileID: 7496413647921532001}
+  sfxText: {fileID: 5229291469782679463}
 --- !u!114 &5581256875221621833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25526,7 +25526,7 @@ RectTransform:
   m_Father: {fileID: 916175137027933313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25995,9 +25995,9 @@ RectTransform:
   - {fileID: 712563403940687902}
   m_Father: {fileID: 4517661292353260744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -177.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &720139428276148838
@@ -26106,9 +26106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &5449517997610690020
 GameObject:
   m_ObjectHideFlags: 0
@@ -26144,7 +26144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.101}
   m_AnchorMax: {x: 0.27010414, y: 0.7798148}
-  m_AnchoredPosition: {x: 236.59618, y: 23.829128}
+  m_AnchoredPosition: {x: 236.59619, y: 23.829102}
   m_SizeDelta: {x: -112.40991, y: -485.5172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752792569187237029
@@ -26319,9 +26319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5043144684957823786}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5043144684957823786}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &5483630628031707372
 GameObject:
   m_ObjectHideFlags: 0
@@ -27064,9 +27064,9 @@ RectTransform:
   - {fileID: 211518865474572883}
   m_Father: {fileID: 4245792050126634857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -358.29944}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8564549452352148564
@@ -28638,9 +28638,9 @@ RectTransform:
   - {fileID: 5231787147263108196}
   m_Father: {fileID: 3684055008607085105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8760030561129811070
@@ -28749,9 +28749,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &5961116359493949140
 GameObject:
   m_ObjectHideFlags: 0
@@ -29125,9 +29125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5091694086026048263}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5091694086026048263}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6112654219800858390
 GameObject:
   m_ObjectHideFlags: 0
@@ -30030,9 +30030,9 @@ RectTransform:
   - {fileID: 3295530933938784931}
   m_Father: {fileID: 5755364313975134286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4160247049609010581
@@ -30141,9 +30141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7726043439105561874}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7726043439105561874}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6274688112946346307
 GameObject:
   m_ObjectHideFlags: 0
@@ -30179,9 +30179,9 @@ RectTransform:
   - {fileID: 7501516893175033897}
   m_Father: {fileID: 7472362449933583146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -33.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8852594947628171338
@@ -30290,9 +30290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 1666009516679875260}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 1666009516679875260}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6280799140201086049
 GameObject:
   m_ObjectHideFlags: 0
@@ -30893,9 +30893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 3747592820534303773}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 3747592820534303773}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6393117211301807192
 GameObject:
   m_ObjectHideFlags: 0
@@ -31416,9 +31416,9 @@ RectTransform:
   - {fileID: 7288764870531912676}
   m_Father: {fileID: 7875412020548452189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -330.28976}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4251643144810383702
@@ -31699,9 +31699,9 @@ RectTransform:
   - {fileID: 8283495931194657526}
   m_Father: {fileID: 5307448713445281761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -177.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3087912598321750107
@@ -31810,9 +31810,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6499465459284567732
 GameObject:
   m_ObjectHideFlags: 0
@@ -31983,7 +31983,7 @@ RectTransform:
   m_Father: {fileID: 2542997958317169015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -32183,9 +32183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6553352155888485855
 GameObject:
   m_ObjectHideFlags: 0
@@ -32636,9 +32636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6670838724268255521
 GameObject:
   m_ObjectHideFlags: 0
@@ -33562,7 +33562,7 @@ RectTransform:
   m_Father: {fileID: 3186798395738030662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33639,9 +33639,9 @@ RectTransform:
   - {fileID: 2320173831661668763}
   m_Father: {fileID: 5755364313975134286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8670747802716240063
@@ -33750,9 +33750,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 85351397962160624}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 85351397962160624}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &6810668623365799149
 GameObject:
   m_ObjectHideFlags: 0
@@ -34195,9 +34195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7205785732771893240}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7205785732771893240}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7017376316101126646
 GameObject:
   m_ObjectHideFlags: 0
@@ -34473,9 +34473,9 @@ RectTransform:
   - {fileID: 6495324279933462043}
   m_Father: {fileID: 4248477600503436550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5766404273954455053
@@ -34584,9 +34584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5043144684957823786}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5043144684957823786}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7039602439424818496
 GameObject:
   m_ObjectHideFlags: 0
@@ -35369,9 +35369,9 @@ RectTransform:
   - {fileID: 1578576624192741993}
   m_Father: {fileID: 7311459356799849632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2441625052524304708
@@ -35480,9 +35480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 1666009516679875260}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 1666009516679875260}
+  onEnableSettingsCategory: {fileID: 11400000, guid: 904a8f018e8f1164cb8e90ae6365c166, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7205785732771893240
 GameObject:
   m_ObjectHideFlags: 0
@@ -35546,16 +35546,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42431ab19e08d24bb51300caa2dc5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorGoldengooseChange
-  GameLengthSlider: {fileID: 2203996006184707656}
-  SecondsPerPointSlider: {fileID: 8590688207294289845}
-  PickUpDelaySlider: {fileID: 8910796280568084453}
-  MinBisonUptimeSlider: {fileID: 5894993538167923912}
-  MaxBisonUptimeSlider: {fileID: 5881824389042011985}
-  GameLengthText: {fileID: 1749231970990495830}
-  SecondsPerPointText: {fileID: 2009113520717223500}
-  PickUpDelayText: {fileID: 1320469986865469203}
-  MinBisonUptimeText: {fileID: 7220094073924052035}
-  MaxBisonUptimeText: {fileID: 1180673975337207702}
+  gameLengthSlider: {fileID: 2203996006184707656}
+  secondsPerPointSlider: {fileID: 8590688207294289845}
+  pickUpDelaySlider: {fileID: 8910796280568084453}
+  minBisonUptimeSlider: {fileID: 5894993538167923912}
+  maxBisonUptimeSlider: {fileID: 5881824389042011985}
+  gameLengthText: {fileID: 1749231970990495830}
+  secondsPerPointText: {fileID: 2009113520717223500}
+  pickUpDelayText: {fileID: 1320469986865469203}
+  minBisonUptimeText: {fileID: 7220094073924052035}
+  maxBisonUptimeText: {fileID: 1180673975337207702}
 --- !u!114 &7617894822261867541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35601,9 +35601,9 @@ RectTransform:
   - {fileID: 3062877826784766322}
   m_Father: {fileID: 9145214963738130731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -58.05795}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5261370199108734753
@@ -35987,7 +35987,7 @@ RectTransform:
   m_Father: {fileID: 5295298534153077347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -37184,9 +37184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5043144684957823786}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5043144684957823786}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7519116219862439260
 GameObject:
   m_ObjectHideFlags: 0
@@ -37309,21 +37309,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb5580a90b3014469d4f5337db1ba82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Settings: {fileID: 11400000, guid: 344a39427baf9634491eedb88462f66a, type: 2}
-  DefaultPath: Assets/SaveData/Default.json
-  SavePath: Assets/SaveData/Save.json
-  FF: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
-  WC: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
-  GG: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
-  RestoreDefaults: {fileID: 11400000, guid: 32cad42be8175054b9e0efcbe4c882a1, type: 2}
-  OnSaveSettings: {fileID: 11400000, guid: 931fa342d9c8b3f41bdf5f70a422839b, type: 2}
-  OnGeneralChange: {fileID: 815940358708892607}
-  OnMinigameChange: {fileID: 1128328324078837203}
-  OnVolumeChange: {fileID: 7847634274173316613}
-  OnFrozenfeathersChange: {fileID: 4357937728094564890}
-  OnWorldcoopChange: {fileID: 5297336264855530316}
-  OnGoldengooseChange: {fileID: 8364204340915832464}
-  SaveToFile: 0
+  settings: {fileID: 11400000, guid: 344a39427baf9634491eedb88462f66a, type: 2}
+  defaultPath: Assets/SaveData/Default.json
+  savePath: Assets/SaveData/Save.json
+  frozenFeathers: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
+  worldCoop: {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
+  goldenGoose: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
+  restoreDefaults: {fileID: 11400000, guid: 32cad42be8175054b9e0efcbe4c882a1, type: 2}
+  onSaveSettings: {fileID: 11400000, guid: 931fa342d9c8b3f41bdf5f70a422839b, type: 2}
+  onGeneralChange: {fileID: 815940358708892607}
+  onMinigameChange: {fileID: 1128328324078837203}
+  onVolumeChange: {fileID: 7847634274173316613}
+  onFrozenfeathersChange: {fileID: 4357937728094564890}
+  onWorldcoopChange: {fileID: 5297336264855530316}
+  onGoldengooseChange: {fileID: 8364204340915832464}
+  saveToFile: 0
 --- !u!114 &7176750858188846035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37732,9 +37732,9 @@ RectTransform:
   - {fileID: 1543753366982068084}
   m_Father: {fileID: 8909559537300068722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 374, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8692620340531713121
@@ -37843,9 +37843,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 85351397962160624}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 85351397962160624}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7667056086394416819
 GameObject:
   m_ObjectHideFlags: 0
@@ -38270,10 +38270,10 @@ RectTransform:
   - {fileID: 836259541235623925}
   m_Father: {fileID: 5417789202336934805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326.2162, y: -262.2318}
-  m_SizeDelta: {x: 652.4324, y: 524.4636}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4083832241360300170
 MonoBehaviour:
@@ -38334,9 +38334,9 @@ RectTransform:
   - {fileID: 5224778497665089027}
   m_Father: {fileID: 4668033869036588279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -194.17386}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &91243193269592946
@@ -38469,14 +38469,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a792dfb47fd0516479c94219b3d8012b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorGeneralChange
-  DashCooldownSlider: {fileID: 1225039308330752852}
-  AttackCooldownSlider: {fileID: 3390497601627426441}
-  BlockDurationSlider: {fileID: 380455925278900542}
-  PlayerAccelerationSlider: {fileID: 152864050428592257}
-  DashCooldownText: {fileID: 8999359386912736511}
-  AttackCooldownText: {fileID: 9111385929011031330}
-  BlockDurationText: {fileID: 1748716189308582336}
-  PlayerAccelerationText: {fileID: 3715407036704073143}
+  dashCooldownSlider: {fileID: 1225039308330752852}
+  attackCooldownSlider: {fileID: 3390497601627426441}
+  blockDurationSlider: {fileID: 380455925278900542}
+  playerAccelerationSlider: {fileID: 152864050428592257}
+  dashCooldownText: {fileID: 8999359386912736511}
+  attackCooldownText: {fileID: 9111385929011031330}
+  blockDurationText: {fileID: 1748716189308582336}
+  playerAccelerationText: {fileID: 3715407036704073143}
 --- !u!114 &3173920012394156707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39377,9 +39377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5043144684957823786}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5043144684957823786}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &7938148600176442979
 GameObject:
   m_ObjectHideFlags: 0
@@ -39739,9 +39739,9 @@ RectTransform:
   - {fileID: 5664876096924434578}
   m_Father: {fileID: 9145214963738130731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -466.40567}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 116.1159}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5888887879457762293
@@ -39815,7 +39815,7 @@ RectTransform:
   m_Father: {fileID: 2290155471123025462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -40618,9 +40618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 0}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 0}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &8216215125003238977
 GameObject:
   m_ObjectHideFlags: 0
@@ -41080,7 +41080,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2485878823841871236
@@ -41408,7 +41408,7 @@ RectTransform:
   m_Father: {fileID: 6744888894240646257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -42097,9 +42097,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 5098651078960662736}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 5098651078960662736}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &8414865006106868816
 GameObject:
   m_ObjectHideFlags: 0
@@ -42361,7 +42361,7 @@ RectTransform:
   m_Father: {fileID: 2235472394035801604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -42573,9 +42573,9 @@ RectTransform:
   - {fileID: 6873031600333392625}
   m_Father: {fileID: 4245792050126634857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -140.12074}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 652.4324, y: 280.2415}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5780176538548041053
@@ -42860,11 +42860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273ea2b4db36c47478c44fbfe3dd85c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  playerMaterials:
-  - {fileID: 2100000, guid: e8cca63e35e2b7b48a7748a7790068c5, type: 2}
-  - {fileID: 2100000, guid: 612a6285a22fb8348ac677e2df43b361, type: 2}
-  - {fileID: 2100000, guid: 302e4d2b9afeea849806165ebcfd54eb, type: 2}
-  - {fileID: 2100000, guid: c374235e6a195754fb5c07e52f777c08, type: 2}
   playerModels:
   - {fileID: 262709426275900499, guid: c8429784bf947814ea08c82343cc50f4, type: 3}
   - {fileID: 3582455526357074162, guid: 6ac4d616eb3979910a2a86cca93e5ee1, type: 3}
@@ -42887,7 +42882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e244ea8023910e4bb524056f6da3a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CalibrationManager
-  BlinkForCalibrations:
+  blinkForCalibrations:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -43305,6 +43300,7 @@ GameObject:
   - component: {fileID: -2727598369002935675}
   - component: {fileID: 2318957386543404869}
   - component: {fileID: 5098131717014930223}
+  - component: {fileID: 1293218454448296274}
   m_Layer: 0
   m_Name: PRE_GameManager
   m_TagString: GameManager
@@ -43348,8 +43344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dea871604e3d5c4fbfd0ab742f8fd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
-  roundLength: 40
-  playerLives: 1
   countdownLength: 5
   winScreenLength: 5
 --- !u!114 &2829976537248166007
@@ -43364,7 +43358,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4350747fe007e1848bc1a0fccc1a9ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  Minigames: []
+  minigames:
+  - {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
+  - {fileID: 11400000, guid: 2c5297c8158499a48943b9f1fd74b053, type: 2}
+  - {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
   tieBreakerMinigame: {fileID: 11400000, guid: a8ad0fc23e0f4fc4089322bd3a75a881, type: 2}
   lobbyScene:
     m_SceneAsset: {fileID: 102900000, guid: 5984e344666c36f439f39c3fc52f9999, type: 3}
@@ -43523,6 +43520,34 @@ MonoBehaviour:
   m_DefaultActionMap: Operator
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1293218454448296274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657201635695876032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 2db3318ec7b0f384583ed834c75423fe, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2829976537248166007}
+        m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
+        m_MethodName: OnSkipWinUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8663000413724011254
 GameObject:
   m_ObjectHideFlags: 0
@@ -43917,9 +43942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 8242766824654782809}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 8242766824654782809}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &8727639099526308755
 GameObject:
   m_ObjectHideFlags: 0
@@ -44177,9 +44202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e273f30e1c48ab848a7a1b7d1f857d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorNavigationButton
-  _uiElement: {fileID: 7205785732771893240}
-  _onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
-  _onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
+  uiElement: {fileID: 7205785732771893240}
+  onEnableSettingsCategory: {fileID: 11400000, guid: aeea83988597574459f910cf6533b1c1, type: 2}
+  onCloseAllSettingsFields: {fileID: 11400000, guid: d364aa694c2d30e42955dcfaf0b9c623, type: 2}
 --- !u!1 &8797171652226718216
 GameObject:
   m_ObjectHideFlags: 0
@@ -45503,10 +45528,10 @@ RectTransform:
   - {fileID: 4089861331055427002}
   m_Father: {fileID: 2057824341028397521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.09503, y: -105.5}
-  m_SizeDelta: {x: 406.19006, y: 211}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4411434015048439789
 MonoBehaviour:
