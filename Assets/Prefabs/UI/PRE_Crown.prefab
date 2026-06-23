@@ -91,3 +91,4 @@ MonoBehaviour:
   animationDuration: 1
   offsetStrength: 50
   updateText: {fileID: 11400000, guid: 331a1f5377a271946aa52a2ca2bb98d9, type: 2}
+  PanelOffset: 300

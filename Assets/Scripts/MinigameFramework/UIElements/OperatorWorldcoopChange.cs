@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Serialization;
 
 public class OperatorWorldcoopChange : MonoBehaviour
 {
-    [FormerlySerializedAs("GameLengthSlider")] [SerializeField]
+    [SerializeField]
     public Slider gameLengthSlider;
-    [FormerlySerializedAs("GoalsToWinSlider")] public Slider goalsToWinSlider;
-    [FormerlySerializedAs("GameLengthText")] public TextMeshProUGUI gameLengthText;
-    [FormerlySerializedAs("GoalsToWinText")] public TextMeshProUGUI goalsToWinText;
+    public Slider goalsToWinSlider;
+    public TextMeshProUGUI gameLengthText;
+    public TextMeshProUGUI goalsToWinText;
 
     void Awake()
     {

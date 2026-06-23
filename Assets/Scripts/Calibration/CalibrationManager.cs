@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class CalibrationManager : MonoBehaviour
 {
-    [FormerlySerializedAs("BlinkForCalibrations")] public GameObject[] blinkForCalibrations;
+    public GameObject[] blinkForCalibrations;
     private int _controllerCount = 0;
 
     public void OnCalibration(PlayerInput playerInput)

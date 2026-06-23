@@ -7,9 +7,9 @@ using UnityEngine.Serialization;
 
 public class OperatorMinigameChange : MonoBehaviour
 {
-    [FormerlySerializedAs("ffToggle")] [FormerlySerializedAs("FFToggle")] public Toggle frozenFeathersToggle;
-    [FormerlySerializedAs("WCToggle")] public Toggle worldCoopToggle;
-    [FormerlySerializedAs("GGToggle")] public Toggle goldenGooseToggle;
+    public Toggle frozenFeathersToggle;
+    public Toggle worldCoopToggle;
+    public Toggle goldenGooseToggle;
 
     public void OnEnable()
     {

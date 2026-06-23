@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a0b43e05f1f47bd4e9f4811e3ef5a4fc, type: 3}
       propertyPath: m_Name
-      value: car03
+      value: PRE_car03
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a0b43e05f1f47bd4e9f4811e3ef5a4fc, type: 3}
       propertyPath: m_Layer
@@ -212,6 +212,8 @@ MonoBehaviour:
   speed: 20
   resetLength: 45
   Strength: 50
+  UpStrengthMultiplier: 4
+  onAttacked: {fileID: 0}
 --- !u!54 &893197459755796624
 Rigidbody:
   m_ObjectHideFlags: 0

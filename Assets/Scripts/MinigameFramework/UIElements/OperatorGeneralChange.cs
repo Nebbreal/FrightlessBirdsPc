@@ -5,18 +5,17 @@ using UnityEngine.Serialization;
 
 public class OperatorGeneralChange : MonoBehaviour
 {
-    [FormerlySerializedAs("DashCooldownSlider")] [SerializeField]
+    [SerializeField]
     public Slider dashCooldownSlider;
-    [FormerlySerializedAs("AttackCooldownSlider")] public Slider attackCooldownSlider;
-    [FormerlySerializedAs("BlockDurationSlider")] public Slider blockDurationSlider;
-    [FormerlySerializedAs("PlayerAccelerationSlider")] public Slider playerAccelerationSlider;
+    public Slider attackCooldownSlider;
+    public Slider blockDurationSlider;
+    public Slider playerAccelerationSlider;
 
-    [FormerlySerializedAs("DashCooldownText")] public TextMeshProUGUI dashCooldownText;
-    [FormerlySerializedAs("AttackCooldownText")] public TextMeshProUGUI attackCooldownText;
-    [FormerlySerializedAs("BlockDurationText")] public TextMeshProUGUI blockDurationText;
-    [FormerlySerializedAs("PlayerAccelerationText")] public TextMeshProUGUI playerAccelerationText;
-
-
+    public TextMeshProUGUI dashCooldownText;
+    public TextMeshProUGUI attackCooldownText;
+    public TextMeshProUGUI blockDurationText;
+    public TextMeshProUGUI playerAccelerationText;
+    
     void Awake()
     {
         dashCooldownSlider.value = SettingsManager.Instance.settings.dashCooldown;
