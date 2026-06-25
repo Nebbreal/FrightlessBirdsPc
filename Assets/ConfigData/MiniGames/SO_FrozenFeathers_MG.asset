@@ -23,3 +23,4 @@ MonoBehaviour:
   minigameSpecificDecelerationOverride: 1.6
   intendedPlayerCounts: 020000000300000004000000
   teamSizes: 
+  teamOutlineColors: []

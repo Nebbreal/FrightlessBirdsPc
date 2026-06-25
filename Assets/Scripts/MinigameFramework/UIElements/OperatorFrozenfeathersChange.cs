@@ -5,14 +5,14 @@ using UnityEngine.Serialization;
 
 public class OperatorFrozenfeathersChange : MonoBehaviour
 {
-    [FormerlySerializedAs("PlatformShrinkTargetSlider")] [SerializeField] 
+    [SerializeField] 
     public Slider platformShrinkTargetSlider;
-    [FormerlySerializedAs("LivesSlider")] public Slider livesSlider;
-    [FormerlySerializedAs("PlatformShrinkTimeSlider")] public Slider platformShrinkTimeSlider;
+    public Slider livesSlider;
+    public Slider platformShrinkTimeSlider;
 
-    [FormerlySerializedAs("PlatformShrinkTargetText")] public TextMeshProUGUI platformShrinkTargetText;
-    [FormerlySerializedAs("LivesText")] public TextMeshProUGUI livesText;
-    [FormerlySerializedAs("PlatformShrinkTimeText")] public TextMeshProUGUI platformShrinkTimeText;
+    public TextMeshProUGUI platformShrinkTargetText;
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI platformShrinkTimeText;
 
     void Awake()
     {

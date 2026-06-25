@@ -4894,7 +4894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8d6e2916621d3fd428d787e54f1d5841, type: 3}
       propertyPath: m_Name
-      value: open_crate
+      value: PRE_OpenCrate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8d6e2916621d3fd428d787e54f1d5841, type: 3}
       propertyPath: m_Layer
@@ -4948,6 +4948,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe55c96c9c41048bb72875ddbef23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  isBreakable: 0
+  isPushable: 0
+  knockbackStrength: 0.25
+  shieldKnockbackStrength: 2
+  shieldBreakKnockbackStrength: 5
+  upStrength: 0.25
+  playerID: -1
   onAttackHit:
     m_PersistentCalls:
       m_Calls: []
@@ -4978,9 +4985,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  knockbackStrength: 0.25
-  upStrength: 0.25
-  player_id: -1
 --- !u!65 &1483157526698941496
 BoxCollider:
   m_ObjectHideFlags: 0
