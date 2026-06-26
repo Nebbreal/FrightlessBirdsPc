@@ -1,14 +1,13 @@
 using UnityEngine;
 using EventSystem;
-using UnityEngine.Serialization;
 
 public class OperatorConfirmClose : MonoBehaviour
 {
-    [FormerlySerializedAs("_generalSettingsElement")] [SerializeField] private GameObject generalSettingsElement;
-    [FormerlySerializedAs("_confirmCloseElement")] [SerializeField] private GameObject confirmCloseElement;
+    [SerializeField] private GameObject generalSettingsElement;
+    [SerializeField] private GameObject confirmCloseElement;
 
-    [FormerlySerializedAs("_onEnableSettingsCategory")] [SerializeField] private GameEvent onEnableSettingsCategory;
-    [FormerlySerializedAs("_onDisableSettingsCategory")] [SerializeField] private GameEvent onDisableSettingsCategory;
+    [SerializeField] private GameEvent onEnableSettingsCategory;
+    [SerializeField] private GameEvent onDisableSettingsCategory;
 
     public void HandleOnClick()
     {

@@ -5,19 +5,17 @@ using UnityEngine.Serialization;
 
 public class OperatorGoldengooseChange : MonoBehaviour
 {
-    [FormerlySerializedAs("GameLengthSlider")] public Slider gameLengthSlider;
-    [FormerlySerializedAs("SecondsPerPointSlider")] public Slider secondsPerPointSlider;
-    [FormerlySerializedAs("PickUpDelaySlider")] public Slider pickUpDelaySlider;
-    [FormerlySerializedAs("MinBisonUptimeSlider")] public Slider minBisonUptimeSlider;
-    [FormerlySerializedAs("MaxBisonUptimeSlider")] public Slider maxBisonUptimeSlider;
+    public Slider gameLengthSlider;
+    public Slider secondsPerPointSlider;
+    public Slider pickUpDelaySlider;
+    public Slider minBisonUptimeSlider;
+    public Slider maxBisonUptimeSlider;
 
-    [FormerlySerializedAs("GameLengthText")] public TextMeshProUGUI gameLengthText;
-    [FormerlySerializedAs("SecondsPerPointText")] public TextMeshProUGUI secondsPerPointText;
-    [FormerlySerializedAs("PickUpDelayText")] public TextMeshProUGUI pickUpDelayText;
-    [FormerlySerializedAs("MinBisonUptimeText")] public TextMeshProUGUI minBisonUptimeText;
-    [FormerlySerializedAs("MaxBisonUptimeText")] public TextMeshProUGUI maxBisonUptimeText;
-
-
+    public TextMeshProUGUI gameLengthText;
+    public TextMeshProUGUI secondsPerPointText;
+    public TextMeshProUGUI pickUpDelayText;
+    public TextMeshProUGUI minBisonUptimeText;
+    public TextMeshProUGUI maxBisonUptimeText;
     
     void Awake()
     {

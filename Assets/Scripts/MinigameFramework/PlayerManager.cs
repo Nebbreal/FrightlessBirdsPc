@@ -16,7 +16,6 @@ namespace MinigameFramework
         [NonSerialized] public List<GameObject> ActivePlayers;
         [NonSerialized] public List<GameObject> DebugPlayers;
         public List<Team> Teams;
-        public List<Material> playerMaterials;
         public List<GameObject> playerModels;
         [Tooltip("The point to place the inactive players (within the deathbox)")]
         public GameObject inactivePlayerPoint;

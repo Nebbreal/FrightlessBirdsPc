@@ -48,8 +48,7 @@ namespace MinigameFramework
         public bool CanLeaveOverride;
         [NonSerialized]
         private PlayerInput _playerInput;
-
-
+        
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
         public GameEvent onStartMinigame;
@@ -79,8 +78,7 @@ namespace MinigameFramework
 
         [Header("Operator UI Events")] 
         public GameEvent onEnableOperatorMenuStart;
-
-
+        
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()

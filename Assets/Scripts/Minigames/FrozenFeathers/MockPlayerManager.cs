@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MinigameFramework;
 using UnityEngine;
 
 namespace Minigames.FrozenFeathers
@@ -28,7 +29,7 @@ namespace Minigames.FrozenFeathers
             foreach (var player in Players)
             {
                 player.SetActive(true);
-                PlayerLives[player.name] = _gameConfig.playerLives;
+                PlayerLives[player.name] = GameManager.Instance.CurrentMinigame.maxLives;
             }
         }
 

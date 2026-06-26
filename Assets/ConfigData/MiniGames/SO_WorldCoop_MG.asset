@@ -20,6 +20,7 @@ MonoBehaviour:
   roundLength: 120
   maxLives: 20
   respawnTime: 1
+  minigameSpecificDecelerationOverride: 0
   intendedPlayerCounts: 04000000
   teamSizes: 0200000002000000
   teamOutlineColors:

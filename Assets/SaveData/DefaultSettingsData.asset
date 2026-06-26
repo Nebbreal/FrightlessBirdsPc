@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd769984506ee9428bf09fe33c0511c, type: 3}
   m_Name: DefaultSettingsData
   m_EditorClassIdentifier: Assembly-CSharp::SettingsData
-  DashCooldown: 1
-  AttackCooldown: 1
-  BlockCooldown: 3
-  PlayerMovementSpeed: 51
-  FFActive: 1
-  WCActive: 1
-  GGActive: 1
-  MasterVolume: 100
-  MusicVolume: 100
-  SfxVolume: 100
-  FFPlatformEndSize: 1
-  FFLives: 1
-  FFPlatformShrinkTime: 50
-  WCGameLength: 120
-  WCGoalsToWin: 3
-  GGGameLength: 60
-  GGSecondsPerPoint: 1
-  GGPickUpDelay: 1
-  GGMinBisonUptime: 2
-  GGMaxBisonUptime: 5
+  dashCooldown: 1
+  attackCooldown: 1
+  blockCooldown: 3
+  playerMovementSpeed: 51
+  frozenFeathersActive: 1
+  worldCoopActive: 1
+  goldenGooseActive: 1
+  masterVolume: 100
+  musicVolume: 100
+  sfxVolume: 100
+  frozenFeathersPlatformEndSize: 1
+  frozenFeathersLives: 1
+  frozenFeathersPlatformShrinkTime: 50
+  worldCoopGameLength: 120
+  worldCoopGoalsToWin: 3
+  goldenGooseGameLength: 60
+  goldenGooseSecondsPerPoint: 1
+  goldenGoosePickUpDelay: 1
+  goldenGooseMinBisonUptime: 2
+  goldenGooseMaxBisonUptime: 5

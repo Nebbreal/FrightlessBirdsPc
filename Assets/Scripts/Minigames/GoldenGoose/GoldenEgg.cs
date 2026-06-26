@@ -7,14 +7,14 @@ using UnityEngine.Serialization;
 
 public class GoldenEgg : MonoBehaviour
 {
-    [FormerlySerializedAs("AnimationTime")] public float animationTime;
-    [FormerlySerializedAs("PointTime")] public float pointTime;
-    [FormerlySerializedAs("GivePointsParticles")] public ParticleSystem givePointsParticles;
-    [FormerlySerializedAs("PointCooldownImage")] public Image pointCooldownImage;
-    [FormerlySerializedAs("Pling")] public AudioSource pling;
-    [FormerlySerializedAs("DropDistance")] public float dropDistance;
+    public float animationTime;
+    public float pointTime;
+    public ParticleSystem givePointsParticles;
+    public Image pointCooldownImage;
+    public AudioSource pling;
+    public float dropDistance;
     public GameEvent onScorePoint;
-    [FormerlySerializedAs("DashStealDelayFactor")] [Range(0f, 1f)]
+    [Range(0f, 1f)]
     public float dashStealDelayFactor;
 
     [FormerlySerializedAs("Mask")] public LayerMask mask;

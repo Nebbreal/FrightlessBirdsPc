@@ -9785,15 +9785,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b40b843c48db84ca57ce58c15fa743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  AnimationTime: 1
-  PointTime: 1
-  GivePointsParticles: {fileID: 1898575996}
-  PointCooldownImage: {fileID: 1325013618}
-  Pling: {fileID: 1774025001}
-  DropDistance: 6
+  animationTime: 1
+  pointTime: 1
+  givePointsParticles: {fileID: 365087901}
+  pointCooldownImage: {fileID: 1325013618}
+  pling: {fileID: 1774025001}
+  dropDistance: 6
   onScorePoint: {fileID: 11400000, guid: 2be273520bc9635499c5f66a7e305c89, type: 2}
-  DashStealDelayFactor: 0.5
-  Mask:
+  dashStealDelayFactor: 0.5
+  mask:
     serializedVersion: 2
     m_Bits: 512
   min: {x: -16, y: -9}
@@ -14350,7 +14350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b049687e6180c846bfb0e3d7e86796f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadRunnerMinigameManager
-  _playerScoreboards:
+  playerScoreboards:
   - {fileID: 1340134255}
   - {fileID: 1351041099}
   - {fileID: 1592195165}

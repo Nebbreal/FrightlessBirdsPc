@@ -2,18 +2,17 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Serialization;
 
 public class OperatorVolumeChange : MonoBehaviour
 {
-    [FormerlySerializedAs("MasterVolumeSlider")] [SerializeField]
+    [SerializeField]
     public Slider masterVolumeSlider;
-    [FormerlySerializedAs("MusicVolumeSlider")] public Slider musicVolumeSlider;
-    [FormerlySerializedAs("SFXVolumeSlider")] public Slider sfxVolumeSlider;
-    [FormerlySerializedAs("MasterMixer")] public AudioMixer masterMixer;
-    [FormerlySerializedAs("MasterText")] public TextMeshProUGUI masterText;
-    [FormerlySerializedAs("MusicText")] public TextMeshProUGUI musicText;
-    [FormerlySerializedAs("SFXText")] public TextMeshProUGUI sfxText;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+    public AudioMixer masterMixer;
+    public TextMeshProUGUI masterText;
+    public TextMeshProUGUI musicText;
+    public TextMeshProUGUI sfxText;
 
     public void Awake()
     {
