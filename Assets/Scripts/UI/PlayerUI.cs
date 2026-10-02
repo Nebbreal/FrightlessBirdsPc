@@ -14,10 +14,10 @@ public class PlayerUI : MonoBehaviour
     {
         var player = gameObject.GetComponentInParent<PlayerController>();
         parent = player;
-        if (player.ID > 1)
+        /*if (player.ID > 1)
         {
             transform.localScale = new Vector3(-transform.localScale.x,-transform.localScale.y,transform.localScale.z);
-        }
+        }*/
     }
 
     void Update()
