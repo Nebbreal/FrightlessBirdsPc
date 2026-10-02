@@ -1,6 +1,12 @@
+using System;
 using UnityEngine;
 
 public static class Ease {
+    // Easing function from Easings.net
+    public static float EaseOutSine(float x) {
+        return Mathf.Sin(Mathf.PI * x) / 2;
+    }
+    
     public static float InLinearOutCubic(float x)
     {
         x = (Mathf.Min(x, 1f) - 0.5f) * 2f;

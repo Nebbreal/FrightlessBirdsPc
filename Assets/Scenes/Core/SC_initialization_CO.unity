@@ -1914,6 +1914,26 @@ PrefabInstance:
       propertyPath: 'blinkForCalibrations.Array.data[3]'
       value: 
       objectReference: {fileID: 1438193729}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847766014978979135, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2057824341028397521, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 236.59619
@@ -1938,6 +1958,26 @@ PrefabInstance:
       propertyPath: 'minigames.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 42b63f74d2f64674eb8358733e12d401, type: 2}
+    - target: {fileID: 5651685561479112379, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651685561479112379, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651685561479112379, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651685561479112379, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651685561479112379, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5808225242294466876, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1025

@@ -29388,6 +29388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   animationDuration: 2
+  angle: 30
 --- !u!1 &6155730099653751794
 GameObject:
   m_ObjectHideFlags: 0
