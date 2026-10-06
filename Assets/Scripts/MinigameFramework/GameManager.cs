@@ -31,7 +31,7 @@ namespace MinigameFramework
         public List<Minigame> minigames;
         public Minigame tieBreakerMinigame;
         [SerializeField]
-        private SceneField lobbyScene;
+        public SceneField lobbyScene;
         public int scoreToWin = 3;
         [NonSerialized]
         public Minigame CurrentMinigame;

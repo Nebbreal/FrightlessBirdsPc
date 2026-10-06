@@ -42835,6 +42835,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 7632095940213447734, guid: 73964ff35dff73d41b77347b12344097, type: 3}
   onEnablePlayerUI: {fileID: 11400000, guid: 1f3aecbf2eddbd14ab057b50396c9836, type: 2}
   onDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
+  onPlayerJoinLobby: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
+  onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
 --- !u!114 &1690358537828402848
 MonoBehaviour:
   m_ObjectHideFlags: 0

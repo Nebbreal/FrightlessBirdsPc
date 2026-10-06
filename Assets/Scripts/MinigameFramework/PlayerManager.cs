@@ -5,27 +5,36 @@ using EventSystem;
 using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
 {
     public class PlayerManager : MonoBehaviour
     {
-        [NonSerialized] public List<GameObject> Players;
-        [NonSerialized] public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
-        [NonSerialized] public List<GameObject> ActivePlayers;
-        [NonSerialized] public List<GameObject> DebugPlayers;
+        private bool[] _isPlayerIdAvailable = { true, true, true, true };
+        [NonSerialized] 
+        public List<GameObject> Players;
+        [NonSerialized] 
+        public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
+        [NonSerialized] 
+        public List<GameObject> ActivePlayers = new List<GameObject>();
+        [NonSerialized] 
+        public List<GameObject> DebugPlayers;
+        [NonSerialized] 
+        public Dictionary<string, int> PlayerLives = new();
+        [NonSerialized] 
+        public List<GameObject> AlivePlayers;
+        [NonSerialized] 
+        public bool CanJoin = false;
+        
         public List<Team> Teams;
         public List<GameObject> playerModels;
         [Tooltip("The point to place the inactive players (within the deathbox)")]
         public GameObject inactivePlayerPoint;
-
-        [NonSerialized] public bool CanJoin = false;
-
-        [NonSerialized] public Dictionary<string, int> PlayerLives = new();
-        [NonSerialized] public List<GameObject> AlivePlayers;
-
-
+        
+        [SerializeField] 
+        private string playerActionMapName = "Player";
         [SerializeField]
         private GameConfig gameConfig;
         [SerializeField]
@@ -34,6 +43,9 @@ namespace MinigameFramework
         [Header("GameEvents")]
         public GameEvent onEnablePlayerUI;
         public GameEvent onDisablePlayerUI;
+        public GameEvent onPlayerJoinLobby;
+        public GameEvent onPlayerLeaveLobby;
+        
         //TODO: Use a scriptable object linked to the player's to contain this data (Probably not able to be completed before handover)
         [NonSerialized] 
         public Dictionary<int, string> PlayerNames = new Dictionary<int, string>
@@ -67,8 +79,10 @@ namespace MinigameFramework
             Players.Add(playerObj);
             PlayerRigidbodies.Add(playerObj.GetComponent<Rigidbody>());
             DontDestroyOnLoad(playerObj);
-            var playerController = player.GetComponent<PlayerController>();
-            playerController.ID = Players.Count - 1;
+            PlayerController playerController = player.GetComponent<PlayerController>();
+
+            AssignPlayerID(playerController);
+            player.SwitchCurrentActionMap(playerActionMapName);
 
             player.gameObject.name = "Player" + Players.Count;
             GameObject instantiatedPlayer = Instantiate(playerModels[playerController.ID], playerObj.transform, true);
@@ -77,6 +91,51 @@ namespace MinigameFramework
             playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
             
             player.transform.position = inactivePlayerPoint.transform.position;
+
+            if (SceneManager.GetActiveScene().name == GameManager.Instance.lobbyScene.SceneName)
+            {
+                onPlayerJoinLobby.Raise(this, instantiatedPlayer);
+            }
+        }
+
+        private void AssignPlayerID(PlayerController playerController)
+        {
+            for (int i = 0; i < _isPlayerIdAvailable.Length; i++)
+            {
+                if (_isPlayerIdAvailable[i])
+                {
+                    _isPlayerIdAvailable[i] = false;
+                    playerController.ID = i;
+                    
+                    break;
+                }
+
+                if (i == _isPlayerIdAvailable.Length - 1)
+                {
+                    Debug.LogWarning("No more player slots available!");
+                }
+            }
+        }
+
+        public void UnassignPlayerID(PlayerController playerController)
+        {
+            int idToUnassign = playerController.ID;
+            playerController.ID = -1;
+            _isPlayerIdAvailable[idToUnassign] = true;
+        }
+
+        public void DeRegisterPlayer(PlayerInput player)
+        {
+            if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
+
+            GameObject playerObj = player.gameObject;
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            onPlayerLeaveLobby.Raise(this,  playerObj);
+            UnassignPlayerID(playerController);
+            
+            Players.Remove(playerObj);
+            ActivePlayers.Remove(playerObj);
+            Destroy(playerObj);
         }
         
         public void OnRegisterDebugPlayers (Component sender, object[] objects)
