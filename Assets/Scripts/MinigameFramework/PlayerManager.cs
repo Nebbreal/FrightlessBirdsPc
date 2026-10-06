@@ -6,6 +6,7 @@ using Minigames;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace MinigameFramework
@@ -25,8 +26,7 @@ namespace MinigameFramework
         public Dictionary<string, int> PlayerLives = new();
         [NonSerialized] 
         public List<GameObject> AlivePlayers;
-        [NonSerialized] 
-        public bool CanJoin = false;
+        public bool playersCanJoin = false;
         
         public List<Team> Teams;
         public List<GameObject> playerModels;
@@ -155,7 +155,7 @@ namespace MinigameFramework
         
         public void OnPlayerJoinLobby(Component sender, object[] playerObj)
         {
-            if (!CanJoin) return;
+            if (!playersCanJoin) return;
             if (playerObj.First() is not GameObject playerObject) return;
             
             playerObject.transform.position = new Vector3(0, 3, 0);
@@ -178,7 +178,7 @@ namespace MinigameFramework
 
         public void OnPlayerLeaveLobby(Component sender, object[] playerObj)
         {
-            if (!CanJoin && !GameManager.Instance.CanLeaveOverride) return;
+            if (!playersCanJoin && !GameManager.Instance.CanLeaveOverride) return;
             if (playerObj.First() is not GameObject playerObject) return;
             
             playerObject.transform.position = inactivePlayerPoint.transform.position;

@@ -6082,6 +6082,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: playersCanJoin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528424308456378767, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: onSpawnPlayerInLobby
+      value: 
+      objectReference: {fileID: 11400000, guid: ba3e943fe95abf4f69412d05ea372805, type: 2}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: PRE_GameManager

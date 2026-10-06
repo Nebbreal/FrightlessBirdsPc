@@ -197,7 +197,7 @@ namespace MinigameFramework
             PlayerManager.ResetAllPlayersGravity();
             Instance.IsMinigameSceneActive = true;
             onDisableLobbyUI.Raise(this);
-            Instance.PlayerManager.CanJoin = false;
+            Instance.PlayerManager.playersCanJoin = false;
             onStartMusic.Raise(this);
         }
 
@@ -234,7 +234,7 @@ namespace MinigameFramework
             PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
-            Instance.PlayerManager.CanJoin = true;
+            Instance.PlayerManager.playersCanJoin = true;
         }
     
         public void StartGame(InputAction.CallbackContext context)
@@ -353,7 +353,7 @@ namespace MinigameFramework
                     playerInputManager.enabled = false;
                     Instance.PlayerManager.ResetPlayerStates();
                     onEnableLobbyUI.Raise(this);
-                    Instance.PlayerManager.CanJoin = true;
+                    Instance.PlayerManager.playersCanJoin = true;
                 }
             }
         }
