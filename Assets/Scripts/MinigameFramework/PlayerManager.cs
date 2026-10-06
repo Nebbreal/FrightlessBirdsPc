@@ -45,6 +45,7 @@ namespace MinigameFramework
         public GameEvent onDisablePlayerUI;
         public GameEvent onPlayerJoinLobby;
         public GameEvent onPlayerLeaveLobby;
+        public GameEvent onSpawnPlayerInLobby;
         
         //TODO: Use a scriptable object linked to the player's to contain this data (Probably not able to be completed before handover)
         [NonSerialized] 
@@ -91,11 +92,6 @@ namespace MinigameFramework
             playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
             
             player.transform.position = inactivePlayerPoint.transform.position;
-
-            if (SceneManager.GetActiveScene().name == GameManager.Instance.lobbyScene.SceneName)
-            {
-                onPlayerJoinLobby.Raise(this, instantiatedPlayer);
-            }
         }
 
         private void AssignPlayerID(PlayerController playerController)
@@ -169,7 +165,8 @@ namespace MinigameFramework
             ActivePlayers.Add(playerObject);
 
             onEnablePlayerUI.Raise(this, player.ID);
-
+            onSpawnPlayerInLobby.Raise(this, playerObject);
+            
             #if UNITY_EDITOR
             //Disable input of initiated debug players
             if (DebugPlayers.Contains(playerObject))
