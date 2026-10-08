@@ -46,8 +46,6 @@ namespace MinigameFramework
         private bool _isGameEnding;
         [NonSerialized]
         public bool CanLeaveOverride;
-        [NonSerialized]
-        private PlayerInput _playerInput;
         
         [Header("Game Events")] 
         public GameEvent onLoadMinigame;
@@ -61,6 +59,7 @@ namespace MinigameFramework
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
         public GameEvent onInitializeTeams;
+        public GameEvent onSetPlayerActionMap;
         
         [Header("Player UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -83,17 +82,16 @@ namespace MinigameFramework
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
         public void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
-
-            if (Instance == null)
+            if (Instance != null && Instance != this)
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
+                Debug.Log("remove instance");
                 Destroy(gameObject);
+                return;
             }
+
+            Debug.Log("new instance");
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         public void Start()
@@ -187,7 +185,6 @@ namespace MinigameFramework
             Instance.CurrentMinigame = selectedMinigame;
           
             onDisablePlayerMovement.Raise(this);
-        
             onInitializeTeams.Raise(this, Instance.CurrentMinigame);
             onEnableCountdownUI.Raise(this);
             Instance.HasMinigameEnded = false;

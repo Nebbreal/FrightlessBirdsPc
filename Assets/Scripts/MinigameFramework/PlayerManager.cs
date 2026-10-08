@@ -83,8 +83,10 @@ namespace MinigameFramework
             PlayerController playerController = player.GetComponent<PlayerController>();
 
             AssignPlayerID(playerController);
+            
             player.SwitchCurrentActionMap(playerActionMapName);
-
+            player.defaultActionMap = playerActionMapName;
+            
             player.gameObject.name = "Player" + Players.Count;
             GameObject instantiatedPlayer = Instantiate(playerModels[playerController.ID], playerObj.transform, true);
             

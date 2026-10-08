@@ -6734,7 +6734,7 @@ MonoBehaviour:
     m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Calibration
+  m_DefaultActionMap: 90fe706b-323f-47f7-9f1a-e80e781b4dfe
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!82 &1377396957945174431
