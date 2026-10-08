@@ -84,12 +84,10 @@ namespace MinigameFramework
         {
             if (Instance != null && Instance != this)
             {
-                Debug.Log("remove instance");
                 Destroy(gameObject);
                 return;
             }
 
-            Debug.Log("new instance");
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }

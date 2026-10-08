@@ -76,7 +76,14 @@ namespace MinigameFramework
                 ActivePlayers = new List<GameObject>();
                 DebugPlayers = new List<GameObject>();
             }
+            
             GameObject playerObj = player.gameObject;
+            
+            if (Players != null && Players.Contains(playerObj))
+            {
+                return;
+            }
+            
             Players.Add(playerObj);
             PlayerRigidbodies.Add(playerObj.GetComponent<Rigidbody>());
             DontDestroyOnLoad(playerObj);
@@ -88,10 +95,15 @@ namespace MinigameFramework
             player.defaultActionMap = playerActionMapName;
             
             player.gameObject.name = "Player" + Players.Count;
-            GameObject instantiatedPlayer = Instantiate(playerModels[playerController.ID], playerObj.transform, true);
-            
-            PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
-            playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
+            if (playerObj.GetComponentInChildren<PlayerModel>() == null)
+            {
+                GameObject instantiatedPlayer =
+                    Instantiate(playerModels[playerController.ID], playerObj.transform, true);
+
+                PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
+
+                playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
+            }
             
             player.transform.position = inactivePlayerPoint.transform.position;
         }
