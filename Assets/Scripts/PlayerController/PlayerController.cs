@@ -484,15 +484,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveValue = context.action.ReadValue<Vector2>();
         
-        switch (ID)
-        {
-            case 0: case 1:
-                moveValue = new Vector2(moveValue.x, moveValue.y);
-                break;
-            case 2: case 3:
-                moveValue = new Vector2(-moveValue.x, -moveValue.y);
-                break;
-        }
         Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
         
         MoveInput = move;
