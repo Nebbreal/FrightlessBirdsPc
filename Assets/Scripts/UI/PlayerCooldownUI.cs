@@ -35,28 +35,23 @@ public class PlayerCooldownUI : MonoBehaviour
         CooldownDashImage.fillAmount = 1f;
         CooldownAttackImage.fillAmount = 1f;
         CooldownBlockingImage.fillAmount = 1f;
-
-        SetCooldownColor();
-
+        
         SetAlpha(cooldownDashBackgroundImage, cooldownBackgroundAlpha);
         SetAlpha(cooldownAttackBackgroundImage, cooldownBackgroundAlpha);
         SetAlpha(cooldownBlockingBackgroundImage, cooldownBackgroundAlpha);
     }
-
-    private void OnEnable()
+    
+    public void SetCooldownColor(int playerID)
     {
-        var playerController = GetComponentInParent<PlayerController>();
+        PlayerManager playerManager = FindFirstObjectByType<PlayerManager>();
+
+        Color playerColor = playerManager.PlayerColors[playerID];
+        PlayerController playerController = GetComponentInParent<PlayerController>();
         if (playerController)
         {
             id = playerController.ID;
             _playerController = playerController;
         }
-    }
-    private void SetCooldownColor()
-    {
-        PlayerManager playerManager = FindFirstObjectByType<PlayerManager>();
-
-        Color playerColor = playerManager.PlayerColors[id];
 
         cooldownDashBackgroundImage.color = playerColor;
         cooldownAttackBackgroundImage.color = playerColor;
@@ -74,26 +69,28 @@ public class PlayerCooldownUI : MonoBehaviour
 
     private void Update()
     {
-    _dashIsCoolingDown = UpdateCooldown(
-        _dashIsCoolingDown,
-        CooldownDashImage,
-        _playerController.DashCooldown,
-        _playerController.dashDelay,
-        PlayerState.Dash);
+        if(!_playerController) return;
+        
+        _dashIsCoolingDown = UpdateCooldown(
+            _dashIsCoolingDown,
+            CooldownDashImage,
+            _playerController.DashCooldown,
+            _playerController.dashDelay,
+            PlayerState.Dash);
 
-    _attackIsCoolingDown = UpdateCooldown(
-        _attackIsCoolingDown,
-        CooldownAttackImage,
-        _playerController.AttackCooldown,
-        _playerController.attackDelay,
-        PlayerState.Attack);
+        _attackIsCoolingDown = UpdateCooldown(
+            _attackIsCoolingDown,
+            CooldownAttackImage,
+            _playerController.AttackCooldown,
+            _playerController.attackDelay,
+            PlayerState.Attack);
 
-    _BlockingIsCoolingDown = UpdateCooldownBlock(
-        _BlockingIsCoolingDown,
-        CooldownBlockingImage,
-        _playerController.BlockCharge,
-        _playerController.maxBlockCharge,
-        PlayerState.Blocking);
+        _BlockingIsCoolingDown = UpdateCooldownBlock(
+            _BlockingIsCoolingDown,
+            CooldownBlockingImage,
+            _playerController.BlockCharge,
+            _playerController.maxBlockCharge,
+            PlayerState.Blocking);
     }
 
     public void StartDashCooldown(Component sender, object[] obj)

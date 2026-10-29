@@ -134,18 +134,25 @@ public class PlayerController : MonoBehaviour
         LoadFromSettings();
     }
 
-    private void Start()
+    public void SetActive(bool state)
     {
-        playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
-        _eggShieldScript = GetComponentInChildren<EggShield>();
-        GameObject eggShieldObject = _eggShieldScript.gameObject;
-        _blockAnimator = eggShieldObject.GetComponent<Animator>();
-        _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
-        BlockCharge = maxBlockCharge;
+        if (state)
+        {
+            playerAnimator = GetComponentInChildren<PlayerModel>().GetComponent<Animator>();
+            _eggShieldScript = GetComponentInChildren<EggShield>();
+            GameObject eggShieldObject = _eggShieldScript.gameObject;
+            _blockAnimator = eggShieldObject.GetComponent<Animator>();
+            _hitCollidersBuffer = new Collider[hitCollidersBufferSize];
+            BlockCharge = maxBlockCharge;
+        }
+        
+        IsActive = state;
     }
 
     private void Update()
     {
+        if (!IsActive) return;
+        
         if (playerState is PlayerState.InputRestricted)
         {
             DoAttack = false;

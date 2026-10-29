@@ -66,9 +66,19 @@ namespace MinigameFramework
         };
         
         #region PlayerInit
-        public void RegisterPlayer(PlayerInput player)
+        public void Join(PlayerInput player)
         {
-            if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
+            if (GameManager.Instance.IsMinigameSceneActive) return;
+            Debug.Log("Player joined");
+            player.transform.position = inactivePlayerPoint.transform.position;
+        }
+        
+        public void RegisterPlayer(Component sender, object[] playerObj)
+        {
+            if (playerObj.First() is not GameObject playerObject) return;
+            PlayerInput player = playerObject.GetComponent<PlayerInput>();
+            
+            if(GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
      
             if (Players == null || Players.Count == 0)
             {
@@ -77,45 +87,41 @@ namespace MinigameFramework
                 DebugPlayers = new List<GameObject>();
             }
             
-            GameObject playerObj = player.gameObject;
-            
-            if (Players != null && Players.Contains(playerObj))
+            if (Players != null && Players.Contains(playerObject))
             {
                 return;
             }
             
-            Players.Add(playerObj);
-            PlayerRigidbodies.Add(playerObj.GetComponent<Rigidbody>());
-            DontDestroyOnLoad(playerObj);
+            Players.Add(playerObject);
+            PlayerRigidbodies.Add(playerObject.GetComponent<Rigidbody>());
+            DontDestroyOnLoad(playerObject);
             PlayerController playerController = player.GetComponent<PlayerController>();
-
-            AssignPlayerID(playerController);
             
             player.SwitchCurrentActionMap(playerActionMapName);
             player.defaultActionMap = playerActionMapName;
-            
-            player.gameObject.name = "Player" + Players.Count;
-            if (playerObj.GetComponentInChildren<PlayerModel>() == null)
-            {
-                GameObject instantiatedPlayer =
-                    Instantiate(playerModels[playerController.ID], playerObj.transform, true);
 
-                PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
-
-                playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
-            }
+            InstantiatePlayer(playerController.gameObject);
             
-            player.transform.position = inactivePlayerPoint.transform.position;
+            OnPlayerJoinLobby(playerObject);
         }
 
-        private void AssignPlayerID(PlayerController playerController)
+        private void InstantiatePlayer(GameObject playerObject)
         {
             for (int i = 0; i < _isPlayerIdAvailable.Length; i++)
             {
                 if (_isPlayerIdAvailable[i])
                 {
                     _isPlayerIdAvailable[i] = false;
+                    PlayerController  playerController = playerObject.GetComponent<PlayerController>();
                     playerController.ID = i;
+
+                    SetPlayerColor(playerObject, i);
+                    
+                    playerObject.name = "Player" + Players.Count;
+
+                    InstantiatePlayerModel(playerObject, playerController);
+                    
+                    playerController.SetActive(true);
                     
                     break;
                 }
@@ -125,6 +131,25 @@ namespace MinigameFramework
                     Debug.LogWarning("No more player slots available!");
                 }
             }
+        }
+
+        private void InstantiatePlayerModel(GameObject playerObject, PlayerController  playerController)
+        {
+            if (playerObject.GetComponentInChildren<PlayerModel>() == null)
+            {
+                GameObject instantiatedPlayer =
+                    Instantiate(playerModels[playerController.ID], playerObject.transform);
+
+                PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
+
+                playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
+            }
+        }
+        
+        private void SetPlayerColor(GameObject playerObject, int playerIndex)
+        {
+            PlayerCooldownUI cooldownUI = playerObject.GetComponentInChildren<PlayerCooldownUI>();
+            cooldownUI.SetCooldownColor(playerIndex);
         }
 
         public void UnassignPlayerID(PlayerController playerController)
@@ -167,10 +192,9 @@ namespace MinigameFramework
             #endif
         }
         
-        public void OnPlayerJoinLobby(Component sender, object[] playerObj)
+        public void OnPlayerJoinLobby(GameObject playerObject)
         {
             if (!playersCanJoin) return;
-            if (playerObj.First() is not GameObject playerObject) return;
             
             playerObject.transform.position = new Vector3(0, 3, 0);
             PlayerController player = playerObject.GetComponent<PlayerController>();

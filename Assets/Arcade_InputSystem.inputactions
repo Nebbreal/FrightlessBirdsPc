@@ -61,15 +61,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Any",
-                    "type": "Button",
-                    "id": "997fbbd4-4826-4274-989d-948e6c640166",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ActivateMenu",
                     "type": "Button",
                     "id": "f6a555ff-09f0-468c-80c7-6521f611cf16",
@@ -163,7 +154,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -171,10 +162,10 @@
                 {
                     "name": "",
                     "id": "b464f081-3804-4a9e-a20b-89e0dcda2053",
-                    "path": "<Joystick>/trigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Standard gamepad",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -185,18 +176,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cb945977-d6ce-480b-a1f3-d680f7d0e8eb",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Standard gamepad",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -207,18 +187,7 @@
                     "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Brace",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "213d292f-0c29-4de9-9613-5a84ca03181f",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Brace",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -229,18 +198,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Brace",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea091342-efa9-43c7-91d2-e504471e7fe3",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Standard gamepad",
                     "action": "Brace",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -251,18 +209,7 @@
                     "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "153f2ea5-9111-4006-9e5e-4add9f111f64",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -273,30 +220,8 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Standard gamepad",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "89692069-b874-49c9-8898-736a1f2b5042",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8ce219dd-e412-4c12-9213-63a8b937e20b",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -306,7 +231,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Standard gamepad",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -317,19 +242,8 @@
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61bd7a02-c88e-4fc1-8a0c-76142832fe89",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -339,96 +253,8 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "SwitchScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dd06ca4d-6b85-4d94-b2c1-4eb3fc6459ae",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ac6f3a5a-ef4c-4c45-83df-c7c4b7dc76b5",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f3f0d9cb-e2df-4f1f-b929-7fddfe4ec4b5",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1731c06c-1d98-4691-b7c0-fdade0ab6db5",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70c571a7-02e6-4310-8369-c0491566da3c",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a7e8633c-af65-4c0c-b8c7-46d253d37bed",
-                    "path": "<Keyboard>/v",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "02788f06-3fcb-4155-8ef1-a76277a35ddc",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b9e61f6c-f5ce-40a8-904e-8fcc1f4905ab",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Any",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -438,7 +264,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "MultiTap",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "ActivateMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -504,7 +330,18 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac270328-2ba6-4703-bc53-bd6482986023",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Standard gamepad",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -548,7 +385,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "MultiTap",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -559,18 +396,7 @@
                     "path": "<Keyboard>/backslash",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SpawnDebugPlayers",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "030f3d96-1d25-40a7-849a-8b354dbab4c5",
-                    "path": "<Keyboard>/backslash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "SpawnDebugPlayers",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -578,5 +404,28 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Standard gamepad",
+            "bindingGroup": "Standard gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

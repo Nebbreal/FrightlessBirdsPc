@@ -6627,19 +6627,7 @@ MonoBehaviour:
     m_ActionId: 3c8e5a2e-65f8-4aa4-93e6-6a164b1f9a0d
     m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 809311008639500745}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Join
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c69d2ae3-3910-4535-853a-fc69730bd7b0
     m_ActionName: 'Player/StartGame[/Gamepad/start,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -6659,7 +6647,19 @@ MonoBehaviour:
     m_ActionId: f9a18cc0-d6f5-4ff2-967a-b8b9f0d48151
     m_ActionName: 'Player/ToMainMenu[/Gamepad/select,/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Join
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1a06e90f-7869-4702-8588-993f5d8d6b96
     m_ActionName: 'Calibration/Join[/DragonRise Inc.   Generic   USB  Joystick  /button8]'
   - m_PersistentCalls:
@@ -6732,9 +6732,9 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f6a555ff-09f0-468c-80c7-6521f611cf16
     m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 90fe706b-323f-47f7-9f1a-e80e781b4dfe
+  m_DefaultActionMap: Calibration
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!82 &1377396957945174431

@@ -1646,6 +1646,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583389332}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &617378339 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+  m_PrefabInstance: {fileID: 1910776317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &673469579
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,15 +4928,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 5
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 1
+  m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 362105438}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
-        m_MethodName: RegisterPlayer
+        m_MethodName: Join
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4991,7 +4996,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 617378339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566839425
 GameObject:
@@ -6180,13 +6185,21 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1a266d3e9d7ad0258b7ddf18aa4f4eb4, type: 3}
+    - target: {fileID: 8592122562101958675, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RegisterPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: PRE_GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5098131717014930223, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1560401101}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
 --- !u!1001 &1995270067
@@ -6872,5 +6885,4 @@ SceneRoots:
   - {fileID: 791601600}
   - {fileID: 1886235256}
   - {fileID: 1910776317}
-  - {fileID: 1560401101}
   - {fileID: 436123227}
