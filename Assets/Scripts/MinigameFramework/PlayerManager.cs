@@ -64,11 +64,11 @@ namespace MinigameFramework
             { 2, new Color(0.4980392f, 0.3019608f, 0.6980392f) },
             { 3, new Color(0f, 1f, 0.047058f)},
         };
-        
+
         #region PlayerInit
         public void Join(PlayerInput player)
         {
-            if (GameManager.Instance.IsMinigameSceneActive) return;
+            if (!playersCanJoin) return;
             Debug.Log("Player joined");
             player.transform.position = inactivePlayerPoint.transform.position;
         }
@@ -76,6 +76,8 @@ namespace MinigameFramework
         public void RegisterPlayer(Component sender, object[] playerObj)
         {
             if (playerObj.First() is not GameObject playerObject) return;
+            Debug.Log("Player registered");
+
             PlayerInput player = playerObject.GetComponent<PlayerInput>();
             
             if(GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
@@ -162,7 +164,8 @@ namespace MinigameFramework
         public void DeRegisterPlayer(PlayerInput player)
         {
             if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
-
+            Debug.Log("Player deregistered");
+            
             GameObject playerObj = player.gameObject;
             PlayerController playerController = player.GetComponent<PlayerController>();
             onPlayerLeaveLobby.Raise(this,  playerObj);
@@ -389,8 +392,6 @@ namespace MinigameFramework
 
                 PlayerInput playerInput = player.GetComponent<PlayerInput>();
                 playerInput.defaultActionMap = "Player";
-                playerInput.enabled = false;
-                playerInput.enabled = true;
             }
         }
 
@@ -414,17 +415,10 @@ namespace MinigameFramework
 
         public void OnEnableAllPlayerMovement()
         {
-            foreach (GameObject player in ActivePlayers)
+            foreach (GameObject player in ActivePlayers.ToList())
             {
                 PlayerController controller  = player.GetComponent<PlayerController>();
                 controller.SetPlayerState(PlayerState.Idle);
-                
-                PlayerInput playerInput = player.GetComponent<PlayerInput>();
-                playerInput.enabled = false;
-                if (!DebugPlayers.Contains(player))
-                {
-                    playerInput.enabled = true;
-                }
             }
         }
 
