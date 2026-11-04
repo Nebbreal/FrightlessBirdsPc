@@ -6528,8 +6528,8 @@ MonoBehaviour:
   requiredInteractableBreakVelocity: 9.5
   interactableBlockTrigger: {fileID: 3874372982048277803}
   onSpawnDebugPlayers: {fileID: 11400000, guid: 568be3bcad8b1e04aafe7494c74d4abe, type: 2}
-  onPlayerJoinLobby: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
-  onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onRegisterPlayer: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
+  onDeRegisterPlayer: {fileID: 11400000, guid: bf72a98c5925af14a97235d770bca96e, type: 2}
   onDashedInto: {fileID: 11400000, guid: dada673888a25414195ff1ed3ba3b650, type: 2}
   onAttacked: {fileID: 11400000, guid: b90d1470d294e81409d2624770af5578, type: 2}
   onPlaySoundClipOnce: {fileID: 11400000, guid: 1f99a486dea14ec4ea8a5914b4d521b2, type: 2}
@@ -6628,10 +6628,6 @@ MonoBehaviour:
     m_ActionId: 3c8e5a2e-65f8-4aa4-93e6-6a164b1f9a0d
     m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c69d2ae3-3910-4535-853a-fc69730bd7b0
-    m_ActionName: 'Player/StartGame[/Gamepad/start,/Keyboard/enter]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
         m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
@@ -6683,6 +6679,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bcc00fa7-521f-45ea-bb03-23793bd39f3a
     m_ActionName: 'Calibration/Open operator menu[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Leave
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c319f84c-1913-4b35-a485-677b65ae0dcf
+    m_ActionName: 'Player/Leave[/Gamepad/start,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Calibration

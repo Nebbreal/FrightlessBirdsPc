@@ -42707,6 +42707,7 @@ GameObject:
   - component: {fileID: 6054689567793613528}
   - component: {fileID: 4546052075184221369}
   - component: {fileID: 8592122562101958675}
+  - component: {fileID: 8406984420361219720}
   - component: {fileID: 3126173711858656794}
   - component: {fileID: 1318421042151552096}
   - component: {fileID: 6365197121382445779}
@@ -42760,6 +42761,7 @@ MonoBehaviour:
   onDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
   onPlayerJoinLobby: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onDeRegisterPlayer: {fileID: 11400000, guid: bf72a98c5925af14a97235d770bca96e, type: 2}
   onSpawnPlayerInLobby: {fileID: 11400000, guid: ba3e943fe95abf4f69412d05ea372805, type: 2}
 --- !u!114 &1690358537828402848
 MonoBehaviour:
@@ -42925,6 +42927,34 @@ MonoBehaviour:
       - m_Target: {fileID: 8528424308456378767}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
         m_MethodName: RegisterPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8406984420361219720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617473543875544781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: bf72a98c5925af14a97235d770bca96e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8528424308456378767}
+        m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
+        m_MethodName: OnDeRegisterPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -43241,19 +43271,7 @@ MonoBehaviour:
         m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8528424308456378767}
-        m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
-        m_MethodName: DeRegisterPlayer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_JoinAction:
     m_UseReference: 1
     m_Action:
@@ -43362,11 +43380,9 @@ MonoBehaviour:
   onStartMusic: {fileID: 11400000, guid: 813dfa074f01d794480c008880d7bb5b, type: 2}
   onClearTeams: {fileID: 11400000, guid: 7db48b78f9749a444bb18e6424375dd2, type: 2}
   onResetCalibration: {fileID: 11400000, guid: 0e98b5b7fec7c194eaddc1186c280f13, type: 2}
-  onEnableJoining: {fileID: 11400000, guid: 2b66f0d7e0b1ed053aa1e80343299dfd, type: 2}
   onDisablePlayerMovement: {fileID: 11400000, guid: 8a92ce558600cd5209a7f1169367b7de, type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 7682d2dbb9ac6f527ac42f03e5714a2b, type: 2}
   onInitializeTeams: {fileID: 11400000, guid: abfbeb9747c19fe4d9b0432fafaf54af, type: 2}
-  onSetPlayerActionMap: {fileID: 11400000, guid: ab560497c91ca41c29a4695ce7a0c64e, type: 2}
   onUpdateCountdownTimer: {fileID: 11400000, guid: c5281e2acd3ed40e7b6244afde4b38d2, type: 2}
   onEnableCountdownUI: {fileID: 11400000, guid: 90cb36d1bc0eacbeaa4f35ee0b2cab5b, type: 2}
   onDisableCountdownUI: {fileID: 11400000, guid: abb743a912a8a830aa73c908c68a21f4, type: 2}
@@ -43379,7 +43395,6 @@ MonoBehaviour:
   onDisableLobbyUI: {fileID: 11400000, guid: c4956364b628dd44493405a5b9247cb2, type: 2}
   onEnableScoreboardUI: {fileID: 11400000, guid: 602938e8aa9b36a4fb6448599e75757d, type: 2}
   onRestorePlayerOutlineColors: {fileID: 11400000, guid: bcec79448302d6b44b76a7872d2b3175, type: 2}
-  onEnableOperatorMenuStart: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
   defaultColor: {r: 0.9010377, g: 0.9339623, b: 0.18062477, a: 1}
 --- !u!114 &2194438222066439326
 MonoBehaviour:

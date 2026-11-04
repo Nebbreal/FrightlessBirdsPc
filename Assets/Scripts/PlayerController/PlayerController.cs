@@ -99,9 +99,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] 
     private GameEvent onSpawnDebugPlayers;
     [SerializeField]
-    public GameEvent onPlayerJoinLobby;
+    public GameEvent onRegisterPlayer;
     [SerializeField]
-    public GameEvent onPlayerLeaveLobby;
+    public GameEvent onDeRegisterPlayer;
     public GameEvent onDashedInto;
     public GameEvent onAttacked;
     [SerializeField]
@@ -244,14 +244,18 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            if (IsActive)
+            if (!IsActive)
             {
-                onPlayerLeaveLobby.Raise(this, gameObject);
+                onRegisterPlayer.Raise(this, gameObject);
             }
-            else
-            {
-                onPlayerJoinLobby.Raise(this, gameObject);
-            }
+        }
+    }
+
+    public void Leave(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            onDeRegisterPlayer.Raise(this, gameObject);
         }
     }
 

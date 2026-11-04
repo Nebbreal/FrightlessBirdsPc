@@ -45,6 +45,7 @@ namespace MinigameFramework
         public GameEvent onDisablePlayerUI;
         public GameEvent onPlayerJoinLobby;
         public GameEvent onPlayerLeaveLobby;
+        public GameEvent onDeRegisterPlayer;
         public GameEvent onSpawnPlayerInLobby;
         
         //TODO: Use a scriptable object linked to the player's to contain this data (Probably not able to be completed before handover)
@@ -164,18 +165,19 @@ namespace MinigameFramework
             _isPlayerIdAvailable[idToUnassign] = true;
         }
 
-        public void DeRegisterPlayer(PlayerInput player)
+        public void OnDeRegisterPlayer(Component sender, object[] playerObj)
         {
+            if (playerObj.First() is not GameObject playerObject) return;
+            PlayerInput player = playerObject.GetComponent<PlayerInput>();
             if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
-            
-            GameObject playerObj = player.gameObject;
+          
             PlayerController playerController = player.GetComponent<PlayerController>();
             onPlayerLeaveLobby.Raise(this,  playerObj);
             UnassignPlayerID(playerController);
             
-            Players.Remove(playerObj);
-            ActivePlayers.Remove(playerObj);
-            Destroy(playerObj);
+            Players.Remove(playerObject);
+            ActivePlayers.Remove(playerObject);
+            Destroy(playerObject);
         }
         
         public void OnRegisterDebugPlayers (Component sender, object[] objects)

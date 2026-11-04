@@ -43,15 +43,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Join",
-                    "type": "Button",
-                    "id": "c69d2ae3-3910-4535-853a-fc69730bd7b0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "SwitchScene",
                     "type": "Button",
                     "id": "f9a18cc0-d6f5-4ff2-967a-b8b9f0d48151",
@@ -61,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivateMenu",
+                    "name": "ActivateDebugMenu",
                     "type": "Button",
                     "id": "f6a555ff-09f0-468c-80c7-6521f611cf16",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Leave",
+                    "type": "Button",
+                    "id": "c319f84c-1913-4b35-a485-677b65ae0dcf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -216,28 +216,6 @@
                 },
                 {
                     "name": "",
-                    "id": "826d7ab5-7fde-45ea-8acb-4bb54ba0f2f0",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Standard gamepad",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4a680de7-6297-4c41-b708-63fa56731c1c",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ce5c8c2c-539a-4b8c-bb45-26a706290e24",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -254,7 +232,29 @@
                     "interactions": "MultiTap",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "ActivateMenu",
+                    "action": "ActivateDebugMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bd293b6-a1f8-48eb-9e1d-e7ab37d1a2bf",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Standard gamepad",
+                    "action": "Leave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87cf0042-db61-4393-bde8-3de384dde1d8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Leave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
