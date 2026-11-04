@@ -18,6 +18,8 @@ namespace MinigameFramework
         private GameConfig _gameConfig;
         [NonSerialized]
         public PlayerManager PlayerManager;
+        [NonSerialized] 
+        private PlayerInputManager _playerInputManager;
 
         [NonSerialized]
         private float _countdownTime;
@@ -55,11 +57,9 @@ namespace MinigameFramework
         
         [Header("Player Events")]
         public GameEvent onResetCalibration;
-        public GameEvent onEnableJoining;
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
         public GameEvent onInitializeTeams;
-        public GameEvent onSetPlayerActionMap;
         
         [Header("Player UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -74,9 +74,6 @@ namespace MinigameFramework
         public GameEvent onDisableLobbyUI;
         public GameEvent onEnableScoreboardUI;
         public GameEvent onRestorePlayerOutlineColors;
-
-        [Header("Operator UI Events")] 
-        public GameEvent onEnableOperatorMenuStart;
         
         [SerializeField]
         private Color defaultColor = Color.HSVToRGB(280, 49, 79);
@@ -95,6 +92,7 @@ namespace MinigameFramework
         public void Start()
         {
             PlayerManager = Instance.GetComponentInChildren<PlayerManager>();
+            _playerInputManager = Instance.GetComponentInChildren<PlayerInputManager>();
             _gameConfig = Instance.GetComponent<GameConfig>();
         }
 
@@ -113,14 +111,6 @@ namespace MinigameFramework
             if (Instance.IsWinUIActive)
             {
                 CheckWinUITime();
-            }
-        }
-
-        public void OpenOperatorMenuStart(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                onEnableOperatorMenuStart.Raise(this);
             }
         }
 
@@ -192,6 +182,7 @@ namespace MinigameFramework
             PlayerManager.ResetAllPlayersGravity();
             Instance.IsMinigameSceneActive = true;
             onDisableLobbyUI.Raise(this);
+            Instance._playerInputManager.DisableJoining();
             Instance.PlayerManager.playersCanJoin = false;
             onStartMusic.Raise(this);
         }
@@ -229,6 +220,7 @@ namespace MinigameFramework
             PlayerManager.ResetAllPlayerDeceleration();
             onEnablePlayerMovement.Raise(this);
             onEnableLobbyUI.Raise(this);
+            Instance._playerInputManager.EnableJoining();
             Instance.PlayerManager.playersCanJoin = true;
         }
     
@@ -348,6 +340,7 @@ namespace MinigameFramework
                     playerInputManager.enabled = false;
                     Instance.PlayerManager.ResetPlayerStates();
                     onEnableLobbyUI.Raise(this);
+                    Instance._playerInputManager.EnableJoining();
                     Instance.PlayerManager.playersCanJoin = true;
                 }
             }

@@ -65,18 +65,21 @@ namespace MinigameFramework
             { 3, new Color(0f, 1f, 0.047058f)},
         };
 
+        public void Update()
+        {
+            Debug.Log(playersCanJoin);
+        }
+
         #region PlayerInit
         public void Join(PlayerInput player)
         {
             if (!playersCanJoin) return;
-            Debug.Log("Player joined");
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
         public void RegisterPlayer(Component sender, object[] playerObj)
         {
             if (playerObj.First() is not GameObject playerObject) return;
-            Debug.Log("Player registered");
 
             PlayerInput player = playerObject.GetComponent<PlayerInput>();
             
@@ -164,7 +167,6 @@ namespace MinigameFramework
         public void DeRegisterPlayer(PlayerInput player)
         {
             if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
-            Debug.Log("Player deregistered");
             
             GameObject playerObj = player.gameObject;
             PlayerController playerController = player.GetComponent<PlayerController>();

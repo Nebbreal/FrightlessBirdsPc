@@ -128,17 +128,6 @@
                 },
                 {
                     "name": "",
-                    "id": "34e7de03-fbfc-41e3-8242-1b6b3c53c31c",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8847ca9c-f6cb-47a7-b08e-bc0492f06482",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -285,27 +274,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reset",
+                    "name": "Open operator menu",
                     "type": "Button",
-                    "id": "128ec783-bb0e-41a3-b777-2cbfe781d140",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Confirm",
-                    "type": "Button",
-                    "id": "b50f9cc7-d1e9-4100-8a80-bd3bb4a6f697",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SpawnDebugPlayers",
-                    "type": "Button",
-                    "id": "e0de0401-c131-42e7-9b85-33ad64d775b1",
+                    "id": "bcc00fa7-521f-45ea-bb03-23793bd39f3a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -337,34 +308,12 @@
                 },
                 {
                     "name": "",
-                    "id": "59254e44-f185-498f-9d0b-2070120730bd",
-                    "path": "<Keyboard>/shift",
+                    "id": "c7af19f1-63ea-47a7-854b-5468b5df6f25",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "MultiTap",
                     "processors": "",
-                    "groups": "",
-                    "action": "Reset",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9bad1ac5-4c3f-4313-8399-0870930648f1",
-                    "path": "<Keyboard>/space",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "13cecf2e-c7af-4540-a34c-79462246906a",
-                    "path": "<Keyboard>/backslash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "SpawnDebugPlayers",
+                    "groups": ";Operator",
+                    "action": "Open operator menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -389,6 +338,17 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Operator",
+            "bindingGroup": "Operator",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

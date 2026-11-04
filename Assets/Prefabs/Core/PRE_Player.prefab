@@ -6537,6 +6537,7 @@ MonoBehaviour:
   onPlayerDash: {fileID: 11400000, guid: 83b92bd602625b442ad201ebc67dd0a9, type: 2}
   onPlayerAttack: {fileID: 11400000, guid: 4691f109b647ffe47985baa72769be5f, type: 2}
   onPlayerBrace: {fileID: 11400000, guid: 865453e718616d149805bc2350ca2420, type: 2}
+  onEnableOperatorMenuStart: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6663,75 +6664,25 @@ MonoBehaviour:
     m_ActionId: 1a06e90f-7869-4702-8588-993f5d8d6b96
     m_ActionName: 'Calibration/Join[/DragonRise Inc.   Generic   USB  Joystick  /button8]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ResetCalibration
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 128ec783-bb0e-41a3-b777-2cbfe781d140
-    m_ActionName: 'Calibration/Reset[/DragonRise Inc.   Generic   USB  Joystick 
-      /button7]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CompleteCalibration
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b50f9cc7-d1e9-4100-8a80-bd3bb4a6f697
-    m_ActionName: 'Calibration/Confirm[/DragonRise Inc.   Generic   USB  Joystick 
-      /button8]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 809311008639500745}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: SpawnDebugPlayers
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e0de0401-c131-42e7-9b85-33ad64d775b1
-    m_ActionName: 'Calibration/SpawnDebugPlayers[/Keyboard/backslash]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 809311008639500745}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: SkipWinUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 997fbbd4-4826-4274-989d-948e6c640166
-    m_ActionName: 'Player/Any[/Keyboard/v,/Keyboard/c,/Keyboard/space]'
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f6a555ff-09f0-468c-80c7-6521f611cf16
     m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InputOpenOperatorMenuStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bcc00fa7-521f-45ea-bb03-23793bd39f3a
+    m_ActionName: 'Calibration/Open operator menu[/Mouse/middleButton]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Calibration

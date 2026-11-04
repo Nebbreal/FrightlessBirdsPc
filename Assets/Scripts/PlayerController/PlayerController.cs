@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
     public GameEvent onPlayerAttack;
     public GameEvent onPlayerBrace;
 
+    public GameEvent onEnableOperatorMenuStart;
+
     public void LoadFromSettings()
     {
         attackDelay = SettingsManager.Instance.settings.attackCooldown;
@@ -524,6 +526,14 @@ public class PlayerController : MonoBehaviour
             playerState is PlayerState.Idle or PlayerState.Movement)
         {
             DoAttack = true;
+        }
+    }
+    
+    public void InputOpenOperatorMenuStart(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onEnableOperatorMenuStart.Raise(this);
         }
     }
     
