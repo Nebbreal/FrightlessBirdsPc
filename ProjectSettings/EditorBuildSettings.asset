@@ -20,6 +20,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/SC_GoldenGoose_MG.unity
     guid: 89290a91e886e0b49ae0e3e402a855fe
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c21f81af785296540b666f174ba0c58e, type: 3}
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
