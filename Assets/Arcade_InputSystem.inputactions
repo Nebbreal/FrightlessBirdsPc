@@ -250,7 +250,7 @@
                 {
                     "name": "",
                     "id": "87cf0042-db61-4393-bde8-3de384dde1d8",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
@@ -287,7 +287,7 @@
                 {
                     "name": "",
                     "id": "594ce224-2bfc-45b6-9353-58256c99b5e0",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",

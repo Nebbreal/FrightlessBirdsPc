@@ -65,12 +65,7 @@ namespace MinigameFramework
             { 2, new Color(0.4980392f, 0.3019608f, 0.6980392f) },
             { 3, new Color(0f, 1f, 0.047058f)},
         };
-
-        public void Update()
-        {
-            Debug.Log(playersCanJoin);
-        }
-
+        
         #region PlayerInit
         public void Join(PlayerInput player)
         {
@@ -123,7 +118,7 @@ namespace MinigameFramework
 
                     SetPlayerColor(playerObject, i);
                     
-                    playerObject.name = "Player" + Players.Count;
+                    playerObject.name = "Player" + (i+1);
 
                     InstantiatePlayerModel(playerObject, playerController);
                     
@@ -158,7 +153,7 @@ namespace MinigameFramework
             cooldownUI.SetCooldownColor(playerIndex);
         }
 
-        public void UnassignPlayerID(PlayerController playerController)
+        private void UnassignPlayerID(PlayerController playerController)
         {
             int idToUnassign = playerController.ID;
             playerController.ID = -1;
@@ -175,6 +170,8 @@ namespace MinigameFramework
             onPlayerLeaveLobby.Raise(this,  playerObj);
             UnassignPlayerID(playerController);
             
+            PlayerRigidbodies.Remove(playerObject.GetComponent<Rigidbody>());
+            Debug.Log(PlayerRigidbodies.Count);
             Players.Remove(playerObject);
             ActivePlayers.Remove(playerObject);
             Destroy(playerObject);
@@ -198,8 +195,8 @@ namespace MinigameFramework
             }
             #endif
         }
-        
-        public void OnPlayerJoinLobby(GameObject playerObject)
+
+        private void OnPlayerJoinLobby(GameObject playerObject)
         {
             if (!playersCanJoin) return;
             
