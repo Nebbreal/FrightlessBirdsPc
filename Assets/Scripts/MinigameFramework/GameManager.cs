@@ -21,7 +21,7 @@ namespace MinigameFramework
         [NonSerialized] 
         private PlayerInputManager _playerInputManager;
         [NonSerialized]
-        private GameSceneManager _gameSceneManager;
+        public GameSceneManager GameSceneManager;
 
         [NonSerialized]
         private float _countdownTime;
@@ -93,10 +93,10 @@ namespace MinigameFramework
 
         public void Start()
         {
-            PlayerManager = Instance.GetComponentInChildren<PlayerManager>();
+            Instance.PlayerManager = Instance.GetComponentInChildren<PlayerManager>();
             _playerInputManager = Instance.GetComponentInChildren<PlayerInputManager>();
             _gameConfig = Instance.GetComponent<GameConfig>();
-            _gameSceneManager = Instance.GetComponent<GameSceneManager>();
+            Instance.GameSceneManager = Instance.GetComponentInChildren<GameSceneManager>();
         }
 
         public void Update()
@@ -246,14 +246,14 @@ namespace MinigameFramework
         {
             onCleanWinUI.Raise(this, null);
             Instance.PlayerManager.ResetAllPlayerPositions();
-            SceneManager.LoadScene(sceneName);
+            Instance.GameSceneManager.SetSceneToLoad(sceneName);
             Time.timeScale = 1f;
         }
 
         public void ReloadScene(InputAction.CallbackContext context)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            Instance.GameSceneManager.SetSceneToLoad(currentSceneName);
             Time.timeScale = 1f;
         }
 

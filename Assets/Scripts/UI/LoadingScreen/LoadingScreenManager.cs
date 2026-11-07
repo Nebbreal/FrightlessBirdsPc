@@ -25,8 +25,6 @@ namespace UI.LoadingScreen
         private Image backgroundImage;
 
         [Header("Configuration")] 
-        [SerializeField]
-        private float minWaitTime = 1f;
         [SerializeField] 
         private float bgFadeTime = 2f;
 
