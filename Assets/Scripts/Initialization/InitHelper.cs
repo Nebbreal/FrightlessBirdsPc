@@ -1,3 +1,4 @@
+using MinigameFramework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ namespace Initialization
 {
     public class InitHelper : MonoBehaviour
     {
+        [SerializeField]
+        private GameSceneManager gameSceneManager;
         [SerializeField] 
         private SceneField sceneToLoad;
     
@@ -16,7 +19,7 @@ namespace Initialization
             }
             else
             {
-                SceneManager.LoadScene(sceneToLoad);
+                gameSceneManager.SetSceneToLoad(sceneToLoad);
             }
         }
     }

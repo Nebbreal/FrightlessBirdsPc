@@ -127,18 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 156908364640495899, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_MaxPlayerCount
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2353671029250158591, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_Cameras.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2353671029250158591, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: 'm_Cameras.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2026067000}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -178,18 +166,6 @@ PrefabInstance:
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8378126864732462214, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8378126864732462214, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8378126864732462214, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
@@ -308,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa59c08746e34700a7a45b8160492dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Initialization.InitHelper
+  gameSceneManager: {fileID: 2147148745}
   sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 5984e344666c36f439f39c3fc52f9999, type: 3}
     m_SceneName: SC_Lobby_CO
@@ -326,11 +303,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &2026067000 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5903147366593062593, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+--- !u!114 &2147148745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3813554607054444560, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
   m_PrefabInstance: {fileID: 342139508}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c90e648cec3a7fff8db582fcf5e5818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameFramework.GameSceneManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

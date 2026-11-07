@@ -20,6 +20,8 @@ namespace MinigameFramework
         public PlayerManager PlayerManager;
         [NonSerialized] 
         private PlayerInputManager _playerInputManager;
+        [NonSerialized]
+        private GameSceneManager _gameSceneManager;
 
         [NonSerialized]
         private float _countdownTime;
@@ -94,6 +96,7 @@ namespace MinigameFramework
             PlayerManager = Instance.GetComponentInChildren<PlayerManager>();
             _playerInputManager = Instance.GetComponentInChildren<PlayerInputManager>();
             _gameConfig = Instance.GetComponent<GameConfig>();
+            _gameSceneManager = Instance.GetComponent<GameSceneManager>();
         }
 
         public void Update()
