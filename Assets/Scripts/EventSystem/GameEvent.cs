@@ -8,6 +8,7 @@ namespace EventSystem
     public class GameEvent : ScriptableObject
     {
         public List<GameEventListener> listeners = new();
+        public GameEvent lateEvent;
         
         public void Raise(Component sender, params object[] data)
         {
@@ -23,6 +24,11 @@ namespace EventSystem
                     Exception exceptionToThrow = new Exception($"GameEvent '{this.name}' called by '{sender.name}' threw exception with message: " + ex.Message, ex);
                     Debug.LogException(exceptionToThrow);
                 }
+            }
+
+            if (lateEvent)
+            {
+                lateEvent.Raise(sender, data);
             }
         }
 

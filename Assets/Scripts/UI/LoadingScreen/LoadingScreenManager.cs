@@ -31,6 +31,8 @@ namespace UI.LoadingScreen
         [Header("GameEvents")] 
         [SerializeField]
         private GameEvent onLoadingScreenFinished;
+        [SerializeField]
+        private GameEvent onLoadingScreenFinishedLate;
         [SerializeField] 
         private GameEvent onLoadingScreenEnabled;
 

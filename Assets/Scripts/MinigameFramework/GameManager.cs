@@ -155,7 +155,6 @@ namespace MinigameFramework
             {
                 Instance.IsMinigameSceneActive = true;
                 onEnableCountdownUI.Raise(this);
-
             }
         }
         

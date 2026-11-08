@@ -7542,9 +7542,9 @@ MonoBehaviour:
   neutralState: Plane|PlaneFly
   planeAnimator: {fileID: 2569318672471251085}
   backgroundImage: {fileID: 5194619448752781916}
-  minWaitTime: 1
   bgFadeTime: 2
   onLoadingScreenFinished: {fileID: 11400000, guid: d01a8d52f88485efe9e339b057b422d6, type: 2}
+  onLoadingScreenFinishedLate: {fileID: 11400000, guid: 82bb0b043b53ac7558853dc7a2719584, type: 2}
   onLoadingScreenEnabled: {fileID: 11400000, guid: a5ca1d00812ad1d47954df2f8972e0ee, type: 2}
 --- !u!114 &1502918621698156107
 MonoBehaviour:
@@ -9379,10 +9379,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8597784776335872032}
+  - component: {fileID: 5437689476373522919}
   - component: {fileID: 2689441572594710804}
   - component: {fileID: 1638456072552412730}
-  - component: {fileID: 5437689476373522919}
-  - component: {fileID: 7602600643457908277}
   - component: {fileID: 5678253726851752745}
   - component: {fileID: 6571250812639963052}
   m_Layer: 5
@@ -9412,6 +9411,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5437689476373522919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222652474954775662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c766dfbb5d50b0043b7837175faaa1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerUIs:
+  - {fileID: 3993191103094930007}
+  - {fileID: 7754782575102323727}
+  - {fileID: 7170499887459524377}
+  - {fileID: 1939191946317699797}
+  playerUIsParent: {fileID: 3842084716390550859}
 --- !u!114 &2689441572594710804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9468,51 +9485,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5437689476373522919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2222652474954775662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c766dfbb5d50b0043b7837175faaa1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  playerUIs:
-  - {fileID: 3993191103094930007}
-  - {fileID: 7754782575102323727}
-  - {fileID: 7170499887459524377}
-  - {fileID: 1939191946317699797}
---- !u!114 &7602600643457908277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2222652474954775662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
-  gameEvent: {fileID: 11400000, guid: 69b026567c0c8944da0d0b84021831e4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3842084716390550859}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &5678253726851752745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9553,14 +9525,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
-  gameEvent: {fileID: 11400000, guid: d01a8d52f88485efe9e339b057b422d6, type: 2}
+  gameEvent: {fileID: 11400000, guid: 82bb0b043b53ac7558853dc7a2719584, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3842084716390550859}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5437689476373522919}
+        m_TargetAssemblyTypeName: PlayerUIManager, Assembly-CSharp
+        m_MethodName: OnLoadingScreenFinishedLateEnableUIs
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17775,6 +17747,7 @@ MonoBehaviour:
   - {fileID: 1893460639640252992}
   - {fileID: 6217543738247972599}
   - {fileID: 8012495192163487738}
+  playerUIsParent: {fileID: 0}
 --- !u!1 &3714339941696693402
 GameObject:
   m_ObjectHideFlags: 0
@@ -43992,6 +43965,7 @@ GameObject:
   - component: {fileID: -2727598369002935675}
   - component: {fileID: 2318957386543404869}
   - component: {fileID: 1293218454448296274}
+  - component: {fileID: 3721767960492873415}
   m_Layer: 0
   m_Name: PRE_GameManager
   m_TagString: GameManager
@@ -44183,6 +44157,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
         m_MethodName: OnSkipWinUI
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3721767960492873415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657201635695876032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: d01a8d52f88485efe9e339b057b422d6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2829976537248166007}
+        m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
+        m_MethodName: OnLoadingScreenFinished
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

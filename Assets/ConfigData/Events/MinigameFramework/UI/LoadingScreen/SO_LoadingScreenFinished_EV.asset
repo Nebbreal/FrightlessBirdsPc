@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SO_LoadingScreenFinished_EV
   m_EditorClassIdentifier: Assembly-CSharp::EventSystem.GameEvent
   listeners: []
+  lateEvent: {fileID: 11400000, guid: 82bb0b043b53ac7558853dc7a2719584, type: 2}
