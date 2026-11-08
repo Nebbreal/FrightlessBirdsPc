@@ -127,6 +127,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 924449417780591490, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487994297288731758, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6261225260295015777, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -167,18 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6571250812639963052, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: gameEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 82bb0b043b53ac7558853dc7a2719584, type: 2}
-    - target: {fileID: 6571250812639963052, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnLoadingScreenFinishedLateEnableUIs
-      objectReference: {fileID: 0}
-    - target: {fileID: 6961993661554267622, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-      propertyPath: onLoadingScreenFinishedLate
-      value: 
-      objectReference: {fileID: 11400000, guid: 82bb0b043b53ac7558853dc7a2719584, type: 2}
     - target: {fileID: 8657201635695876032, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
       propertyPath: m_Name
       value: PRE_GameManager
