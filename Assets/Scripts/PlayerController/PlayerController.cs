@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
     public GameEvent onPlayerBrace;
 
     public GameEvent onEnableOperatorMenuStart;
+    public GameEvent onSwitchScene;
 
     public void LoadFromSettings()
     {
@@ -240,6 +241,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region InputActions
     public void Join(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -274,12 +276,69 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void InputMove(InputAction.CallbackContext context)
+        {
+            Vector2 moveValue = context.action.ReadValue<Vector2>();
+            
+            Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
+            
+            MoveInput = move;
+        }
+
+    public void InputBlocking(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _isHoldingBlock = true;
+        }
+
+        if (context.canceled)
+        {
+            _isHoldingBlock = false;
+        }
+    }
+
+    public void InputDash(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed() && DashCooldown <= 0 &&
+            playerState is PlayerState.Idle or PlayerState.Movement)
+        {
+            DoDash = true;
+        }
+    }
+
+    public void InputAttack(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed() && AttackCooldown <= 0 && 
+            playerState is PlayerState.Idle or PlayerState.Movement)
+        {
+            DoAttack = true;
+        }
+    }
+    
+    public void InputOpenOperatorMenuStart(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onEnableOperatorMenuStart.Raise(this);
+        }
+    }
+
+    public void InputSwitchScene(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            onSwitchScene.Raise(this, null);
+        }
+    }
+    #endregion
+
     public void SetPlayerState(PlayerState newState)
     {
         ExitState(playerState, newState);
         EnterPlayerState(newState);
     }
-
+    
     private void EnterPlayerState(PlayerState newState)
     {
         switch (newState)
@@ -490,54 +549,6 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Stunned:
                 _stunTimer -= Time.deltaTime;
                 break;
-        }
-    }
-
-    public void InputMove(InputAction.CallbackContext context)
-    {
-        Vector2 moveValue = context.action.ReadValue<Vector2>();
-        
-        Vector3 move = new Vector3(moveValue.x, 0.0f, moveValue.y).normalized;
-        
-        MoveInput = move;
-    }
-
-    public void InputBlocking(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            _isHoldingBlock = true;
-        }
-
-        if (context.canceled)
-        {
-            _isHoldingBlock = false;
-        }
-    }
-
-    public void InputDash(InputAction.CallbackContext context)
-    {
-        if (context.action.IsPressed() && DashCooldown <= 0 &&
-            playerState is PlayerState.Idle or PlayerState.Movement)
-        {
-            DoDash = true;
-        }
-    }
-
-    public void InputAttack(InputAction.CallbackContext context)
-    {
-        if (context.action.IsPressed() && AttackCooldown <= 0 && 
-            playerState is PlayerState.Idle or PlayerState.Movement)
-        {
-            DoAttack = true;
-        }
-    }
-    
-    public void InputOpenOperatorMenuStart(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            onEnableOperatorMenuStart.Raise(this);
         }
     }
     

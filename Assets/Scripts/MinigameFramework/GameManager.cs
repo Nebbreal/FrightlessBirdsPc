@@ -241,10 +241,8 @@ namespace MinigameFramework
             Instance.PlayerManager.playersCanJoin = true;
         }
     
-        public void StartGame(InputAction.CallbackContext context)
+        public void OnSwitchScene(Component sender,  object[] _)
         {
-            if (!context.started || Instance.IsMinigameActive && !Instance.HasMinigameEnded || Instance._countdownTime > 0) return;
-        
             if (!Instance.IsMinigameSceneActive)
             {
                 onLoadMinigame.Raise(this, null);

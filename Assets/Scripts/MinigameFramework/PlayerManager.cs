@@ -171,7 +171,6 @@ namespace MinigameFramework
             UnassignPlayerID(playerController);
             
             PlayerRigidbodies.Remove(playerObject.GetComponent<Rigidbody>());
-            Debug.Log(PlayerRigidbodies.Count);
             Players.Remove(playerObject);
             ActivePlayers.Remove(playerObject);
             Destroy(playerObject);

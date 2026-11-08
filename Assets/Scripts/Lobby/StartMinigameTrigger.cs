@@ -39,7 +39,7 @@ public class StartMinigameTrigger : MonoBehaviour
             && !gameManager.IsMinigameSceneActive 
             && playerManager.ActivePlayers.Count >= 2)
         {
-            onLoadMinigame.Raise(this, other.gameObject);
+            onLoadMinigame.Raise(this, null);
             areInside = new List<GameObject>();
         }
     }

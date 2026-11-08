@@ -6538,6 +6538,7 @@ MonoBehaviour:
   onPlayerAttack: {fileID: 11400000, guid: 4691f109b647ffe47985baa72769be5f, type: 2}
   onPlayerBrace: {fileID: 11400000, guid: 865453e718616d149805bc2350ca2420, type: 2}
   onEnableOperatorMenuStart: {fileID: 11400000, guid: c27dce16270c1df45b4af9cedceb20c4, type: 2}
+  onSwitchScene: {fileID: 11400000, guid: d071d465c5650614cb03b92b1e16e8fb, type: 2}
 --- !u!114 &3318753757977760567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6629,9 +6630,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2829976537248166007, guid: 3e7359e2324a6e24fb4d16e529c16085, type: 3}
-        m_TargetAssemblyTypeName: MinigameFramework.GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: InputSwitchScene
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
