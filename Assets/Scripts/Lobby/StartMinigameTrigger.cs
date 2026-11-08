@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using EventSystem;
 using MinigameFramework;
+using UnityEngine.Serialization;
 
 public class StartMinigameTrigger : MonoBehaviour
 {
-    public GameEvent onStartMinigame;
+    public GameEvent onLoadMinigame;
     private List<GameObject> areInside;
 
     public void Start()
@@ -38,7 +39,7 @@ public class StartMinigameTrigger : MonoBehaviour
             && !gameManager.IsMinigameSceneActive 
             && playerManager.ActivePlayers.Count >= 2)
         {
-            onStartMinigame.Raise(this, other.gameObject);
+            onLoadMinigame.Raise(this, other.gameObject);
             areInside = new List<GameObject>();
         }
     }

@@ -44,7 +44,7 @@ namespace UI.LoadingScreen
 
         public void OnEnableLoadingScreen(Component sender, object[] _)
         {
-            StartCoroutine(EnableLoadingScreenRoutine());
+            StartCoroutine(OnLoadingScreenFinished());
         }
 
         public void OnDisableLoadingScreen(Component sender, object[] _)
@@ -73,7 +73,7 @@ namespace UI.LoadingScreen
             }
         }
 
-        private IEnumerator EnableLoadingScreenRoutine()
+        private IEnumerator OnLoadingScreenFinished()
         {
             StartBackgroundFade(1f);
             planeAnimator.SetInteger(_planeFlyState, 0);

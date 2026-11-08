@@ -23,10 +23,9 @@ namespace MinigameFramework
         [NonSerialized]
         public GameSceneManager GameSceneManager;
 
-        [NonSerialized]
         private float _countdownTime;
+        private bool _canCountdown = false;
 
-        [NonSerialized]
         private float _winUITime;
     
         [FormerlySerializedAs("Minigames")]
@@ -102,7 +101,11 @@ namespace MinigameFramework
         public void Update()
         {
             #region Timers
-            Instance._countdownTime -= Time.deltaTime;
+
+            if (Instance._canCountdown && Instance._countdownTime > 0f)
+            {
+                Instance._countdownTime -= Time.deltaTime;
+            }
             Instance._winUITime -= Time.deltaTime;
             #endregion
             
@@ -144,9 +147,21 @@ namespace MinigameFramework
             }
         }
 
+        public void OnLoadingScreenFinished(Component sender, object[] _)
+        {
+            Instance._canCountdown = true;
+
+            if (Instance.CurrentMinigame)
+            {
+                Instance.IsMinigameSceneActive = true;
+                onEnableCountdownUI.Raise(this);
+
+            }
+        }
+        
         private void CheckCountdownState()
         {
-            if (Instance._countdownTime > 0)
+            if (Instance._canCountdown && Instance._countdownTime > 0)
             {
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
@@ -174,19 +189,18 @@ namespace MinigameFramework
             }
         
             Instance.CurrentMinigame = selectedMinigame;
-          
+
+            Instance._canCountdown = false;
             onDisablePlayerMovement.Raise(this);
             onInitializeTeams.Raise(this, Instance.CurrentMinigame);
-            onEnableCountdownUI.Raise(this);
             Instance.HasMinigameEnded = false;
             Instance._countdownTime = Instance._gameConfig.countdownLength;
 
-            Instance.LoadScene(selectedMinigame.sceneToLoad);
-            PlayerManager.ResetAllPlayersGravity();
-            Instance.IsMinigameSceneActive = true;
-            onDisableLobbyUI.Raise(this);
             Instance._playerInputManager.DisableJoining();
             Instance.PlayerManager.playersCanJoin = false;
+            Instance.LoadScene(selectedMinigame.sceneToLoad);
+            PlayerManager.ResetAllPlayersGravity();
+            onDisableLobbyUI.Raise(this);
             onStartMusic.Raise(this);
         }
 
@@ -215,6 +229,7 @@ namespace MinigameFramework
 
         public void ToLobby()
         {
+            Instance.CurrentMinigame = null;
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance.IsMinigameActive = false;
@@ -245,7 +260,6 @@ namespace MinigameFramework
         private void LoadScene(string sceneName)
         {
             onCleanWinUI.Raise(this, null);
-            Instance.PlayerManager.ResetAllPlayerPositions();
             Instance.GameSceneManager.SetSceneToLoad(sceneName);
             Time.timeScale = 1f;
         }

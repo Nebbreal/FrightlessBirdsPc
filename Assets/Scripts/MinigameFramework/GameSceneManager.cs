@@ -26,6 +26,7 @@ namespace MinigameFramework
 
         public void OnLoadingScreenEnabled(Component sender, object[] _)
         {
+            GameManager.Instance.PlayerManager.ResetAllPlayerPositions();
             SceneManager.LoadScene(_sceneToLoad);
             onDisableLoadingScreen.Raise(this, null);
             _sceneToLoad = "";
