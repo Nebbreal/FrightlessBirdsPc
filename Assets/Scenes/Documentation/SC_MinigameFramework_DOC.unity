@@ -960,7 +960,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 202050461}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: RegisterPlayer
+        m_MethodName: OnRegisterPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

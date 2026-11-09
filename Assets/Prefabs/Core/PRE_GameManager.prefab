@@ -43417,6 +43417,7 @@ MonoBehaviour:
   onDisablePlayerUI: {fileID: 11400000, guid: ca461bd6391a15a439e3f281e801015f, type: 2}
   onPlayerJoinLobby: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
+  onRegisterPlayer: {fileID: 11400000, guid: f85206245c7931f45b34ec751d1c7895, type: 2}
   onDeRegisterPlayer: {fileID: 11400000, guid: bf72a98c5925af14a97235d770bca96e, type: 2}
   onSpawnPlayerInLobby: {fileID: 11400000, guid: ba3e943fe95abf4f69412d05ea372805, type: 2}
 --- !u!114 &1690358537828402848
@@ -43582,7 +43583,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8528424308456378767}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
-        m_MethodName: RegisterPlayer
+        m_MethodName: OnRegisterPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

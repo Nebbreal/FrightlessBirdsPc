@@ -52,18 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivateDebugMenu",
+                    "name": "Leave",
                     "type": "Button",
-                    "id": "f6a555ff-09f0-468c-80c7-6521f611cf16",
+                    "id": "c319f84c-1913-4b35-a485-677b65ae0dcf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Leave",
+                    "name": "SpawnDebugPlayers",
                     "type": "Button",
-                    "id": "c319f84c-1913-4b35-a485-677b65ae0dcf",
+                    "id": "d074891d-7e70-412f-b9cc-d5c92a3d0d2b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -227,17 +227,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6731b4cd-36d4-49a0-8aae-8e0d9507a030",
-                    "path": "<Mouse>/middleButton",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "ActivateDebugMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5bd293b6-a1f8-48eb-9e1d-e7ab37d1a2bf",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -255,6 +244,17 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Leave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48f17f9c-e672-42cc-b8e9-39da08731d1a",
+                    "path": "<Keyboard>/backslash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "SpawnDebugPlayers",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

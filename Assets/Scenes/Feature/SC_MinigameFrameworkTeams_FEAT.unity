@@ -157,7 +157,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1130249668}
         m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
-        m_MethodName: RegisterPlayer
+        m_MethodName: OnRegisterPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

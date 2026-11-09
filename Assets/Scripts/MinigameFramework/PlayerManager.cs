@@ -45,6 +45,7 @@ namespace MinigameFramework
         public GameEvent onDisablePlayerUI;
         public GameEvent onPlayerJoinLobby;
         public GameEvent onPlayerLeaveLobby;
+        public GameEvent onRegisterPlayer;
         public GameEvent onDeRegisterPlayer;
         public GameEvent onSpawnPlayerInLobby;
         
@@ -73,13 +74,17 @@ namespace MinigameFramework
             player.transform.position = inactivePlayerPoint.transform.position;
         }
         
-        public void RegisterPlayer(Component sender, object[] playerObj)
+        public void OnRegisterPlayer(Component sender, object[] playerObj)
         {
             if (playerObj.First() is not GameObject playerObject) return;
-
-            PlayerInput player = playerObject.GetComponent<PlayerInput>();
             
-            if(GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
+            bool isDebugPlayer = false;
+            if (playerObj.Length == 2 && playerObj[1] is bool)
+            {
+                isDebugPlayer = (bool)playerObj[1];
+            }
+            
+            if(GameManager.Instance.IsMinigameSceneActive) return;
      
             if (Players == null || Players.Count == 0)
             {
@@ -95,13 +100,18 @@ namespace MinigameFramework
             
             Players.Add(playerObject);
             PlayerRigidbodies.Add(playerObject.GetComponent<Rigidbody>());
-            DontDestroyOnLoad(playerObject);
-            PlayerController playerController = player.GetComponent<PlayerController>();
             
-            player.SwitchCurrentActionMap(playerActionMapName);
-            player.defaultActionMap = playerActionMapName;
-
-            InstantiatePlayer(playerController.gameObject);
+            DontDestroyOnLoad(playerObject);
+            
+            if (!isDebugPlayer)
+            {
+                PlayerInput player = playerObject.GetComponent<PlayerInput>();
+            
+                player.SwitchCurrentActionMap(playerActionMapName);
+                player.defaultActionMap = playerActionMapName;
+            }
+            
+            InstantiatePlayer(playerObject);
             
             OnPlayerJoinLobby(playerObject);
         }
@@ -190,6 +200,9 @@ namespace MinigameFramework
             for (int i = missingPlayerCount; i > 0; i--)
             {
                 GameObject debugPlayer = Instantiate(playerPrefab);
+                debugPlayer.GetComponentInChildren<PlayerInput>().enabled = false;
+                
+                onRegisterPlayer.Raise(this, debugPlayer, true);
                 DebugPlayers.Add(debugPlayer);
             }
             #endif

@@ -6661,10 +6661,6 @@ MonoBehaviour:
     m_ActionId: 1a06e90f-7869-4702-8588-993f5d8d6b96
     m_ActionName: 'Calibration/Join[/DragonRise Inc.   Generic   USB  Joystick  /button8]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f6a555ff-09f0-468c-80c7-6521f611cf16
-    m_ActionName: 'Player/ActivateMenu[/Mouse/middleButton]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 809311008639500745}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -6696,6 +6692,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c319f84c-1913-4b35-a485-677b65ae0dcf
     m_ActionName: 'Player/Leave[/Gamepad/start,/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 809311008639500745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SpawnDebugPlayers
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d074891d-7e70-412f-b9cc-d5c92a3d0d2b
+    m_ActionName: 'Player/SpawnDebugPlayers[/Keyboard/backslash]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Calibration
