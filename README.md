@@ -1,6 +1,12 @@
-# Frightless Birds
-The FrightlessBirds project is a 2-4 player party game made in Unity for the arcade table located in the Enversed Experience Center.
-The game is intended to be played with the generic arcade controllers provided by Enversed.
+# Frightless Birds PC Port
+The Frightless Birds project is a 2-4 player party game made in Unity, The game is intended to be played with a controller.
+
+Frightless Birds was originally made as a semester project during Spring 2026 by Sugar Glider Studios for Enversed. This fork was made with permission from Sugar Glider Studios and the school.
+
+# Work in Progress
+The PC port of Frightless Birds is currently unfinished and actively in development.
+
+This repository is a public fork of the main repository and is updated less frequently.
 
 # Content
 - [Contributors](#contributors)  
@@ -50,11 +56,14 @@ Max van der Spek | Programmer, Game designer
 Jesper Boersma | Creative Lead, Programmer, Game designer  
 Flore van Buul | Artist
 
+## Post Semester Polish (Iteration 2)
+Demiën van Laarhoven | Overall polish and quality of life improvements
+
 # Engine Version
 Frightless Birds is developed in version ``6000.3.9f1``
 
 # Project structure
-The Enversed Arcade project has the following ``Assets/`` folder structure, 
+The Frightless Birds project has the following ``Assets/`` folder structure, 
 most assets are located within nested folders divided by category
 
 ### ``Animations/``
@@ -140,8 +149,6 @@ New settings can be added with these steps:
 * Do the same in SettingsManger.cs's ReloadSettings function.
 * Make a function in the required setting page’s script to update the setting’s value and connect the function to the slider’s OnValueChanged() in the inspector.
 
-
-
 # Conventions
 ## Commit messages
 Commit messages are written in imperative sense and start with a capital.  
@@ -173,7 +180,7 @@ These branches are rarely used when something is terribly wrong with main and mu
 these branches are directly merged into main. In most cases the commits here can be done within a release branch instead.
 
 ## Naming conventions
-The naming convention for files is specified in the files "Enversed assset naming conventions.pdf" and "Sugar glider studio additional naming conventions"
+The naming convention for files is specified externally in the files "Enversed assset naming conventions.pdf" and "Sugar glider studio additional naming conventions"
 
 ## Versioning
 The version on the game(which is set in Player Settings in the build menu) corresponds to the year of the build, 
@@ -189,15 +196,15 @@ This would look like
 
 # How to build/test
 ## How to build
-Every build of the Frightless Birds project **must** contain ``Scenes/Core/SC_initialization_CO`` 
+Every build of the Frightless Birds project **must** contain ``Scenes/Core/SC_Initialization_CO`` 
 as it's first entry in the scenes list. ``SC_Core/SC_Lobby_CO`` is also required for the game to function.
 
-Any minigames included in the gamemanager also need to be added to the scene list.
+Any minigames included in the game manager also need to be added to the scene list.
 
-## How to initilize controllers
-In ``Scenes/Core/SC_initialization_CO`` you can initialize the controllers by pressed the ``start`` button which is located on the right side of the 2 top buttons.
-After all 4 controllers are initialized you can confirm initialization by pressing start twice. To reset initiliazation press ``select`` twice which is left of the ``start`` button.
+## How to test in the Unity editor with multiple players
+In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``, controllers can be
+initialized by pressing ``start``.
 
-## How to test in the Unity editor
-In unity when on ``Scenes/Core/SC_initialization_CO`` you can initilize their keyboard by pressing ``enter``, 
-to initialize the other 3 players you can press ``\`` and finally confirm initialization by pressing the ``space`` twice.
+## How to test in the Unity editor when alone
+In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``, 
+to initialize the other 3 players you can press ``\``. Scene switching can be forced by pressing ``escape``.
