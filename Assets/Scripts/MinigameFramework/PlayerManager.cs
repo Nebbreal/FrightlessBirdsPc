@@ -150,7 +150,9 @@ namespace MinigameFramework
             {
                 GameObject instantiatedPlayer =
                     Instantiate(playerModels[playerController.ID], playerObject.transform);
-
+                Vector3 playerModelLocalPosition = instantiatedPlayer.transform.localPosition;
+                instantiatedPlayer.transform.localPosition = new Vector3(playerModelLocalPosition.x, -1, playerModelLocalPosition.z);
+                
                 PlayerModel playerModel = instantiatedPlayer.GetComponentInChildren<PlayerModel>();
 
                 playerModel.ChangeOutlineColor(PlayerColors[playerController.ID]);
