@@ -174,7 +174,7 @@ namespace MinigameFramework
         {
             if (playerObj.First() is not GameObject playerObject) return;
             PlayerInput player = playerObject.GetComponent<PlayerInput>();
-            if(!GameManager.Instance || GameManager.Instance.IsMinigameSceneActive || player.currentActionMap.name == "Operator") return;
+            if(GameManager.Instance.IsMinigameSceneActive) return;
           
             PlayerController playerController = player.GetComponent<PlayerController>();
             onPlayerLeaveLobby.Raise(this,  playerObj);
