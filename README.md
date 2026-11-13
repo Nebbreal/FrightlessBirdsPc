@@ -11,6 +11,10 @@ This repository is a public fork of the main repository and is updated less freq
 # Content
 - [Contributors](#contributors)  
 - [Engine Version](#engine-version)
+- [How to build/test](#how-to-buildtest)
+  - [How to build](#how-to-build)
+  - [How to test in the Unity editor with multiple players](#how-to-test-in-the-unity-editor-with-multiple-players)
+  - [How to test in the Unity editor when alone](#how-to-test-in-the-unity-editor-when-alone)
 - [Project Structure](#project-structure)
   - [Animations/](#animations)
   - [Audio/](#audio)
@@ -42,10 +46,6 @@ This repository is a public fork of the main repository and is updated less freq
     - [hotfix/hotfix-name](#hotfixhotfix-name)
   - [Naming conventions](#naming-conventions)
   - [Versioning](#versioning)
-- [How to build/test](#how-to-buildtest)
-  - [How to build](#how-to-build)
-  - [How to initialize controllers](#how-to-initilize-controllers)
-  - [How to test in the Unity editor](#how-to-test-in-the-unity-editor)
 
 # Contributors
 ## Sugar Glider Studios (Iteration 1 Spring 2026, Final version 26.6.3)
@@ -61,6 +61,21 @@ Demiën van Laarhoven | Overall polish and quality of life improvements
 
 # Engine Version
 Frightless Birds is developed in version ``6000.3.9f1``
+
+# How to build/test
+## How to build
+Every build of the Frightless Birds project **must** contain ``Scenes/Core/SC_Initialization_CO``
+as it's first entry in the scenes list. ``SC_Core/SC_Lobby_CO`` is also required for the game to function.
+
+Any minigames included in the game manager also need to be added to the scene list.
+
+## How to test in the Unity editor with multiple players
+In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``, controllers can be
+initialized by pressing ``start``.
+
+## How to test in the Unity editor when alone
+In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``,
+to initialize the other 3 players you can press ``\``. Scene switching can be forced by pressing ``escape``.
 
 # Project structure
 The Frightless Birds project has the following ``Assets/`` folder structure, 
@@ -193,18 +208,3 @@ This would look like
 - 6 is the 6th month of the year (June)
 - 2 means the second release this month
 - 3 means the third minor patch(or hotfix) of the release
-
-# How to build/test
-## How to build
-Every build of the Frightless Birds project **must** contain ``Scenes/Core/SC_Initialization_CO`` 
-as it's first entry in the scenes list. ``SC_Core/SC_Lobby_CO`` is also required for the game to function.
-
-Any minigames included in the game manager also need to be added to the scene list.
-
-## How to test in the Unity editor with multiple players
-In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``, controllers can be
-initialized by pressing ``start``.
-
-## How to test in the Unity editor when alone
-In unity when on ``Scenes/Core/SC_Lobby_CO`` you can initialize your keyboard by pressing ``enter``, 
-to initialize the other 3 players you can press ``\``. Scene switching can be forced by pressing ``escape``.
