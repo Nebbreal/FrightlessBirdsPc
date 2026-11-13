@@ -18,7 +18,7 @@ namespace MinigameFramework
         
         public void SetSceneToLoad(string sceneToLoad)
         {
-            if (String.IsNullOrEmpty(sceneToLoad)) return;
+            if (!String.IsNullOrEmpty(_sceneToLoad)) return;
             
             _sceneToLoad = sceneToLoad;
             onEnableLoadingScreen.Raise(this, null);
