@@ -61,6 +61,7 @@ namespace MinigameFramework
         public GameEvent onDisablePlayerMovement;
         public GameEvent onEnablePlayerMovement;
         public GameEvent onInitializeTeams;
+        public GameEvent onUnWaitPlayers;
         
         [Header("Player UI Events")]
         public GameEvent onUpdateCountdownTimer;
@@ -234,6 +235,7 @@ namespace MinigameFramework
             Instance.LoadScene(lobbyScene);
             Instance.IsMinigameSceneActive = false;
             Instance.IsMinigameActive = false;
+            onUnWaitPlayers.Raise(this);
             onRestorePlayerOutlineColors.Raise(this);
             PlayerManager.ResetAllPlayersGravity();
             PlayerManager.ResetAllPlayerDeceleration();

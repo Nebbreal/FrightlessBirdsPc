@@ -14695,6 +14695,7 @@ MonoBehaviour:
   onWinGame: {fileID: 11400000, guid: 4c90473dc833a514ebf62e6c3c3cf5bc, type: 2}
   onPlayerLeaveLobby: {fileID: 11400000, guid: 46a74e843ae7e6242b723c15d3744d4b, type: 2}
   onLoadMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
+  onWaitPlayer: {fileID: 11400000, guid: bf6c39a45d454fb47b7b2940fab53290, type: 2}
 --- !u!114 &6892655486949392302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43369,6 +43370,8 @@ GameObject:
   - component: {fileID: 6365197121382445779}
   - component: {fileID: 1319746290497146550}
   - component: {fileID: 2326026682771638709}
+  - component: {fileID: 1547640339160265175}
+  - component: {fileID: 8639092472951640806}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -43761,6 +43764,62 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1547640339160265175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617473543875544781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: bf6c39a45d454fb47b7b2940fab53290, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8528424308456378767}
+        m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
+        m_MethodName: OnWaitPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8639092472951640806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617473543875544781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e765506e7cff249904bb94b921c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: 15e8d439718ed242f99e2e6cd3f8bc2c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8528424308456378767}
+        m_TargetAssemblyTypeName: MinigameFramework.PlayerManager, Assembly-CSharp
+        m_MethodName: OnUnWaitPlayers
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8617589453534245641
 GameObject:
   m_ObjectHideFlags: 0
@@ -44042,6 +44101,7 @@ MonoBehaviour:
   onDisablePlayerMovement: {fileID: 11400000, guid: 8a92ce558600cd5209a7f1169367b7de, type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 7682d2dbb9ac6f527ac42f03e5714a2b, type: 2}
   onInitializeTeams: {fileID: 11400000, guid: abfbeb9747c19fe4d9b0432fafaf54af, type: 2}
+  onUnWaitPlayers: {fileID: 11400000, guid: 15e8d439718ed242f99e2e6cd3f8bc2c, type: 2}
   onUpdateCountdownTimer: {fileID: 11400000, guid: c5281e2acd3ed40e7b6244afde4b38d2, type: 2}
   onEnableCountdownUI: {fileID: 11400000, guid: 90cb36d1bc0eacbeaa4f35ee0b2cab5b, type: 2}
   onDisableCountdownUI: {fileID: 11400000, guid: abb743a912a8a830aa73c908c68a21f4, type: 2}

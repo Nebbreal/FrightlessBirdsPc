@@ -18,11 +18,12 @@ public class ScoreboardManager : MonoBehaviour
     private object[] _winners;
     private bool _isActive;
     
-    //Event
+    [Header("Events")]
     public GameEvent onUpdateWinUIText;
     public GameEvent onWinGame;
     public GameEvent onPlayerLeaveLobby;
     public GameEvent onLoadMinigame;
+    public GameEvent onWaitPlayer;
 
     private List<GameObject> _instantiatedCrowns = new List<GameObject>();
 
@@ -83,12 +84,10 @@ public class ScoreboardManager : MonoBehaviour
 
         if (winningPlayers.Count > 1)
         {
-            GameManager.Instance.CanLeaveOverride = true;
             foreach (GameObject player in GameManager.Instance.PlayerManager.ActivePlayers.Where(p => !winningPlayers.Contains(p)).ToArray())
             {
-                onPlayerLeaveLobby.Raise(this, player);
+                onWaitPlayer.Raise(this, player);
             }
-            GameManager.Instance.CanLeaveOverride = false;
 
             onLoadMinigame.Raise(this, GameManager.Instance.tieBreakerMinigame);
         }

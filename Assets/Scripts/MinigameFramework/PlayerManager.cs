@@ -20,6 +20,8 @@ namespace MinigameFramework
         public List<Rigidbody> PlayerRigidbodies = new List<Rigidbody>();
         [NonSerialized] 
         public List<GameObject> ActivePlayers = new List<GameObject>();
+        [NonSerialized]
+        public List<GameObject> WaitingPlayers = new List<GameObject>(); //Primarily used for when players need to be gone for 1 minigame only.
         [NonSerialized] 
         public List<GameObject> DebugPlayers;
         [NonSerialized] 
@@ -91,6 +93,7 @@ namespace MinigameFramework
                 Players = new List<GameObject>();
                 ActivePlayers = new List<GameObject>();
                 DebugPlayers = new List<GameObject>();
+                WaitingPlayers = new List<GameObject>();
             }
             
             if (Players != null && Players.Contains(playerObject))
@@ -244,6 +247,28 @@ namespace MinigameFramework
             ActivePlayers.Remove(playerObject);
 
             onDisablePlayerUI.Raise(this, player.ID);
+        }
+
+        public void OnWaitPlayer(Component sender, object[] playerObj)
+        {
+            if (playerObj.First() is not GameObject playerObject) return;
+            
+            ActivePlayers.Remove(playerObject);
+            WaitingPlayers.Add(playerObject);
+            playerObject.transform.position = inactivePlayerPoint.transform.position;
+            PlayerController player = playerObject.GetComponent<PlayerController>();
+            player.SetPlayerState(PlayerState.InputRestricted);
+        }
+
+        public void OnUnWaitPlayers(Component sender, object[] _)
+        {
+            foreach (GameObject playerObject in WaitingPlayers.ToList())
+            {
+                ActivePlayers.Add(playerObject);
+                WaitingPlayers.Remove(playerObject);
+                PlayerController player = playerObject.GetComponent<PlayerController>();
+                player.SetPlayerState(PlayerState.Idle);
+            }
         }
         #endregion
 
