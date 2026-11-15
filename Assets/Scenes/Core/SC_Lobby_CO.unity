@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75261d846cbdc841bb0c555ba62f5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  onStartMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
+  onLoadMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
 --- !u!1 &154551455
 GameObject:
   m_ObjectHideFlags: 0
@@ -6250,7 +6250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75261d846cbdc841bb0c555ba62f5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  onStartMinigame: {fileID: 11400000, guid: 91c3866a617126db39376d5179df24ed, type: 2}
+  onLoadMinigame: {fileID: 0}
 --- !u!65 &2135560756
 BoxCollider:
   m_ObjectHideFlags: 0
