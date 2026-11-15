@@ -160,7 +160,9 @@ namespace MinigameFramework
         
         private void CheckCountdownState()
         {
-            if (Instance._canCountdown && Instance._countdownTime > 0)
+            if (!Instance._canCountdown) return;
+            
+            if (Instance._countdownTime > 0)
             {
                 onUpdateCountdownTimer.Raise(this, _countdownTime.ToString("0"));
             }
